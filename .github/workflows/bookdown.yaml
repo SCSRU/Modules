@@ -39,6 +39,9 @@ jobs:
         run: bookdown::render_book("index.Rmd", quiet = TRUE)
         shell: Rscript {0}
 
+      - name: Output
+        run: echo Event ${{ github.event_name }} and state ${{github.event.review.state}}
+        
       - name: Deploy to GitHub pages 🚀
         # if: github.event_name != 'pull_request'
         if: github.event.review.state == 'approved'

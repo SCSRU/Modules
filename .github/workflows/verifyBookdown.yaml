@@ -1,5 +1,7 @@
-on: push
-
+on:
+  push:
+    branches-ignore: 
+    - main
 name: verify bookdown
 
 jobs:
