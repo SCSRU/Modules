@@ -1,4 +1,0 @@
-Package: test-book
-Title: Test Book
-Version: 0.0.1
-Remotes: rstudio, bookdown
