@@ -100,10 +100,10 @@
     },
     "Rmpfr": {
       "Package": "Rmpfr",
-      "Version": "0.9-0",
+      "Version": "0.8-7",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "3b704975c8880bba7a01294547c8847b",
+      "Hash": "3e4b9d1192e79022615f25b98a3a6663",
       "Requirements": [
         "gmp"
       ]
@@ -251,10 +251,10 @@
     },
     "cli": {
       "Package": "cli",
-      "Version": "3.5.0",
+      "Version": "3.6.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "eb9fc121ad9a1075c471107ef185be46",
+      "Hash": "3177a5a16c243adc199ba33117bd9657",
       "Requirements": []
     },
     "clock": {
@@ -1125,10 +1125,10 @@
     },
     "stringi": {
       "Package": "stringi",
-      "Version": "1.7.8",
+      "Version": "1.7.12",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "a68b980681bcbc84c7a67003fa796bfb",
+      "Hash": "ca8bd84263c77310739d2cf64d84d7c9",
       "Requirements": []
     },
     "stringr": {
