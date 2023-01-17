@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Topics in Statistical Consulting</title>
-  <meta name="description" content="Topics in Statistical Consulting" />
+  <title>A General Guidelines | Topics in Statistical Consulting</title>
+  <meta name="description" content="A General Guidelines | Topics in Statistical Consulting" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Topics in Statistical Consulting" />
+  <meta property="og:title" content="A General Guidelines | Topics in Statistical Consulting" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Topics in Statistical Consulting" />
+  <meta name="twitter:title" content="A General Guidelines | Topics in Statistical Consulting" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introduction-to-r.html"/>
+<link rel="prev" href="introduction-to-questionnaire-design.html"/>
+<link rel="next" href="formatting-guidelines.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -488,36 +488,76 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Topics in Statistical Consulting</h1>
-<p class="author"><em><div class="line-block"><strong>Statistical Consulting and Collaborative Research Unit</strong><br />
-<strong>University of Waterloo</strong></div></em></p>
-<p class="date"><em>2023-01-17</em></p>
-</div>
-<div id="preface" class="section level1 unnumbered hasAnchor">
-<h1>Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This book aims to give introductions to some topics in statistical consulting. We hope that this will help audiences who have light background in statistics.</p>
-<p>For contributors to this book, please refer to the Appendix for <a href="general-guidelines.html#general-guidelines">General Guidelines</a>, <a href="formatting-guidelines.html#formatting-guidelines">Formatting Guidelines</a> and <a href="git-and-github-a-quick-tutorial.html#git-and-github-a-quick-tutorial">Github tutorials</a>.</p>
-<p>For questions regarding the materials of this book, please <a href="https://uwaterloo.ca/statistical-consulting-and-collaborative-research-unit/">contact us</a>.</p>
-<div id="authors" class="section level2 unnumbered hasAnchor">
-<h2>Authors<a href="index.html#authors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="general-guidelines" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">A</span> General Guidelines<a href="general-guidelines.html#general-guidelines" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>Author: Martin Lysy</em></p>
+<p><em>Last Updated: Nov 17, 2020</em></p>
+<hr />
+<div id="resources" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">A.1</span> Resources<a href="general-guidelines.html#resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>Trang Bui</li>
-<li>Meixi Chen</li>
-<li>Kelly Ramsay</li>
-<li>Yuliang Shi</li>
-<li>Grace Tompkins</li>
-<li>Feiyu Zhu</li>
+<li><p><strong>R Markdown:</strong> The <a href="https://bookdown.org/yihui/bookdown/"><strong>bookdown</strong> e-book</a> the <a href="https://bookdown.org/yihui/rmarkdown/">Definitive R Markdown Guide</a> and the <a href="https://bookdown.org/yihui/rmarkdown-cookbook/">R Markdown Cookbook</a>.</p></li>
+<li><p><strong>LaTeX:</strong> <a name="genguide-res:latex"> <a href="https://en.wikibooks.org/wiki/LaTeX/Mathematics">Basic</a> and <a href="https://en.wikibooks.org/wiki/LaTeX/Advanced_Mathematics">advanced</a> math formatting guides.</p></li>
+<li><p><strong>Collaborations:</strong> The <a href="https://git-scm.com/book/en/v2">Pro Git book</a>, and a quick tutorial <a href="git-and-github-a-quick-tutorial.html#git-and-github-a-quick-tutorial">here</a>.</p></li>
 </ul>
 </div>
-<div id="editors" class="section level2 unnumbered hasAnchor">
-<h2>Editors<a href="index.html#editors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>Martin Lysy</li>
-<li>Glen McGee</li>
-<li>Joslin Goh</li>
-</ul>
+<div id="format" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">A.2</span> Format<a href="general-guidelines.html#format" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://bookdown.org/yihui/bookdown/"><strong>bookdown</strong></a> is an R package which allows us to integrate scientific writing (including math, figures, etc.) with executable programming blocks. While <strong>bookdown</strong> is interfaced through R, very little R knowledge is required to operate it. The scientific writing is done in Markdown and LaTeX, whereas the programming blocks can be written in R, Python, Julia, C++, etc.</p>
+<p>In terms of content, please focus on the following:</p>
+<ol style="list-style-type: lower-roman">
+<li><p>Creating a clear organization of topics within your module using section/subsection/subsubsection headers.</p></li>
+<li><p>Setting up the code, for example, in a clear and well-organized manner, i.e., what to include directly in the <code>.Rmd</code> file and what goes into external scripts, using lots of code comments, informative variable names, and consistent naming conventions, etc.</p></li>
+</ol>
+<p>In terms of formatting the content with R Markdown, please refer to the <a href="#appformattingguidelines">Formatting Guidelines</a>.</p>
+<!-- The content of each module can roughly be divided into three components: -->
+<!-- 1.  Text explaining the concepts, models, etc. -->
+<!-- 2.  Short snippets of code which contribute to understanding the text (e.g., loading and displaying parts of data sets, simple calculations), or which can be used to create figures and tables. -->
+<!-- 3.  Larger sections of code consisting of interdependent functions, data processing, complex plotting functions, etc.  Some of this code can be displayed within the text, but by and large, it should be written in -->
+<!-- Each module should consist of:
 
+- One `Rmd` file containing the Markdown/LaTeX text, and short snippets of code which contribute to understanding the text (e.g., loading and displaying parts of data sets, simple calculations), or which can be used to create figures and tables.
+
+- Any number of external `.R`, `.py`, `.jl`, `.cpp`, etc. files for anything more complicated, e.g., interdependent and longer functions, data preprocessing files, etc.  I strongly recommend that you do not put too much code into `Rmd` files directly as it makes it much more difficult to organize, debug, and maintain.
+
+- Do provide links to relevant resources: papers, blog posts, etc. which helped you understand things better, and also any *high quality/performance* software to use or explore.  I've tried to provide such resources in my notes; please do update if links are broken, libraries have been superceeded, etc. -->
+<!-- the software.  I strongly recommend that you never try to write in multiple programming languages at once (e.g., R + Markdown). -->
+<!-- A skeleton for the full set of notes (including all modules) is to be downloaded from GitHub.  Each module should consist of an `Rmd` file containing the Markdown/LaTeX text, and external `.R`, `.py`, `.jl`, `.cpp`, etc. files for the software.  I strongly recommend that you never try to write in multiple programming languages at once (e.g., R + Markdown). -->
+<div id="typesetting-math" class="section level3 hasAnchor" number="7.2.1">
+<h3><span class="header-section-number">A.2.1</span> Typesetting Math<a href="general-guidelines.html#typesetting-math" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Please do take a look at the <a href="#genguide-res:latex">LaTeX guides</a> above, as it is easy to do this right and very annoying to redo if you do it wrong.</p>
+<p>One extremely useful LaTeX feature is the ability to define macros for commonly used commands. I strongly encourage you to use macros whenever possible. Not only does this save a considerable amount of typing, but also often an enormous amount of search-replacing. For example, suppose I have a canonical transformation function which I’ll be using throughout the document, but I’m not quite sure how to typeset it yet. So I define the LaTeX macro <code>\ctran{}</code> and use it. If later I want to redefine how <code>\ctran{}</code> is typeset that’s an extremely easy fix.</p>
+<p>Another useful LaTeX trick is to use simple patterns to define macros for common things. For example, I always define bold letter names (which you should use for anything that isn’t a scalar) as <code>\xx</code> <code>\YY</code>, etc., and bold symbol names as <code>\aal</code> for <span class="math inline">\(\boldsymbol{\alpha}\)</span>, <code>\TTh</code> for <span class="math inline">\(\boldsymbol{\Theta}\)</span>, etc.</p>
+<p>As a rule-of-thumb, <strong>avoid</strong> defining one-letter macros. The worst LaTeX mistake I’ve ever made is to define <span class="math inline">\(\beta\)</span> as<code>\b</code> in everything LaTeX document I wrote before 2015. Now suppose I want to replace <span class="math inline">\(\beta\)</span> with <span class="math inline">\(\gamma\)</span> as a symbol for the quantity of interest. Then either I have an extremely confusing macro <code>\newcommand{\b}{\gamma}</code>, or the most annoying search-replace ever (<code>\begin{xyz}</code> anyone?). Sometimes I do use one letter capital macros, e.g., <code>\newcommand{\N}{\mathcal{N}}</code> for the normal distribution, but these are much easier to search-replace.</p>
+<p>For this project, LaTeX is rendered to HTML via <a href="https://www.mathjax.org/">Mathjax</a>, and thus the macros must be defined a bit differently than in regular LaTeX. All LaTeX macros must be defined in <a href="preamble.html"><code>preamble.html</code></a>.</p>
+</div>
+<div id="genguide-citations" class="section level3 hasAnchor" number="7.2.2">
+<h3><span class="header-section-number">A.2.2</span> Citations<a href="general-guidelines.html#genguide-citations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For external websites, it’s sufficient to provide a link as I’ve done in this document. For journal articles, textbooks, conference proceedings, etc. it’s good practice to provide the complete citation information (in addition to a link to the resource if it can be obtained legally for free). For such references please use <a href="https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management">BibTeX</a>.</p>
+<p>Add your citations to the bibliography file <code>references.bib</code>. To separate the citations for each module, add the name of your module using the comment sign <span class="math inline">\(\%\)</span> when you start to add citations.</p>
+<p>For citation labels, please use the standardized format with the author label followed by the last two digits of the year. The rules for the author labels are, if there is only one author, use <code>@firstauthorlastname</code>, if there are two authors, use <code>@firstauthorlastname.secondauthorlastname</code>, if there are more than 2 authors, use <code>@firstauthorlastname.etal</code>. Here’s some examples <span class="citation">(<a href="#ref-gelman13" role="doc-biblioref">Gelman et al. 2013</a>)</span>, <span class="citation">(<a href="#ref-friedman.etal09" role="doc-biblioref">Friedman, Hastie, and Tibshirani 2009</a>)</span>.</p>
+</div>
+</div>
+<div id="rendering-the-book" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">A.3</span> Rendering the Book<a href="general-guidelines.html#rendering-the-book" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For this you will need to install the following packages:</p>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="general-guidelines.html#cb465-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;bookdown&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;wooldridge&quot;</span>, <span class="st">&quot;corrplot&quot;</span>, <span class="st">&quot;lmtest&quot;</span>,</span>
+<span id="cb465-2"><a href="general-guidelines.html#cb465-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;caret&quot;</span>, <span class="st">&quot;PMCMRplus&quot;</span>, <span class="st">&quot;dunn.test&quot;</span>, <span class="st">&quot;geesmv&quot;</span>,</span>
+<span id="cb465-3"><a href="general-guidelines.html#cb465-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;emdbook&quot;</span>),</span>
+<span id="cb465-4"><a href="general-guidelines.html#cb465-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Once this is done, quit + restart R for safe measure. Then, from within the project folder, run</p>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="general-guidelines.html#cb466-1" aria-hidden="true" tabindex="-1"></a>bookdown<span class="sc">::</span><span class="fu">render_book</span>()</span></code></pre></div>
+<p>To make sure everything is working as expected, you may wish to delete the <code>_book</code> and <code>_bookdown_files</code> folders before rendering. These don’t get cleaned up between runs, so there might be very old files hanging around in there if you don’t periodially perform a manual cleanup.</p>
+
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-friedman.etal09" class="csl-entry">
+Friedman, Jerome, Trevor Hastie, and Robert Tibshirani. 2009. <em>The Elements of Statistical Learning</em>. 2nd ed. New York, NY: Springer series in statistics.
+</div>
+<div id="ref-gelman13" class="csl-entry">
+Gelman, Andrew, John B Carlin, Hal S Stern, David B Dunson, Aki Vehtari, and Donald B Rubin. 2013. <em>Bayesian Data Analysis</em>. CRC Press. <a href="http://www.stat.columbia.edu/~gelman/book/">http://www.stat.columbia.edu/~gelman/book/</a>.
 </div>
 </div>
             </section>
@@ -525,8 +565,8 @@ div.csl-indent {
           </div>
         </div>
       </div>
-
-<a href="introduction-to-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduction-to-questionnaire-design.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="formatting-guidelines.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

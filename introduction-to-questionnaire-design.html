@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Topics in Statistical Consulting</title>
-  <meta name="description" content="Topics in Statistical Consulting" />
+  <title>6 Introduction to Questionnaire Design | Topics in Statistical Consulting</title>
+  <meta name="description" content="6 Introduction to Questionnaire Design | Topics in Statistical Consulting" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Topics in Statistical Consulting" />
+  <meta property="og:title" content="6 Introduction to Questionnaire Design | Topics in Statistical Consulting" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Topics in Statistical Consulting" />
+  <meta name="twitter:title" content="6 Introduction to Questionnaire Design | Topics in Statistical Consulting" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introduction-to-r.html"/>
+<link rel="prev" href="introduction-to-longitudinal-data.html"/>
+<link rel="next" href="general-guidelines.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -488,45 +488,196 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Topics in Statistical Consulting</h1>
-<p class="author"><em><div class="line-block"><strong>Statistical Consulting and Collaborative Research Unit</strong><br />
-<strong>University of Waterloo</strong></div></em></p>
-<p class="date"><em>2023-01-17</em></p>
-</div>
-<div id="preface" class="section level1 unnumbered hasAnchor">
-<h1>Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This book aims to give introductions to some topics in statistical consulting. We hope that this will help audiences who have light background in statistics.</p>
-<p>For contributors to this book, please refer to the Appendix for <a href="general-guidelines.html#general-guidelines">General Guidelines</a>, <a href="formatting-guidelines.html#formatting-guidelines">Formatting Guidelines</a> and <a href="git-and-github-a-quick-tutorial.html#git-and-github-a-quick-tutorial">Github tutorials</a>.</p>
-<p>For questions regarding the materials of this book, please <a href="https://uwaterloo.ca/statistical-consulting-and-collaborative-research-unit/">contact us</a>.</p>
-<div id="authors" class="section level2 unnumbered hasAnchor">
-<h2>Authors<a href="index.html#authors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-to-questionnaire-design" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> Introduction to Questionnaire Design<a href="introduction-to-questionnaire-design.html#introduction-to-questionnaire-design" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>Author: Trang Bui</em></p>
+<p><em>Last Updated: Nov 17, 2020</em></p>
+<hr />
+<p>Surveys or questionnaires play an important role in many research and studies. A well-designed questionnaire will help researchers collect the data required for their research questions with strong <em>validity</em> and <em>reliability</em>. This section aims to provide some guidelines to create such questionnaires.</p>
+<p>The most important thing to keep in mind when designing a questionnaire is that we are asking the respondents a favor. Therefore, the questionnaire needs to be as easy and less time-consuming as possible, while gathering enough information for the research questions. The goal is to create a <strong>short</strong>, <strong>easy</strong>, <strong>inviting</strong> but still <strong>sound</strong> and <strong>logical</strong> questionnaire.</p>
+<p>There are four main steps to achieve our goal:</p>
 <ul>
-<li>Trang Bui</li>
-<li>Meixi Chen</li>
-<li>Kelly Ramsay</li>
-<li>Yuliang Shi</li>
-<li>Grace Tompkins</li>
-<li>Feiyu Zhu</li>
+<li><a href="introduction-to-questionnaire-design.html#questdes-plan">plan the study</a>,</li>
+<li><a href="introduction-to-questionnaire-design.html#questdes-prepare">prepare the questions</a>,</li>
+<li><a href="introduction-to-questionnaire-design.html#questdes-put">put together the questionnaire</a>, and</li>
+<li><a href="introduction-to-questionnaire-design.html#questdes-pretest">pretest the questionnaire</a>.</li>
+</ul>
+<div id="questdes-plan" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Plan the Study<a href="introduction-to-questionnaire-design.html#questdes-plan" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Planning the study ahead allows us to create a questionnaire that meets the research goal while keeping it short and concise. In the questionnaire, we want to include questions that provide <em>enough</em>, but <em>not more</em> than what we need. In this section, suppose we are interested to create a survey to investigate students’ mental health. To plan the study, we should consider the following:</p>
+<ul>
+<li><p>What is the topic of interest?</p>
+<blockquote>
+<p>The topic based on our example is the mental health among students.</p>
+</blockquote></li>
+<li><p>What is the target population, i.e. the population of interest and to draw conclusion on?</p>
+<blockquote>
+<p>Suppose researchers want to make conclusions on the mental health of students at the University of Waterloo exclusively, instead of, for example, the mental health of students in Ontario province. Then, the target population is all the students at the University of Waterloo.</p>
+</blockquote></li>
+<li><p>To whom or to which groups do we want to report to? <!-- (for example, the demographic groups, etc.) --></p>
+<blockquote>
+<p>Suppose researchers want to report or compare the results of students’ mental health based on gender, faculty, country of origin, etc.</p>
+</blockquote></li>
+<li><p>What are the research questions, i.e. hypotheses?</p>
+<blockquote>
+<p>Is stress level related to the students’ faculty? What are the common mental health problems among students?</p>
+</blockquote></li>
+<li><p>What analysis tools will be used after the data has been collected?</p>
+<blockquote>
+<p>R, SAS, STATA, etc.</p>
+</blockquote></li>
+</ul>
+<p>Examining as many aspects of the study as possible will paint a picture of what the questionnaire should include, what questions need to be asked, and to whom the questionnaire should be designed for and sent to, etc. It is helpful to write down the plan for future reference and further discussion.</p>
+</div>
+<div id="questdes-prepare" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Prepare the Questions<a href="introduction-to-questionnaire-design.html#questdes-prepare" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this step, we design the questions based on the research plan laid out. The many aspects of a question that need to be considered include, but are not limited to, the type of question, the wording of the questions, the answer options for the questions, the order of the questions, etc. All of these will affect the difficulty of the questionnaire, the respondents’ willingness to answer or to answer correctly and truthfully, and also the analysis that will be carried out.</p>
+<p>When creating a question, think about the thought process that the survey respondents have to go through to answer. We also need to find ways to help them provide responses that are in line with the research goals. Here are a few questions to consider when creating each question:</p>
+<ul>
+<li><p>How can we define or decompose certain concepts? Is it fair to assume that all the respondents understand the wordings or notions? Is there any chance that the respondents might misunderstand the definitions, wordings, or the question itself?</p>
+<blockquote>
+<p><em>“Have you ever had depression?”</em></p>
+</blockquote>
+<p>The term “depression” may not be familiar to the respondents. Can everyone in the target population differentiate between depression and sadness? To avoid misunderstanding, the symptoms of depression can be listed before asking the question.</p></li>
+<li><p>How long ago since the event of interest occurred<!--until the respondents read the question in the survey-->? Is it easy for the respondents to recall and retrieve this information? Is there any cue in the survey or record the respondents can refer to?</p>
+<blockquote>
+<p><em>“When was the last time that you met a psychiatrist?”</em>.</p>
+</blockquote>
+<p>For some people, it may be so long ago that they cannot remember. Asking them to have their appointment record easily accessible can help with retrieving this information.</p></li>
+<li><p>Do the respondents need to estimate or judge to obtain the answer? What can be some references for these estimates or judgments?</p>
+<blockquote>
+<p><em>“How many hours do you spend on self-care per week?”</em>.</p>
+</blockquote>
+<p>Suppose a person spends three hours a day, the estimate would be 21 hours a week. However, it can be difficult for the person to recall the actual time length. To assist the respondents, provide some time point reference in the question. For example, time spent on self-care when they wake up or before going to bed. Both morning and bedtime routines are time points that respondents can remember easily.</p></li>
+<li><p>Can the respondents easily map their answers to the options provided? Are all the possible answers included in the question’s answer categories? How can we help the respondents express their answers precisely?</p>
+<blockquote>
+<p><em>“What do you think are the reasons for your sadness? (Select all that apply.)”</em></p>
+</blockquote>
+<p>Although the respondents can choose as many options as possible for the question, they may still not be able to express all of their answers.</p>
+<blockquote>
+<p><em>“How do you rate your happiness?”</em></p>
+</blockquote>
+<p>We can use a scale of 1-10, where 1 indicates “very unhappy” and 10 indicates “very happy”. A better choice could be a scale that ranges from -5 to 5, where -5 implies “very unhappy”, 0 corresponds to “indifferent”, and 5 as “very happy”. This scale will be easier to relate to.</p></li>
+</ul>
+<p>The context of the question can affect the respondents’ thought process and hence, their answers. It is important to make sure that the context is expressed or explained clearly. This can be achieved by</p>
+<ul>
+<li><p>Asking the general question before the specific questions.</p>
+<blockquote>
+<p>Q1: <em>“How do you feel about your performance at school?” </em></p>
+</blockquote>
+<blockquote>
+<p>Q2: <em>“How do you rate your level of happiness?” </em></p>
+</blockquote>
+<p>When we asked about how the respondents feel about their performance at school first, they may associate happiness with performance at school, and ignore their happiness that is not associated with school performance when answering Q2. If the order of the questions were flipped, the respondents would be more likely to rate their happiness level based on all aspects of their life instead of focusing on school performance.</p></li>
+<li><p>Grouping related questions in modules. <!--- We can have a block of questions asking about their symptoms of mental conditions, and another block of questions asking about their attempts to get better, etc. ---></p></li>
+</ul>
+<p>The order of the answer options can also affect the validity of the answers. Respondents tend to choose the first or last few options when there are many options. Consider using the natural order of the answer options such as alphabetical order. If the natural order is not available, and the list of options is long, randomize the order of the options.
+<!---
+    > Consider the questions *"Choose three of the biggest reasons why you are unhappy"*, and there is then a long list of options, the respondents will be likely to choose the first or the last few options since they are not patient to go through the long list and choose their best three. 
+---></p>
+<p>It is challenging to create sensitive questions that respondents are willing to answer and to answer truthfully. Respondents usually are hesitant to answer because of privacy and (or) shame.</p>
+<ul>
+<li><p>If the concern is privacy, we can create questions that do not require exact information, but an estimate.</p>
+<blockquote>
+<p>How old are you?</p>
+</blockquote>
+<p>Instead of asking for the exact age, we can ask respondents to choose from the age group they belong to.</p></li>
+<li><p>If the concern is shame, or social desirability, consider ways that will ease the respondents to the answer.</p>
+<blockquote>
+<p>Do you take anti-depressant?</p>
+</blockquote>
+<p>To help respondents feel more comfortable to provide a truthful answer to the question, we can add a sentence or two about the benefits of anti-depressant on improving moods, sleep quality, etc. <!-- If you want to ask about alcohol consumption, you can add a few sentences about the benefits of wine to health, which will make it more relaxing for respondents to answer truthfully about their alcohol consumption. --></p></li>
 </ul>
 </div>
-<div id="editors" class="section level2 unnumbered hasAnchor">
-<h2>Editors<a href="index.html#editors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="questdes-put" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Put Together the Questionnaire<a href="introduction-to-questionnaire-design.html#questdes-put" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>Martin Lysy</li>
-<li>Glen McGee</li>
-<li>Joslin Goh</li>
+<li><p>In the beginning, provide an introduction about the research topic and its importance to motivate the respondents to answer the questionnaire. Mention the research organizations, investigators, or sponsors and an estimate of the completion time of the questionnaire. Do not forget to include statements about privacy and confidentiality from the <a href="https://uwaterloo.ca/research/office-research-ethics">Office of Research Ethics</a>. Including relevant graphics may appeal to the respondents that this is an easy-to-answer survey.</p>
+<blockquote>
+<p><em>The information obtained from this survey will help the university better understand students’ mental well-being and take reasonable measures to help the students.</em></p>
+</blockquote></li>
+<li><p>Start with some questions that are related to the topic and easy to answer. <!-- the “Have you ever” --> Questions with “Yes-No” answers will usually ease the respondents to the questionnaire.</p></li>
+<li><p>Group the questions into modules or sections to create a logical flow that is easy for respondents to follow. In between these modules, a short description of the module can be added to make the transitions smoother.</p></li>
+<li><p>Ask sensitive questions near the end of the survey when the respondents are comfortable to provide their answers or opinions. We also recommend asking only the demographic questions required for the research questions at the end of the questionnaire. It may be worthy to mention that personal information will only be used for statistical purposes.</p></li>
+<li><p>Finally, give the respondents a big thank you. If there are any incentives for completing the survey, collect the required information. Additionally, again strongly stress the privacy of the gathered information. It is also a good place to leave the researchers’ contact information in the event that the respondents have any concerns or want to give additional feedback.</p></li>
 </ul>
+</div>
+<div id="questdes-pretest" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Pretest the Questionnaire<a href="introduction-to-questionnaire-design.html#questdes-pretest" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It is recommended to pretest the questionnaire before conducting data collection. This will help identify problems in the questionnaire and allow for revision and improvement.</p>
+<p>Consider pretesting the questionnaire by:</p>
+<ul>
+<li><p>obtaining expert review from colleagues who have the same or similar research topics, or statistical consultants who have expertise in data collection and analysis;</p></li>
+<li><p>conducting interviews with focus groups, i.e. a small group in the target population. This method allows us to know whether the prospective respondents have any difficulty in understanding and answering the questions. Their feedback or advice can be used to revise the questionnaire. <!-- For example, conduct the survey in a small class first and ask for their opinions. --></p></li>
+</ul>
+<p>Designing questionnaires is an iterative process. The four steps mentioned above can be revisited and revised as needed. If you have any further questions about questionnaires design, please consult a consultant at the <a href="https://uwaterloo.ca/statistical-consulting-and-collaborative-research-unit/">Statistical Consulting and Collaborative Research</a>, or the <a href="https://uwaterloo.ca/survey-research-centre/">Survey Research Centre</a>.</p>
+</div>
+<div id="a-checklist-for-questionnaire-designs" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> A Checklist for Questionnaire Designs<a href="introduction-to-questionnaire-design.html#a-checklist-for-questionnaire-designs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Planning
+<ul>
+<li>What is the topic of interest?</li>
+<li>What is the target population?</li>
+<li>To whom or to which groups do you want to report?</li>
+<li>What are the research questions?</li>
+<li>What analysis tools will be used for data analysis?</li>
+</ul></li>
+<li>Preparing the questions
+<ul>
+<li>Can the respondents understand the concepts in the question?</li>
+<li>Can the respondents easily recall the information required to answer the question?</li>
+<li>How will the respondents estimate or judge to answer this question?</li>
+<li>Can the respondents easily map their answers to the options provided?</li>
+<li>Will the context of the question affect the respondents’ thought processes?</li>
+<li>If there is a long list of options, is there a natural ordering? Is randomization of order needed?</li>
+<li>Is the question sensitive? How do we ease the respondents into answering the question?</li>
+</ul></li>
+<li>Putting together the questions
+<ul>
+<li>Preamble:
+<ul>
+<li>Provide an introduction to the research and highlight its importance.</li>
+<li>List the name of the research organizations, investigators, or sponsors.</li>
+<li>Estimate the completion time of the questionnaire.</li>
+<li>Include privacy and confidentiality statements.
+<!-- 
+  - relevant graphics. 
+  --></li>
+</ul></li>
+<li>Main body:
+<ul>
+<li>Start with easy Yes-No questions.</li>
+<li>Group the questions into modules and create a logical flow.</li>
+<li>Ask sensitive questions near the end.</li>
+<li>Ask demographic questions for statistical purposes.</li>
+</ul></li>
+<li>Ending:
+<ul>
+<li>Thank the respondents.</li>
+<li>Ask for contact information if a reward is promised.</li>
+<li>Leave contacts for further inquiries and feedback.</li>
+</ul></li>
+</ul></li>
+<li>Pretesting
+<ul>
+<li>Use expert review and (or) focus groups.</li>
+<li>Iterate the steps above until the questionnaire is satisfactory.</li>
+</ul></li>
+</ol>
 
 </div>
 </div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="introduction-to-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduction-to-longitudinal-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="general-guidelines.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

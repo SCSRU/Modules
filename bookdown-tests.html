@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Topics in Statistical Consulting</title>
-  <meta name="description" content="Topics in Statistical Consulting" />
+  <title>D Bookdown Tests | Topics in Statistical Consulting</title>
+  <meta name="description" content="D Bookdown Tests | Topics in Statistical Consulting" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Topics in Statistical Consulting" />
+  <meta property="og:title" content="D Bookdown Tests | Topics in Statistical Consulting" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Topics in Statistical Consulting" />
+  <meta name="twitter:title" content="D Bookdown Tests | Topics in Statistical Consulting" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introduction-to-r.html"/>
+<link rel="prev" href="git-and-github-a-quick-tutorial.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -488,36 +488,46 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Topics in Statistical Consulting</h1>
-<p class="author"><em><div class="line-block"><strong>Statistical Consulting and Collaborative Research Unit</strong><br />
-<strong>University of Waterloo</strong></div></em></p>
-<p class="date"><em>2023-01-17</em></p>
+<div id="bookdown-tests" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">D</span> Bookdown Tests<a href="bookdown-tests.html#bookdown-tests" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>A few tests to make sure <strong>bookdown</strong> is rendering things correctly.</p>
+<div id="test-math-macros" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">D.1</span> Test Math Macros<a href="bookdown-tests.html#test-math-macros" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math inline">\(\var(\xx)\)</span>, <span class="math inline">\(\alpha_\xx\)</span>, <span class="math inline">\(\xx \ind \N(0, \sigma_{\tx{pool}})\)</span>.</p>
 </div>
-<div id="preface" class="section level1 unnumbered hasAnchor">
-<h1>Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This book aims to give introductions to some topics in statistical consulting. We hope that this will help audiences who have light background in statistics.</p>
-<p>For contributors to this book, please refer to the Appendix for <a href="general-guidelines.html#general-guidelines">General Guidelines</a>, <a href="formatting-guidelines.html#formatting-guidelines">Formatting Guidelines</a> and <a href="git-and-github-a-quick-tutorial.html#git-and-github-a-quick-tutorial">Github tutorials</a>.</p>
-<p>For questions regarding the materials of this book, please <a href="https://uwaterloo.ca/statistical-consulting-and-collaborative-research-unit/">contact us</a>.</p>
-<div id="authors" class="section level2 unnumbered hasAnchor">
-<h2>Authors<a href="index.html#authors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>Trang Bui</li>
-<li>Meixi Chen</li>
-<li>Kelly Ramsay</li>
-<li>Yuliang Shi</li>
-<li>Grace Tompkins</li>
-<li>Feiyu Zhu</li>
+<div id="test-figure" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">D.2</span> Test Figure<a href="bookdown-tests.html#test-figure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="bookdown-tests.html#cb471-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>, <span class="at">pch =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:booktest-fig"></span>
+<img src="topics_in_consulting_files/figure-html/booktest-fig-1.png" alt="Test figure." width="672" />
+<p class="caption">
+Figure D.1: Test figure.
+</p>
+</div>
+<p>The reference to Figure <a href="bookdown-tests.html#fig:booktest-fig">D.1</a> is implemented correctly.</p>
+</div>
+<div id="test-cran-link" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">D.3</span> Test CRAN Link<a href="bookdown-tests.html#test-cran-link" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The package link to <a href="https://CRAN.R-project.org/package=mniw"><strong>mniw</strong></a> works correctly.</p>
+</div>
+<div id="test-checklist" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">D.4</span> Test Checklist<a href="bookdown-tests.html#test-checklist" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Can users modify our checklists? Apparently not.</p>
+<ul class="task-list">
+<li><p><input type="checkbox" disabled="" />Item 1.</p></li>
+<li><p><input type="checkbox" disabled="" checked="" />Item 2.</p></li>
 </ul>
 </div>
-<div id="editors" class="section level2 unnumbered hasAnchor">
-<h2>Editors<a href="index.html#editors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>Martin Lysy</li>
-<li>Glen McGee</li>
-<li>Joslin Goh</li>
-</ul>
+<div id="test-references" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">D.5</span> Test References<a href="bookdown-tests.html#test-references" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The reference to <span class="citation">Agresti (<a href="#ref-agresti15" role="doc-biblioref">2015</a>)</span> works as expected.</p>
 
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-agresti15" class="csl-entry">
+Agresti, Alan. 2015. <em>Foundations of Linear and Generalized Linear Models</em>. New York, NY: John Wiley &amp; Sons.
 </div>
 </div>
             </section>
@@ -525,8 +535,8 @@ div.csl-indent {
           </div>
         </div>
       </div>
-
-<a href="introduction-to-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="git-and-github-a-quick-tutorial.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

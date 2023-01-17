@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Topics in Statistical Consulting</title>
-  <meta name="description" content="Topics in Statistical Consulting" />
+  <title>B Formatting Guidelines | Topics in Statistical Consulting</title>
+  <meta name="description" content="B Formatting Guidelines | Topics in Statistical Consulting" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Topics in Statistical Consulting" />
+  <meta property="og:title" content="B Formatting Guidelines | Topics in Statistical Consulting" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Topics in Statistical Consulting" />
+  <meta name="twitter:title" content="B Formatting Guidelines | Topics in Statistical Consulting" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introduction-to-r.html"/>
+<link rel="prev" href="general-guidelines.html"/>
+<link rel="next" href="git-and-github-a-quick-tutorial.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -488,45 +488,110 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Topics in Statistical Consulting</h1>
-<p class="author"><em><div class="line-block"><strong>Statistical Consulting and Collaborative Research Unit</strong><br />
-<strong>University of Waterloo</strong></div></em></p>
-<p class="date"><em>2023-01-17</em></p>
-</div>
-<div id="preface" class="section level1 unnumbered hasAnchor">
-<h1>Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This book aims to give introductions to some topics in statistical consulting. We hope that this will help audiences who have light background in statistics.</p>
-<p>For contributors to this book, please refer to the Appendix for <a href="general-guidelines.html#general-guidelines">General Guidelines</a>, <a href="formatting-guidelines.html#formatting-guidelines">Formatting Guidelines</a> and <a href="git-and-github-a-quick-tutorial.html#git-and-github-a-quick-tutorial">Github tutorials</a>.</p>
-<p>For questions regarding the materials of this book, please <a href="https://uwaterloo.ca/statistical-consulting-and-collaborative-research-unit/">contact us</a>.</p>
-<div id="authors" class="section level2 unnumbered hasAnchor">
-<h2>Authors<a href="index.html#authors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="formatting-guidelines" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">B</span> Formatting Guidelines<a href="formatting-guidelines.html#formatting-guidelines" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>Author: Martin Lysy, Trang Bui</em></p>
+<p><em>Last Updated: Feb 04, 2021</em></p>
+<hr />
+<div id="formatguide-general" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">B.1</span> General<a href="formatting-guidelines.html#formatguide-general" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>Trang Bui</li>
-<li>Meixi Chen</li>
-<li>Kelly Ramsay</li>
-<li>Yuliang Shi</li>
-<li>Grace Tompkins</li>
-<li>Feiyu Zhu</li>
+<li><p>For a module, name your file starting with <code>mod_</code> and for a appendix, name your file starting with <code>app_</code>.</p></li>
+<li><p>For headers, place a space between the last sharp symbol <span class="math inline">\(\#\)</span> and the name of the header.</p></li>
+<li><p>Let’s agree to use regular font for programming languages (e.g., R, Python, C++) and bold font for packages and libraries (e.g., <strong>TMB</strong>, <strong>rstan</strong>, <strong>NumPy</strong>, <strong>Tensorflow</strong>). Use <code>code</code> font for files, data sets, codes and arguments. For functions, use parentheses at the end, for example, <code>my_func()</code>. Use curly brackets <code>\bm{}</code> for LaTeX functions. Use <code>&lt;kbd&gt;Key&lt;/kbd&gt;</code> for key strokes or buttons.</p></li>
+<li><p>Paste a link to packages which are mentioned for the first time. For R packages, you can use the <code>cran_link()</code> function to do this. For example, <a href="https://CRAN.R-project.org/package=rstan"><strong>rstan</strong></a>.</p></li>
+<li><p>Please see Appendix <a href="general-guidelines.html#genguide-citations">B.2.3</a> for how to handle citations.</p></li>
+<li><p>To refer to figures/tables/sections, use the standard academic style is e.g., “Figure 2”, “Section 2.5”, etc. In other words, the word is non-bold and non-italic, with the first letter capitalized, and the number following the word should have hyperlink. See relevant <strong>bookdown</strong> <a href="https://bookdown.org/yihui/bookdown/figures.html">chapter</a> for how to do this. To refer to modules, use the text name, details can be found <a href="https://stackoverflow.com/questions/57469501/cross-referencing-bookdownhtml-document2-not-working">here</a>.</p></li>
+<li><p>Refer to <code>common_functions.R</code> for commonly used functions across modules before writing your own.</p></li>
+<li><p>To make cross-referencing consistent in <strong>bookdown</strong>, for all labels – code chunks, figures, tables, sections, equations, etc. – use the prefix of the corresponding file as the prefix of any label. So please choose and use a module-specific prefix for each cross-reference. For example, use label <code>#formatguide</code> for this section. Refer to <code>prefixes.txt</code> for the list of the used prefixes and add yours there. Try to use the prefix that is distinctive to other words in the text such that you can find and replace all without mistakes.</p></li>
+<li><p>Give names to all code chunks, even e.g., pure code and figures you don’t refer to. <strong>Note:</strong> Chunk labels must consist of only letters, numbers, dashes (<code>-</code>), and slashes (<code>/</code>) – no underscores! Otherwise, cross-referencing <a href="https://bookdown.org/yihui/bookdown/figures.html">won’t work properly</a>.</p></li>
+<li><p>Paragraph breaks are simply indicated by one or more empty lines. No need for <code>\newline</code> or anything else. This applies to elements other than text such as figures, math blocks etc. If the figure/math block/etc is part of the paragraph, don’t leave blank spaces before or after<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p></li>
+<li><p>Please use Capital Case for all section headings, for example, Plan the Study.</p></li>
+<li><p>Our consensus for writing in a list is mentioned below. For details, visit <a href="https://getitwriteonline.com/articles/vertical-lists/">here</a>.</p>
+<ul>
+<li>Use <code>-</code> to denote lists.</li>
+<li>If the items in the list are complete sentences, begin the first word in each item with a capital-case letter and end the item with period.</li>
+<li>If the items are single words and phrases, begin the first word in each item with a lower-case letter and end with a comma. Use “and” (or “or”, depending on the context of the list) after the next-to-last item, and use a period after the last item in the list.</li>
+<li>If the items are phrases or clauses with punctuations in them, put a semicolon at the end of each item. Put “and” (or “or”) after the next-to-last item in the list and period for the last item. The items are not capitalized.</li>
+</ul></li>
+<li><p>For indentation, use four spaces before your paragraph, code chunk, or equation. This will be very helpful when you have an item in an itemized list which contains more than one paragraph, equation, or code chunk.</p></li>
+<li><p>Name all code chunks according to the above guideline about cross-references. For code chunks that take long time to run, use <code>cache=TRUE</code> to prevent the chunk to be executed again unless the code in the chunk has been altered. More detail can be found <a href="https://bookdown.org/yihui/rmarkdown-cookbook/cache.html">here</a>.</p></li>
+<li><p>Use the package <a href="https://CRAN.R-project.org/package=styler"><strong>styler</strong></a> to make the formatting of your code consistent. To do this, run the function <code>styler::style_file()</code> for your module’s Rmarkdown file. Do not set the option <code>tidy = "styler"</code> to your chunk code to prevent caching issues. The details of the package can be found <a href="https://styler.r-lib.org/">here</a>.</p></li>
+<li><p>Use “” instead of ’’ for quotes.</p></li>
+<li><p>Use underscore <code>_</code> instead of dot <code>.</code> to name variables.</p></li>
 </ul>
 </div>
-<div id="editors" class="section level2 unnumbered hasAnchor">
-<h2>Editors<a href="index.html#editors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="embedding-files" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">B.2</span> Embedding Files<a href="formatting-guidelines.html#embedding-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To embed a file in your module, first put it in any subdirectory of the <code>data</code> folder of the repo. For example, the repo currently contains the file <code>data/caliRain.csv</code>. You can then use the file anywhere in your module, e.g.,</p>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="formatting-guidelines.html#cb467-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">read.csv</span>(<span class="st">&quot;data/caliRain.csv&quot;</span>))</span></code></pre></div>
+<pre><code>##                     STATION PRECIP ALTITUDE LATITUDE DISTANCE SHADOW
+## 1 Eureka                     39.57       43     40.8        1      1
+## 2 RedBluff                   23.27      341     40.2       97      2
+## 3 Thermal                    18.20     4152     33.8       70      2
+## 4 FortBragg                  37.48       74     39.4        1      1
+## 5 SodaSprings                49.26     6752     39.3      150      1
+## 6 SanFrancisco               21.82       52     37.8        5      1</code></pre>
+<p>In order to let users download the file, you can simply provide the link using regular Markdown syntax. In other words, <code>[download link](data/caliRain.csv)</code> will render as <a href="data/caliRain.csv">download link</a>.</p>
+<p><strong>Note:</strong> This method works because somewhere in the project we make a call to <code>knitr::include_graphics("data/arbitrary/file.ext")</code>, which has the effect of adding the <code>data</code> folder to the bookdown output directory. In previous attempts we tried explicitly adding the <code>data</code> folder to the output via <code>dir.create()</code>. However, this requires that the output directory be supplied in advance, whereas in general it can be set on-the-fly via the <code>output_dir</code> argument to <code>bookdown::render_book()</code>.</p>
+<!-- - To embed a file in your module, use function `embed_data_file()`. For example, `<a href="/home/runner/work/TestBook/TestBook/_book/data/caliRain.csv" download="caliRain.csv">caliRain.csv</a>`{=html}. -->
+</div>
+<div id="math" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">B.3</span> Math<a href="formatting-guidelines.html#math" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>Martin Lysy</li>
-<li>Glen McGee</li>
-<li>Joslin Goh</li>
+<li><p>Always use bold font like <span class="math inline">\(\XX\)</span><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> or <span class="math inline">\(\aal\)</span> for anything that isn’t a scalar. In particular, please use <code>\bm{}</code> command in math mode to make things bold, and note that bold letters and symbols have standard macros as explained in <code>index.Rmd</code>. Please use them!</p></li>
+<li><p>If applicable distinguish between vectors and matrices (or collections of vectors) with lower and upper case, like <span class="math inline">\(\yy\)</span> and <span class="math inline">\(\YY\)</span> or <span class="math inline">\(\tth\)</span> and <span class="math inline">\(\TTh\)</span>.</p></li>
+<li><p>If the math equations are part of sentences, end them with suitable punctuation. If the formula is a derivation with multiple steps, only put punctuation at the final step.</p></li>
+<li><p>If an equation is to be written in a new line, use two dollar signs to start and finish the equation. For example, consider observations <span class="math inline">\(\XX = (\rv X N)\)</span> such that
+<span class="math display" id="eq:formatguide-mathex">\[
+  \begin{aligned}
+    X_i \mid \mu_i &amp; \ind \N(\mu_i, \sigma_i^2) \\
+    \mu_i &amp; \iid \N(0, \tau^2).
+    \end{aligned}
+    \tag{B.1}
+  \]</span></p></li>
+<li><p>Generally, a colon should not be used to set off an equation, even when it is a displayed equation. Typically an equation is the object in a sentence. Use a colon on occasion for emphasis, but make sure it fits grammatically. Examples can be found <a href="http://persweb.wabash.edu/facstaff/footer/courses/Expectations/WritingTips2.pdf">here</a>. The same rules apply for code chunks.</p></li>
+<li><p>Use <span class="math inline">\(j^{th}\)</span> and <span class="math inline">\((i,j)^{th}\)</span>.</p></li>
+</ul>
+<div id="commonly-used-math-and-stats-expressions" class="section level3 hasAnchor" number="8.3.1">
+<h3><span class="header-section-number">B.3.1</span> Commonly-Used Math and Stats Expressions<a href="formatting-guidelines.html#commonly-used-math-and-stats-expressions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Sequences of random variables: <span class="math inline">\(X_1, \ldots, X_N\)</span>. In fact since these are so common, I’ve created a macro for it: <span class="math inline">\(\rv Y 5\)</span> and <span class="math inline">\(\rv [m,0] Z {m,N_m}\)</span>.</p></li>
+<li><p>For multi-line equations with alignment, use <code>aligned</code> environment as in <a href="formatting-guidelines.html#eq:formatguide-mathex">(B.1)</a>.</p></li>
+<li><p>The “d” in integrals:
+<span class="math display">\[
+  \ud X_t = \mu(X_t) \ud t + \ud B_t \qquad \iff \qquad X_t = \mu t + \int_0^t \mu(X_t) \ud t + B_t.
+  \]</span></p></li>
+<li><p>Conditioning: <span class="math inline">\(p(y \mid x)\)</span>.</p></li>
+<li><p>Independence: <span class="math inline">\(Y \amalg X\)</span>.</p></li>
+<li><p>Probability: <span class="math inline">\(\Pr(Y \le y)\)</span>.</p></li>
+<li><p>Derivatives and partials: These are quite time-consuming to typeset so I’ve created some macros for them:
+<span class="math display">\[
+    \der{x} f(x), \qquad \fdel[3]{x} {g(x, y)}, \qquad \hess{\tth}\ell(\tth \mid \XX).
+    \]</span>
+The last of these is used for Hessian matrices.</p></li>
+<li><p>Independent/IID/Normal: Please see <a href="formatting-guidelines.html#eq:formatguide-mathex">(B.1)</a>.</p></li>
+<li><p>Variance/Covariance/Correlation: <span class="math inline">\(\var(X), \cov(X), \cor(X)\)</span>.</p></li>
+<li><p>The <span class="math inline">\(p\)</span>-value and the <span class="math inline">\(F\)</span>, <span class="math inline">\(t\)</span> or chi-square tests.</p></li>
 </ul>
 
 </div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>An exception to this is possibly within an indented region. There you may need to leave a blank space before/after math block…I’m not 100% sure…<a href="formatting-guidelines.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>LaTeX purists might prefer to use <code>\mathbf{}</code> for roman letters instead of <code>\boldsymbol{}</code> as I have defined via the <code>\bm{}</code> macro in <code>preamble.html</code>. Observe the difference: <span class="math inline">\(\mathbf{x}\)</span> vs <span class="math inline">\(\boldsymbol{x}\)</span> and <span class="math inline">\(\mathbf{X}\)</span> vs <span class="math inline">\(\boldsymbol{X}\)</span>. For pure LaTeX, the <code>\bm{}</code> command in the <a href="https://ctan.org/pkg/bm?lang=en"><strong>bm</strong></a> package automatically picks the right one for you. Eventually, I’ll figure out how to use this package for the e-book, in which case if you consistently use <code>\bm{}</code> for bold there will be very little for me to change!<a href="formatting-guidelines.html#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="introduction-to-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="general-guidelines.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="git-and-github-a-quick-tutorial.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
