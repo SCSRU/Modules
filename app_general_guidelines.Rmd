@@ -1,0 +1,88 @@
+# (APPENDIX) Appendix {-} 
+
+# General Guidelines
+
+*Author: Martin Lysy*
+
+*Last Updated: Nov 17, 2020*
+
+--- 
+
+## Resources
+
+- **R Markdown:** The  [**bookdown** e-book](https://bookdown.org/yihui/bookdown/) the [Definitive R Markdown Guide](https://bookdown.org/yihui/rmarkdown/) and the [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/).
+
+- **LaTeX:** <a name="genguide-res:latex"> [Basic](https://en.wikibooks.org/wiki/LaTeX/Mathematics) and [advanced](https://en.wikibooks.org/wiki/LaTeX/Advanced_Mathematics) math formatting guides.
+
+- **Collaborations:** The [Pro Git book](https://git-scm.com/book/en/v2), and a quick tutorial [here][Git and GitHub: A Quick Tutorial].
+
+## Format
+
+[**bookdown**](https://bookdown.org/yihui/bookdown/) is an R package which allows us to integrate scientific writing (including math, figures, etc.) with executable programming blocks.  While **bookdown** is interfaced through R, very little R knowledge is required to operate it.  The scientific writing is done in Markdown and LaTeX, whereas the programming blocks can be written in R, Python, Julia, C++, etc.
+
+In terms of content, please focus on the following:
+
+i.  Creating a clear organization of topics within your module using section/subsection/subsubsection headers.
+
+ii.  Setting up the code, for example, in a clear and well-organized manner, i.e., what to include directly in the `.Rmd` file and what goes into external scripts, using lots of code comments, informative variable names, and consistent naming conventions, etc.
+
+In terms of formatting the content with R Markdown, please refer to the [Formatting Guidelines](#appformattingguidelines).
+
+<!-- The content of each module can roughly be divided into three components: -->
+
+<!-- 1.  Text explaining the concepts, models, etc. -->
+
+<!-- 2.  Short snippets of code which contribute to understanding the text (e.g., loading and displaying parts of data sets, simple calculations), or which can be used to create figures and tables. -->
+
+<!-- 3.  Larger sections of code consisting of interdependent functions, data processing, complex plotting functions, etc.  Some of this code can be displayed within the text, but by and large, it should be written in -->
+
+<!-- Each module should consist of:
+
+- One `Rmd` file containing the Markdown/LaTeX text, and short snippets of code which contribute to understanding the text (e.g., loading and displaying parts of data sets, simple calculations), or which can be used to create figures and tables.
+
+- Any number of external `.R`, `.py`, `.jl`, `.cpp`, etc. files for anything more complicated, e.g., interdependent and longer functions, data preprocessing files, etc.  I strongly recommend that you do not put too much code into `Rmd` files directly as it makes it much more difficult to organize, debug, and maintain.
+
+- Do provide links to relevant resources: papers, blog posts, etc. which helped you understand things better, and also any *high quality/performance* software to use or explore.  I've tried to provide such resources in my notes; please do update if links are broken, libraries have been superceeded, etc. -->
+
+<!-- the software.  I strongly recommend that you never try to write in multiple programming languages at once (e.g., R + Markdown). -->
+
+<!-- A skeleton for the full set of notes (including all modules) is to be downloaded from GitHub.  Each module should consist of an `Rmd` file containing the Markdown/LaTeX text, and external `.R`, `.py`, `.jl`, `.cpp`, etc. files for the software.  I strongly recommend that you never try to write in multiple programming languages at once (e.g., R + Markdown). -->
+
+### Typesetting Math
+
+Please do take a look at the [LaTeX guides](#genguide-res:latex) above, as it is easy to do this right and very annoying to redo if you do it wrong.
+
+One extremely useful LaTeX feature is the ability to define macros for commonly used commands.  I strongly encourage you to use macros whenever possible.  Not only does this save a considerable amount of typing, but also often an enormous amount of search-replacing.  For example, suppose I have a canonical transformation function which I'll be using throughout the document, but I'm not quite sure how to typeset it yet.  So I define the LaTeX macro `\ctran{}` and use it.  If later I want to redefine how `\ctran{}` is typeset that's an extremely easy fix.
+
+Another useful LaTeX trick is to use simple patterns to define macros for common things.  For example, I always define bold letter names (which you should use for anything that isn't a scalar) as `\xx` `\YY`, etc., and bold symbol names as `\aal` for $\boldsymbol{\alpha}$, `\TTh` for $\boldsymbol{\Theta}$, etc. 
+
+As a rule-of-thumb, **avoid** defining one-letter macros.  The worst LaTeX mistake I've ever made is to define $\beta$ as`\b` in everything LaTeX document I wrote before 2015.  Now suppose I want to replace $\beta$ with $\gamma$ as a symbol for the quantity of interest.  Then either I have an extremely confusing macro `\newcommand{\b}{\gamma}`, or the most annoying search-replace ever (`\begin{xyz}` anyone?).  Sometimes I do use one letter capital macros, e.g., `\newcommand{\N}{\mathcal{N}}` for the normal distribution, but these are much easier to search-replace.
+
+For this project, LaTeX is rendered to HTML via [Mathjax](https://www.mathjax.org/), and thus the macros must be defined a bit differently than in regular LaTeX.  All LaTeX macros must be defined in [`preamble.html`](preamble.html).
+
+### Citations {#genguide-citations}
+
+For external websites, it's sufficient to provide a link as I've done in this document.  For journal articles, textbooks, conference proceedings, etc. it's good practice to provide the complete citation information (in addition to a link to the resource if it can be obtained legally for free).  For such references please use [BibTeX](https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management).
+
+Add your citations to the bibliography file `references.bib`. To separate the citations for each module, add the name of your module using the comment sign $\%$ when you start to add citations. 
+
+For citation labels, please use the standardized format with the author label followed by the last two digits of the year. The rules for the author labels are, if there is only one author, use `@firstauthorlastname`, if there are two authors, use `@firstauthorlastname.secondauthorlastname`, if there are more than 2 authors, use `@firstauthorlastname.etal`. Here's some examples [@gelman13], [@friedman.etal09]. 
+
+## Rendering the Book
+
+For this you will need to install the following packages:
+
+```{r app-gen-pkgs, eval = FALSE}
+install.packages(c("bookdown", "tidyverse", "wooldridge", "corrplot", "lmtest",
+                   "caret", "PMCMRplus", "dunn.test", "geesmv",
+                   "emdbook"),
+                 dependencies = TRUE)
+```
+
+Once this is done, quit + restart R for safe measure.  Then, from within the project folder, run
+
+```{r app-gen-render, eval = FALSE}
+bookdown::render_book()
+```
+
+To make sure everything is working as expected, you may wish to delete the `_book` and `_bookdown_files` folders before rendering.  These don't get cleaned up between runs, so there might be very old files hanging around in there if you don't periodially perform a manual cleanup.

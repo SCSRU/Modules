@@ -1,0 +1,70 @@
+# Git and GitHub: A Quick Tutorial
+
+*Author: Martin Lysy*
+
+*Last Updated: Nov 09, 2020*
+
+--- 
+
+[Git](https://git-scm.com/) is an extremely powerful version control system that is used to "back up" software projects.  In a nutshell, rather than overwriting files every time you save them, Git saves the difference between the old and updated versions.  This gives you have a complete history of all saves with a minuscule memory overhead, making it very easy to roll back changes, see what you did when, etc.  It also has a branching system which is extremely useful to make patches or feature extensions for your software without affecting the "stable" version.
+
+Git projects (or "repositories") can easily be stored on the cloud, which is ideal both for backups and for collaborative work.  The most common platform for this is [GitHub](https://github.com/).  You will need a GitHub account in order to access and submit files for this project.  It's completely free, secure, and does not collect or distribute your personal information.  You can delete your account at any time, but publicly visible projects can be made to look like a very nice webpage with minimal effort.  Therefore, in my opinion, this is a great way to showcase the software you develop for this class or others by providing a link to your GitHub page on your CV.
+
+## Setup
+
+- Install Git and learn some of the basics: https://githowto.com/.
+
+- Create a free GitHub account: https://github.com/.
+
+- Send me an email with your GitHub account information so I can add you to this project.
+
+## Contributing to the Project
+
+The following is the standard Git procedure for collaborating on a project^[If you have been given collaborator rights on a project, you don't actually need to fork the repo and can simply create branches on the main project from which to issue pull requests.  However, forking is the way to go for contributing bugfixes to public repos on your which you are not an official collaborator.  Also, it's very difficult for the project administrator (i.e., me) from preventing other collaborators from interfering with your branch on the main project, but by only you (and the people you authorize) can make changes to the branch on your fork.].
+
+- Fork the project to your own GitHub account.  That is, you've now made a complete copy of the project that you can modify however you want without affecting the original.  This fork must be kept private (i.e., invisible to the outside world) for the duration of the course.
+
+- While it is possible to edit the fork directly from GitHub, I strongly recommend against this as it's extremely inconvenient.  Instead, make a [local copy](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) of the fork on your computer.
+
+- In order to make changes to any Git repo, it is always recommended that you create a new [branch](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell) for this first.  That is, assume that the stable version of the repo is on the `master` branch.  Then from the command line, you can do the following:
+
+    ```bash
+    # make sure you are on the master branch		
+    git checkout master
+    # create new branch
+    git checkout -b mlysy-devel
+    ```
+
+	This will copy everything from `master` to a new branch called `mlysy-devel`.  Now I can make whatever changes I want to `mlysy-devel`.
+	
+- Commit your desired changes to the new branch.  When you are ready to send them back to the main project repo, follow these steps:
+
+	1.  Push your local branch to your remote GitHub fork:
+	
+        ```bash
+        git push -u origin mlysy-devel
+        ```
+
+	2.  Create a GitHub [pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork) via the button on your fork's page.
+
+	When this is done, I will be able to inspect your changes and make suggestions before merging your work into the project-wide stable branch `master`.
+
+## Git Mistakes
+
+Git is an extremely versatile program with its own lingo (e.g. push/merge/stash/commit/stage/etc.), all of which takes some time to master.  The good news is that it's easy to "save everything" with Git and very hard to accidentally delete things.  To me since the point of using Git is version control, I usually don't worry about fixing little mistakes (like forgetting to include a file in a commit) that don't affect this overall goal.
+
+There is however one type of Git mistake that's fairly annoying to fix.  This has to do with including large "object" files in the repo.  For the purpose of this discussion, object files are files which:
+
+i.  Can be completely generated from source code in the repo, e.g., PDF files created with LaTeX, C++ shared object files (`.dll`, `.so`, `.o`), HTML files generated with R Markdown.
+
+ii.  Cannot be read by a human with a plain text editor, e.g., PDF files, Microsoft Word documents, C++ shared object files, but not HTML files.
+
+iii.  Get created over and over as the source code in the repo changes.
+
+Object files should not be included in Git repos because they take up space and can easily be recreated from source.  C++ shared object files are especially useless since they are platform/system-dependent and thus probably won't work on your collaborator's computer.  Moreover, because object files are not human-readable, Git doesn't know how to compute the incremental difference between commits, and ends up saving the *entire object file* every time.  This can easily and needlessly bloat the size of the repo.
+
+The nuisance here is that if you accidentally commit an object file, simply deleting it won't remove it from the Git history.  Pruning the Git history is a very annoying task, which is why I think of committing object files as the only real Git "mistake".  If you need to prune your Git history, please use this extremely handy [repo cleaner](https://rtyley.github.io/bfg-repo-cleaner/).
+
+Rather than fixing object file commits after they happen, you can prevent this from happening by using [`.gitignore`](https://www.atlassian.com/git/tutorials/saving-changes/gitignore) file.  Simply put, `.gitignore` files tell Git to ignore certain files in the folder repo.  They can contain relative paths and [regular expressions](https://en.wikipedia.org/wiki/Regular_expression).  Each `.gitignore` file applies to the folder and subfolder of where it's located, so you can have "global" and "local" `.gitignore` files in the same repo.
+
+The global `.gitignore` for this repo contains a number of common things to ignore in R and C++ projects.  Specific to this particular project, it also ignores the `_book` subfolder which contains the HTML-rendered e-book that you'll be building to preview on your local machine.

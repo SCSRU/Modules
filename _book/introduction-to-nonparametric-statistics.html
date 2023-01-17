@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Introduction to Nonparametric Statistics | Topics in Statistical Consulting</title>
+  <meta name="description" content="4 Introduction to Nonparametric Statistics | Topics in Statistical Consulting" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Introduction to Nonparametric Statistics | Topics in Statistical Consulting" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Introduction to Nonparametric Statistics | Topics in Statistical Consulting" />
+  
+  
+  
+
+
+
+<meta name="date" content="2023-01-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction-to-linear-regression.html"/>
+<link rel="next" href="introduction-to-longitudinal-data.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Latex macros for html output
+
+A few very common things you should use:
+
+- $\bm{}$: Bold math.  Use bold for everything except scalars.
+- $\tx{}$: Text within math.  Use for abbreviating words, e.g., $A_{\tx{miss}}$.
+- $\xx, \YY$: Default macro convention for bold letters (small and capital case).
+- $\aal, \TTh$: Default macro convention for bold symbols (first two letters of symbol name, i.e., $\bm{\alpha}$ and $\bm{\Theta}$).
+- common stats symbols e.g., $\var$, $\cov$, $\iid$, $\N, defined below.
+-->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      TeX: {
+	  Macros: {
+	      bm: ["\\boldsymbol{#1}",1], <!--bold math-->
+	      tx: ["\\textrm{#1}",1], <!--text within math-->
+	      rv: ["#2_{#1},\\ldots,#2_{#3}",3,"1"], <!--random variable \rv{X}{n}: X_1, ..., X_n-->
+	      iid: ["\\overset{\\;\\tx{iid}\\;}{\\sim}"], <!--iid follows-->
+	      ind: ["\\overset{\\:\\tx{ind}\\:}{\\sim}"], <!--ind follows-->
+	      var: ["\\operatorname{var}"], <!--variance-->
+	      cov: ["\\operatorname{cov}"], <!--coveraince-->
+	      cor: ["\\operatorname{cor}"], <!--correlation-->
+	      std: ["\\operatorname{se}"], <!--standard error-->
+	      diag: ["\\operatorname{diag}"], <!--diagonal matrix-->
+	      logit: ["\\operatorname{logit}"], <!--logit function-->
+	      N: ["\\mathcal{N}"], <!--normal distribution-->
+	      unif: ["\\operatorname{Unif}"], <!--Uniform distribution-->
+	      ud: ["\\mathop{}\\!\\mathrm{d}"], <!--d in tegeral-->
+	      der: ["\\frac{\\ud^{#1}}{\\ud{#2}^{#1}}", 2, ""], <!--\der{x}{f} d/dx f--> 
+	      del: ["\\frac{\\partial^{#1}}{\\partial{#2}^{#1}}", 2, ""], <!--\del{x}{f} d/dx f-->
+	      fder: ["\\frac{\\ud^{#1}#3}{\\ud{#2}^{#1}}", 3, ""], <!--\fder{x}{f} df/dx -->
+	      fdel: ["\\frac{\\partial^{#1}#3}{\\partial{#2}^{#1}}", 3, ""], <!--\fdel{x}{f} df/dx -->
+	      hess: ["\\frac{\\partial^2}{\\partial{#1}\\partial{#1}'}", 1], <!--\hess{x} d/dxdx -->
+	      fhess: ["\\frac{\\partial^2#2}{\\partial{#1}\\partial{#1}'}", 2], <!--\fhess{x}{f} df/dxdx -->
+              kbt: ["k_{\\tx{B}}T"],
+	      IH: ["{\\mathfrak P}"], <!--p curl-->
+	      eps: ["\\varepsilon"], <!--epsilon-->
+	      paug: ["p_{\\tx{A}}"], <!--p_A-->
+	      Ka: ["{\\mathcal K}"], <!--K curl-->
+	      Ua: ["{\\mathcal U}"], <!--U curl-->
+	      Ha: ["{\\mathcal H}"], <!--H curl-->
+	      curr: ["{\\tx{curr}}"], <!--curr-->
+	      prop: ["{\\tx{prop}}"], <!--prop-->
+	      obs: ["{\\tx{obs}}"], <!--obs-->
+	      bz: ["{\\bm{0}}"], <!--boldface 0-->
+	      mm: ["{\\bm{m}}"], <!--boldface m-->
+	      ww: ["{\\bm{w}}"], <!--boldface w-->
+	      vv: ["{\\bm{v}}"], <!--boldface v-->
+	      xx: ["{\\bm{x}}"], <!--boldface x-->
+	      yy: ["{\\bm{y}}"], <!--boldface y-->
+	      zz: ["{\\bm{z}}"], <!--boldface z-->
+	      UU: ["{\\bm{U}}"], <!--boldface U-->
+	      II: ["{\\bm{I}}"], <!--boldface I-->
+	      HH: ["{\\bm{H}}"], <!--boldface H-->
+	      XX: ["{\\bm{X}}"], <!--boldface X-->
+	      YY: ["{\\bm{Y}}"], <!--boldface Y-->
+	      ZZ: ["{\\bm{Z}}"], <!--boldface Z-->
+	      aal: ["{\\bm{\\alpha}}"], <!--boldface alpha-->
+	      bbe: ["{\\bm{\\beta}}"], <!--boldface beta-->
+	      gga: ["{\\bm{\\gamma}}"], <!--boldface gamma-->
+	      eet: ["{\\bm{\\eta}}"], <!--boldface eta-->
+	      lla: ["{\\bm{\\lambda}}"], <!--boldface lambda-->
+	      mmu: ["{\\bm{\\mu}}"], <!--boldface mu-->
+	      pph: ["{\\bm{\\phi}}"], <!--boldface phi-->
+	      pps: ["{\\bm{\\psi}}"], <!--boldface psi-->
+	      rrh: ["{\\bm{\\rho}}"], <!--boldface rho-->
+	      ssi: ["{\\bm{\\sigma}}"], <!--boldface sigma-->
+	      tta: ["{\\bm{\\tau}}"], <!--boldface tau-->
+	      tth: ["{\\bm{\\theta}}"], <!--boldface theta-->
+	      eeps: ["{\\bm{\\varepsilon}}"], <!--boldface varepsilon-->
+	      GGa: ["{\\bm{\\Gamma}}"], <!--boldface Gamma-->
+	      SSi: ["{\\bm{\\Sigma}}"], <!--boldface Sigma-->
+	      TTh: ["{\\bm{\\Theta}}"], <!--boldface Theta-->
+	      cU: ["\\bm{\\mathcal{U}}"], <!--boldface U curl-->
+	      rx: ["{\\tx{x}}"], <!--text x-->
+	      ry: ["{\\tx{y}}"], <!--text y-->
+	      rz: ["{\\tx{z}}"], <!--text z-->
+	      rvx: ["{\\mathbf{x}}"], <!--boldface text x-->
+	      rvz: ["{\\mathbf{z}}"], <!--boldface text z-->
+	      rvc: ["{\\mathbf{c}}"], <!--boldface text c-->
+	      rvzl: ["{\\mathbf{z}^{\\tx{l}}}"], <!--bold face z^l-->
+	      rvzg: ["{\\mathbf{z}^{\\tx{g}}}"], <!--bold face z^g-->
+	      rvt: ["{\\mathbf{t}}"], <!--boldface t-->
+	      Q: ["{\\mathcal{Q}}"], <!--Q curl-->
+	      O: ["{\\mathcal{O}}"], <!--O curl-->
+	      U: ["{\\mathcal{U}}"], <!--U curl-->
+	      R: ["{\\mathbb{R}}"], <!--real set-->
+	      kl: ["{\\operatorname{KL}}"], <!--KL-->
+	      sfT: ["{\\mathsf{T}}"], <!--sf T-->
+	      sfk: ["{\\mathsf{k}}"], <!--sf k-->
+	      sfa: ["{\\mathsf{a}}"], <!--sf a-->
+	      sfh: ["{\\mathsf{h}}"], <!--sf h-->
+  	      sfkl: ["{\\mathsf{k}^{\\tx{l}}}"], <!--sf k^l-->
+	      sfal: ["{\\mathsf{a}^{\\tx{l}}}"], <!--sf a^l-->
+	      sfhl: ["{\\mathsf{h}^{\\tx{l}}}"], <!--sf h^l-->
+  	      sfkg: ["{\\mathsf{k}^{\\tx{g}}}"], <!--sf k^g-->
+	      sfag: ["{\\mathsf{a}^{\\tx{g}}}"], <!--sf a^g-->
+	      sfhg: ["{\\mathsf{h}^{\\tx{g}}}"], <!--sf h^g-->
+	      sft: ["{\\mathsf{t}}"], <!--sf t-->
+	      sfr: ["{\\mathsf{r}}"], <!--sf r-->
+	      argmin: ["\\operatorname{arg\\,min}"], <!--argmin-->
+	      argmax: ["\\operatorname{arg\\,max}"], <!--argmax-->
+	      E: ["{\\mathbb{E}}"], <!--expectation-->
+	      L: ["{\\mathcal{L}}"], <!--curl L likelihood-->
+	      ellap: ["\\ell_{\\tx{Lap}}"] <!--curl l_Lap-->
+	  }
+      }
+  });
+</script>
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://uwaterloo.ca/statistical-consulting-and-collaborative-research-unit/" target="blank">Statistical Consulting and Collaborative Research Unit</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#authors"><i class="fa fa-check"></i>Authors</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#editors"><i class="fa fa-check"></i>Editors</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-and-rstudio"><i class="fa fa-check"></i><b>1.1</b> R and RStudio</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#basic-r"><i class="fa fa-check"></i><b>1.2</b> Basic R</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#rintro-calculate"><i class="fa fa-check"></i><b>1.2.1</b> Calculating with R</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variables"><i class="fa fa-check"></i><b>1.2.2</b> Variables</a></li>
+<li class="chapter" data-level="1.2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#vectors"><i class="fa fa-check"></i><b>1.2.3</b> Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#basic-data-analysis-workflow"><i class="fa fa-check"></i><b>1.3</b> Basic Data Analysis Workflow</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#reading-data-into-r"><i class="fa fa-check"></i><b>1.3.1</b> Reading Data into R</a></li>
+<li class="chapter" data-level="1.3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#descriptive-statistics"><i class="fa fa-check"></i><b>1.3.2</b> Descriptive Statistics</a></li>
+<li class="chapter" data-level="1.3.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-visualization"><i class="fa fa-check"></i><b>1.3.3</b> Data Visualization</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#some-coding-tips"><i class="fa fa-check"></i><b>1.4</b> Some Coding Tips</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#source-editor"><i class="fa fa-check"></i><b>1.4.1</b> Source Editor</a></li>
+<li class="chapter" data-level="1.4.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#commenting"><i class="fa fa-check"></i><b>1.4.2</b> Commenting</a></li>
+<li class="chapter" data-level="1.4.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#saving-the-environment"><i class="fa fa-check"></i><b>1.4.3</b> Saving the Environment</a></li>
+<li class="chapter" data-level="1.4.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#installing-and-loading-libraries"><i class="fa fa-check"></i><b>1.4.4</b> Installing and Loading Libraries</a></li>
+<li class="chapter" data-level="1.4.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#good-coding-practices"><i class="fa fa-check"></i><b>1.4.5</b> Good Coding Practices</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-help"><i class="fa fa-check"></i><b>1.5</b> Getting Help</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-documentation"><i class="fa fa-check"></i><b>1.5.1</b> R Documentation</a></li>
+<li class="chapter" data-level="1.5.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#online-resources"><i class="fa fa-check"></i><b>1.5.2</b> Online Resources</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html"><i class="fa fa-check"></i><b>2</b> Introduction to ggplot2</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#example-data-set"><i class="fa fa-check"></i><b>2.1.1</b> Example Data Set</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#data"><i class="fa fa-check"></i><b>2.2</b> Data</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#aesthetics"><i class="fa fa-check"></i><b>2.3</b> Aesthetics</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#the-colour-component"><i class="fa fa-check"></i><b>2.3.1</b> The Colour Component</a></li>
+<li class="chapter" data-level="2.3.2" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#the-size-component"><i class="fa fa-check"></i><b>2.3.2</b> The Size Component</a></li>
+<li class="chapter" data-level="2.3.3" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#the-shape-component"><i class="fa fa-check"></i><b>2.3.3</b> The Shape Component</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#geometrics"><i class="fa fa-check"></i><b>2.4</b> Geometrics</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#line-graphs"><i class="fa fa-check"></i><b>2.4.1</b> Line Graphs</a></li>
+<li class="chapter" data-level="2.4.2" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#bar-plots"><i class="fa fa-check"></i><b>2.4.2</b> Bar Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#others"><i class="fa fa-check"></i><b>2.5</b> Others</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#axes-labels"><i class="fa fa-check"></i><b>2.5.1</b> Axes Labels</a></li>
+<li class="chapter" data-level="2.5.2" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#title-of-the-graph"><i class="fa fa-check"></i><b>2.5.2</b> Title of the Graph</a></li>
+<li class="chapter" data-level="2.5.3" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#legends"><i class="fa fa-check"></i><b>2.5.3</b> Legends</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html"><i class="fa fa-check"></i><b>3</b> Introduction to Linear Regression</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#list-of-r-packages-used"><i class="fa fa-check"></i><b>3.1.1</b> List of R packages Used</a></li>
+<li class="chapter" data-level="3.1.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#motivating-example"><i class="fa fa-check"></i><b>3.1.2</b> Motivating Example</a></li>
+<li class="chapter" data-level="3.1.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#variables-1"><i class="fa fa-check"></i><b>3.1.3</b> Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#linreg-slm"><i class="fa fa-check"></i><b>3.2</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#linreg-slm-assumption"><i class="fa fa-check"></i><b>3.2.1</b> Assumptions</a></li>
+<li class="chapter" data-level="3.2.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#linreg-slm-est"><i class="fa fa-check"></i><b>3.2.2</b> Estimation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#inference"><i class="fa fa-check"></i><b>3.2.3</b> Inference</a></li>
+<li class="chapter" data-level="3.2.4" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#linreg-slm-modelcheck"><i class="fa fa-check"></i><b>3.2.4</b> Model Checking</a></li>
+<li class="chapter" data-level="3.2.5" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#simple-linear-regression-on-a-binary-covariate"><i class="fa fa-check"></i><b>3.2.5</b> Simple Linear Regression on a Binary Covariate</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#linreg-mlm"><i class="fa fa-check"></i><b>3.3</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#linreg-mlm-est"><i class="fa fa-check"></i><b>3.3.1</b> Estimation</a></li>
+<li class="chapter" data-level="3.3.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#interaction-effects"><i class="fa fa-check"></i><b>3.3.2</b> Interaction Effects</a></li>
+<li class="chapter" data-level="3.3.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#model-selection"><i class="fa fa-check"></i><b>3.3.3</b> Model Selection</a></li>
+<li class="chapter" data-level="3.3.4" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#model-diagnostics"><i class="fa fa-check"></i><b>3.3.4</b> Model Diagnostics</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#further-extensions"><i class="fa fa-check"></i><b>3.4</b> Further Extensions</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#recommendations"><i class="fa fa-check"></i><b>3.4.1</b> Recommendations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html"><i class="fa fa-check"></i><b>4</b> Introduction to Nonparametric Statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#introduction-2"><i class="fa fa-check"></i><b>4.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#r-packages-and-data"><i class="fa fa-check"></i><b>4.1.1</b> R Packages and Data</a></li>
+<li class="chapter" data-level="4.1.2" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#nonpram-rank"><i class="fa fa-check"></i><b>4.1.2</b> Sample Ranks</a></li>
+<li class="chapter" data-level="4.1.3" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#nonpram-sd"><i class="fa fa-check"></i><b>4.1.3</b> Sampling Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#two-sample-hypothesis-testing"><i class="fa fa-check"></i><b>4.2</b> Two-sample Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#quick-reference-table"><i class="fa fa-check"></i><b>4.2.1</b> Quick Reference Table</a></li>
+<li class="chapter" data-level="4.2.2" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#nonpram-mwu"><i class="fa fa-check"></i><b>4.2.2</b> Wilcoxon Rank-Sum Test</a></li>
+<li class="chapter" data-level="4.2.3" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#other-softwares"><i class="fa fa-check"></i><b>4.2.3</b> Other Softwares</a></li>
+<li class="chapter" data-level="4.2.4" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#nonpram-wst"><i class="fa fa-check"></i><b>4.2.4</b> Wilcoxon Signed Rank Test</a></li>
+<li class="chapter" data-level="4.2.5" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#nonpram-tst"><i class="fa fa-check"></i><b>4.2.5</b> Siegel-Tukey Test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#nonpram-anova"><i class="fa fa-check"></i><b>4.3</b> ANOVA-type Methods</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#one-way-anova"><i class="fa fa-check"></i><b>4.3.1</b> One-way ANOVA</a></li>
+<li class="chapter" data-level="4.3.2" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#post-hoc-comparisons-for-kw-anova"><i class="fa fa-check"></i><b>4.3.2</b> Post Hoc Comparisons for KW ANOVA</a></li>
+<li class="chapter" data-level="4.3.3" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#repeated-measures-anova-friedman-test"><i class="fa fa-check"></i><b>4.3.3</b> Repeated Measures ANOVA (Friedman Test)</a></li>
+<li class="chapter" data-level="4.3.4" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#post-hoc-tests"><i class="fa fa-check"></i><b>4.3.4</b> Post Hoc tests</a></li>
+<li class="chapter" data-level="4.3.5" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#an-example-using-r-6"><i class="fa fa-check"></i><b>4.3.5</b> An example using R</a></li>
+<li class="chapter" data-level="4.3.6" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#additional-resources-for-nonparametric-anova-procedures"><i class="fa fa-check"></i><b>4.3.6</b> Additional Resources for Nonparametric ANOVA Procedures</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#boostrap-methods"><i class="fa fa-check"></i><b>4.4</b> Boostrap Methods</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#bootstrap-confidence-intervals"><i class="fa fa-check"></i><b>4.4.1</b> Bootstrap Confidence Intervals</a></li>
+<li class="chapter" data-level="4.4.2" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#assumptions"><i class="fa fa-check"></i><b>4.4.2</b> Assumptions</a></li>
+<li class="chapter" data-level="4.4.3" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#examples-using-r"><i class="fa fa-check"></i><b>4.4.3</b> Examples using R</a></li>
+<li class="chapter" data-level="4.4.4" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#additional-resources"><i class="fa fa-check"></i><b>4.4.4</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#random-forests"><i class="fa fa-check"></i><b>4.5</b> Random Forests</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#examples-using-r-1"><i class="fa fa-check"></i><b>4.5.1</b> Examples Using R</a></li>
+<li class="chapter" data-level="4.5.2" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#nonpram-arrf"><i class="fa fa-check"></i><b>4.5.2</b> Additional Resources</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html"><i class="fa fa-check"></i><b>5</b> Introduction to Longitudinal Data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#introduction-3"><i class="fa fa-check"></i><b>5.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-rpackages"><i class="fa fa-check"></i><b>5.1.1</b> List of R packages Used</a></li>
+<li class="chapter" data-level="5.1.2" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-motivating"><i class="fa fa-check"></i><b>5.1.2</b> Motivating Example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-datastruc"><i class="fa fa-check"></i><b>5.2</b> Data Structure for Longitudinal Responses</a></li>
+<li class="chapter" data-level="5.3" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear"><i class="fa fa-check"></i><b>5.3</b> Linear Models for Continuous Outcome</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-assumptions"><i class="fa fa-check"></i><b>5.3.1</b> Assumptions</a></li>
+<li class="chapter" data-level="5.3.2" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-modelspec"><i class="fa fa-check"></i><b>5.3.2</b> Notation and Model Specification</a></li>
+<li class="chapter" data-level="5.3.3" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-corr"><i class="fa fa-check"></i><b>5.3.3</b> Correlation Structures</a></li>
+<li class="chapter" data-level="5.3.4" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-estimation"><i class="fa fa-check"></i><b>5.3.4</b> Estimation</a></li>
+<li class="chapter" data-level="5.3.5" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-R"><i class="fa fa-check"></i><b>5.3.5</b> Modelling in R</a></li>
+<li class="chapter" data-level="5.3.6" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-HT"><i class="fa fa-check"></i><b>5.3.6</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="5.3.7" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-population"><i class="fa fa-check"></i><b>5.3.7</b> Population Means</a></li>
+<li class="chapter" data-level="5.3.8" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-cov"><i class="fa fa-check"></i><b>5.3.8</b> Selecting a Correlation Structure</a></li>
+<li class="chapter" data-level="5.3.9" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-procedure"><i class="fa fa-check"></i><b>5.3.9</b> Model Fitting Procedure</a></li>
+<li class="chapter" data-level="5.3.10" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-example2"><i class="fa fa-check"></i><b>5.3.10</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed"><i class="fa fa-check"></i><b>5.4</b> Linear Mixed Effect Models for Longitudinal Data</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-notation"><i class="fa fa-check"></i><b>5.4.1</b> Notation and Model Specification</a></li>
+<li class="chapter" data-level="5.4.2" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-randomintercept"><i class="fa fa-check"></i><b>5.4.2</b> Random Intercept Models</a></li>
+<li class="chapter" data-level="5.4.3" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-randominterceptslope"><i class="fa fa-check"></i><b>5.4.3</b> Random Intercept and Slope Models</a></li>
+<li class="chapter" data-level="5.4.4" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-estimation"><i class="fa fa-check"></i><b>5.4.4</b> Estimation</a></li>
+<li class="chapter" data-level="5.4.5" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-R"><i class="fa fa-check"></i><b>5.4.5</b> Modelling in R</a></li>
+<li class="chapter" data-level="5.4.6" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-diagnostics"><i class="fa fa-check"></i><b>5.4.6</b> Model Diagnostics for Linear Mixed Effects Models</a></li>
+<li class="chapter" data-level="5.4.7" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-popmeans"><i class="fa fa-check"></i><b>5.4.7</b> Population Means</a></li>
+<li class="chapter" data-level="5.4.8" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-ht"><i class="fa fa-check"></i><b>5.4.8</b> Hypothesis Testing for Fixed Effects</a></li>
+<li class="chapter" data-level="5.4.9" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-lme-modelfitting"><i class="fa fa-check"></i><b>5.4.9</b> Model Fitting Procedure</a></li>
+<li class="chapter" data-level="5.4.10" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-lme-ex2"><i class="fa fa-check"></i><b>5.4.10</b> Example - Milk Protein and Diet</a></li>
+<li class="chapter" data-level="5.4.11" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#example---aids-clinical-trial-group"><i class="fa fa-check"></i><b>5.4.11</b> Example - AIDS Clinical Trial Group</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="introduction-to-questionnaire-design.html"><a href="introduction-to-questionnaire-design.html"><i class="fa fa-check"></i><b>6</b> Introduction to Questionnaire Design</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="introduction-to-questionnaire-design.html"><a href="introduction-to-questionnaire-design.html#questdes-plan"><i class="fa fa-check"></i><b>6.1</b> Plan the Study</a></li>
+<li class="chapter" data-level="6.2" data-path="introduction-to-questionnaire-design.html"><a href="introduction-to-questionnaire-design.html#questdes-prepare"><i class="fa fa-check"></i><b>6.2</b> Prepare the Questions</a></li>
+<li class="chapter" data-level="6.3" data-path="introduction-to-questionnaire-design.html"><a href="introduction-to-questionnaire-design.html#questdes-put"><i class="fa fa-check"></i><b>6.3</b> Put Together the Questionnaire</a></li>
+<li class="chapter" data-level="6.4" data-path="introduction-to-questionnaire-design.html"><a href="introduction-to-questionnaire-design.html#questdes-pretest"><i class="fa fa-check"></i><b>6.4</b> Pretest the Questionnaire</a></li>
+<li class="chapter" data-level="6.5" data-path="introduction-to-questionnaire-design.html"><a href="introduction-to-questionnaire-design.html#a-checklist-for-questionnaire-designs"><i class="fa fa-check"></i><b>6.5</b> A Checklist for Questionnaire Designs</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="general-guidelines.html"><a href="general-guidelines.html"><i class="fa fa-check"></i><b>A</b> General Guidelines</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="general-guidelines.html"><a href="general-guidelines.html#resources"><i class="fa fa-check"></i><b>A.1</b> Resources</a></li>
+<li class="chapter" data-level="A.2" data-path="general-guidelines.html"><a href="general-guidelines.html#format"><i class="fa fa-check"></i><b>A.2</b> Format</a>
+<ul>
+<li class="chapter" data-level="A.2.1" data-path="general-guidelines.html"><a href="general-guidelines.html#typesetting-math"><i class="fa fa-check"></i><b>A.2.1</b> Typesetting Math</a></li>
+<li class="chapter" data-level="A.2.2" data-path="general-guidelines.html"><a href="general-guidelines.html#genguide-citations"><i class="fa fa-check"></i><b>A.2.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="A.3" data-path="general-guidelines.html"><a href="general-guidelines.html#rendering-the-book"><i class="fa fa-check"></i><b>A.3</b> Rendering the Book</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="formatting-guidelines.html"><a href="formatting-guidelines.html"><i class="fa fa-check"></i><b>B</b> Formatting Guidelines</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="formatting-guidelines.html"><a href="formatting-guidelines.html#formatguide-general"><i class="fa fa-check"></i><b>B.1</b> General</a></li>
+<li class="chapter" data-level="B.2" data-path="formatting-guidelines.html"><a href="formatting-guidelines.html#embedding-files"><i class="fa fa-check"></i><b>B.2</b> Embedding Files</a></li>
+<li class="chapter" data-level="B.3" data-path="formatting-guidelines.html"><a href="formatting-guidelines.html#math"><i class="fa fa-check"></i><b>B.3</b> Math</a>
+<ul>
+<li class="chapter" data-level="B.3.1" data-path="formatting-guidelines.html"><a href="formatting-guidelines.html#commonly-used-math-and-stats-expressions"><i class="fa fa-check"></i><b>B.3.1</b> Commonly-Used Math and Stats Expressions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="git-and-github-a-quick-tutorial.html"><a href="git-and-github-a-quick-tutorial.html"><i class="fa fa-check"></i><b>C</b> Git and GitHub: A Quick Tutorial</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="git-and-github-a-quick-tutorial.html"><a href="git-and-github-a-quick-tutorial.html#setup"><i class="fa fa-check"></i><b>C.1</b> Setup</a></li>
+<li class="chapter" data-level="C.2" data-path="git-and-github-a-quick-tutorial.html"><a href="git-and-github-a-quick-tutorial.html#contributing-to-the-project"><i class="fa fa-check"></i><b>C.2</b> Contributing to the Project</a></li>
+<li class="chapter" data-level="C.3" data-path="git-and-github-a-quick-tutorial.html"><a href="git-and-github-a-quick-tutorial.html#git-mistakes"><i class="fa fa-check"></i><b>C.3</b> Git Mistakes</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="bookdown-tests.html"><a href="bookdown-tests.html"><i class="fa fa-check"></i><b>D</b> Bookdown Tests</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="bookdown-tests.html"><a href="bookdown-tests.html#test-math-macros"><i class="fa fa-check"></i><b>D.1</b> Test Math Macros</a></li>
+<li class="chapter" data-level="D.2" data-path="bookdown-tests.html"><a href="bookdown-tests.html#test-figure"><i class="fa fa-check"></i><b>D.2</b> Test Figure</a></li>
+<li class="chapter" data-level="D.3" data-path="bookdown-tests.html"><a href="bookdown-tests.html#test-cran-link"><i class="fa fa-check"></i><b>D.3</b> Test CRAN Link</a></li>
+<li class="chapter" data-level="D.4" data-path="bookdown-tests.html"><a href="bookdown-tests.html#test-checklist"><i class="fa fa-check"></i><b>D.4</b> Test Checklist</a></li>
+<li class="chapter" data-level="D.5" data-path="bookdown-tests.html"><a href="bookdown-tests.html#test-references"><i class="fa fa-check"></i><b>D.5</b> Test References</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Topics in Statistical Consulting</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction-to-nonparametric-statistics" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Introduction to Nonparametric Statistics<a href="introduction-to-nonparametric-statistics.html#introduction-to-nonparametric-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>Author: Kelly Ramsay</em></p>
+<p><em>Last Updated: Nov 10, 2020</em></p>
+<hr />
+<div id="introduction-2" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Introduction<a href="introduction-to-nonparametric-statistics.html#introduction-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The aim of this chapter is to introduce nonparametric analogues of common statistical methods including ANOVA, two-sample tests, confidence intervals, and regression. Nonparametric statistical methods impose fewer assumptions on the data than their parametric counterparts. Some reasons for using nonparametric methods include:</p>
+<ul>
+<li>the data appear to be non-normal, or do not appear to fit the appropriate parametric assumptions for the problem;</li>
+<li>the sample size is too small for certain large sample approximations;</li>
+<li>the analyst is not comfortable imposing the typical model assumptions on the data; and</li>
+<li>the data contains outliers. (This reason only applies to rank-based methods, which are more resistant to outliers.)</li>
+</ul>
+<p>The benefits of nonparametric statistics do not come for free. When the assumptions of a parametric model are satisfied, the parametric model-based procedures are typically more accurate/powerful. However, we cannot know for sure if those assumptions are satisfied.</p>
+<div id="r-packages-and-data" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> R Packages and Data<a href="introduction-to-nonparametric-statistics.html#r-packages-and-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In this chapter, the following libraries will be used:</p>
+<ul>
+<li><a href="https://CRAN.R-project.org/package=coin"><strong>coin</strong></a>,</li>
+<li><a href="https://CRAN.R-project.org/package=PMCMRplus"><strong>PMCMRplus</strong></a>,</li>
+<li><a href="https://CRAN.R-project.org/package=boot"><strong>boot</strong></a>,</li>
+<li><a href="https://CRAN.R-project.org/package=caret"><strong>caret</strong></a>,</li>
+<li><a href="https://CRAN.R-project.org/package=randomForest"><strong>randomForest</strong></a>,</li>
+<li><a href="https://CRAN.R-project.org/package=e1071"><strong>e1071</strong></a>,</li>
+<li><a href="https://CRAN.R-project.org/package=inTrees"><strong>inTrees</strong></a>,</li>
+<li><a href="https://CRAN.R-project.org/package=DescTools"><strong>DescTools</strong></a>,</li>
+<li><a href="https://CRAN.R-project.org/package=dunn.test"><strong>dunn.test</strong></a>.</li>
+</ul>
+<p>These packages can be installed using the <code>install.packages()</code> function as mentioned in <a href="introduction-to-r.html#introduction-to-r">Introduction to R</a>.</p>
+<p>Throughout this document, we will use the <code>iris</code> data as an example.</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="introduction-to-nonparametric-statistics.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris) <span class="co"># loads the data set</span></span>
+<span id="cb180-2"><a href="introduction-to-nonparametric-statistics.html#cb180-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(iris) <span class="co"># displays summary statistics</span></span></code></pre></div>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width          Species  
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100   setosa    :50  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300   versicolor:50  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300   virginica :50  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199                  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800                  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500</code></pre>
+<p>This data set contains 4 continuous variables, namely <code>Sepal.Length</code>, <code>Sepal.Width</code>, <code>Petal.Length</code> and <code>Petal.Width</code>. The variable <code>Species</code> is a Categorical variable.</p>
+<p>Other examples used in this chapter will involve simulated data sets.</p>
+</div>
+<div id="nonpram-rank" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Sample Ranks<a href="introduction-to-nonparametric-statistics.html#nonpram-rank" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Many nonparametric procedures rely on ranking the data. Ranking a data variable means putting the values in order, from smallest to largest. Each point is then assigned a number for where in the order they fall. For example, the smallest observation has rank 1, the second smallest has rank 2, etc. the largest has rank <span class="math inline">\(n\)</span>.</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="introduction-to-nonparametric-statistics.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ranking a test sample of 5 observations</span></span>
+<span id="cb182-2"><a href="introduction-to-nonparametric-statistics.html#cb182-2" aria-hidden="true" tabindex="-1"></a>test_sample <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">5</span>)</span>
+<span id="cb182-3"><a href="introduction-to-nonparametric-statistics.html#cb182-3" aria-hidden="true" tabindex="-1"></a>test_sample</span></code></pre></div>
+<pre><code>## [1] -0.27962018  0.02912338  0.62909474  0.47840529 -0.79437766</code></pre>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="introduction-to-nonparametric-statistics.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rank</span>(test_sample)</span></code></pre></div>
+<pre><code>## [1] 2 3 5 4 1</code></pre>
+</div>
+<div id="nonpram-sd" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Sampling Distribution<a href="introduction-to-nonparametric-statistics.html#nonpram-sd" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Probability distributions are often understood by researchers in the context of “What is the distribution of my data?”.</p>
+<p>In statistical analysis, we should also be concerned with the distribution of any estimators computed from the data. An estimator is a quantity that is computed from the data to estimate a population quantity, such as the sample mean (used to estimate the population mean) and the sample variance (used to estimate the population variance).</p>
+<p>The distribution of an estimator, known as its <em>sampling distribution</em>, gives the researcher a measure of how the estimator would vary across different samples drawn from the population. The sampling distribution allows the researcher to quantify the error introduced by the fact that different samples give different estimates of the population values.</p>
+<p>For example, one thing we might estimate is a population mean <span class="math inline">\(\mu\)</span>, which can be estimated using the sample mean <span class="math inline">\(\bar{x}\)</span>. The estimator here is then the sample mean. For large <span class="math inline">\(n\)</span> (sample size) and independent data, <span class="math inline">\(\bar{x}\)</span> is normally distributed with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2/n\)</span>, where <span class="math inline">\(\sigma^2\)</span> is the variance of the population. This is the sampling distribution of <span class="math inline">\(\bar{x}\)</span>. We then use the quantiles of this sampling distribution to construct confidence intervals for the population parameter.</p>
+</div>
+</div>
+<div id="two-sample-hypothesis-testing" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Two-sample Hypothesis Testing<a href="introduction-to-nonparametric-statistics.html#two-sample-hypothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="quick-reference-table" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Quick Reference Table<a href="introduction-to-nonparametric-statistics.html#quick-reference-table" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<colgroup>
+<col width="28%" />
+<col width="35%" />
+<col width="35%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Observation type</th>
+<th>Test goal</th>
+<th>Test</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Independent</td>
+<td>Difference in Mean</td>
+<td><a href="introduction-to-nonparametric-statistics.html#nonpram-mwu">Wilcoxon rank-sum</a></td>
+</tr>
+<tr class="even">
+<td>Paired</td>
+<td>Difference in Mean</td>
+<td><a href="introduction-to-nonparametric-statistics.html#nonpram-wst">Wilcoxon sign</a></td>
+</tr>
+<tr class="odd">
+<td>Independent</td>
+<td>Difference in Variance</td>
+<td><a href="introduction-to-nonparametric-statistics.html#nonpram-tst">Tukey-Siegel</a></td>
+</tr>
+<tr class="even">
+<td>More than two groups</td>
+<td>-</td>
+<td>See <a href="introduction-to-nonparametric-statistics.html#nonpram-anova">ANOVA</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="nonpram-mwu" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Wilcoxon Rank-Sum Test<a href="introduction-to-nonparametric-statistics.html#nonpram-mwu" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The Wilcoxon rank-sum test, also known as the Mann-Whitney U test, is used to test for a difference between two groups of observations. The null and alternate hypotheses for this test are:
+<span class="math display">\[
+H_0\colon \tx{Both groups have the same distribution. vs. } H_1\colon\ \tx{One group stochastically dominates another.}
+\]</span>
+Assumptions:</p>
+<ul>
+<li>The variable of interest is continuous or ordinal.</li>
+<li>Data has only two groups.</li>
+<li>All observations are independent.</li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li>The alternative is that in essence, the groups differ. One can read about stochastic domination <a href="https://en.wikipedia.org/wiki/Stochastic_dominance">here</a>.</li>
+<li>If the analyst is willing to assume that the distributions of each group have the same shape and scale/variance, then the alternative becomes “The group’s median differs.”</li>
+<li>If both groups are normal, then this is also a test for a difference in means.</li>
+<li>Mathematically, the test works if <span class="math inline">\(P(X_1-X_2&lt;0)\neq 1/2\)</span> if <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> are random observations from groups 1 and 2 respectively.</li>
+</ul>
+<div id="test-concept" class="section level4 hasAnchor" number="4.2.2.1">
+<h4><span class="header-section-number">4.2.2.1</span> Test Concept<a href="introduction-to-nonparametric-statistics.html#test-concept" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To perform the Wilcoxon rank-sum test, we must rank the response from lowest to highest, over both samples; both samples are pooled together and then the data is <a href="introduction-to-nonparametric-statistics.html#nonpram-rank">ranked</a>.</p>
+<p>The Wilcoxon rank-sum test relies on the intuition that if the two groups have the same distribution then they should have, on average, the same amount of high and low <a href="introduction-to-nonparametric-statistics.html#nonpram-rank">ranked</a> variables.</p>
+<p>The test checks to see if one group has an abnormally large amount of high-ranked variables.</p>
+</div>
+<div id="an-example-using-r" class="section level4 hasAnchor" number="4.2.2.2">
+<h4><span class="header-section-number">4.2.2.2</span> An example using R<a href="introduction-to-nonparametric-statistics.html#an-example-using-r" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We use the <code>iris</code> data as an example, in which our focus is the two species <code>setosa</code> and <code>versicolor</code></p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="introduction-to-nonparametric-statistics.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first two iris species</span></span>
+<span id="cb186-2"><a href="introduction-to-nonparametric-statistics.html#cb186-2" aria-hidden="true" tabindex="-1"></a>iris2 <span class="ot">&lt;-</span> iris[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, ]</span>
+<span id="cb186-3"><a href="introduction-to-nonparametric-statistics.html#cb186-3" aria-hidden="true" tabindex="-1"></a><span class="co"># for clean graph, can be ignored</span></span>
+<span id="cb186-4"><a href="introduction-to-nonparametric-statistics.html#cb186-4" aria-hidden="true" tabindex="-1"></a>iris2[, <span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">as.character</span>(iris[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">5</span>]))</span>
+<span id="cb186-5"><a href="introduction-to-nonparametric-statistics.html#cb186-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb186-6"><a href="introduction-to-nonparametric-statistics.html#cb186-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb186-7"><a href="introduction-to-nonparametric-statistics.html#cb186-7" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Sepal.Length <span class="sc">~</span> Species, <span class="at">xlab =</span> <span class="st">&quot;Species&quot;</span>, <span class="at">data =</span> iris2)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:nonpram-data-boxplot"></span>
+<img src="topics_in_consulting_files/figure-html/nonpram-data-boxplot-1.png" alt="Boxplots of sepal length by species." width="672" />
+<p class="caption">
+Figure 4.1: Boxplots of sepal length by species.
+</p>
+</div>
+<p>Notice that the medians appear to be quite different for the two species, so we expect to reject the rank-sum test. We also notice that each group seems to have approximately the same shape and spread. This would allow us to interpret a rejected rank-sum test as the groups have different medians.</p>
+<p>We can use the <code>wilcox_test()</code> function in the <strong>coin</strong> package to perform the Wilcoxon rank-sum test. The function <code>wilcox_test()</code> first takes a formula of the form <code>response_variable ~ group_variable</code>. It also has a <code>data</code> argument to specify the data frame that contains the group and response variable.</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="introduction-to-nonparametric-statistics.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="co"># iris[1:100,] is the first two species in the data</span></span>
+<span id="cb187-2"><a href="introduction-to-nonparametric-statistics.html#cb187-2" aria-hidden="true" tabindex="-1"></a>coin<span class="sc">::</span><span class="fu">wilcox_test</span>(Sepal.Length <span class="sc">~</span> Species, <span class="at">data =</span> iris[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, ])</span></code></pre></div>
+<pre><code>## 
+##  Asymptotic Wilcoxon-Mann-Whitney Test
+## 
+## data:  Sepal.Length by Species (setosa, versicolor)
+## Z = -7.4682, p-value = 8.13e-14
+## alternative hypothesis: true mu is not equal to 0</code></pre>
+<p>The output contains the test statistic and <span class="math inline">\(p\)</span>-value. At the end of the output, notice that we do reject the hypothesis of the same distribution.</p>
+</div>
+</div>
+<div id="other-softwares" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Other Softwares<a href="introduction-to-nonparametric-statistics.html#other-softwares" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This test can also be done in <a href="https://stat-methods.com/home/mann-whitney-u-sas/">SAS</a> and <a href="https://statistics.laerd.com/spss-tutorials/mann-whitney-u-test-using-spss-statistics.php">SPSS</a>.</p>
+</div>
+<div id="nonpram-wst" class="section level3 hasAnchor" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> Wilcoxon Signed Rank Test<a href="introduction-to-nonparametric-statistics.html#nonpram-wst" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The Wilcoxon signed-rank test is used to test for a difference in rank means between observations when the data can be paired. The null and alternate hypotheses are:
+<span class="math display">\[
+H_0\colon \tx{The median difference between the groups is 0. vs. } H_1\colon\ \tx{The groups have different medians.}
+\]</span>
+Assumptions:</p>
+<ul>
+<li>The variable of interest is continuous or ordinal.</li>
+<li>Data has only two groups.</li>
+<li>The between-subject observations are independent.</li>
+<li>The within-subject/within-pair observations can be dependent.</li>
+<li>The distribution of each group is symmetric. If this is not satisfied, the test will still work, but the null and alternative hypotheses would be <span class="math inline">\(H_0\colon\)</span> The groups have the same distribution. vs. <span class="math inline">\(H_1\colon\)</span> The groups have different distributions.</li>
+</ul>
+<div id="test-concept-1" class="section level4 hasAnchor" number="4.2.4.1">
+<h4><span class="header-section-number">4.2.4.1</span> Test Concept<a href="introduction-to-nonparametric-statistics.html#test-concept-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In the Wilcoxon signed-rank test, the absolute differences between pairs are ranked, rather than the observations themselves.</p>
+<p>The idea is that if there is a difference between the two groups then the absolute differences should be large. The sign of the difference is also accounted for, since we expect the sign of the differences to be consistent one way another. For example, if the paired observations correspond to time 1 and time 2, and if the mean of time 2 is higher, then we expect the differences (time2-time1) to be positive more often than not.</p>
+</div>
+<div id="an-example-using-r-1" class="section level4 hasAnchor" number="4.2.4.2">
+<h4><span class="header-section-number">4.2.4.2</span> An example using R<a href="introduction-to-nonparametric-statistics.html#an-example-using-r-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We will simulate a set of paired data set to demonstrate how to conduct the Wilcoxon Rank-Sum Test.</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="introduction-to-nonparametric-statistics.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a fake paired data set, this code simply creates an example of a data set where the observations are associated.</span></span>
+<span id="cb189-2"><a href="introduction-to-nonparametric-statistics.html#cb189-2" aria-hidden="true" tabindex="-1"></a>before <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">2</span>)</span>
+<span id="cb189-3"><a href="introduction-to-nonparametric-statistics.html#cb189-3" aria-hidden="true" tabindex="-1"></a>after <span class="ot">&lt;-</span> before <span class="sc">*</span> .<span class="dv">2</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">1</span>)</span>
+<span id="cb189-4"><a href="introduction-to-nonparametric-statistics.html#cb189-4" aria-hidden="true" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(before, after)</span>
+<span id="cb189-5"><a href="introduction-to-nonparametric-statistics.html#cb189-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb189-6"><a href="introduction-to-nonparametric-statistics.html#cb189-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot of simulated data</span></span>
+<span id="cb189-7"><a href="introduction-to-nonparametric-statistics.html#cb189-7" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(test_data)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:nonpram-wilcox-fake"></span>
+<img src="topics_in_consulting_files/figure-html/nonpram-wilcox-fake-1.png" alt="Boxplot of simulated paired data." width="672" />
+<p class="caption">
+Figure 4.2: Boxplot of simulated paired data.
+</p>
+</div>
+<p>The boxplots show that the two medians are quite different. Hence, we expect to reject this test. Notice whiskers of both boxplots are symmetric, so it is reasonable to agree that the assumptions required for the signed-rank test are satisfied.</p>
+<p>We can use the <code>wilcoxsign_test()</code> function in the <strong>coin</strong> package to perform the Wilcoxon rank-sum test. The function <code>wilcoxsign_test()</code> first takes a formula of the form <code>response_variable ~ group_variable</code>. It also has a <code>data</code> argument where you specify your data frame that contains your group variable and your response variable.</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="introduction-to-nonparametric-statistics.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="co"># format is before measurement ~after measurement</span></span>
+<span id="cb190-2"><a href="introduction-to-nonparametric-statistics.html#cb190-2" aria-hidden="true" tabindex="-1"></a>coin<span class="sc">::</span><span class="fu">wilcoxsign_test</span>(before <span class="sc">~</span> after, test_data)</span></code></pre></div>
+<pre><code>## 
+##  Asymptotic Wilcoxon-Pratt Signed-Rank Test
+## 
+## data:  y by x (pos, neg) 
+##   stratified by block
+## Z = 2.6991, p-value = 0.006953
+## alternative hypothesis: true mu is not equal to 0</code></pre>
+<p>The test statistic and <span class="math inline">\(p\)</span>-value of the tests are reported. They indicate that the null hypothesis is indeed rejected.</p>
+<p>Notes:
+- This test also has an option <code>zero.method</code> which specifies the way zero differences are handled.
+- The default method is the <code>"Pratt"</code> method, which has been shown to be a better method of handling zeros than the traditional Wilcoxon test.
+- If you compute the Wilcoxon sign test with another software you may get a slightly different answer.</p>
+</div>
+</div>
+<div id="nonpram-tst" class="section level3 hasAnchor" number="4.2.5">
+<h3><span class="header-section-number">4.2.5</span> Siegel-Tukey Test<a href="introduction-to-nonparametric-statistics.html#nonpram-tst" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The Siegel-Tukey test is akin to the Wilcoxon rank-sum test, but the goal is to test for a difference in variance/dispersion between two groups.</p>
+<div id="hypotheses" class="section level4 hasAnchor" number="4.2.5.1">
+<h4><span class="header-section-number">4.2.5.1</span> Hypotheses<a href="introduction-to-nonparametric-statistics.html#hypotheses" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><span class="math display">\[
+H_0\colon \tx{Both groups have the same variance. vs. } H_1\colon\ \tx{Both groups do not have the same variance.}
+\]</span>
+Assumptions:</p>
+<ul>
+<li>Variable of interest is continuous or ordinal.</li>
+<li>Data has only two groups.</li>
+<li>All responses are independent.</li>
+<li>Groups have the same mean or median. One can subtract each group’s respective median to meet this assumption.</li>
+</ul>
+</div>
+<div id="test-concept-2" class="section level4 hasAnchor" number="4.2.5.2">
+<h4><span class="header-section-number">4.2.5.2</span> Test Concept<a href="introduction-to-nonparametric-statistics.html#test-concept-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To perform the Siegel-Tukey test we must rank the responses by how extreme the observation is, rather than how large.</p>
+<p>Intuitively, if one group has a larger variance then it will have a larger amount of observations that are high and low relative to the median.</p>
+<p>The test checks to see if one group has a large number of extreme observations.</p>
+</div>
+<div id="an-example-using-r-2" class="section level4 hasAnchor" number="4.2.5.3">
+<h4><span class="header-section-number">4.2.5.3</span> An Example Using R<a href="introduction-to-nonparametric-statistics.html#an-example-using-r-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We can use the <code>siegelTukeyTest()</code> function in the <strong>PMCMRplus</strong> package to perform the Siegel-Tukey test. The function <code>siegelTukeyTest()</code> takes the first sample and second sample as its two arguments. In this example, we will use simulated data to demonstrate the use of the function.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="introduction-to-nonparametric-statistics.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="co"># s1 and s2 have the same variance and mean</span></span>
+<span id="cb192-2"><a href="introduction-to-nonparametric-statistics.html#cb192-2" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb192-3"><a href="introduction-to-nonparametric-statistics.html#cb192-3" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb192-4"><a href="introduction-to-nonparametric-statistics.html#cb192-4" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(s1, s2)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:nonpram-tst-test-save-var"></span>
+<img src="topics_in_consulting_files/figure-html/nonpram-tst-test-save-var-1.png" alt="Boxplots of data from distributions with the same variance." width="672" />
+<p class="caption">
+Figure 4.3: Boxplots of data from distributions with the same variance.
+</p>
+</div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="introduction-to-nonparametric-statistics.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We expect to fail to reject here</span></span>
+<span id="cb193-2"><a href="introduction-to-nonparametric-statistics.html#cb193-2" aria-hidden="true" tabindex="-1"></a>PMCMRplus<span class="sc">::</span><span class="fu">siegelTukeyTest</span>(<span class="at">x =</span> s1, <span class="at">y =</span> s2)</span></code></pre></div>
+<pre><code>## 
+##  Siegel-Tukey rank dispersion test
+## 
+## data:  s1 and s2
+## W = 4611, p-value = 0.3433
+## alternative hypothesis: true ratio of scales is not equal to 1</code></pre>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="introduction-to-nonparametric-statistics.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="co"># s1 and s2 are random samples with different variances but the same mean</span></span>
+<span id="cb195-2"><a href="introduction-to-nonparametric-statistics.html#cb195-2" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">3</span>)</span>
+<span id="cb195-3"><a href="introduction-to-nonparametric-statistics.html#cb195-3" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb195-4"><a href="introduction-to-nonparametric-statistics.html#cb195-4" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(s1, s2)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:nonpram-tst-test-diff-var-1"></span>
+<img src="topics_in_consulting_files/figure-html/nonpram-tst-test-diff-var-1.png" alt="Boxplots of data from distributions with different variances." width="672" />
+<p class="caption">
+Figure 4.4: Boxplots of data from distributions with different variances.
+</p>
+</div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="introduction-to-nonparametric-statistics.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We expect to reject here</span></span>
+<span id="cb196-2"><a href="introduction-to-nonparametric-statistics.html#cb196-2" aria-hidden="true" tabindex="-1"></a>PMCMRplus<span class="sc">::</span><span class="fu">siegelTukeyTest</span>(<span class="at">x =</span> s1, <span class="at">y =</span> s2)</span></code></pre></div>
+<pre><code>## 
+##  Siegel-Tukey rank dispersion test
+## 
+## data:  s1 and s2
+## W = 3299, p-value = 2.648e-05
+## alternative hypothesis: true ratio of scales is not equal to 1</code></pre>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="introduction-to-nonparametric-statistics.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="co"># s1 and s2 are random samples with different variances but with different means</span></span>
+<span id="cb198-2"><a href="introduction-to-nonparametric-statistics.html#cb198-2" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">m =</span> <span class="dv">4</span>, <span class="at">sd =</span> <span class="dv">3</span>)</span>
+<span id="cb198-3"><a href="introduction-to-nonparametric-statistics.html#cb198-3" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">m =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb198-4"><a href="introduction-to-nonparametric-statistics.html#cb198-4" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(s1 <span class="sc">-</span> <span class="fu">median</span>(s1), s2 <span class="sc">-</span> <span class="fu">median</span>(s2))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:nonpram-tst-test-diff-var-2"></span>
+<img src="topics_in_consulting_files/figure-html/nonpram-tst-test-diff-var-2.png" alt="Boxplots of data from distributions with different variances." width="672" />
+<p class="caption">
+Figure 4.5: Boxplots of data from distributions with different variances.
+</p>
+</div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="introduction-to-nonparametric-statistics.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="co"># notice we subtract the medians</span></span>
+<span id="cb199-2"><a href="introduction-to-nonparametric-statistics.html#cb199-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We expect to reject here</span></span>
+<span id="cb199-3"><a href="introduction-to-nonparametric-statistics.html#cb199-3" aria-hidden="true" tabindex="-1"></a>PMCMRplus<span class="sc">::</span><span class="fu">siegelTukeyTest</span>(</span>
+<span id="cb199-4"><a href="introduction-to-nonparametric-statistics.html#cb199-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> s1 <span class="sc">-</span> <span class="fu">median</span>(s1),</span>
+<span id="cb199-5"><a href="introduction-to-nonparametric-statistics.html#cb199-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> s2 <span class="sc">-</span> <span class="fu">median</span>(s2)</span>
+<span id="cb199-6"><a href="introduction-to-nonparametric-statistics.html#cb199-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## 
+##  Siegel-Tukey rank dispersion test
+## 
+## data:  s1 - median(s1) and s2 - median(s2)
+## W = 4168, p-value = 0.04201
+## alternative hypothesis: true ratio of scales is not equal to 1</code></pre>
+<p>The reported test statistic and <span class="math inline">\(p\)</span>-value agrees with our expectations in both examples.</p>
+</div>
+</div>
+</div>
+<div id="nonpram-anova" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> ANOVA-type Methods<a href="introduction-to-nonparametric-statistics.html#nonpram-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="one-way-anova" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> One-way ANOVA<a href="introduction-to-nonparametric-statistics.html#one-way-anova" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can start with introducing nonparametric one-way ANOVA.
+We apply ANOVA to test whether or not there is a difference in a response/dependent variable between different groups. The nonparametric equivalent of the ANOVA <span class="math inline">\(F\)</span> test is the <em>Kruskal-Wallis rank test</em> or KW test for short.</p>
+<p>The KW test does not require a distributional assumption on the data; the data need not be normal in order for the test to be valid. Additionally, since this test is based on ranks, it is also robust to extreme observations and/or outliers in the data. These are both valid justifications for using Kruskal-Wallis ANOVA.</p>
+<p>The null and alternate hypotheses are:</p>
+<p><span class="math display">\[
+H_0\colon \tx{All groups have the same distribution. vs. } \\ H_1\colon\ \tx{At least one group stochastically dominates another.}
+\]</span>
+Assumptions:</p>
+<ul>
+<li>The response variable is continuous or ordinal.</li>
+<li>Data has more than 2 groups (see <a href="introduction-to-nonparametric-statistics.html#nonpram-mwu">here</a> for two-group methods.).</li>
+<li>All responses are independent.</li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li>The alternative is that in essence, one group differs from the others. One can read about stochastic domination <a href="https://en.wikipedia.org/wiki/Stochastic_dominance">here</a>.</li>
+<li>If the analyst is willing to assume that the distributions of each group have the same shape and scale/variance, then the alternative becomes “At least one group’s median differs.”</li>
+<li>Under standard parametric ANOVA assumptions, the standard parametric ANOVA hypotheses are covered by these hypotheses. In other words, if the data are normal with the same variance, then this is also a test for a difference in means.</li>
+<li>Let <span class="math inline">\(g\)</span> be the number of groups. Mathematically, if <span class="math inline">\(p_j\)</span> is the proportion of observations in group <span class="math inline">\(j\)</span>, and <span class="math inline">\(X_j\)</span> is a random observation from group <span class="math inline">\(j\)</span>, then the test works if <span class="math inline">\(\sum_{j=1}^g p_jP(X_i-X_j&lt;0)\neq 1/2\)</span> for at least one group <span class="math inline">\(i\)</span>. This can generally be interpreted as the median differences <span class="math inline">\(X_i-X_j\)</span> between groups being non-zero for some pairs of groups.</li>
+</ul>
+<div id="test-concept-3" class="section level4 hasAnchor" number="4.3.1.1">
+<h4><span class="header-section-number">4.3.1.1</span> Test Concept<a href="introduction-to-nonparametric-statistics.html#test-concept-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To perform KW ANOVA, the response values are ranked from lowest to highest, regardless of group.</p>
+<p>KW ANOVA relies on the intuition that a group which has a higher response on average, when compared to the remaining groups, will then have higher ranks on average as well. Conversely, if the groups all have the same distribution, we expect them to have roughly equal high and low-ranked responses.</p>
+<p>Therefore, the hypothesis is rejected if one or more groups have a disproportionately large amount of high or low ranked responses.</p>
+</div>
+<div id="an-example-using-r-3" class="section level4 hasAnchor" number="4.3.1.2">
+<h4><span class="header-section-number">4.3.1.2</span> An Example Using R<a href="introduction-to-nonparametric-statistics.html#an-example-using-r-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We again use the <code>iris</code> data as an example.</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="introduction-to-nonparametric-statistics.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Sepal.Length <span class="sc">~</span> Species, <span class="at">xlab =</span> <span class="st">&quot;Species&quot;</span>, <span class="at">data =</span> iris)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:nonpram-kw-data-boxplot"></span>
+<img src="topics_in_consulting_files/figure-html/nonpram-kw-data-boxplot-1.png" alt="Boxplots of petal length by species." width="672" />
+<p class="caption">
+Figure 4.6: Boxplots of petal length by species.
+</p>
+</div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="introduction-to-nonparametric-statistics.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb202-2"><a href="introduction-to-nonparametric-statistics.html#cb202-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(iris[<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>, ]<span class="sc">$</span>Sepal.Length, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">9</span>), <span class="at">breaks =</span> <span class="dv">15</span>, <span class="at">xlab=</span><span class="st">&quot;setosa&quot;</span>, <span class="at">main=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb202-3"><a href="introduction-to-nonparametric-statistics.html#cb202-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(iris[<span class="dv">51</span><span class="sc">:</span><span class="dv">100</span>, ]<span class="sc">$</span>Sepal.Length, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">9</span>), <span class="at">breaks =</span> <span class="dv">15</span>, <span class="at">xlab=</span><span class="st">&quot;versicolor&quot;</span>, <span class="at">main=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb202-4"><a href="introduction-to-nonparametric-statistics.html#cb202-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(iris[<span class="dv">101</span><span class="sc">:</span><span class="dv">150</span>, ]<span class="sc">$</span>Sepal.Length, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">9</span>), <span class="at">breaks =</span> <span class="dv">15</span>, <span class="at">xlab=</span><span class="st">&quot;virginica&quot;</span>, <span class="at">main=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:nonpram-kw-data-hist-hist"></span>
+<img src="topics_in_consulting_files/figure-html/nonpram-kw-data-hist-hist-1.png" alt="Histograms of sepal length for each species." width="672" />
+<p class="caption">
+Figure 4.7: Histograms of sepal length for each species.
+</p>
+</div>
+<p>We see that the medians of the species are quite different, so we expect to reject the Kruskal-Wallis test. Notice that the distributions are approximately symmetric, and have a similar variance. This allows us to interpret the Kruskal-Wallis test as a test for a difference in medians. We can now run the KW Anova.</p>
+<p>The <code>kruskal.test()</code> and the <code>kruskal_test()</code> functions are used to perform KW ANOVA. The <strong>coin</strong> package must be installed to use <code>kruskal_test()</code>. Both <code>kruskal.test()</code> and <code>kruskal_test()</code> have a <code>data</code> argument to specify the data frame that contains the group variable and the response variable. They also have a formula argument which should be in the form <code>response_variable ~ group_variable</code>.</p>
+<p>Suppose we want to test whether the different species of iris flowers have different mean petal lengths. Here, <code>Petal.Length</code> is the response variable and <code>Species</code> is the group variable. These variables are stored in the <code>iris</code> data frame, and so we set the <code>data</code> argument to <code>iris</code>.</p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="introduction-to-nonparametric-statistics.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(Petal.Length <span class="sc">~</span> Species, <span class="at">data =</span> iris)</span></code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  Petal.Length by Species
+## Kruskal-Wallis chi-squared = 130.41, df = 2, p-value &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="introduction-to-nonparametric-statistics.html#cb205-1" aria-hidden="true" tabindex="-1"></a>coin<span class="sc">::</span><span class="fu">kruskal_test</span>(Petal.Length <span class="sc">~</span> Species, <span class="at">data =</span> iris)</span></code></pre></div>
+<pre><code>## 
+##  Asymptotic Kruskal-Wallis Test
+## 
+## data:  Petal.Length by Species (setosa, versicolor, virginica)
+## chi-squared = 130.41, df = 2, p-value &lt; 2.2e-16</code></pre>
+<p>The test outputs the test statistic (130.41) and the <span class="math inline">\(p\)</span>-value (&lt; 2.2e-16).</p>
+<p>Under the null hypothesis, the KW test statistic follows a Chi-Squared distribution with <span class="math inline">\(\# \text{of groups}-1\)</span> degrees of freedom. Here, there are 3 groups so the degrees of freedom (df) is 2 (=3-1).</p>
+<p>The function <code>kruskal.test()</code> relies on an asymptotic approximation of the null distribution, which is appropriate if each group has at least 5 observations.</p>
+</div>
+<div id="notes" class="section level4 hasAnchor" number="4.3.1.3">
+<h4><span class="header-section-number">4.3.1.3</span> Notes<a href="introduction-to-nonparametric-statistics.html#notes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li>For small samples, say each group has around 5 or fewer observations, it is recommended to use <code>kruskal_test()</code> function with the <code>distribution</code> argument set to<code>"approximate"</code>. The <code>"approximate"</code> method uses a Monte Carlo approximation of the null distribution rather than relying on a large sample argument, but takes longer computationally.</li>
+</ul>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="introduction-to-nonparametric-statistics.html#cb207-1" aria-hidden="true" tabindex="-1"></a>coin<span class="sc">::</span><span class="fu">kruskal_test</span>(Petal.Length <span class="sc">~</span> Species, <span class="at">data =</span> iris, <span class="at">distribution =</span> <span class="st">&quot;approximate&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Approximative Kruskal-Wallis Test
+## 
+## data:  Petal.Length by Species (setosa, versicolor, virginica)
+## chi-squared = 130.41, p-value &lt; 1e-04</code></pre>
+<ul>
+<li>As mentioned in the assumptions, the response/dependent variable should be continuous or can be approximated by a continuous variable. For example, Likert scale values are not continuous but they can be approximated by a continuous variable which can take any value between 1 and 5. Another variable that can be approximated by a continuous one is age.<br />
+</li>
+<li>The categories should not be ordered; the group variable should not be ordinal.</li>
+<li>Sometimes responses will have the same value, resulting in tied ranks. A good method is to assign the tied observations the middle rank if they had not been tied. For example if the data are <span class="math inline">\(\{1,2,2,3\}\)</span> the observations would be assigned ranks <span class="math inline">\(\{1,2.5,2.5,4\}\)</span>. This is done automatically in the <code>kruskal_test()</code> function. Note that ties have been shown to have a small influence unless there are many ( say &gt; 25%) ties. If many ties are present, we recommend using the procedure discussed in Note 1. to compute the <span class="math inline">\(p\)</span>-value.</li>
+</ul>
+</div>
+</div>
+<div id="post-hoc-comparisons-for-kw-anova" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Post Hoc Comparisons for KW ANOVA<a href="introduction-to-nonparametric-statistics.html#post-hoc-comparisons-for-kw-anova" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When the KW Anova is rejected, we may then want to find which pairs of groups are different from each other. These are called post-hoc comparisons.</p>
+<p>After a significant KW result, we can use Dunn’s test to compute post-hoc pairwise comparisons. Dunn’s test checks for significant differences in pairwise rank means, given that a significant result was seen in the KW test.</p>
+<div id="hypotheses-1" class="section level4 hasAnchor" number="4.3.2.1">
+<h4><span class="header-section-number">4.3.2.1</span> Hypotheses<a href="introduction-to-nonparametric-statistics.html#hypotheses-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><span class="math display">\[
+H_0\colon \tx{Groups have the same distribution. vs. } H_1\colon\ \tx{One group stochastically dominates the other.}
+\]</span></p>
+</div>
+<div id="an-example-using-r-4" class="section level4 hasAnchor" number="4.3.2.2">
+<h4><span class="header-section-number">4.3.2.2</span> An Example Using R<a href="introduction-to-nonparametric-statistics.html#an-example-using-r-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Now that we have seen a significant KW Anova result with the <code>iris</code> data, we would like to see between which species there exist differences. Given the boxplots, we expect all 3 pairwise comparisons to be significant.</p>
+<p>The Dunn test is done via the package and function which are both named <strong>dunn.test</strong>. The <code>dunn.test()</code> function takes two arguments, the first is the response variable and the second is the group variable.</p>
+<p>To adjust for running multiple hypothesis tests, we can use the <code>method</code> argument to account for the increased probability of type 1 error. Popular options include <code>"none"</code>, <code>"bonferroni"</code> <code>"sidak</code> <code>"bh"</code>.</p>
+<p>The <code>alpha</code> argument adjusts the overall significance level of the tests, if the <code>method</code> argument is <code>"none"</code> then this is the significance level of each pairwise test. To read more about <span class="math inline">\(p\)</span>-value adjustments and the multiple testing problem, see <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6099145/">here</a>, <a href="https://towardsdatascience.com/the-multiple-comparisons-problem-e5573e8b9578">here</a> and <a href="https://en.wikipedia.org/wiki/Multiple_comparisons_problem">here</a>.</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="introduction-to-nonparametric-statistics.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="co"># default</span></span>
+<span id="cb209-2"><a href="introduction-to-nonparametric-statistics.html#cb209-2" aria-hidden="true" tabindex="-1"></a>dunn.test<span class="sc">::</span><span class="fu">dunn.test</span>(iris<span class="sc">$</span>Petal.Length, iris<span class="sc">$</span>Species)</span></code></pre></div>
+<pre><code>##   Kruskal-Wallis rank sum test
+## 
+## data: x and group
+## Kruskal-Wallis chi-squared = 130.411, df = 2, p-value = 0
+## 
+## 
+##                            Comparison of x by group                            
+##                                 (No adjustment)                                
+## Col Mean-|
+## Row Mean |     setosa   versicol
+## ---------+----------------------
+## versicol |  -5.862996
+##          |    0.0000*
+##          |
+## virginic |  -11.41838  -5.555388
+##          |    0.0000*    0.0000*
+## 
+## alpha = 0.05
+## Reject Ho if p &lt;= alpha/2</code></pre>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="introduction-to-nonparametric-statistics.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="co"># changing method</span></span>
+<span id="cb211-2"><a href="introduction-to-nonparametric-statistics.html#cb211-2" aria-hidden="true" tabindex="-1"></a>dunn.test<span class="sc">::</span><span class="fu">dunn.test</span>(iris<span class="sc">$</span>Petal.Length, iris<span class="sc">$</span>Species, <span class="at">method =</span> <span class="st">&quot;bh&quot;</span>)</span></code></pre></div>
+<pre><code>##   Kruskal-Wallis rank sum test
+## 
+## data: x and group
+## Kruskal-Wallis chi-squared = 130.411, df = 2, p-value = 0
+## 
+## 
+##                            Comparison of x by group                            
+##                              (Benjamini-Hochberg)                              
+## Col Mean-|
+## Row Mean |     setosa   versicol
+## ---------+----------------------
+## versicol |  -5.862996
+##          |    0.0000*
+##          |
+## virginic |  -11.41838  -5.555388
+##          |    0.0000*    0.0000*
+## 
+## alpha = 0.05
+## Reject Ho if p &lt;= alpha/2</code></pre>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="introduction-to-nonparametric-statistics.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="co"># changing significance level</span></span>
+<span id="cb213-2"><a href="introduction-to-nonparametric-statistics.html#cb213-2" aria-hidden="true" tabindex="-1"></a>dunn.test<span class="sc">::</span><span class="fu">dunn.test</span>(iris<span class="sc">$</span>Petal.Length, iris<span class="sc">$</span>Species, <span class="at">method =</span> <span class="st">&quot;bh&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.01</span>)</span></code></pre></div>
+<pre><code>##   Kruskal-Wallis rank sum test
+## 
+## data: x and group
+## Kruskal-Wallis chi-squared = 130.411, df = 2, p-value = 0
+## 
+## 
+##                            Comparison of x by group                            
+##                              (Benjamini-Hochberg)                              
+## Col Mean-|
+## Row Mean |     setosa   versicol
+## ---------+----------------------
+## versicol |  -5.862996
+##          |    0.0000*
+##          |
+## virginic |  -11.41838  -5.555388
+##          |    0.0000*    0.0000*
+## 
+## alpha = 0.01
+## Reject Ho if p &lt;= alpha/2</code></pre>
+<p>The output includes a redo of the KW test (first sentence), the output of the Dunn test (the table), the significance level (alpha), and the rejection rule.</p>
+<p>Each cell in the outputted table contains the Dunn test statistic followed by the <span class="math inline">\(p\)</span>-value for the pairwise comparison between the cell row and cell column. A * is placed beside the <span class="math inline">\(p\)</span>-value if a comparison is significant.</p>
+<p>We can also do many to one comparisons, using the <code>kwManyOneDunnTest()</code> function in the <strong>PMCMRplus</strong> package.</p>
+<p>Suppose we are only interested in whether the <code>versicolor</code> species and <code>virginica</code> species differ from the <code>setosa</code> species. Many-to-one comparisons are for when we are only interested in differences with one group, say the control.</p>
+<p>The <code>kwManyOneDunnTest()</code> function has a <code>formula</code> argument where a formula in the form <code>response_variable ~ group_variable</code> is specified. The groups are compared with the first group listed in the group variable so your data may need to be reordered. In other words, the group representing “one” in the term “many to one” should be listed first.</p>
+<p>The <code>data</code> argument is the data frame that contains the variables in the formula argument.</p>
+<p>The <code>alternative</code> argument can be used to choose the type of alternative hypothesis between <code>"two.sided"</code> <code>"greater"</code> <code>"less"</code>.</p>
+<p>The <code>p.adjust.method</code> argument can be used to adjust for running multiple hypothesis tests; it is used to account for the increased probability of type 1 error.</p>
+<p>Some options include <code>"bonferroni"</code>, <code>"BH"</code>, <code>"fdr"</code>, and <code>"none"</code>.
+For a full list run the line <code>?PMCMRplus::frdAllPairsExactTest</code> to get the help page for this function. To read more about <span class="math inline">\(p\)</span>-value adjustments and the multiple testing problem, see <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6099145/">here</a>, <a href="https://towardsdatascience.com/the-multiple-comparisons-problem-e5573e8b9578">here</a> and <a href="https://en.wikipedia.org/wiki/Multiple_comparisons_problem">here</a>.</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="introduction-to-nonparametric-statistics.html#cb215-1" aria-hidden="true" tabindex="-1"></a>PMCMRplus<span class="sc">::</span><span class="fu">kwManyOneDunnTest</span>(Petal.Length <span class="sc">~</span> Species, <span class="at">data =</span> iris)</span></code></pre></div>
+<pre><code>## Warning in kwManyOneDunnTest.default(c(1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, : Ties
+## are present. z-quantiles were corrected for ties.</code></pre>
+<pre><code>## 
+##  Pairwise comparisons using Dunn&#39;s many-to-one test</code></pre>
+<pre><code>## data: Petal.Length by Species</code></pre>
+<pre><code>##            setosa 
+## versicolor 9.1e-09
+## virginica  &lt; 2e-16</code></pre>
+<pre><code>## 
+## P value adjustment method: single-step</code></pre>
+<pre><code>## alternative hypothesis: two.sided</code></pre>
+<p>Each row contains the <span class="math inline">\(p\)</span>-value for the comparison between the <code>setosa</code> group and the group name for that row.</p>
+</div>
+</div>
+<div id="repeated-measures-anova-friedman-test" class="section level3 hasAnchor" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Repeated Measures ANOVA (Friedman Test)<a href="introduction-to-nonparametric-statistics.html#repeated-measures-anova-friedman-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Repeated measures data are data such that the response is measured multiple times per subject. For example, a subject is given each treatment and the response is measured once for each treatment. Treatments can refer to time periods or other grouping variables. We can use the Friedman test on this type of data.</p>
+<div id="hypotheses-2" class="section level4 hasAnchor" number="4.3.3.1">
+<h4><span class="header-section-number">4.3.3.1</span> Hypotheses<a href="introduction-to-nonparametric-statistics.html#hypotheses-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><span class="math display">\[
+H_0\colon \tx{All treatment groups have the same distribution.vs. } \\
+H_1\colon\ \tx{At least one treatment group does not have the same distribution.}
+\]</span></p>
+<p>Assumptions:</p>
+<ul>
+<li>The response/dependent variable should be continuous or can be approximated by a continuous variable.</li>
+<li>Data has more than two treatments/groups/time periods (see <a href="introduction-to-nonparametric-statistics.html#nonpram-wst">here</a> for two periods only).</li>
+<li>Subjects are independent.</li>
+<li>Within-subject measurements can be dependent.</li>
+<li>There are an equal number of measurements per subject/block. <em>If this does not hold for your data, but the other assumptions do, see the <a href="https://en.wikipedia.org/wiki/Durbin_test">Durbin test</a>. See the Note 2. below.</em></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li>If the groups have similar shapes and scales, then the Friedman test tests for a difference in medians between the groups.</li>
+</ul>
+</div>
+<div id="test-concept-4" class="section level4 hasAnchor" number="4.3.3.2">
+<h4><span class="header-section-number">4.3.3.2</span> Test Concept<a href="introduction-to-nonparametric-statistics.html#test-concept-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We can use the Friedman test to perform a repeated-measures ANOVA.
+The Friedman test relies on the same intuition discussed in the KW ANOVA section; no differences between the groups should imply that there are roughly equal high and low ranks within each group.</p>
+<p>The difference between the Friedman test and the KW test is that ranks are now computed within-subjects instead of across subjects, to account for intrasubject dependencies.</p>
+</div>
+<div id="an-example-using-r-5" class="section level4 hasAnchor" number="4.3.3.3">
+<h4><span class="header-section-number">4.3.3.3</span> An Example Using R<a href="introduction-to-nonparametric-statistics.html#an-example-using-r-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We create some sample repeated measures data below.</p>
+<p>It appears that the medians at each treatment are different from each other. According to the boxplots, the shape and scale of the distributions are similar, and so we can interpret a Friedman test as testing for a difference in medians.</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="introduction-to-nonparametric-statistics.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">440</span>)</span>
+<span id="cb222-2"><a href="introduction-to-nonparametric-statistics.html#cb222-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a fake repeated measures data set</span></span>
+<span id="cb222-3"><a href="introduction-to-nonparametric-statistics.html#cb222-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Note it is not necessary to understand how to simulate a data set in order to apply Friedman ANOVA, so this code block is optional.</span></span>
+<span id="cb222-4"><a href="introduction-to-nonparametric-statistics.html#cb222-4" aria-hidden="true" tabindex="-1"></a>time_0 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">2</span>)</span>
+<span id="cb222-5"><a href="introduction-to-nonparametric-statistics.html#cb222-5" aria-hidden="true" tabindex="-1"></a>time_1 <span class="ot">&lt;-</span> time_0 <span class="sc">*</span> .<span class="dv">2</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">1</span>) <span class="co"># time 1 observation has a dependency on the time 0 observation.</span></span>
+<span id="cb222-6"><a href="introduction-to-nonparametric-statistics.html#cb222-6" aria-hidden="true" tabindex="-1"></a>time_2 <span class="ot">&lt;-</span> time_1 <span class="sc">*</span> .<span class="dv">2</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">3</span>) <span class="co"># time 2 has dependency on time 1, which implies dependency on time 0</span></span>
+<span id="cb222-7"><a href="introduction-to-nonparametric-statistics.html#cb222-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb222-8"><a href="introduction-to-nonparametric-statistics.html#cb222-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Putting the data in the above format</span></span>
+<span id="cb222-9"><a href="introduction-to-nonparametric-statistics.html#cb222-9" aria-hidden="true" tabindex="-1"></a>resp <span class="ot">&lt;-</span> <span class="fu">c</span>(time_0, time_1, time_2) <span class="co"># create response variable</span></span>
+<span id="cb222-10"><a href="introduction-to-nonparametric-statistics.html#cb222-10" aria-hidden="true" tabindex="-1"></a>subj <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">3</span>)) <span class="co"># create subject variable</span></span>
+<span id="cb222-11"><a href="introduction-to-nonparametric-statistics.html#cb222-11" aria-hidden="true" tabindex="-1"></a>tmnt <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">each =</span> <span class="dv">100</span>)) <span class="co"># create treatment or time variable</span></span>
+<span id="cb222-12"><a href="introduction-to-nonparametric-statistics.html#cb222-12" aria-hidden="true" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(resp, subj, tmnt) <span class="co"># put variables in data frame</span></span>
+<span id="cb222-13"><a href="introduction-to-nonparametric-statistics.html#cb222-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb222-14"><a href="introduction-to-nonparametric-statistics.html#cb222-14" aria-hidden="true" tabindex="-1"></a><span class="co"># This fake data set has dependencies when the subject number is the same. We expect to reject this Friedman test since the mean at time 3 is 3.28, the mean at time 2 is 1.4 and the mean at time 1 is 2.</span></span>
+<span id="cb222-15"><a href="introduction-to-nonparametric-statistics.html#cb222-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb222-16"><a href="introduction-to-nonparametric-statistics.html#cb222-16" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(test_data<span class="sc">$</span>resp <span class="sc">~</span> test_data<span class="sc">$</span>tmnt)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:nonpram-fried-data"></span>
+<img src="topics_in_consulting_files/figure-html/nonpram-fried-data-1.png" alt="Boxplots of simulated responses from three different groups." width="672" />
+<p class="caption">
+Figure 4.8: Boxplots of simulated responses from three different groups.
+</p>
+</div>
+<p>The `<code>friedman_test()</code> function is used to perform nonparametric repeated-measures ANOVA.</p>
+<p><code>friedman_test()</code> has a <code>data</code> argument where you specify your data frame that contains your treatment variable, subject variable, and your response variable. Data should be in the following format:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Response</th>
+<th>Subj</th>
+<th>Treatment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>.25</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>.25</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>.25</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>.25</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>friedman_test()</code> function takes a formula in the form <code>response_variable ~ treatment_variable|subject variable</code>.</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="introduction-to-nonparametric-statistics.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the test</span></span>
+<span id="cb223-2"><a href="introduction-to-nonparametric-statistics.html#cb223-2" aria-hidden="true" tabindex="-1"></a>coin<span class="sc">::</span><span class="fu">friedman_test</span>(resp <span class="sc">~</span> tmnt <span class="sc">|</span> subj, test_data)</span></code></pre></div>
+<pre><code>## 
+##  Asymptotic Friedman Test
+## 
+## data:  resp by tmnt (1, 2, 3) 
+##   stratified by subj
+## chi-squared = 92.94, df = 2, p-value &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="introduction-to-nonparametric-statistics.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For &quot;small&quot; samples set distribution=&quot;approximate&quot;</span></span>
+<span id="cb225-2"><a href="introduction-to-nonparametric-statistics.html#cb225-2" aria-hidden="true" tabindex="-1"></a>coin<span class="sc">::</span><span class="fu">friedman_test</span>(resp <span class="sc">~</span> tmnt <span class="sc">|</span> subj, test_data, <span class="at">distribution =</span> <span class="st">&quot;approximate&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Approximative Friedman Test
+## 
+## data:  resp by tmnt (1, 2, 3) 
+##   stratified by subj
+## chi-squared = 92.94, p-value &lt; 1e-04</code></pre>
+<p>For small samples, see Note 1. in the <a href="introduction-to-nonparametric-statistics.html#nonpram-anova">Kruskal-Wallis ANOVA section</a>.</p>
+</div>
+</div>
+<div id="post-hoc-tests" class="section level3 hasAnchor" number="4.3.4">
+<h3><span class="header-section-number">4.3.4</span> Post Hoc tests<a href="introduction-to-nonparametric-statistics.html#post-hoc-tests" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The package <strong>PMCMRplus</strong> contains many types of rank-based ANOVAs and post-hoc tests.</p>
+<p>We will cover the exact test, but other tests may be used. The exact test checks for significant differences in pairwise rank means, given that a significant result was seen in the Friedman test.</p>
+<div id="hypotheses-3" class="section level4 hasAnchor" number="4.3.4.1">
+<h4><span class="header-section-number">4.3.4.1</span> Hypotheses<a href="introduction-to-nonparametric-statistics.html#hypotheses-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><span class="math display">\[
+H_0\colon \tx{The groups exhibit no differences. vs. } H_1\colon\ \tx{The groups are different.}
+\]</span></p>
+<p>Note again that if the groups have the same shape and scale this is a test for a difference in medians.</p>
+</div>
+</div>
+<div id="an-example-using-r-6" class="section level3 hasAnchor" number="4.3.5">
+<h3><span class="header-section-number">4.3.5</span> An example using R<a href="introduction-to-nonparametric-statistics.html#an-example-using-r-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We will continue with our fake data.</p>
+<p>Suppose we want to compute all pairwise differences, to see between which groups there were differences. To compute all pairwise comparisons, use the <code>frdAllPairsExactTest()</code> function in the <strong>PMCMRplus</strong> package.</p>
+<p>The first argument <code>y</code> takes the response values, the second argument <code>groups</code> takes the group or treatment values and the third argument <code>blocks</code> takes the subject or block values.</p>
+<p>To adjust for running multiple hypothesis tests, we can use the <code>p.adjust.method</code> argument to account for the increased probability of type 1 error.</p>
+<p>Some options include <code>"bonferroni"</code>, <code>"BH"</code>, <code>"fdr"</code>, and <code>"none"</code>.
+For a full list run the line <code>?PMCMRplus::frdAllPairsExactTest</code> to get the help page for this function. To read more about <span class="math inline">\(p\)</span>-value adjustments and the multiple testing problem, see <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6099145/">here</a>, <a href="https://towardsdatascience.com/the-multiple-comparisons-problem-e5573e8b9578">here</a> and <a href="https://en.wikipedia.org/wiki/Multiple_comparisons_problem">here</a>.</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="introduction-to-nonparametric-statistics.html#cb227-1" aria-hidden="true" tabindex="-1"></a>PMCMRplus<span class="sc">::</span><span class="fu">frdAllPairsExactTest</span>(test_data<span class="sc">$</span>resp, test_data<span class="sc">$</span>tmnt, test_data<span class="sc">$</span>subj, <span class="at">p.adjust.method =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pairwise comparisons using Eisinga, Heskes, Pelzer &amp; Te Grotenhuis all-pairs test with exact p-values for a two-way balanced complete block design</code></pre>
+<pre><code>## data: y, groups and blocks</code></pre>
+<pre><code>##   1       2      
+## 2 0.00033 -      
+## 3 1.6e-09 &lt; 2e-16</code></pre>
+<pre><code>## 
+## P value adjustment method: none</code></pre>
+<p>The <span class="math inline">\(p\)</span>-values are given within cells, each cell corresponds to a comparison of the treatments corresponding to the cell’s row and the cell’s column. For example, the upper-left cell says that the <span class="math inline">\(p\)</span>-value for testing a difference of rank means between the first and second treatment is 0.00033.</p>
+<p>Instead of doing all comparisons, we can also do many-to-one comparisons. The <code>frdManyOneExactTest()</code> function compares all treatments to the first treatment listed in the treatment variables and takes the same arguments as <code>frdAllPairsExactTest()</code>.</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="introduction-to-nonparametric-statistics.html#cb232-1" aria-hidden="true" tabindex="-1"></a>PMCMRplus<span class="sc">::</span><span class="fu">frdManyOneExactTest</span>(test_data<span class="sc">$</span>resp, test_data<span class="sc">$</span>tmnt, test_data<span class="sc">$</span>subj, <span class="at">p.adjust.method =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pairwise comparisons using Eisinga-Heskes-Pelzer and Grotenhuis many-to-one test for a two-way balanced complete block design</code></pre>
+<pre><code>## data: y, groups and blocks</code></pre>
+<pre><code>##   1      
+## 2 0.00033
+## 3 1.6e-09</code></pre>
+<pre><code>## 
+## P value adjustment method: none</code></pre>
+<pre><code>## alternative hypothesis: two.sided</code></pre>
+<p>Each row has a <span class="math inline">\(p\)</span>-value that corresponds to the comparison of a group with group 1.</p>
+<p>Notes:</p>
+<ul>
+<li>If you are looking for a specific non-parametric test not discussed here, it is likely in the <strong>PMCMRplus</strong> package and you may find that test <a href="https://cran.r-project.org/web/packages/PMCMRplus/vignettes/QuickReferenceGuide.html">here</a>.</li>
+<li>The Friedman test assumes that there are equal numbers of observations within each block. For incomplete block designs, the <a href="https://en.wikipedia.org/wiki/Durbin_test">Durbin test</a> can be used. This can be done in R with the <code>durbinTest()</code> function in the <strong>PMCMRplus</strong> package.</li>
+</ul>
+</div>
+<div id="additional-resources-for-nonparametric-anova-procedures" class="section level3 hasAnchor" number="4.3.6">
+<h3><span class="header-section-number">4.3.6</span> Additional Resources for Nonparametric ANOVA Procedures<a href="introduction-to-nonparametric-statistics.html#additional-resources-for-nonparametric-anova-procedures" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Kruskal%E2%80%93Wallis_one-way_analysis_of_variance">Kruskal-Wallis Wiki</a>,</li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4223105/">KW and Friedman tests in SPSS</a>,</li>
+<li><a href="https://support.sas.com/documentation/onlinedoc/stat/131/npar1way.pdf">KW in SAS</a>,</li>
+<li><a href="https://documentation.sas.com/?docsetId=procstat&amp;docsetTarget=procstat_freq_examples09.htm&amp;docsetVersion=9.4&amp;locale=en">Friedman test in SAS</a>,</li>
+<li><a href="https://cran.r-project.org/web/packages/PMCMRplus/vignettes/QuickReferenceGuide.html"><strong>PMCMRplus</strong> Documentation</a>,</li>
+<li><a href="https://cran.r-project.org/web/packages/coin/coin.pdf"><strong>coin</strong> Documentation</a>, and</li>
+<li><a href="https://cran.r-project.org/web/packages/dunn.test/dunn.test.pdf"><strong>dunn.test</strong> Documentation</a></li>
+</ul>
+</div>
+</div>
+<div id="boostrap-methods" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Boostrap Methods<a href="introduction-to-nonparametric-statistics.html#boostrap-methods" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before proceeding, if the reader is not familiar with the term sampling distribution, then it is useful to read the section on <a href="introduction-to-nonparametric-statistics.html#nonpram-sd">sampling distributions</a>.</p>
+<div id="bootstrap-confidence-intervals" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Bootstrap Confidence Intervals<a href="introduction-to-nonparametric-statistics.html#bootstrap-confidence-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When computing confidence intervals for an estimated value, such as mean or regression parameter, typically we rely on the fact that the sampling distribution of the estimated value is normal. The estimated value is normally distributed for large <span class="math inline">\(n\)</span>.</p>
+<p>The confidence interval is then of the form
+<span class="math display">\[\hat{\theta}\pm Z_{1-\alpha/2}s_n,\]</span>
+where <span class="math inline">\(s_n\)</span> is the standard error and <span class="math inline">\(Z_{1-\alpha/2}\)</span> is the <span class="math inline">\(1-\alpha/2\)</span>-quantile or percentile of the normal distribution.</p>
+<p>The key concept here is that <span class="math inline">\(\hat{\theta}\)</span> is approximately normally distributed with mean <span class="math inline">\(\theta\)</span> and variance close to <span class="math inline">\(s_n^2\)</span>. This means that the variability or error in our estimation of <span class="math inline">\(\hat{\theta}\)</span> can be approximated by quantiles of the normal distribution.</p>
+<p>In some contexts, this approximation is not very accurate or even valid. Some examples of such contexts are:
+- small sample sizes (<span class="math inline">\(n&lt;30\)</span>);
+- data is very skewed and is moderately large (<span class="math inline">\(n&lt;100\)</span>);
+- data is heavy-tailed, or has a fair amount of extreme observations (&gt;5%); and
+- the statistic being estimated does not satisfy asymptotic normality such as changepoint statistics, etc.</p>
+<p>In these contexts, we can use <em>bootstrapping</em> to approximate the sampling distribution of the estimator. If we could take many samples and subsequently compute <span class="math inline">\(\hat{\theta}\)</span> for each sample, we would end up with a sample of <span class="math inline">\(\hat{\theta}\)</span>s. We could then make a histogram to estimate the distribution of <span class="math inline">\(\hat{\theta}\)</span>.</p>
+<p>Of course, the problem is that we only have one sample instead of many samples. Bootstrapping is a way of making many samples out of one, from which we can construct such a histogram of estimators.</p>
+<p>Bootstrapping is a technique that involves resampling your data with replacement many times to produce many samples and therefore replicates of the estimated value. We can then use the variation in the estimated values to get an idea of the error that could be made in estimation.</p>
+<p>The bootstrap procedure is as follows:</p>
+<ul>
+<li>sample <span class="math inline">\(B\)</span> samples of size <span class="math inline">\(n\)</span> with replacement from your sample;</li>
+<li>compute your estimator for each of the <span class="math inline">\(B\)</span> samples, these are the bootstrap replicates; and</li>
+<li>use the bootstrap replicates to estimate the sampling distribution of your estimator, which can be used e.g. to create a confidence interval for your estimator.</li>
+</ul>
+</div>
+<div id="assumptions" class="section level3 hasAnchor" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Assumptions<a href="introduction-to-nonparametric-statistics.html#assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>The bootstrap procedure assumes your sample is a good representative of the population. If your sample contains outliers, it is important to use a robust bootstrap.</li>
+<li>The value being estimated is not at the edge of the parameter space. This means that the value is not, for example, a minimum or maximum.</li>
+</ul>
+</div>
+<div id="examples-using-r" class="section level3 hasAnchor" number="4.4.3">
+<h3><span class="header-section-number">4.4.3</span> Examples using R<a href="introduction-to-nonparametric-statistics.html#examples-using-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We will use a simple example to demonstrate how to compute a confidence interval for the sample mean. Suppose we would like to create a 95% confidence interval for the mean petal length of the <code>setosa</code> species in the <code>iris</code> data. The <code>boot()</code> function in the <strong>boot</strong> package in R is used to create bootstrap replicates.</p>
+<p>The function takes many arguments, but we will cover 3:</p>
+<ul>
+<li>The first argument <code>data</code> is the data you wish to create the bootstrap samples from.</li>
+<li>The second argument <code>statistic</code> is an R function which returns your estimator given the original data and the indices of the bootstrap sample.</li>
+<li>The third argument <code>R</code> is the number of bootstrap samples.
+This should be large.</li>
+</ul>
+<p>We use the <code>boot.ci</code> to compute bootstrap confidence intervals.</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="introduction-to-nonparametric-statistics.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute sample mean</span></span>
+<span id="cb238-2"><a href="introduction-to-nonparametric-statistics.html#cb238-2" aria-hidden="true" tabindex="-1"></a>sample_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(iris<span class="sc">$</span>Petal.Length[<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>])</span>
+<span id="cb238-3"><a href="introduction-to-nonparametric-statistics.html#cb238-3" aria-hidden="true" tabindex="-1"></a><span class="co"># make a function that takes the original data and a vector of indices</span></span>
+<span id="cb238-4"><a href="introduction-to-nonparametric-statistics.html#cb238-4" aria-hidden="true" tabindex="-1"></a><span class="co"># The indices represent the data points in one bootstrap sample</span></span>
+<span id="cb238-5"><a href="introduction-to-nonparametric-statistics.html#cb238-5" aria-hidden="true" tabindex="-1"></a><span class="co"># orig_data[ind] accesses the points in the original data specified in ind</span></span>
+<span id="cb238-6"><a href="introduction-to-nonparametric-statistics.html#cb238-6" aria-hidden="true" tabindex="-1"></a><span class="co"># So if ind=(1,1,2,2) the first and second subject in orig_data will be accessed twice</span></span>
+<span id="cb238-7"><a href="introduction-to-nonparametric-statistics.html#cb238-7" aria-hidden="true" tabindex="-1"></a>estimator <span class="ot">&lt;-</span> <span class="cf">function</span>(orig_data, ind) {</span>
+<span id="cb238-8"><a href="introduction-to-nonparametric-statistics.html#cb238-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(orig_data[ind])</span>
+<span id="cb238-9"><a href="introduction-to-nonparametric-statistics.html#cb238-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb238-10"><a href="introduction-to-nonparametric-statistics.html#cb238-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb238-11"><a href="introduction-to-nonparametric-statistics.html#cb238-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 1000 bootstrap replicates for iris data</span></span>
+<span id="cb238-12"><a href="introduction-to-nonparametric-statistics.html#cb238-12" aria-hidden="true" tabindex="-1"></a>boot_repl <span class="ot">&lt;-</span> boot<span class="sc">::</span><span class="fu">boot</span>(iris<span class="sc">$</span>Petal.Length[<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>], estimator, <span class="dv">1000</span>)</span>
+<span id="cb238-13"><a href="introduction-to-nonparametric-statistics.html#cb238-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb238-14"><a href="introduction-to-nonparametric-statistics.html#cb238-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute a 95% confidence interval, bases on the bootstrap replicates</span></span>
+<span id="cb238-15"><a href="introduction-to-nonparametric-statistics.html#cb238-15" aria-hidden="true" tabindex="-1"></a>boot<span class="sc">::</span><span class="fu">boot.ci</span>(boot_repl, <span class="at">type =</span> <span class="st">&quot;bca&quot;</span>)</span></code></pre></div>
+<pre><code>## BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
+## Based on 1000 bootstrap replicates
+## 
+## CALL : 
+## boot::boot.ci(boot.out = boot_repl, type = &quot;bca&quot;)
+## 
+## Intervals : 
+## Level       BCa          
+## 95%   ( 1.412,  1.510 )  
+## Calculations and Intervals on Original Scale</code></pre>
+<p>Now that we know how to compute bootstrap confidence intervals in R, we perform the bootstrap in a much more complicated situation. An important part of this section is that bootstrap can be applied to complex models.</p>
+<p>When creating multiple confidence intervals at once with bootstrap, we need to set the <code>index</code> argument of <code>boot.ci</code>.</p>
+<p>We will consider a regression model using the <code>catsM</code> data, which contains the weights of the body (<code>Bwt</code>) and heart (<code>Hwt</code>) of cats. Suppose we would like to build a regression model to predict the weight of the heart from the weight of the body:</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="introduction-to-nonparametric-statistics.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load in cats data</span></span>
+<span id="cb240-2"><a href="introduction-to-nonparametric-statistics.html#cb240-2" aria-hidden="true" tabindex="-1"></a>catsM <span class="ot">&lt;-</span> boot<span class="sc">::</span>catsM</span>
+<span id="cb240-3"><a href="introduction-to-nonparametric-statistics.html#cb240-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(catsM)</span></code></pre></div>
+<pre><code>##   Sex Bwt  Hwt
+## 1   M 2.0  6.5
+## 2   M 2.0  6.5
+## 3   M 2.1 10.1
+## 4   M 2.2  7.2
+## 5   M 2.2  7.6
+## 6   M 2.2  7.9</code></pre>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="introduction-to-nonparametric-statistics.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="co"># It seems like there is a linear relationship between Bwt and Hwt</span></span>
+<span id="cb242-2"><a href="introduction-to-nonparametric-statistics.html#cb242-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(catsM[, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>])</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:nonpram-bootstrap-regression-1"></span>
+<img src="topics_in_consulting_files/figure-html/nonpram-bootstrap-regression-1-1.png" alt="Relationship between cats' body and heart weights." width="672" />
+<p class="caption">
+Figure 4.9: Relationship between cats’ body and heart weights.
+</p>
+</div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="introduction-to-nonparametric-statistics.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a regression of heart weight on body weight</span></span>
+<span id="cb243-2"><a href="introduction-to-nonparametric-statistics.html#cb243-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Hwt <span class="sc">~</span> Bwt, catsM)</span>
+<span id="cb243-3"><a href="introduction-to-nonparametric-statistics.html#cb243-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Hwt ~ Bwt, data = catsM)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.7728 -1.0478 -0.2976  0.9835  4.8646 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  -1.1841     0.9983  -1.186    0.239    
+## Bwt           4.3127     0.3399  12.688   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.557 on 95 degrees of freedom
+## Multiple R-squared:  0.6289, Adjusted R-squared:  0.625 
+## F-statistic:   161 on 1 and 95 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="introduction-to-nonparametric-statistics.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The intercept and slope are</span></span>
+<span id="cb245-2"><a href="introduction-to-nonparametric-statistics.html#cb245-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(model)</span></code></pre></div>
+<pre><code>## (Intercept)         Bwt 
+##   -1.184088    4.312679</code></pre>
+<p>We would like to assess the variability of our model and its coefficients.</p>
+<p>If we had a different sample from the same population, how much would our estimated line move? What about confidence intervals for the intercept and slope? This is where the bootstrap procedure comes in.</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="introduction-to-nonparametric-statistics.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How can we make a confidence interval for these parameters? Use the bootstrap</span></span>
+<span id="cb247-2"><a href="introduction-to-nonparametric-statistics.html#cb247-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This function returns the coefficients of a regression model fitted to a bootstrap sample.</span></span>
+<span id="cb247-3"><a href="introduction-to-nonparametric-statistics.html#cb247-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The ind parameter gives the indices of the bootstrap sample; orig_data[ind,] is the bootstrap sample values.</span></span>
+<span id="cb247-4"><a href="introduction-to-nonparametric-statistics.html#cb247-4" aria-hidden="true" tabindex="-1"></a>estimator <span class="ot">&lt;-</span> <span class="cf">function</span>(orig_data, ind) {</span>
+<span id="cb247-5"><a href="introduction-to-nonparametric-statistics.html#cb247-5" aria-hidden="true" tabindex="-1"></a>  model_b <span class="ot">&lt;-</span> <span class="fu">lm</span>(Hwt <span class="sc">~</span> Bwt, orig_data[ind, ])</span>
+<span id="cb247-6"><a href="introduction-to-nonparametric-statistics.html#cb247-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>(model_b)</span>
+<span id="cb247-7"><a href="introduction-to-nonparametric-statistics.html#cb247-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb247-8"><a href="introduction-to-nonparametric-statistics.html#cb247-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb247-9"><a href="introduction-to-nonparametric-statistics.html#cb247-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 1000 bootstrap replicates of the coefficients for the cat data</span></span>
+<span id="cb247-10"><a href="introduction-to-nonparametric-statistics.html#cb247-10" aria-hidden="true" tabindex="-1"></a>boot_repl <span class="ot">&lt;-</span> boot<span class="sc">::</span><span class="fu">boot</span>(catsM, estimator, <span class="dv">1000</span>)</span>
+<span id="cb247-11"><a href="introduction-to-nonparametric-statistics.html#cb247-11" aria-hidden="true" tabindex="-1"></a>boot_repl</span></code></pre></div>
+<pre><code>## 
+## ORDINARY NONPARAMETRIC BOOTSTRAP
+## 
+## 
+## Call:
+## boot::boot(data = catsM, statistic = estimator, R = 1000)
+## 
+## 
+## Bootstrap Statistics :
+##      original       bias    std. error
+## t1* -1.184088 -0.023249544   1.1351073
+## t2*  4.312679  0.006340115   0.4006028</code></pre>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="introduction-to-nonparametric-statistics.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute a 95% confidence interval, based on the bootstrap replicates</span></span>
+<span id="cb249-2"><a href="introduction-to-nonparametric-statistics.html#cb249-2" aria-hidden="true" tabindex="-1"></a><span class="co"># index=1 is the first statistic, this is a ci for the intercept of the regression model</span></span>
+<span id="cb249-3"><a href="introduction-to-nonparametric-statistics.html#cb249-3" aria-hidden="true" tabindex="-1"></a>boot<span class="sc">::</span><span class="fu">boot.ci</span>(boot_repl, <span class="at">type =</span> <span class="st">&quot;bca&quot;</span>, <span class="at">index =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
+## Based on 1000 bootstrap replicates
+## 
+## CALL : 
+## boot::boot.ci(boot.out = boot_repl, type = &quot;bca&quot;, index = 1)
+## 
+## Intervals : 
+## Level       BCa          
+## 95%   (-3.425,  0.924 )  
+## Calculations and Intervals on Original Scale</code></pre>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="introduction-to-nonparametric-statistics.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="co"># index=2 is the second statistic, this is a ci for the slope of the regression model</span></span>
+<span id="cb251-2"><a href="introduction-to-nonparametric-statistics.html#cb251-2" aria-hidden="true" tabindex="-1"></a>boot<span class="sc">::</span><span class="fu">boot.ci</span>(boot_repl, <span class="at">type =</span> <span class="st">&quot;bca&quot;</span>, <span class="at">index =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
+## Based on 1000 bootstrap replicates
+## 
+## CALL : 
+## boot::boot.ci(boot.out = boot_repl, type = &quot;bca&quot;, index = 2)
+## 
+## Intervals : 
+## Level       BCa          
+## 95%   ( 3.590,  5.119 )  
+## Calculations and Intervals on Original Scale</code></pre>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="introduction-to-nonparametric-statistics.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The pairs of intercept and slope are in the `t` value of the list `boot_repl`</span></span>
+<span id="cb253-2"><a href="introduction-to-nonparametric-statistics.html#cb253-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We can plot each line from each bootstrap sample to get an idea of how our estimate could have varied</span></span>
+<span id="cb253-3"><a href="introduction-to-nonparametric-statistics.html#cb253-3" aria-hidden="true" tabindex="-1"></a>boot_repl<span class="sc">$</span>t[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, ]</span></code></pre></div>
+<pre><code>##           [,1]     [,2]
+## [1,] -2.437597 4.807250
+## [2,] -1.327428 4.340109
+## [3,] -0.701412 4.090691
+## [4,] -1.631726 4.473434
+## [5,] -1.544259 4.477614</code></pre>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="introduction-to-nonparametric-statistics.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(catsM[, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>])</span>
+<span id="cb255-2"><a href="introduction-to-nonparametric-statistics.html#cb255-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> <span class="fu">coef</span>(model)[<span class="dv">1</span>], <span class="at">b =</span> <span class="fu">coef</span>(model)[<span class="dv">2</span>], <span class="at">col =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb255-3"><a href="introduction-to-nonparametric-statistics.html#cb255-3" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">mapply</span>(abline, boot_repl<span class="sc">$</span>t[, <span class="dv">1</span>], boot_repl<span class="sc">$</span>t[, <span class="dv">2</span>], <span class="at">MoreArgs =</span> <span class="fu">list</span>(<span class="at">col =</span> scales<span class="sc">::</span><span class="fu">alpha</span>(<span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="fl">0.05</span>)))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:nonpram-bootstrap-regression-2"></span>
+<img src="topics_in_consulting_files/figure-html/nonpram-bootstrap-regression-2-1.png" alt="Estimated lines created through bootstrap." width="672" />
+<p class="caption">
+Figure 4.10: Estimated lines created through bootstrap.
+</p>
+</div>
+</div>
+<div id="additional-resources" class="section level3 hasAnchor" number="4.4.4">
+<h3><span class="header-section-number">4.4.4</span> Additional Resources<a href="introduction-to-nonparametric-statistics.html#additional-resources" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><a href="https://scholarworks.umass.edu/cgi/viewcontent.cgi?article=1342&amp;context=pare">Guide for researchers on the bootstrap</a>,</li>
+<li><a href="https://cran.r-project.org/web/packages/lmeresampler/lmeresampler.pdf">Bootstrap Methods for Nested Linear Mixed-Effects Models</a>,</li>
+<li><a href="https://datascienceplus.com/introduction-to-bootstrap-with-applications-to-mixed-effect-models/">Bootstrap for Mixed-Effects</a>.</li>
+<li><a href="http://www.sussex.ac.uk/its/pdfs/SPSS_Bootstrapping_22.pdf">Bootstrapping SPSS</a>, and</li>
+<li><a href="https://blogs.sas.com/content/iml/2018/12/12/essential-guide-bootstrapping-sas.html">Bootstrapping SAS</a>.</li>
+</ul>
+</div>
+</div>
+<div id="random-forests" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Random Forests<a href="introduction-to-nonparametric-statistics.html#random-forests" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Random forests can be used to build predictive models for a response variable based on a set of predictors. The predictors and response can be of <em>any type</em>. The model does not have interpretable parameters like a slope and intercept, but the regression function or prediction function is not restricted to being a line.</p>
+<p>Put simply, if the goal is prediction, the random forest is a good option. How random forests work is somewhat complicated, so we will omit the details. The <a href="introduction-to-nonparametric-statistics.html#nonpram-arrf">additional resources section</a> contains some educational material on random forests.</p>
+<p>To apply random forest, we assume that the observations are independent and there are no outliers in the data.</p>
+<div id="examples-using-r-1" class="section level3 hasAnchor" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> Examples Using R<a href="introduction-to-nonparametric-statistics.html#examples-using-r-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To show how random forests differ from regression, we will simulate a set of data.</p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="introduction-to-nonparametric-statistics.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">440</span>)</span>
+<span id="cb256-2"><a href="introduction-to-nonparametric-statistics.html#cb256-2" aria-hidden="true" tabindex="-1"></a><span class="co"># invent nonlinear data</span></span>
+<span id="cb256-3"><a href="introduction-to-nonparametric-statistics.html#cb256-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">500</span>)</span>
+<span id="cb256-4"><a href="introduction-to-nonparametric-statistics.html#cb256-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">sin</span>(x <span class="sc">*</span> <span class="dv">4</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">sd =</span> .<span class="dv">8</span>)</span>
+<span id="cb256-5"><a href="introduction-to-nonparametric-statistics.html#cb256-5" aria-hidden="true" tabindex="-1"></a>trim <span class="ot">&lt;-</span> x <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">2</span></span>
+<span id="cb256-6"><a href="introduction-to-nonparametric-statistics.html#cb256-6" aria-hidden="true" tabindex="-1"></a>trim2 <span class="ot">&lt;-</span> x <span class="sc">&gt;</span> <span class="dv">2</span></span>
+<span id="cb256-7"><a href="introduction-to-nonparametric-statistics.html#cb256-7" aria-hidden="true" tabindex="-1"></a>trim <span class="ot">&lt;-</span> <span class="fu">as.logical</span>(trim <span class="sc">+</span> trim2)</span>
+<span id="cb256-8"><a href="introduction-to-nonparametric-statistics.html#cb256-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb256-9"><a href="introduction-to-nonparametric-statistics.html#cb256-9" aria-hidden="true" tabindex="-1"></a><span class="co"># plot data</span></span>
+<span id="cb256-10"><a href="introduction-to-nonparametric-statistics.html#cb256-10" aria-hidden="true" tabindex="-1"></a>example_data <span class="ot">&lt;-</span> <span class="fu">cbind</span>(x[<span class="sc">!</span>trim], y[<span class="sc">!</span>trim])</span>
+<span id="cb256-11"><a href="introduction-to-nonparametric-statistics.html#cb256-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(example_data, <span class="at">ylab =</span> <span class="st">&quot;y&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:nonpram-rf-test-data"></span>
+<img src="topics_in_consulting_files/figure-html/nonpram-rf-test-data-1.png" alt="Scatterplot of simulated data showing no linear relationship." width="672" />
+<p class="caption">
+Figure 4.11: Scatterplot of simulated data showing no linear relationship.
+</p>
+</div>
+<p>Notice how this data clearly does not have a linear relationship. We will explain how to build a random forest for this data.</p>
+<p>The <a href="https://CRAN.R-project.org/package=caret"><strong>caret</strong></a> package will be used to build random forest predictive models. This package includes many different types of predictive models. To train a random forest model, we set the <code>method</code> argument to <code>"rf"</code>. This function is based on code from the <a href="https://CRAN.R-project.org/package=randomForest"><strong>randomForest</strong></a> package.</p>
+<p>Random forests have a number of parameters, we will cover the two most important ones:</p>
+<ul>
+<li>the number of trees in the forest, <code>ntree</code>, and</li>
+<li>each leaf on the tree contains two nodes, chosen from a set of size <code>mtry</code>.</li>
+</ul>
+<p>Building a random forest involves training or building a bunch of random forests with different parameters and choosing the forest with the highest predictive capacity metric.</p>
+<p>The predictive capacity metric depends on whether or not your outcome is continuous or categorical. For continuous predictions, the metric is mean squared error, just like in regression.</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="introduction-to-nonparametric-statistics.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the predictors must be a matrix subjxcolumn</span></span>
+<span id="cb257-2"><a href="introduction-to-nonparametric-statistics.html#cb257-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(x, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb257-3"><a href="introduction-to-nonparametric-statistics.html#cb257-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(x) <span class="ot">&lt;-</span> <span class="st">&quot;x&quot;</span></span>
+<span id="cb257-4"><a href="introduction-to-nonparametric-statistics.html#cb257-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb257-5"><a href="introduction-to-nonparametric-statistics.html#cb257-5" aria-hidden="true" tabindex="-1"></a><span class="co"># train the model</span></span>
+<span id="cb257-6"><a href="introduction-to-nonparametric-statistics.html#cb257-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ntree is the number of trees</span></span>
+<span id="cb257-7"><a href="introduction-to-nonparametric-statistics.html#cb257-7" aria-hidden="true" tabindex="-1"></a><span class="co"># mtry=is a tuning parameter limited by the number of predictors, we only have 1 predictor here.</span></span>
+<span id="cb257-8"><a href="introduction-to-nonparametric-statistics.html#cb257-8" aria-hidden="true" tabindex="-1"></a>grid_par <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">mtry =</span> <span class="dv">1</span>)</span>
+<span id="cb257-9"><a href="introduction-to-nonparametric-statistics.html#cb257-9" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> caret<span class="sc">::</span><span class="fu">train</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">method =</span> <span class="st">&quot;rf&quot;</span>, <span class="at">tuneGrid =</span> grid_par, <span class="at">ntree =</span> <span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## 1 package is needed and is not installed. (randomForest). Would you like to try to install it now?
+## 1: yes
+## 2: no</code></pre>
+<pre><code>## Installing package into &#39;C:/Users/jerem/OneDrive/Documents/School/Waterloo/SCCR/TestBook/renv/library/R-4.2/x86_64-w64-mingw32&#39;
+## (as &#39;lib&#39; is unspecified)</code></pre>
+<pre><code>## package &#39;randomForest&#39; successfully unpacked and MD5 sums checked
+## 
+## The downloaded binary packages are in
+##  C:\Users\jerem\AppData\Local\Temp\Rtmp4Ya9Wb\downloaded_packages</code></pre>
+<pre><code>## Warning: package &#39;caret&#39; was built under R version 4.2.2</code></pre>
+<pre><code>## Loading required package: lattice</code></pre>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="introduction-to-nonparametric-statistics.html#cb263-1" aria-hidden="true" tabindex="-1"></a>model</span></code></pre></div>
+<pre><code>## Random Forest 
+## 
+## 500 samples
+##   1 predictor
+## 
+## No pre-processing
+## Resampling: Bootstrapped (25 reps) 
+## Summary of sample sizes: 500, 500, 500, 500, 500, 500, ... 
+## Resampling results:
+## 
+##   RMSE     Rsquared   MAE      
+##   1.14985  0.5617973  0.9109683
+## 
+## Tuning parameter &#39;mtry&#39; was held constant at a value of 1</code></pre>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="introduction-to-nonparametric-statistics.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we want to predict values between -2 and 2</span></span>
+<span id="cb265-2"><a href="introduction-to-nonparametric-statistics.html#cb265-2" aria-hidden="true" tabindex="-1"></a>nd <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="at">l =</span> <span class="dv">100</span>), <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb265-3"><a href="introduction-to-nonparametric-statistics.html#cb265-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(nd) <span class="ot">&lt;-</span> <span class="st">&quot;x&quot;</span></span>
+<span id="cb265-4"><a href="introduction-to-nonparametric-statistics.html#cb265-4" aria-hidden="true" tabindex="-1"></a><span class="co"># generate predictions</span></span>
+<span id="cb265-5"><a href="introduction-to-nonparametric-statistics.html#cb265-5" aria-hidden="true" tabindex="-1"></a>preds <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> nd)</span>
+<span id="cb265-6"><a href="introduction-to-nonparametric-statistics.html#cb265-6" aria-hidden="true" tabindex="-1"></a><span class="co"># plot results</span></span>
+<span id="cb265-7"><a href="introduction-to-nonparametric-statistics.html#cb265-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(example_data)</span>
+<span id="cb265-8"><a href="introduction-to-nonparametric-statistics.html#cb265-8" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(nd), preds, <span class="at">col =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:nonpram-rf-nl"></span>
+<img src="topics_in_consulting_files/figure-html/nonpram-rf-nl-1.png" alt="The red line shows the prediction obtained through random forest." width="672" />
+<p class="caption">
+Figure 4.12: The red line shows the prediction obtained through random forest.
+</p>
+</div>
+<p>The <a href="https://CRAN.R-project.org/package=caret"><strong>caret</strong></a> package will be used to build random forest predictive models. This package includes many different types of predictive models. To train a random forest model, we set the <code>method</code> argument to <code>"rf"</code>. This function is based on code from the <a href="https://CRAN.R-project.org/package=randomForest"><strong>randomForest</strong></a> package.</p>
+<p>Random forests have a number of parameters, we will cover the two most important ones:</p>
+<p>Notice how non-linear the prediction function is? We also have a root mean square error of 1.16, R-squared of 0.5, and mean absolute error of 0.9. These three values are useful for prediction purposes.</p>
+<p>The random forests can also be used to predict categorical variables. We will demonstrate how this can be done by building a model that predicts the species of the iris plants based on the four predictors in the data set. For categorical data, there are two metrics output by the <code>train()</code> function.</p>
+<ul>
+<li>accuracy: the proportion of time the right category is selected; and</li>
+<li><span class="math inline">\(\kappa\)</span> value: the proportion of time the right category is selected normalized by the probability of selecting the right category by chance. This metric takes into account that correct category selection may happen by chance.</li>
+</ul>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="introduction-to-nonparametric-statistics.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="co"># iris data</span></span>
+<span id="cb266-2"><a href="introduction-to-nonparametric-statistics.html#cb266-2" aria-hidden="true" tabindex="-1"></a>grid_par <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">mtry =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
+<span id="cb266-3"><a href="introduction-to-nonparametric-statistics.html#cb266-3" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> caret<span class="sc">::</span><span class="fu">train</span>(<span class="at">x =</span> iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">y =</span> iris<span class="sc">$</span>Species, <span class="at">method =</span> <span class="st">&quot;rf&quot;</span>, <span class="at">tuneGrid =</span> grid_par)</span>
+<span id="cb266-4"><a href="introduction-to-nonparametric-statistics.html#cb266-4" aria-hidden="true" tabindex="-1"></a>model</span></code></pre></div>
+<pre><code>## Random Forest 
+## 
+## 150 samples
+##   4 predictor
+##   3 classes: &#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39; 
+## 
+## No pre-processing
+## Resampling: Bootstrapped (25 reps) 
+## Summary of sample sizes: 150, 150, 150, 150, 150, 150, ... 
+## Resampling results across tuning parameters:
+## 
+##   mtry  Accuracy   Kappa    
+##   1     0.9392946  0.9077114
+##   2     0.9426003  0.9125928
+##   3     0.9450316  0.9162926
+##   4     0.9444510  0.9153989
+## 
+## Accuracy was used to select the optimal model using the largest value.
+## The final value used for the model was mtry = 3.</code></pre>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="introduction-to-nonparametric-statistics.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="co"># model predictions</span></span>
+<span id="cb268-2"><a href="introduction-to-nonparametric-statistics.html#cb268-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model, <span class="at">newdata =</span> <span class="fu">head</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]))</span></code></pre></div>
+<pre><code>## [1] setosa setosa setosa setosa setosa setosa
+## Levels: setosa versicolor virginica</code></pre>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="introduction-to-nonparametric-statistics.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="co"># probability of being in each group based on model</span></span>
+<span id="cb270-2"><a href="introduction-to-nonparametric-statistics.html#cb270-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model, <span class="at">newdata =</span> <span class="fu">head</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]), <span class="at">type =</span> <span class="st">&quot;prob&quot;</span>)</span></code></pre></div>
+<pre><code>##   setosa versicolor virginica
+## 1      1          0         0
+## 2      1          0         0
+## 3      1          0         0
+## 4      1          0         0
+## 5      1          0         0
+## 6      1          0         0</code></pre>
+<p>We can have a large number of predictors. Let’s look at the <code>cars</code> data. We wish to predict the car’s price from a large number of predictors.</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="introduction-to-nonparametric-statistics.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="co"># predicting car prices</span></span>
+<span id="cb272-2"><a href="introduction-to-nonparametric-statistics.html#cb272-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(cars)</span>
+<span id="cb272-3"><a href="introduction-to-nonparametric-statistics.html#cb272-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars)</span></code></pre></div>
+<pre><code>##      Price Mileage Cylinder Doors Cruise Sound Leather Buick Cadillac Chevy
+## 1 22661.05   20105        6     4      1     0       0     1        0     0
+## 2 21725.01   13457        6     2      1     1       0     0        0     1
+## 3 29142.71   31655        4     2      1     1       1     0        0     0
+## 4 30731.94   22479        4     2      1     0       0     0        0     0
+## 5 33358.77   17590        4     2      1     1       1     0        0     0
+## 6 30315.17   23635        4     2      1     0       0     0        0     0
+##   Pontiac Saab Saturn convertible coupe hatchback sedan wagon
+## 1       0    0      0           0     0         0     1     0
+## 2       0    0      0           0     1         0     0     0
+## 3       0    1      0           1     0         0     0     0
+## 4       0    1      0           1     0         0     0     0
+## 5       0    1      0           1     0         0     0     0
+## 6       0    1      0           1     0         0     0     0</code></pre>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="introduction-to-nonparametric-statistics.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="co"># notice all the predictors!</span></span>
+<span id="cb274-2"><a href="introduction-to-nonparametric-statistics.html#cb274-2" aria-hidden="true" tabindex="-1"></a><span class="co"># number of predictors is:</span></span>
+<span id="cb274-3"><a href="introduction-to-nonparametric-statistics.html#cb274-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(cars)[<span class="dv">2</span>] <span class="sc">-</span> <span class="dv">1</span></span></code></pre></div>
+<pre><code>## [1] 17</code></pre>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="introduction-to-nonparametric-statistics.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we will tune mtry between 1 and 9 , but it can go to 18</span></span>
+<span id="cb276-2"><a href="introduction-to-nonparametric-statistics.html#cb276-2" aria-hidden="true" tabindex="-1"></a>grid_par <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">mtry =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>)</span>
+<span id="cb276-3"><a href="introduction-to-nonparametric-statistics.html#cb276-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb276-4"><a href="introduction-to-nonparametric-statistics.html#cb276-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb276-5"><a href="introduction-to-nonparametric-statistics.html#cb276-5" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> caret<span class="sc">::</span><span class="fu">train</span>(<span class="at">x =</span> cars[, <span class="sc">-</span><span class="dv">1</span>], <span class="at">y =</span> cars<span class="sc">$</span>Price, <span class="at">method =</span> <span class="st">&quot;rf&quot;</span>, <span class="at">tuneGrid =</span> grid_par)</span>
+<span id="cb276-6"><a href="introduction-to-nonparametric-statistics.html#cb276-6" aria-hidden="true" tabindex="-1"></a>model</span></code></pre></div>
+<pre><code>## Random Forest 
+## 
+## 804 samples
+##  17 predictor
+## 
+## No pre-processing
+## Resampling: Bootstrapped (25 reps) 
+## Summary of sample sizes: 804, 804, 804, 804, 804, 804, ... 
+## Resampling results across tuning parameters:
+## 
+##   mtry  RMSE      Rsquared   MAE     
+##   1     5949.350  0.8752130  4517.518
+##   2     3624.750  0.9082719  2680.873
+##   3     2829.858  0.9286917  2074.238
+##   4     2494.819  0.9398563  1797.216
+##   5     2326.131  0.9458389  1650.106
+##   6     2252.660  0.9481963  1581.958
+##   7     2218.040  0.9492911  1548.127
+##   8     2206.271  0.9496153  1536.879
+##   9     2209.485  0.9493266  1534.859
+## 
+## RMSE was used to select the optimal model using the smallest value.
+## The final value used for the model was mtry = 8.</code></pre>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="introduction-to-nonparametric-statistics.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="co"># model predictions</span></span>
+<span id="cb278-2"><a href="introduction-to-nonparametric-statistics.html#cb278-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model, <span class="at">newdata =</span> <span class="fu">head</span>(cars[, <span class="sc">-</span><span class="dv">1</span>]))</span></code></pre></div>
+<pre><code>##        1        2        3        4        5        6 
+## 20714.63 21575.53 30943.25 32073.94 33889.83 31979.89</code></pre>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="introduction-to-nonparametric-statistics.html#cb280-1" aria-hidden="true" tabindex="-1"></a>cars[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] 22661.05 21725.01 29142.71 30731.94 33358.77 30315.17</code></pre>
+</div>
+<div id="nonpram-arrf" class="section level3 hasAnchor" number="4.5.2">
+<h3><span class="header-section-number">4.5.2</span> Additional Resources<a href="introduction-to-nonparametric-statistics.html#nonpram-arrf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><a href="http://topepo.github.io/caret/train-models-by-tag.html#random-forest">[<strong>caret</strong>](https://CRAN.R-project.org/package=caret) package Information</a>,</li>
+<li><a href="https://www.youtube.com/watch?v=7VeUPuFGJHk">Introduction to Decision Trees</a>, and</li>
+<li><a href="https://www.youtube.com/watch?v=J4Wdy0Wc_xQ">Introduction to Random Forests</a>.</li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction-to-linear-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduction-to-longitudinal-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
