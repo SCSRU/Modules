@@ -4,32 +4,25 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Minimal Book Example</title>
-  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <title>Topics in Statistical Consulting</title>
+  <meta name="description" content="Topics in Statistical Consulting" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Minimal Book Example" />
+  <meta property="og:title" content="Topics in Statistical Consulting" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Minimal Book Example" />
+  <meta name="twitter:title" content="Topics in Statistical Consulting" />
   
-  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  
   
 
-<meta name="author" content="John Doe" />
 
 
-<meta name="date" content="2023-01-07" />
+<meta name="date" content="2023-01-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -37,7 +30,7 @@ set in the _output.yml file.</p>" />
   
   
 
-<link rel="next" href="hello-bookdown.html"/>
+<link rel="next" href="introduction-to-r.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -58,6 +51,116 @@ set in the _output.yml file.</p>" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Latex macros for html output
+
+A few very common things you should use:
+
+- $\bm{}$: Bold math.  Use bold for everything except scalars.
+- $\tx{}$: Text within math.  Use for abbreviating words, e.g., $A_{\tx{miss}}$.
+- $\xx, \YY$: Default macro convention for bold letters (small and capital case).
+- $\aal, \TTh$: Default macro convention for bold symbols (first two letters of symbol name, i.e., $\bm{\alpha}$ and $\bm{\Theta}$).
+- common stats symbols e.g., $\var$, $\cov$, $\iid$, $\N, defined below.
+-->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      TeX: {
+	  Macros: {
+	      bm: ["\\boldsymbol{#1}",1], <!--bold math-->
+	      tx: ["\\textrm{#1}",1], <!--text within math-->
+	      rv: ["#2_{#1},\\ldots,#2_{#3}",3,"1"], <!--random variable \rv{X}{n}: X_1, ..., X_n-->
+	      iid: ["\\overset{\\;\\tx{iid}\\;}{\\sim}"], <!--iid follows-->
+	      ind: ["\\overset{\\:\\tx{ind}\\:}{\\sim}"], <!--ind follows-->
+	      var: ["\\operatorname{var}"], <!--variance-->
+	      cov: ["\\operatorname{cov}"], <!--coveraince-->
+	      cor: ["\\operatorname{cor}"], <!--correlation-->
+	      std: ["\\operatorname{se}"], <!--standard error-->
+	      diag: ["\\operatorname{diag}"], <!--diagonal matrix-->
+	      logit: ["\\operatorname{logit}"], <!--logit function-->
+	      N: ["\\mathcal{N}"], <!--normal distribution-->
+	      unif: ["\\operatorname{Unif}"], <!--Uniform distribution-->
+	      ud: ["\\mathop{}\\!\\mathrm{d}"], <!--d in tegeral-->
+	      der: ["\\frac{\\ud^{#1}}{\\ud{#2}^{#1}}", 2, ""], <!--\der{x}{f} d/dx f--> 
+	      del: ["\\frac{\\partial^{#1}}{\\partial{#2}^{#1}}", 2, ""], <!--\del{x}{f} d/dx f-->
+	      fder: ["\\frac{\\ud^{#1}#3}{\\ud{#2}^{#1}}", 3, ""], <!--\fder{x}{f} df/dx -->
+	      fdel: ["\\frac{\\partial^{#1}#3}{\\partial{#2}^{#1}}", 3, ""], <!--\fdel{x}{f} df/dx -->
+	      hess: ["\\frac{\\partial^2}{\\partial{#1}\\partial{#1}'}", 1], <!--\hess{x} d/dxdx -->
+	      fhess: ["\\frac{\\partial^2#2}{\\partial{#1}\\partial{#1}'}", 2], <!--\fhess{x}{f} df/dxdx -->
+              kbt: ["k_{\\tx{B}}T"],
+	      IH: ["{\\mathfrak P}"], <!--p curl-->
+	      eps: ["\\varepsilon"], <!--epsilon-->
+	      paug: ["p_{\\tx{A}}"], <!--p_A-->
+	      Ka: ["{\\mathcal K}"], <!--K curl-->
+	      Ua: ["{\\mathcal U}"], <!--U curl-->
+	      Ha: ["{\\mathcal H}"], <!--H curl-->
+	      curr: ["{\\tx{curr}}"], <!--curr-->
+	      prop: ["{\\tx{prop}}"], <!--prop-->
+	      obs: ["{\\tx{obs}}"], <!--obs-->
+	      bz: ["{\\bm{0}}"], <!--boldface 0-->
+	      mm: ["{\\bm{m}}"], <!--boldface m-->
+	      ww: ["{\\bm{w}}"], <!--boldface w-->
+	      vv: ["{\\bm{v}}"], <!--boldface v-->
+	      xx: ["{\\bm{x}}"], <!--boldface x-->
+	      yy: ["{\\bm{y}}"], <!--boldface y-->
+	      zz: ["{\\bm{z}}"], <!--boldface z-->
+	      UU: ["{\\bm{U}}"], <!--boldface U-->
+	      II: ["{\\bm{I}}"], <!--boldface I-->
+	      HH: ["{\\bm{H}}"], <!--boldface H-->
+	      XX: ["{\\bm{X}}"], <!--boldface X-->
+	      YY: ["{\\bm{Y}}"], <!--boldface Y-->
+	      ZZ: ["{\\bm{Z}}"], <!--boldface Z-->
+	      aal: ["{\\bm{\\alpha}}"], <!--boldface alpha-->
+	      bbe: ["{\\bm{\\beta}}"], <!--boldface beta-->
+	      gga: ["{\\bm{\\gamma}}"], <!--boldface gamma-->
+	      eet: ["{\\bm{\\eta}}"], <!--boldface eta-->
+	      lla: ["{\\bm{\\lambda}}"], <!--boldface lambda-->
+	      mmu: ["{\\bm{\\mu}}"], <!--boldface mu-->
+	      pph: ["{\\bm{\\phi}}"], <!--boldface phi-->
+	      pps: ["{\\bm{\\psi}}"], <!--boldface psi-->
+	      rrh: ["{\\bm{\\rho}}"], <!--boldface rho-->
+	      ssi: ["{\\bm{\\sigma}}"], <!--boldface sigma-->
+	      tta: ["{\\bm{\\tau}}"], <!--boldface tau-->
+	      tth: ["{\\bm{\\theta}}"], <!--boldface theta-->
+	      eeps: ["{\\bm{\\varepsilon}}"], <!--boldface varepsilon-->
+	      GGa: ["{\\bm{\\Gamma}}"], <!--boldface Gamma-->
+	      SSi: ["{\\bm{\\Sigma}}"], <!--boldface Sigma-->
+	      TTh: ["{\\bm{\\Theta}}"], <!--boldface Theta-->
+	      cU: ["\\bm{\\mathcal{U}}"], <!--boldface U curl-->
+	      rx: ["{\\tx{x}}"], <!--text x-->
+	      ry: ["{\\tx{y}}"], <!--text y-->
+	      rz: ["{\\tx{z}}"], <!--text z-->
+	      rvx: ["{\\mathbf{x}}"], <!--boldface text x-->
+	      rvz: ["{\\mathbf{z}}"], <!--boldface text z-->
+	      rvc: ["{\\mathbf{c}}"], <!--boldface text c-->
+	      rvzl: ["{\\mathbf{z}^{\\tx{l}}}"], <!--bold face z^l-->
+	      rvzg: ["{\\mathbf{z}^{\\tx{g}}}"], <!--bold face z^g-->
+	      rvt: ["{\\mathbf{t}}"], <!--boldface t-->
+	      Q: ["{\\mathcal{Q}}"], <!--Q curl-->
+	      O: ["{\\mathcal{O}}"], <!--O curl-->
+	      U: ["{\\mathcal{U}}"], <!--U curl-->
+	      R: ["{\\mathbb{R}}"], <!--real set-->
+	      kl: ["{\\operatorname{KL}}"], <!--KL-->
+	      sfT: ["{\\mathsf{T}}"], <!--sf T-->
+	      sfk: ["{\\mathsf{k}}"], <!--sf k-->
+	      sfa: ["{\\mathsf{a}}"], <!--sf a-->
+	      sfh: ["{\\mathsf{h}}"], <!--sf h-->
+  	      sfkl: ["{\\mathsf{k}^{\\tx{l}}}"], <!--sf k^l-->
+	      sfal: ["{\\mathsf{a}^{\\tx{l}}}"], <!--sf a^l-->
+	      sfhl: ["{\\mathsf{h}^{\\tx{l}}}"], <!--sf h^l-->
+  	      sfkg: ["{\\mathsf{k}^{\\tx{g}}}"], <!--sf k^g-->
+	      sfag: ["{\\mathsf{a}^{\\tx{g}}}"], <!--sf a^g-->
+	      sfhg: ["{\\mathsf{h}^{\\tx{g}}}"], <!--sf h^g-->
+	      sft: ["{\\mathsf{t}}"], <!--sf t-->
+	      sfr: ["{\\mathsf{r}}"], <!--sf r-->
+	      argmin: ["\\operatorname{arg\\,min}"], <!--argmin-->
+	      argmax: ["\\operatorname{arg\\,max}"], <!--argmax-->
+	      E: ["{\\mathbb{E}}"], <!--expectation-->
+	      L: ["{\\mathcal{L}}"], <!--curl L likelihood-->
+	      ellap: ["\\ell_{\\tx{Lap}}"] <!--curl l_Lap-->
+	  }
+      }
+  });
+</script>
+
 
 
 <style type="text/css">
@@ -161,49 +264,213 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="https://uwaterloo.ca/statistical-consulting-and-collaborative-research-unit/" target="blank">Statistical Consulting and Collaborative Research Unit</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#preview-book"><i class="fa fa-check"></i><b>1.3</b> Preview book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#authors"><i class="fa fa-check"></i>Authors</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#editors"><i class="fa fa-check"></i>Editors</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="hello-bookdown.html"><a href="hello-bookdown.html"><i class="fa fa-check"></i><b>2</b> Hello bookdown</a>
+<li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="hello-bookdown.html"><a href="hello-bookdown.html#a-section"><i class="fa fa-check"></i><b>2.1</b> A section</a>
+<li class="chapter" data-level="1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-and-rstudio"><i class="fa fa-check"></i><b>1.1</b> R and RStudio</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#basic-r"><i class="fa fa-check"></i><b>1.2</b> Basic R</a>
 <ul>
-<li class="chapter" data-level="" data-path="hello-bookdown.html"><a href="hello-bookdown.html#an-unnumbered-section"><i class="fa fa-check"></i>An unnumbered section</a></li>
+<li class="chapter" data-level="1.2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#rintro-calculate"><i class="fa fa-check"></i><b>1.2.1</b> Calculating with R</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variables"><i class="fa fa-check"></i><b>1.2.2</b> Variables</a></li>
+<li class="chapter" data-level="1.2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#vectors"><i class="fa fa-check"></i><b>1.2.3</b> Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#basic-data-analysis-workflow"><i class="fa fa-check"></i><b>1.3</b> Basic Data Analysis Workflow</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#reading-data-into-r"><i class="fa fa-check"></i><b>1.3.1</b> Reading Data into R</a></li>
+<li class="chapter" data-level="1.3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#descriptive-statistics"><i class="fa fa-check"></i><b>1.3.2</b> Descriptive Statistics</a></li>
+<li class="chapter" data-level="1.3.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-visualization"><i class="fa fa-check"></i><b>1.3.3</b> Data Visualization</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#some-coding-tips"><i class="fa fa-check"></i><b>1.4</b> Some Coding Tips</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#source-editor"><i class="fa fa-check"></i><b>1.4.1</b> Source Editor</a></li>
+<li class="chapter" data-level="1.4.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#commenting"><i class="fa fa-check"></i><b>1.4.2</b> Commenting</a></li>
+<li class="chapter" data-level="1.4.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#saving-the-environment"><i class="fa fa-check"></i><b>1.4.3</b> Saving the Environment</a></li>
+<li class="chapter" data-level="1.4.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#installing-and-loading-libraries"><i class="fa fa-check"></i><b>1.4.4</b> Installing and Loading Libraries</a></li>
+<li class="chapter" data-level="1.4.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#good-coding-practices"><i class="fa fa-check"></i><b>1.4.5</b> Good Coding Practices</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-help"><i class="fa fa-check"></i><b>1.5</b> Getting Help</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-documentation"><i class="fa fa-check"></i><b>1.5.1</b> R Documentation</a></li>
+<li class="chapter" data-level="1.5.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#online-resources"><i class="fa fa-check"></i><b>1.5.2</b> Online Resources</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>3</b> Cross-references</a>
+<li class="chapter" data-level="2" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html"><i class="fa fa-check"></i><b>2</b> Introduction to ggplot2</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="cross.html"><a href="cross.html#chapters-and-sub-chapters"><i class="fa fa-check"></i><b>3.1</b> Chapters and sub-chapters</a></li>
-<li class="chapter" data-level="3.2" data-path="cross.html"><a href="cross.html#captioned-figures-and-tables"><i class="fa fa-check"></i><b>3.2</b> Captioned figures and tables</a></li>
+<li class="chapter" data-level="2.1" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#example-data-set"><i class="fa fa-check"></i><b>2.1.1</b> Example Data Set</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>4</b> Parts</a></li>
-<li class="chapter" data-level="5" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>5</b> Footnotes and citations</a>
+<li class="chapter" data-level="2.2" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#data"><i class="fa fa-check"></i><b>2.2</b> Data</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#aesthetics"><i class="fa fa-check"></i><b>2.3</b> Aesthetics</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>5.1</b> Footnotes</a></li>
-<li class="chapter" data-level="5.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>5.2</b> Citations</a></li>
+<li class="chapter" data-level="2.3.1" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#the-colour-component"><i class="fa fa-check"></i><b>2.3.1</b> The Colour Component</a></li>
+<li class="chapter" data-level="2.3.2" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#the-size-component"><i class="fa fa-check"></i><b>2.3.2</b> The Size Component</a></li>
+<li class="chapter" data-level="2.3.3" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#the-shape-component"><i class="fa fa-check"></i><b>2.3.3</b> The Shape Component</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>6</b> Blocks</a>
+<li class="chapter" data-level="2.4" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#geometrics"><i class="fa fa-check"></i><b>2.4</b> Geometrics</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>6.1</b> Equations</a></li>
-<li class="chapter" data-level="6.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>6.2</b> Theorems and proofs</a></li>
-<li class="chapter" data-level="6.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>6.3</b> Callout blocks</a></li>
+<li class="chapter" data-level="2.4.1" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#line-graphs"><i class="fa fa-check"></i><b>2.4.1</b> Line Graphs</a></li>
+<li class="chapter" data-level="2.4.2" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#bar-plots"><i class="fa fa-check"></i><b>2.4.2</b> Bar Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>7</b> Sharing your book</a>
+<li class="chapter" data-level="2.5" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#others"><i class="fa fa-check"></i><b>2.5</b> Others</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>7.1</b> Publishing</a></li>
-<li class="chapter" data-level="7.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>7.2</b> 404 pages</a></li>
-<li class="chapter" data-level="7.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>7.3</b> Metadata for sharing</a></li>
+<li class="chapter" data-level="2.5.1" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#axes-labels"><i class="fa fa-check"></i><b>2.5.1</b> Axes Labels</a></li>
+<li class="chapter" data-level="2.5.2" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#title-of-the-graph"><i class="fa fa-check"></i><b>2.5.2</b> Title of the Graph</a></li>
+<li class="chapter" data-level="2.5.3" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#legends"><i class="fa fa-check"></i><b>2.5.3</b> Legends</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html"><i class="fa fa-check"></i><b>3</b> Introduction to Linear Regression</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#list-of-r-packages-used"><i class="fa fa-check"></i><b>3.1.1</b> List of R packages Used</a></li>
+<li class="chapter" data-level="3.1.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#motivating-example"><i class="fa fa-check"></i><b>3.1.2</b> Motivating Example</a></li>
+<li class="chapter" data-level="3.1.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#variables-1"><i class="fa fa-check"></i><b>3.1.3</b> Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#linreg-slm"><i class="fa fa-check"></i><b>3.2</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#linreg-slm-assumption"><i class="fa fa-check"></i><b>3.2.1</b> Assumptions</a></li>
+<li class="chapter" data-level="3.2.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#linreg-slm-est"><i class="fa fa-check"></i><b>3.2.2</b> Estimation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#inference"><i class="fa fa-check"></i><b>3.2.3</b> Inference</a></li>
+<li class="chapter" data-level="3.2.4" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#linreg-slm-modelcheck"><i class="fa fa-check"></i><b>3.2.4</b> Model Checking</a></li>
+<li class="chapter" data-level="3.2.5" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#simple-linear-regression-on-a-binary-covariate"><i class="fa fa-check"></i><b>3.2.5</b> Simple Linear Regression on a Binary Covariate</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#linreg-mlm"><i class="fa fa-check"></i><b>3.3</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#linreg-mlm-est"><i class="fa fa-check"></i><b>3.3.1</b> Estimation</a></li>
+<li class="chapter" data-level="3.3.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#interaction-effects"><i class="fa fa-check"></i><b>3.3.2</b> Interaction Effects</a></li>
+<li class="chapter" data-level="3.3.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#model-selection"><i class="fa fa-check"></i><b>3.3.3</b> Model Selection</a></li>
+<li class="chapter" data-level="3.3.4" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#model-diagnostics"><i class="fa fa-check"></i><b>3.3.4</b> Model Diagnostics</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#further-extensions"><i class="fa fa-check"></i><b>3.4</b> Further Extensions</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#recommendations"><i class="fa fa-check"></i><b>3.4.1</b> Recommendations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html"><i class="fa fa-check"></i><b>4</b> Introduction to Nonparametric Statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#introduction-2"><i class="fa fa-check"></i><b>4.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#r-packages-and-data"><i class="fa fa-check"></i><b>4.1.1</b> R Packages and Data</a></li>
+<li class="chapter" data-level="4.1.2" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#nonpram-rank"><i class="fa fa-check"></i><b>4.1.2</b> Sample Ranks</a></li>
+<li class="chapter" data-level="4.1.3" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#nonpram-sd"><i class="fa fa-check"></i><b>4.1.3</b> Sampling Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#two-sample-hypothesis-testing"><i class="fa fa-check"></i><b>4.2</b> Two-sample Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#quick-reference-table"><i class="fa fa-check"></i><b>4.2.1</b> Quick Reference Table</a></li>
+<li class="chapter" data-level="4.2.2" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#nonpram-mwu"><i class="fa fa-check"></i><b>4.2.2</b> Wilcoxon Rank-Sum Test</a></li>
+<li class="chapter" data-level="4.2.3" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#other-softwares"><i class="fa fa-check"></i><b>4.2.3</b> Other Softwares</a></li>
+<li class="chapter" data-level="4.2.4" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#nonpram-wst"><i class="fa fa-check"></i><b>4.2.4</b> Wilcoxon Signed Rank Test</a></li>
+<li class="chapter" data-level="4.2.5" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#nonpram-tst"><i class="fa fa-check"></i><b>4.2.5</b> Siegel-Tukey Test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#nonpram-anova"><i class="fa fa-check"></i><b>4.3</b> ANOVA-type Methods</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#one-way-anova"><i class="fa fa-check"></i><b>4.3.1</b> One-way ANOVA</a></li>
+<li class="chapter" data-level="4.3.2" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#post-hoc-comparisons-for-kw-anova"><i class="fa fa-check"></i><b>4.3.2</b> Post Hoc Comparisons for KW ANOVA</a></li>
+<li class="chapter" data-level="4.3.3" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#repeated-measures-anova-friedman-test"><i class="fa fa-check"></i><b>4.3.3</b> Repeated Measures ANOVA (Friedman Test)</a></li>
+<li class="chapter" data-level="4.3.4" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#post-hoc-tests"><i class="fa fa-check"></i><b>4.3.4</b> Post Hoc tests</a></li>
+<li class="chapter" data-level="4.3.5" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#an-example-using-r-6"><i class="fa fa-check"></i><b>4.3.5</b> An example using R</a></li>
+<li class="chapter" data-level="4.3.6" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#additional-resources-for-nonparametric-anova-procedures"><i class="fa fa-check"></i><b>4.3.6</b> Additional Resources for Nonparametric ANOVA Procedures</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#boostrap-methods"><i class="fa fa-check"></i><b>4.4</b> Boostrap Methods</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#bootstrap-confidence-intervals"><i class="fa fa-check"></i><b>4.4.1</b> Bootstrap Confidence Intervals</a></li>
+<li class="chapter" data-level="4.4.2" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#assumptions"><i class="fa fa-check"></i><b>4.4.2</b> Assumptions</a></li>
+<li class="chapter" data-level="4.4.3" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#examples-using-r"><i class="fa fa-check"></i><b>4.4.3</b> Examples using R</a></li>
+<li class="chapter" data-level="4.4.4" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#additional-resources"><i class="fa fa-check"></i><b>4.4.4</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#random-forests"><i class="fa fa-check"></i><b>4.5</b> Random Forests</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#examples-using-r-1"><i class="fa fa-check"></i><b>4.5.1</b> Examples Using R</a></li>
+<li class="chapter" data-level="4.5.2" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#nonpram-arrf"><i class="fa fa-check"></i><b>4.5.2</b> Additional Resources</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html"><i class="fa fa-check"></i><b>5</b> Introduction to Longitudinal Data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#introduction-3"><i class="fa fa-check"></i><b>5.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-rpackages"><i class="fa fa-check"></i><b>5.1.1</b> List of R packages Used</a></li>
+<li class="chapter" data-level="5.1.2" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-motivating"><i class="fa fa-check"></i><b>5.1.2</b> Motivating Example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-datastruc"><i class="fa fa-check"></i><b>5.2</b> Data Structure for Longitudinal Responses</a></li>
+<li class="chapter" data-level="5.3" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear"><i class="fa fa-check"></i><b>5.3</b> Linear Models for Continuous Outcome</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-assumptions"><i class="fa fa-check"></i><b>5.3.1</b> Assumptions</a></li>
+<li class="chapter" data-level="5.3.2" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-modelspec"><i class="fa fa-check"></i><b>5.3.2</b> Notation and Model Specification</a></li>
+<li class="chapter" data-level="5.3.3" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-corr"><i class="fa fa-check"></i><b>5.3.3</b> Correlation Structures</a></li>
+<li class="chapter" data-level="5.3.4" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-estimation"><i class="fa fa-check"></i><b>5.3.4</b> Estimation</a></li>
+<li class="chapter" data-level="5.3.5" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-R"><i class="fa fa-check"></i><b>5.3.5</b> Modelling in R</a></li>
+<li class="chapter" data-level="5.3.6" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-HT"><i class="fa fa-check"></i><b>5.3.6</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="5.3.7" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-population"><i class="fa fa-check"></i><b>5.3.7</b> Population Means</a></li>
+<li class="chapter" data-level="5.3.8" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-cov"><i class="fa fa-check"></i><b>5.3.8</b> Selecting a Correlation Structure</a></li>
+<li class="chapter" data-level="5.3.9" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-procedure"><i class="fa fa-check"></i><b>5.3.9</b> Model Fitting Procedure</a></li>
+<li class="chapter" data-level="5.3.10" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-example2"><i class="fa fa-check"></i><b>5.3.10</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed"><i class="fa fa-check"></i><b>5.4</b> Linear Mixed Effect Models for Longitudinal Data</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-notation"><i class="fa fa-check"></i><b>5.4.1</b> Notation and Model Specification</a></li>
+<li class="chapter" data-level="5.4.2" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-randomintercept"><i class="fa fa-check"></i><b>5.4.2</b> Random Intercept Models</a></li>
+<li class="chapter" data-level="5.4.3" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-randominterceptslope"><i class="fa fa-check"></i><b>5.4.3</b> Random Intercept and Slope Models</a></li>
+<li class="chapter" data-level="5.4.4" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-estimation"><i class="fa fa-check"></i><b>5.4.4</b> Estimation</a></li>
+<li class="chapter" data-level="5.4.5" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-R"><i class="fa fa-check"></i><b>5.4.5</b> Modelling in R</a></li>
+<li class="chapter" data-level="5.4.6" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-diagnostics"><i class="fa fa-check"></i><b>5.4.6</b> Model Diagnostics for Linear Mixed Effects Models</a></li>
+<li class="chapter" data-level="5.4.7" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-popmeans"><i class="fa fa-check"></i><b>5.4.7</b> Population Means</a></li>
+<li class="chapter" data-level="5.4.8" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-ht"><i class="fa fa-check"></i><b>5.4.8</b> Hypothesis Testing for Fixed Effects</a></li>
+<li class="chapter" data-level="5.4.9" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-lme-modelfitting"><i class="fa fa-check"></i><b>5.4.9</b> Model Fitting Procedure</a></li>
+<li class="chapter" data-level="5.4.10" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-lme-ex2"><i class="fa fa-check"></i><b>5.4.10</b> Example - Milk Protein and Diet</a></li>
+<li class="chapter" data-level="5.4.11" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#example---aids-clinical-trial-group"><i class="fa fa-check"></i><b>5.4.11</b> Example - AIDS Clinical Trial Group</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="introduction-to-questionnaire-design.html"><a href="introduction-to-questionnaire-design.html"><i class="fa fa-check"></i><b>6</b> Introduction to Questionnaire Design</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="introduction-to-questionnaire-design.html"><a href="introduction-to-questionnaire-design.html#questdes-plan"><i class="fa fa-check"></i><b>6.1</b> Plan the Study</a></li>
+<li class="chapter" data-level="6.2" data-path="introduction-to-questionnaire-design.html"><a href="introduction-to-questionnaire-design.html#questdes-prepare"><i class="fa fa-check"></i><b>6.2</b> Prepare the Questions</a></li>
+<li class="chapter" data-level="6.3" data-path="introduction-to-questionnaire-design.html"><a href="introduction-to-questionnaire-design.html#questdes-put"><i class="fa fa-check"></i><b>6.3</b> Put Together the Questionnaire</a></li>
+<li class="chapter" data-level="6.4" data-path="introduction-to-questionnaire-design.html"><a href="introduction-to-questionnaire-design.html#questdes-pretest"><i class="fa fa-check"></i><b>6.4</b> Pretest the Questionnaire</a></li>
+<li class="chapter" data-level="6.5" data-path="introduction-to-questionnaire-design.html"><a href="introduction-to-questionnaire-design.html#a-checklist-for-questionnaire-designs"><i class="fa fa-check"></i><b>6.5</b> A Checklist for Questionnaire Designs</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="general-guidelines.html"><a href="general-guidelines.html"><i class="fa fa-check"></i><b>A</b> General Guidelines</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="general-guidelines.html"><a href="general-guidelines.html#resources"><i class="fa fa-check"></i><b>A.1</b> Resources</a></li>
+<li class="chapter" data-level="A.2" data-path="general-guidelines.html"><a href="general-guidelines.html#format"><i class="fa fa-check"></i><b>A.2</b> Format</a>
+<ul>
+<li class="chapter" data-level="A.2.1" data-path="general-guidelines.html"><a href="general-guidelines.html#typesetting-math"><i class="fa fa-check"></i><b>A.2.1</b> Typesetting Math</a></li>
+<li class="chapter" data-level="A.2.2" data-path="general-guidelines.html"><a href="general-guidelines.html#genguide-citations"><i class="fa fa-check"></i><b>A.2.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="A.3" data-path="general-guidelines.html"><a href="general-guidelines.html#rendering-the-book"><i class="fa fa-check"></i><b>A.3</b> Rendering the Book</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="formatting-guidelines.html"><a href="formatting-guidelines.html"><i class="fa fa-check"></i><b>B</b> Formatting Guidelines</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="formatting-guidelines.html"><a href="formatting-guidelines.html#formatguide-general"><i class="fa fa-check"></i><b>B.1</b> General</a></li>
+<li class="chapter" data-level="B.2" data-path="formatting-guidelines.html"><a href="formatting-guidelines.html#embedding-files"><i class="fa fa-check"></i><b>B.2</b> Embedding Files</a></li>
+<li class="chapter" data-level="B.3" data-path="formatting-guidelines.html"><a href="formatting-guidelines.html#math"><i class="fa fa-check"></i><b>B.3</b> Math</a>
+<ul>
+<li class="chapter" data-level="B.3.1" data-path="formatting-guidelines.html"><a href="formatting-guidelines.html#commonly-used-math-and-stats-expressions"><i class="fa fa-check"></i><b>B.3.1</b> Commonly-Used Math and Stats Expressions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="git-and-github-a-quick-tutorial.html"><a href="git-and-github-a-quick-tutorial.html"><i class="fa fa-check"></i><b>C</b> Git and GitHub: A Quick Tutorial</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="git-and-github-a-quick-tutorial.html"><a href="git-and-github-a-quick-tutorial.html#setup"><i class="fa fa-check"></i><b>C.1</b> Setup</a></li>
+<li class="chapter" data-level="C.2" data-path="git-and-github-a-quick-tutorial.html"><a href="git-and-github-a-quick-tutorial.html#contributing-to-the-project"><i class="fa fa-check"></i><b>C.2</b> Contributing to the Project</a></li>
+<li class="chapter" data-level="C.3" data-path="git-and-github-a-quick-tutorial.html"><a href="git-and-github-a-quick-tutorial.html#git-mistakes"><i class="fa fa-check"></i><b>C.3</b> Git Mistakes</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="bookdown-tests.html"><a href="bookdown-tests.html"><i class="fa fa-check"></i><b>D</b> Bookdown Tests</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="bookdown-tests.html"><a href="bookdown-tests.html#test-math-macros"><i class="fa fa-check"></i><b>D.1</b> Test Math Macros</a></li>
+<li class="chapter" data-level="D.2" data-path="bookdown-tests.html"><a href="bookdown-tests.html#test-figure"><i class="fa fa-check"></i><b>D.2</b> Test Figure</a></li>
+<li class="chapter" data-level="D.3" data-path="bookdown-tests.html"><a href="bookdown-tests.html#test-cran-link"><i class="fa fa-check"></i><b>D.3</b> Test CRAN Link</a></li>
+<li class="chapter" data-level="D.4" data-path="bookdown-tests.html"><a href="bookdown-tests.html#test-checklist"><i class="fa fa-check"></i><b>D.4</b> Test Checklist</a></li>
+<li class="chapter" data-level="D.5" data-path="bookdown-tests.html"><a href="bookdown-tests.html#test-references"><i class="fa fa-check"></i><b>D.5</b> Test References</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-
 </ul>
 
       </nav>
@@ -213,7 +480,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Minimal Book Example</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Topics in Statistical Consulting</a>
           </h1>
         </div>
 
@@ -222,34 +489,34 @@ div.csl-indent {
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">A Minimal Book Example</h1>
-<p class="author"><em>John Doe</em></p>
-<p class="date"><em>2023-01-07</em></p>
+<h1 class="title">Topics in Statistical Consulting</h1>
+<p class="author"><em><div class="line-block"><strong>Statistical Consulting and Collaborative Research Unit</strong><br />
+<strong>University of Waterloo</strong></div></em></p>
+<p class="date"><em>2023-01-16</em></p>
 </div>
-<div id="about" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> About<a href="index.html#about" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This is a <em>sample</em> book written in <strong>Markdown</strong>. You can use anything that Pandoc’s Markdown supports; for example, a math equation <span class="math inline">\(a^2 + b^2 = c^2\)</span>.</p>
-<div id="usage" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Usage<a href="index.html#usage" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Each <strong>bookdown</strong> chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter <em>must</em> start with a first-level heading: <code># A good chapter</code>, and can contain one (and only one) first-level heading.</p>
-<p>Use second-level and higher headings within chapters like: <code>## A short section</code> or <code>### An even shorter section</code>.</p>
-<p>The <code>index.Rmd</code> file is required, and is also your first book chapter. It will be the homepage when you render the book.</p>
+<div id="preface" class="section level1 unnumbered hasAnchor">
+<h1>Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This book aims to give introductions to some topics in statistical consulting. We hope that this will help audiences who have light background in statistics.</p>
+<p>For contributors to this book, please refer to the Appendix for <a href="general-guidelines.html#general-guidelines">General Guidelines</a>, <a href="formatting-guidelines.html#formatting-guidelines">Formatting Guidelines</a> and <a href="git-and-github-a-quick-tutorial.html#git-and-github-a-quick-tutorial">Github tutorials</a>.</p>
+<p>For questions regarding the materials of this book, please <a href="https://uwaterloo.ca/statistical-consulting-and-collaborative-research-unit/">contact us</a>.</p>
+<div id="authors" class="section level2 unnumbered hasAnchor">
+<h2>Authors<a href="index.html#authors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Trang Bui</li>
+<li>Meixi Chen</li>
+<li>Kelly Ramsay</li>
+<li>Yuliang Shi</li>
+<li>Grace Tompkins</li>
+<li>Feiyu Zhu</li>
+</ul>
 </div>
-<div id="render-book" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Render book<a href="index.html#render-book" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>You can render the HTML version of this example book without changing anything:</p>
-<ol style="list-style-type: decimal">
-<li><p>Find the <strong>Build</strong> pane in the RStudio IDE, and</p></li>
-<li><p>Click on <strong>Build Book</strong>, then select your output format, or select “All formats” if you’d like to use multiple formats from the same book source files.</p></li>
-</ol>
-<p>Or build the book from the R console:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a>bookdown<span class="sc">::</span><span class="fu">render_book</span>()</span></code></pre></div>
-<p>To render this example to PDF as a <code>bookdown::pdf_book</code>, you’ll need to install XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <a href="https://yihui.org/tinytex/" class="uri">https://yihui.org/tinytex/</a>.</p>
-</div>
-<div id="preview-book" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Preview book<a href="index.html#preview-book" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>As you work, you may start a local server to live preview this HTML book. This preview will update as you edit the book when you save individual .Rmd files. You can start the server in a work session by using the RStudio add-in “Preview book”, or from the R console:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a>bookdown<span class="sc">::</span><span class="fu">serve_book</span>()</span></code></pre></div>
+<div id="editors" class="section level2 unnumbered hasAnchor">
+<h2>Editors<a href="index.html#editors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Martin Lysy</li>
+<li>Glen McGee</li>
+<li>Joslin Goh</li>
+</ul>
 
 </div>
 </div>
@@ -259,7 +526,7 @@ div.csl-indent {
         </div>
       </div>
 
-<a href="hello-bookdown.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduction-to-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -290,8 +557,8 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
-"text": "Edit"
+"link": null,
+"text": null
 },
 "history": {
 "link": null,
@@ -301,7 +568,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.pdf", "_main.epub"],
+"download": null,
 "search": {
 "engine": "fuse",
 "options": null

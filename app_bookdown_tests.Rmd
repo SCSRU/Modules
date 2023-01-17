@@ -1,0 +1,36 @@
+<!-- ```{r setup, include = FALSE} -->
+<!-- cran_link <- function(pkg) { -->
+<!--   paste0("[**", pkg, "**](https://CRAN.R-project.org/package=", pkg, ")") -->
+<!-- } -->
+<!-- ``` -->
+
+# Bookdown Tests
+
+A few tests to make sure **bookdown** is rendering things correctly.
+
+## Test Math Macros 
+
+$\var(\xx)$, $\alpha_\xx$, $\xx \ind \N(0, \sigma_{\tx{pool}})$.
+
+## Test Figure
+
+```{r booktest-fig, fig.cap = "Test figure."}
+plot(1:25, pch = 1:25)
+```
+The reference to Figure \@ref(fig:booktest-fig) is implemented correctly.  
+
+## Test CRAN Link
+
+The package link to `r cran_link("mniw")` works correctly.
+
+## Test Checklist
+
+Can users modify our checklists?  Apparently not.
+
+- [ ] Item 1.
+
+- [x] Item 2.
+
+## Test References
+
+The reference to @agresti15 works as expected.

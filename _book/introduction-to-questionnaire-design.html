@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Introduction to Questionnaire Design | Topics in Statistical Consulting</title>
+  <meta name="description" content="6 Introduction to Questionnaire Design | Topics in Statistical Consulting" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Introduction to Questionnaire Design | Topics in Statistical Consulting" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Introduction to Questionnaire Design | Topics in Statistical Consulting" />
+  
+  
+  
+
+
+
+<meta name="date" content="2023-01-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction-to-longitudinal-data.html"/>
+<link rel="next" href="general-guidelines.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Latex macros for html output
+
+A few very common things you should use:
+
+- $\bm{}$: Bold math.  Use bold for everything except scalars.
+- $\tx{}$: Text within math.  Use for abbreviating words, e.g., $A_{\tx{miss}}$.
+- $\xx, \YY$: Default macro convention for bold letters (small and capital case).
+- $\aal, \TTh$: Default macro convention for bold symbols (first two letters of symbol name, i.e., $\bm{\alpha}$ and $\bm{\Theta}$).
+- common stats symbols e.g., $\var$, $\cov$, $\iid$, $\N, defined below.
+-->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      TeX: {
+	  Macros: {
+	      bm: ["\\boldsymbol{#1}",1], <!--bold math-->
+	      tx: ["\\textrm{#1}",1], <!--text within math-->
+	      rv: ["#2_{#1},\\ldots,#2_{#3}",3,"1"], <!--random variable \rv{X}{n}: X_1, ..., X_n-->
+	      iid: ["\\overset{\\;\\tx{iid}\\;}{\\sim}"], <!--iid follows-->
+	      ind: ["\\overset{\\:\\tx{ind}\\:}{\\sim}"], <!--ind follows-->
+	      var: ["\\operatorname{var}"], <!--variance-->
+	      cov: ["\\operatorname{cov}"], <!--coveraince-->
+	      cor: ["\\operatorname{cor}"], <!--correlation-->
+	      std: ["\\operatorname{se}"], <!--standard error-->
+	      diag: ["\\operatorname{diag}"], <!--diagonal matrix-->
+	      logit: ["\\operatorname{logit}"], <!--logit function-->
+	      N: ["\\mathcal{N}"], <!--normal distribution-->
+	      unif: ["\\operatorname{Unif}"], <!--Uniform distribution-->
+	      ud: ["\\mathop{}\\!\\mathrm{d}"], <!--d in tegeral-->
+	      der: ["\\frac{\\ud^{#1}}{\\ud{#2}^{#1}}", 2, ""], <!--\der{x}{f} d/dx f--> 
+	      del: ["\\frac{\\partial^{#1}}{\\partial{#2}^{#1}}", 2, ""], <!--\del{x}{f} d/dx f-->
+	      fder: ["\\frac{\\ud^{#1}#3}{\\ud{#2}^{#1}}", 3, ""], <!--\fder{x}{f} df/dx -->
+	      fdel: ["\\frac{\\partial^{#1}#3}{\\partial{#2}^{#1}}", 3, ""], <!--\fdel{x}{f} df/dx -->
+	      hess: ["\\frac{\\partial^2}{\\partial{#1}\\partial{#1}'}", 1], <!--\hess{x} d/dxdx -->
+	      fhess: ["\\frac{\\partial^2#2}{\\partial{#1}\\partial{#1}'}", 2], <!--\fhess{x}{f} df/dxdx -->
+              kbt: ["k_{\\tx{B}}T"],
+	      IH: ["{\\mathfrak P}"], <!--p curl-->
+	      eps: ["\\varepsilon"], <!--epsilon-->
+	      paug: ["p_{\\tx{A}}"], <!--p_A-->
+	      Ka: ["{\\mathcal K}"], <!--K curl-->
+	      Ua: ["{\\mathcal U}"], <!--U curl-->
+	      Ha: ["{\\mathcal H}"], <!--H curl-->
+	      curr: ["{\\tx{curr}}"], <!--curr-->
+	      prop: ["{\\tx{prop}}"], <!--prop-->
+	      obs: ["{\\tx{obs}}"], <!--obs-->
+	      bz: ["{\\bm{0}}"], <!--boldface 0-->
+	      mm: ["{\\bm{m}}"], <!--boldface m-->
+	      ww: ["{\\bm{w}}"], <!--boldface w-->
+	      vv: ["{\\bm{v}}"], <!--boldface v-->
+	      xx: ["{\\bm{x}}"], <!--boldface x-->
+	      yy: ["{\\bm{y}}"], <!--boldface y-->
+	      zz: ["{\\bm{z}}"], <!--boldface z-->
+	      UU: ["{\\bm{U}}"], <!--boldface U-->
+	      II: ["{\\bm{I}}"], <!--boldface I-->
+	      HH: ["{\\bm{H}}"], <!--boldface H-->
+	      XX: ["{\\bm{X}}"], <!--boldface X-->
+	      YY: ["{\\bm{Y}}"], <!--boldface Y-->
+	      ZZ: ["{\\bm{Z}}"], <!--boldface Z-->
+	      aal: ["{\\bm{\\alpha}}"], <!--boldface alpha-->
+	      bbe: ["{\\bm{\\beta}}"], <!--boldface beta-->
+	      gga: ["{\\bm{\\gamma}}"], <!--boldface gamma-->
+	      eet: ["{\\bm{\\eta}}"], <!--boldface eta-->
+	      lla: ["{\\bm{\\lambda}}"], <!--boldface lambda-->
+	      mmu: ["{\\bm{\\mu}}"], <!--boldface mu-->
+	      pph: ["{\\bm{\\phi}}"], <!--boldface phi-->
+	      pps: ["{\\bm{\\psi}}"], <!--boldface psi-->
+	      rrh: ["{\\bm{\\rho}}"], <!--boldface rho-->
+	      ssi: ["{\\bm{\\sigma}}"], <!--boldface sigma-->
+	      tta: ["{\\bm{\\tau}}"], <!--boldface tau-->
+	      tth: ["{\\bm{\\theta}}"], <!--boldface theta-->
+	      eeps: ["{\\bm{\\varepsilon}}"], <!--boldface varepsilon-->
+	      GGa: ["{\\bm{\\Gamma}}"], <!--boldface Gamma-->
+	      SSi: ["{\\bm{\\Sigma}}"], <!--boldface Sigma-->
+	      TTh: ["{\\bm{\\Theta}}"], <!--boldface Theta-->
+	      cU: ["\\bm{\\mathcal{U}}"], <!--boldface U curl-->
+	      rx: ["{\\tx{x}}"], <!--text x-->
+	      ry: ["{\\tx{y}}"], <!--text y-->
+	      rz: ["{\\tx{z}}"], <!--text z-->
+	      rvx: ["{\\mathbf{x}}"], <!--boldface text x-->
+	      rvz: ["{\\mathbf{z}}"], <!--boldface text z-->
+	      rvc: ["{\\mathbf{c}}"], <!--boldface text c-->
+	      rvzl: ["{\\mathbf{z}^{\\tx{l}}}"], <!--bold face z^l-->
+	      rvzg: ["{\\mathbf{z}^{\\tx{g}}}"], <!--bold face z^g-->
+	      rvt: ["{\\mathbf{t}}"], <!--boldface t-->
+	      Q: ["{\\mathcal{Q}}"], <!--Q curl-->
+	      O: ["{\\mathcal{O}}"], <!--O curl-->
+	      U: ["{\\mathcal{U}}"], <!--U curl-->
+	      R: ["{\\mathbb{R}}"], <!--real set-->
+	      kl: ["{\\operatorname{KL}}"], <!--KL-->
+	      sfT: ["{\\mathsf{T}}"], <!--sf T-->
+	      sfk: ["{\\mathsf{k}}"], <!--sf k-->
+	      sfa: ["{\\mathsf{a}}"], <!--sf a-->
+	      sfh: ["{\\mathsf{h}}"], <!--sf h-->
+  	      sfkl: ["{\\mathsf{k}^{\\tx{l}}}"], <!--sf k^l-->
+	      sfal: ["{\\mathsf{a}^{\\tx{l}}}"], <!--sf a^l-->
+	      sfhl: ["{\\mathsf{h}^{\\tx{l}}}"], <!--sf h^l-->
+  	      sfkg: ["{\\mathsf{k}^{\\tx{g}}}"], <!--sf k^g-->
+	      sfag: ["{\\mathsf{a}^{\\tx{g}}}"], <!--sf a^g-->
+	      sfhg: ["{\\mathsf{h}^{\\tx{g}}}"], <!--sf h^g-->
+	      sft: ["{\\mathsf{t}}"], <!--sf t-->
+	      sfr: ["{\\mathsf{r}}"], <!--sf r-->
+	      argmin: ["\\operatorname{arg\\,min}"], <!--argmin-->
+	      argmax: ["\\operatorname{arg\\,max}"], <!--argmax-->
+	      E: ["{\\mathbb{E}}"], <!--expectation-->
+	      L: ["{\\mathcal{L}}"], <!--curl L likelihood-->
+	      ellap: ["\\ell_{\\tx{Lap}}"] <!--curl l_Lap-->
+	  }
+      }
+  });
+</script>
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://uwaterloo.ca/statistical-consulting-and-collaborative-research-unit/" target="blank">Statistical Consulting and Collaborative Research Unit</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#authors"><i class="fa fa-check"></i>Authors</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#editors"><i class="fa fa-check"></i>Editors</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-and-rstudio"><i class="fa fa-check"></i><b>1.1</b> R and RStudio</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#basic-r"><i class="fa fa-check"></i><b>1.2</b> Basic R</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#rintro-calculate"><i class="fa fa-check"></i><b>1.2.1</b> Calculating with R</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variables"><i class="fa fa-check"></i><b>1.2.2</b> Variables</a></li>
+<li class="chapter" data-level="1.2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#vectors"><i class="fa fa-check"></i><b>1.2.3</b> Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#basic-data-analysis-workflow"><i class="fa fa-check"></i><b>1.3</b> Basic Data Analysis Workflow</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#reading-data-into-r"><i class="fa fa-check"></i><b>1.3.1</b> Reading Data into R</a></li>
+<li class="chapter" data-level="1.3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#descriptive-statistics"><i class="fa fa-check"></i><b>1.3.2</b> Descriptive Statistics</a></li>
+<li class="chapter" data-level="1.3.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-visualization"><i class="fa fa-check"></i><b>1.3.3</b> Data Visualization</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#some-coding-tips"><i class="fa fa-check"></i><b>1.4</b> Some Coding Tips</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#source-editor"><i class="fa fa-check"></i><b>1.4.1</b> Source Editor</a></li>
+<li class="chapter" data-level="1.4.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#commenting"><i class="fa fa-check"></i><b>1.4.2</b> Commenting</a></li>
+<li class="chapter" data-level="1.4.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#saving-the-environment"><i class="fa fa-check"></i><b>1.4.3</b> Saving the Environment</a></li>
+<li class="chapter" data-level="1.4.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#installing-and-loading-libraries"><i class="fa fa-check"></i><b>1.4.4</b> Installing and Loading Libraries</a></li>
+<li class="chapter" data-level="1.4.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#good-coding-practices"><i class="fa fa-check"></i><b>1.4.5</b> Good Coding Practices</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-help"><i class="fa fa-check"></i><b>1.5</b> Getting Help</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-documentation"><i class="fa fa-check"></i><b>1.5.1</b> R Documentation</a></li>
+<li class="chapter" data-level="1.5.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#online-resources"><i class="fa fa-check"></i><b>1.5.2</b> Online Resources</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html"><i class="fa fa-check"></i><b>2</b> Introduction to ggplot2</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#example-data-set"><i class="fa fa-check"></i><b>2.1.1</b> Example Data Set</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#data"><i class="fa fa-check"></i><b>2.2</b> Data</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#aesthetics"><i class="fa fa-check"></i><b>2.3</b> Aesthetics</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#the-colour-component"><i class="fa fa-check"></i><b>2.3.1</b> The Colour Component</a></li>
+<li class="chapter" data-level="2.3.2" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#the-size-component"><i class="fa fa-check"></i><b>2.3.2</b> The Size Component</a></li>
+<li class="chapter" data-level="2.3.3" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#the-shape-component"><i class="fa fa-check"></i><b>2.3.3</b> The Shape Component</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#geometrics"><i class="fa fa-check"></i><b>2.4</b> Geometrics</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#line-graphs"><i class="fa fa-check"></i><b>2.4.1</b> Line Graphs</a></li>
+<li class="chapter" data-level="2.4.2" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#bar-plots"><i class="fa fa-check"></i><b>2.4.2</b> Bar Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#others"><i class="fa fa-check"></i><b>2.5</b> Others</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#axes-labels"><i class="fa fa-check"></i><b>2.5.1</b> Axes Labels</a></li>
+<li class="chapter" data-level="2.5.2" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#title-of-the-graph"><i class="fa fa-check"></i><b>2.5.2</b> Title of the Graph</a></li>
+<li class="chapter" data-level="2.5.3" data-path="introduction-to-ggplot2.html"><a href="introduction-to-ggplot2.html#legends"><i class="fa fa-check"></i><b>2.5.3</b> Legends</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html"><i class="fa fa-check"></i><b>3</b> Introduction to Linear Regression</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#list-of-r-packages-used"><i class="fa fa-check"></i><b>3.1.1</b> List of R packages Used</a></li>
+<li class="chapter" data-level="3.1.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#motivating-example"><i class="fa fa-check"></i><b>3.1.2</b> Motivating Example</a></li>
+<li class="chapter" data-level="3.1.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#variables-1"><i class="fa fa-check"></i><b>3.1.3</b> Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#linreg-slm"><i class="fa fa-check"></i><b>3.2</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#linreg-slm-assumption"><i class="fa fa-check"></i><b>3.2.1</b> Assumptions</a></li>
+<li class="chapter" data-level="3.2.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#linreg-slm-est"><i class="fa fa-check"></i><b>3.2.2</b> Estimation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#inference"><i class="fa fa-check"></i><b>3.2.3</b> Inference</a></li>
+<li class="chapter" data-level="3.2.4" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#linreg-slm-modelcheck"><i class="fa fa-check"></i><b>3.2.4</b> Model Checking</a></li>
+<li class="chapter" data-level="3.2.5" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#simple-linear-regression-on-a-binary-covariate"><i class="fa fa-check"></i><b>3.2.5</b> Simple Linear Regression on a Binary Covariate</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#linreg-mlm"><i class="fa fa-check"></i><b>3.3</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#linreg-mlm-est"><i class="fa fa-check"></i><b>3.3.1</b> Estimation</a></li>
+<li class="chapter" data-level="3.3.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#interaction-effects"><i class="fa fa-check"></i><b>3.3.2</b> Interaction Effects</a></li>
+<li class="chapter" data-level="3.3.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#model-selection"><i class="fa fa-check"></i><b>3.3.3</b> Model Selection</a></li>
+<li class="chapter" data-level="3.3.4" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#model-diagnostics"><i class="fa fa-check"></i><b>3.3.4</b> Model Diagnostics</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#further-extensions"><i class="fa fa-check"></i><b>3.4</b> Further Extensions</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#recommendations"><i class="fa fa-check"></i><b>3.4.1</b> Recommendations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html"><i class="fa fa-check"></i><b>4</b> Introduction to Nonparametric Statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#introduction-2"><i class="fa fa-check"></i><b>4.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#r-packages-and-data"><i class="fa fa-check"></i><b>4.1.1</b> R Packages and Data</a></li>
+<li class="chapter" data-level="4.1.2" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#nonpram-rank"><i class="fa fa-check"></i><b>4.1.2</b> Sample Ranks</a></li>
+<li class="chapter" data-level="4.1.3" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#nonpram-sd"><i class="fa fa-check"></i><b>4.1.3</b> Sampling Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#two-sample-hypothesis-testing"><i class="fa fa-check"></i><b>4.2</b> Two-sample Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#quick-reference-table"><i class="fa fa-check"></i><b>4.2.1</b> Quick Reference Table</a></li>
+<li class="chapter" data-level="4.2.2" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#nonpram-mwu"><i class="fa fa-check"></i><b>4.2.2</b> Wilcoxon Rank-Sum Test</a></li>
+<li class="chapter" data-level="4.2.3" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#other-softwares"><i class="fa fa-check"></i><b>4.2.3</b> Other Softwares</a></li>
+<li class="chapter" data-level="4.2.4" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#nonpram-wst"><i class="fa fa-check"></i><b>4.2.4</b> Wilcoxon Signed Rank Test</a></li>
+<li class="chapter" data-level="4.2.5" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#nonpram-tst"><i class="fa fa-check"></i><b>4.2.5</b> Siegel-Tukey Test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#nonpram-anova"><i class="fa fa-check"></i><b>4.3</b> ANOVA-type Methods</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#one-way-anova"><i class="fa fa-check"></i><b>4.3.1</b> One-way ANOVA</a></li>
+<li class="chapter" data-level="4.3.2" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#post-hoc-comparisons-for-kw-anova"><i class="fa fa-check"></i><b>4.3.2</b> Post Hoc Comparisons for KW ANOVA</a></li>
+<li class="chapter" data-level="4.3.3" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#repeated-measures-anova-friedman-test"><i class="fa fa-check"></i><b>4.3.3</b> Repeated Measures ANOVA (Friedman Test)</a></li>
+<li class="chapter" data-level="4.3.4" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#post-hoc-tests"><i class="fa fa-check"></i><b>4.3.4</b> Post Hoc tests</a></li>
+<li class="chapter" data-level="4.3.5" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#an-example-using-r-6"><i class="fa fa-check"></i><b>4.3.5</b> An example using R</a></li>
+<li class="chapter" data-level="4.3.6" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#additional-resources-for-nonparametric-anova-procedures"><i class="fa fa-check"></i><b>4.3.6</b> Additional Resources for Nonparametric ANOVA Procedures</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#boostrap-methods"><i class="fa fa-check"></i><b>4.4</b> Boostrap Methods</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#bootstrap-confidence-intervals"><i class="fa fa-check"></i><b>4.4.1</b> Bootstrap Confidence Intervals</a></li>
+<li class="chapter" data-level="4.4.2" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#assumptions"><i class="fa fa-check"></i><b>4.4.2</b> Assumptions</a></li>
+<li class="chapter" data-level="4.4.3" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#examples-using-r"><i class="fa fa-check"></i><b>4.4.3</b> Examples using R</a></li>
+<li class="chapter" data-level="4.4.4" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#additional-resources"><i class="fa fa-check"></i><b>4.4.4</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#random-forests"><i class="fa fa-check"></i><b>4.5</b> Random Forests</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#examples-using-r-1"><i class="fa fa-check"></i><b>4.5.1</b> Examples Using R</a></li>
+<li class="chapter" data-level="4.5.2" data-path="introduction-to-nonparametric-statistics.html"><a href="introduction-to-nonparametric-statistics.html#nonpram-arrf"><i class="fa fa-check"></i><b>4.5.2</b> Additional Resources</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html"><i class="fa fa-check"></i><b>5</b> Introduction to Longitudinal Data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#introduction-3"><i class="fa fa-check"></i><b>5.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-rpackages"><i class="fa fa-check"></i><b>5.1.1</b> List of R packages Used</a></li>
+<li class="chapter" data-level="5.1.2" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-motivating"><i class="fa fa-check"></i><b>5.1.2</b> Motivating Example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-datastruc"><i class="fa fa-check"></i><b>5.2</b> Data Structure for Longitudinal Responses</a></li>
+<li class="chapter" data-level="5.3" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear"><i class="fa fa-check"></i><b>5.3</b> Linear Models for Continuous Outcome</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-assumptions"><i class="fa fa-check"></i><b>5.3.1</b> Assumptions</a></li>
+<li class="chapter" data-level="5.3.2" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-modelspec"><i class="fa fa-check"></i><b>5.3.2</b> Notation and Model Specification</a></li>
+<li class="chapter" data-level="5.3.3" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-corr"><i class="fa fa-check"></i><b>5.3.3</b> Correlation Structures</a></li>
+<li class="chapter" data-level="5.3.4" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-estimation"><i class="fa fa-check"></i><b>5.3.4</b> Estimation</a></li>
+<li class="chapter" data-level="5.3.5" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-R"><i class="fa fa-check"></i><b>5.3.5</b> Modelling in R</a></li>
+<li class="chapter" data-level="5.3.6" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-HT"><i class="fa fa-check"></i><b>5.3.6</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="5.3.7" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-population"><i class="fa fa-check"></i><b>5.3.7</b> Population Means</a></li>
+<li class="chapter" data-level="5.3.8" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-cov"><i class="fa fa-check"></i><b>5.3.8</b> Selecting a Correlation Structure</a></li>
+<li class="chapter" data-level="5.3.9" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-procedure"><i class="fa fa-check"></i><b>5.3.9</b> Model Fitting Procedure</a></li>
+<li class="chapter" data-level="5.3.10" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linear-example2"><i class="fa fa-check"></i><b>5.3.10</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed"><i class="fa fa-check"></i><b>5.4</b> Linear Mixed Effect Models for Longitudinal Data</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-notation"><i class="fa fa-check"></i><b>5.4.1</b> Notation and Model Specification</a></li>
+<li class="chapter" data-level="5.4.2" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-randomintercept"><i class="fa fa-check"></i><b>5.4.2</b> Random Intercept Models</a></li>
+<li class="chapter" data-level="5.4.3" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-randominterceptslope"><i class="fa fa-check"></i><b>5.4.3</b> Random Intercept and Slope Models</a></li>
+<li class="chapter" data-level="5.4.4" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-estimation"><i class="fa fa-check"></i><b>5.4.4</b> Estimation</a></li>
+<li class="chapter" data-level="5.4.5" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-R"><i class="fa fa-check"></i><b>5.4.5</b> Modelling in R</a></li>
+<li class="chapter" data-level="5.4.6" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-diagnostics"><i class="fa fa-check"></i><b>5.4.6</b> Model Diagnostics for Linear Mixed Effects Models</a></li>
+<li class="chapter" data-level="5.4.7" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-popmeans"><i class="fa fa-check"></i><b>5.4.7</b> Population Means</a></li>
+<li class="chapter" data-level="5.4.8" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-linearmixed-ht"><i class="fa fa-check"></i><b>5.4.8</b> Hypothesis Testing for Fixed Effects</a></li>
+<li class="chapter" data-level="5.4.9" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-lme-modelfitting"><i class="fa fa-check"></i><b>5.4.9</b> Model Fitting Procedure</a></li>
+<li class="chapter" data-level="5.4.10" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#long-lme-ex2"><i class="fa fa-check"></i><b>5.4.10</b> Example - Milk Protein and Diet</a></li>
+<li class="chapter" data-level="5.4.11" data-path="introduction-to-longitudinal-data.html"><a href="introduction-to-longitudinal-data.html#example---aids-clinical-trial-group"><i class="fa fa-check"></i><b>5.4.11</b> Example - AIDS Clinical Trial Group</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="introduction-to-questionnaire-design.html"><a href="introduction-to-questionnaire-design.html"><i class="fa fa-check"></i><b>6</b> Introduction to Questionnaire Design</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="introduction-to-questionnaire-design.html"><a href="introduction-to-questionnaire-design.html#questdes-plan"><i class="fa fa-check"></i><b>6.1</b> Plan the Study</a></li>
+<li class="chapter" data-level="6.2" data-path="introduction-to-questionnaire-design.html"><a href="introduction-to-questionnaire-design.html#questdes-prepare"><i class="fa fa-check"></i><b>6.2</b> Prepare the Questions</a></li>
+<li class="chapter" data-level="6.3" data-path="introduction-to-questionnaire-design.html"><a href="introduction-to-questionnaire-design.html#questdes-put"><i class="fa fa-check"></i><b>6.3</b> Put Together the Questionnaire</a></li>
+<li class="chapter" data-level="6.4" data-path="introduction-to-questionnaire-design.html"><a href="introduction-to-questionnaire-design.html#questdes-pretest"><i class="fa fa-check"></i><b>6.4</b> Pretest the Questionnaire</a></li>
+<li class="chapter" data-level="6.5" data-path="introduction-to-questionnaire-design.html"><a href="introduction-to-questionnaire-design.html#a-checklist-for-questionnaire-designs"><i class="fa fa-check"></i><b>6.5</b> A Checklist for Questionnaire Designs</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="general-guidelines.html"><a href="general-guidelines.html"><i class="fa fa-check"></i><b>A</b> General Guidelines</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="general-guidelines.html"><a href="general-guidelines.html#resources"><i class="fa fa-check"></i><b>A.1</b> Resources</a></li>
+<li class="chapter" data-level="A.2" data-path="general-guidelines.html"><a href="general-guidelines.html#format"><i class="fa fa-check"></i><b>A.2</b> Format</a>
+<ul>
+<li class="chapter" data-level="A.2.1" data-path="general-guidelines.html"><a href="general-guidelines.html#typesetting-math"><i class="fa fa-check"></i><b>A.2.1</b> Typesetting Math</a></li>
+<li class="chapter" data-level="A.2.2" data-path="general-guidelines.html"><a href="general-guidelines.html#genguide-citations"><i class="fa fa-check"></i><b>A.2.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="A.3" data-path="general-guidelines.html"><a href="general-guidelines.html#rendering-the-book"><i class="fa fa-check"></i><b>A.3</b> Rendering the Book</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="formatting-guidelines.html"><a href="formatting-guidelines.html"><i class="fa fa-check"></i><b>B</b> Formatting Guidelines</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="formatting-guidelines.html"><a href="formatting-guidelines.html#formatguide-general"><i class="fa fa-check"></i><b>B.1</b> General</a></li>
+<li class="chapter" data-level="B.2" data-path="formatting-guidelines.html"><a href="formatting-guidelines.html#embedding-files"><i class="fa fa-check"></i><b>B.2</b> Embedding Files</a></li>
+<li class="chapter" data-level="B.3" data-path="formatting-guidelines.html"><a href="formatting-guidelines.html#math"><i class="fa fa-check"></i><b>B.3</b> Math</a>
+<ul>
+<li class="chapter" data-level="B.3.1" data-path="formatting-guidelines.html"><a href="formatting-guidelines.html#commonly-used-math-and-stats-expressions"><i class="fa fa-check"></i><b>B.3.1</b> Commonly-Used Math and Stats Expressions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="git-and-github-a-quick-tutorial.html"><a href="git-and-github-a-quick-tutorial.html"><i class="fa fa-check"></i><b>C</b> Git and GitHub: A Quick Tutorial</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="git-and-github-a-quick-tutorial.html"><a href="git-and-github-a-quick-tutorial.html#setup"><i class="fa fa-check"></i><b>C.1</b> Setup</a></li>
+<li class="chapter" data-level="C.2" data-path="git-and-github-a-quick-tutorial.html"><a href="git-and-github-a-quick-tutorial.html#contributing-to-the-project"><i class="fa fa-check"></i><b>C.2</b> Contributing to the Project</a></li>
+<li class="chapter" data-level="C.3" data-path="git-and-github-a-quick-tutorial.html"><a href="git-and-github-a-quick-tutorial.html#git-mistakes"><i class="fa fa-check"></i><b>C.3</b> Git Mistakes</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="bookdown-tests.html"><a href="bookdown-tests.html"><i class="fa fa-check"></i><b>D</b> Bookdown Tests</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="bookdown-tests.html"><a href="bookdown-tests.html#test-math-macros"><i class="fa fa-check"></i><b>D.1</b> Test Math Macros</a></li>
+<li class="chapter" data-level="D.2" data-path="bookdown-tests.html"><a href="bookdown-tests.html#test-figure"><i class="fa fa-check"></i><b>D.2</b> Test Figure</a></li>
+<li class="chapter" data-level="D.3" data-path="bookdown-tests.html"><a href="bookdown-tests.html#test-cran-link"><i class="fa fa-check"></i><b>D.3</b> Test CRAN Link</a></li>
+<li class="chapter" data-level="D.4" data-path="bookdown-tests.html"><a href="bookdown-tests.html#test-checklist"><i class="fa fa-check"></i><b>D.4</b> Test Checklist</a></li>
+<li class="chapter" data-level="D.5" data-path="bookdown-tests.html"><a href="bookdown-tests.html#test-references"><i class="fa fa-check"></i><b>D.5</b> Test References</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Topics in Statistical Consulting</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction-to-questionnaire-design" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> Introduction to Questionnaire Design<a href="introduction-to-questionnaire-design.html#introduction-to-questionnaire-design" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>Author: Trang Bui</em></p>
+<p><em>Last Updated: Nov 17, 2020</em></p>
+<hr />
+<p>Surveys or questionnaires play an important role in many research and studies. A well-designed questionnaire will help researchers collect the data required for their research questions with strong <em>validity</em> and <em>reliability</em>. This section aims to provide some guidelines to create such questionnaires.</p>
+<p>The most important thing to keep in mind when designing a questionnaire is that we are asking the respondents a favor. Therefore, the questionnaire needs to be as easy and less time-consuming as possible, while gathering enough information for the research questions. The goal is to create a <strong>short</strong>, <strong>easy</strong>, <strong>inviting</strong> but still <strong>sound</strong> and <strong>logical</strong> questionnaire.</p>
+<p>There are four main steps to achieve our goal:</p>
+<ul>
+<li><a href="introduction-to-questionnaire-design.html#questdes-plan">plan the study</a>,</li>
+<li><a href="introduction-to-questionnaire-design.html#questdes-prepare">prepare the questions</a>,</li>
+<li><a href="introduction-to-questionnaire-design.html#questdes-put">put together the questionnaire</a>, and</li>
+<li><a href="introduction-to-questionnaire-design.html#questdes-pretest">pretest the questionnaire</a>.</li>
+</ul>
+<div id="questdes-plan" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Plan the Study<a href="introduction-to-questionnaire-design.html#questdes-plan" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Planning the study ahead allows us to create a questionnaire that meets the research goal while keeping it short and concise. In the questionnaire, we want to include questions that provide <em>enough</em>, but <em>not more</em> than what we need. In this section, suppose we are interested to create a survey to investigate students’ mental health. To plan the study, we should consider the following:</p>
+<ul>
+<li><p>What is the topic of interest?</p>
+<blockquote>
+<p>The topic based on our example is the mental health among students.</p>
+</blockquote></li>
+<li><p>What is the target population, i.e. the population of interest and to draw conclusion on?</p>
+<blockquote>
+<p>Suppose researchers want to make conclusions on the mental health of students at the University of Waterloo exclusively, instead of, for example, the mental health of students in Ontario province. Then, the target population is all the students at the University of Waterloo.</p>
+</blockquote></li>
+<li><p>To whom or to which groups do we want to report to? <!-- (for example, the demographic groups, etc.) --></p>
+<blockquote>
+<p>Suppose researchers want to report or compare the results of students’ mental health based on gender, faculty, country of origin, etc.</p>
+</blockquote></li>
+<li><p>What are the research questions, i.e. hypotheses?</p>
+<blockquote>
+<p>Is stress level related to the students’ faculty? What are the common mental health problems among students?</p>
+</blockquote></li>
+<li><p>What analysis tools will be used after the data has been collected?</p>
+<blockquote>
+<p>R, SAS, STATA, etc.</p>
+</blockquote></li>
+</ul>
+<p>Examining as many aspects of the study as possible will paint a picture of what the questionnaire should include, what questions need to be asked, and to whom the questionnaire should be designed for and sent to, etc. It is helpful to write down the plan for future reference and further discussion.</p>
+</div>
+<div id="questdes-prepare" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Prepare the Questions<a href="introduction-to-questionnaire-design.html#questdes-prepare" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this step, we design the questions based on the research plan laid out. The many aspects of a question that need to be considered include, but are not limited to, the type of question, the wording of the questions, the answer options for the questions, the order of the questions, etc. All of these will affect the difficulty of the questionnaire, the respondents’ willingness to answer or to answer correctly and truthfully, and also the analysis that will be carried out.</p>
+<p>When creating a question, think about the thought process that the survey respondents have to go through to answer. We also need to find ways to help them provide responses that are in line with the research goals. Here are a few questions to consider when creating each question:</p>
+<ul>
+<li><p>How can we define or decompose certain concepts? Is it fair to assume that all the respondents understand the wordings or notions? Is there any chance that the respondents might misunderstand the definitions, wordings, or the question itself?</p>
+<blockquote>
+<p><em>“Have you ever had depression?”</em></p>
+</blockquote>
+<p>The term “depression” may not be familiar to the respondents. Can everyone in the target population differentiate between depression and sadness? To avoid misunderstanding, the symptoms of depression can be listed before asking the question.</p></li>
+<li><p>How long ago since the event of interest occurred<!--until the respondents read the question in the survey-->? Is it easy for the respondents to recall and retrieve this information? Is there any cue in the survey or record the respondents can refer to?</p>
+<blockquote>
+<p><em>“When was the last time that you met a psychiatrist?”</em>.</p>
+</blockquote>
+<p>For some people, it may be so long ago that they cannot remember. Asking them to have their appointment record easily accessible can help with retrieving this information.</p></li>
+<li><p>Do the respondents need to estimate or judge to obtain the answer? What can be some references for these estimates or judgments?</p>
+<blockquote>
+<p><em>“How many hours do you spend on self-care per week?”</em>.</p>
+</blockquote>
+<p>Suppose a person spends three hours a day, the estimate would be 21 hours a week. However, it can be difficult for the person to recall the actual time length. To assist the respondents, provide some time point reference in the question. For example, time spent on self-care when they wake up or before going to bed. Both morning and bedtime routines are time points that respondents can remember easily.</p></li>
+<li><p>Can the respondents easily map their answers to the options provided? Are all the possible answers included in the question’s answer categories? How can we help the respondents express their answers precisely?</p>
+<blockquote>
+<p><em>“What do you think are the reasons for your sadness? (Select all that apply.)”</em></p>
+</blockquote>
+<p>Although the respondents can choose as many options as possible for the question, they may still not be able to express all of their answers.</p>
+<blockquote>
+<p><em>“How do you rate your happiness?”</em></p>
+</blockquote>
+<p>We can use a scale of 1-10, where 1 indicates “very unhappy” and 10 indicates “very happy”. A better choice could be a scale that ranges from -5 to 5, where -5 implies “very unhappy”, 0 corresponds to “indifferent”, and 5 as “very happy”. This scale will be easier to relate to.</p></li>
+</ul>
+<p>The context of the question can affect the respondents’ thought process and hence, their answers. It is important to make sure that the context is expressed or explained clearly. This can be achieved by</p>
+<ul>
+<li><p>Asking the general question before the specific questions.</p>
+<blockquote>
+<p>Q1: <em>“How do you feel about your performance at school?” </em></p>
+</blockquote>
+<blockquote>
+<p>Q2: <em>“How do you rate your level of happiness?” </em></p>
+</blockquote>
+<p>When we asked about how the respondents feel about their performance at school first, they may associate happiness with performance at school, and ignore their happiness that is not associated with school performance when answering Q2. If the order of the questions were flipped, the respondents would be more likely to rate their happiness level based on all aspects of their life instead of focusing on school performance.</p></li>
+<li><p>Grouping related questions in modules. <!--- We can have a block of questions asking about their symptoms of mental conditions, and another block of questions asking about their attempts to get better, etc. ---></p></li>
+</ul>
+<p>The order of the answer options can also affect the validity of the answers. Respondents tend to choose the first or last few options when there are many options. Consider using the natural order of the answer options such as alphabetical order. If the natural order is not available, and the list of options is long, randomize the order of the options.
+<!---
+    > Consider the questions *"Choose three of the biggest reasons why you are unhappy"*, and there is then a long list of options, the respondents will be likely to choose the first or the last few options since they are not patient to go through the long list and choose their best three. 
+---></p>
+<p>It is challenging to create sensitive questions that respondents are willing to answer and to answer truthfully. Respondents usually are hesitant to answer because of privacy and (or) shame.</p>
+<ul>
+<li><p>If the concern is privacy, we can create questions that do not require exact information, but an estimate.</p>
+<blockquote>
+<p>How old are you?</p>
+</blockquote>
+<p>Instead of asking for the exact age, we can ask respondents to choose from the age group they belong to.</p></li>
+<li><p>If the concern is shame, or social desirability, consider ways that will ease the respondents to the answer.</p>
+<blockquote>
+<p>Do you take anti-depressant?</p>
+</blockquote>
+<p>To help respondents feel more comfortable to provide a truthful answer to the question, we can add a sentence or two about the benefits of anti-depressant on improving moods, sleep quality, etc. <!-- If you want to ask about alcohol consumption, you can add a few sentences about the benefits of wine to health, which will make it more relaxing for respondents to answer truthfully about their alcohol consumption. --></p></li>
+</ul>
+</div>
+<div id="questdes-put" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Put Together the Questionnaire<a href="introduction-to-questionnaire-design.html#questdes-put" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>In the beginning, provide an introduction about the research topic and its importance to motivate the respondents to answer the questionnaire. Mention the research organizations, investigators, or sponsors and an estimate of the completion time of the questionnaire. Do not forget to include statements about privacy and confidentiality from the <a href="https://uwaterloo.ca/research/office-research-ethics">Office of Research Ethics</a>. Including relevant graphics may appeal to the respondents that this is an easy-to-answer survey.</p>
+<blockquote>
+<p><em>The information obtained from this survey will help the university better understand students’ mental well-being and take reasonable measures to help the students.</em></p>
+</blockquote></li>
+<li><p>Start with some questions that are related to the topic and easy to answer. <!-- the “Have you ever” --> Questions with “Yes-No” answers will usually ease the respondents to the questionnaire.</p></li>
+<li><p>Group the questions into modules or sections to create a logical flow that is easy for respondents to follow. In between these modules, a short description of the module can be added to make the transitions smoother.</p></li>
+<li><p>Ask sensitive questions near the end of the survey when the respondents are comfortable to provide their answers or opinions. We also recommend asking only the demographic questions required for the research questions at the end of the questionnaire. It may be worthy to mention that personal information will only be used for statistical purposes.</p></li>
+<li><p>Finally, give the respondents a big thank you. If there are any incentives for completing the survey, collect the required information. Additionally, again strongly stress the privacy of the gathered information. It is also a good place to leave the researchers’ contact information in the event that the respondents have any concerns or want to give additional feedback.</p></li>
+</ul>
+</div>
+<div id="questdes-pretest" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Pretest the Questionnaire<a href="introduction-to-questionnaire-design.html#questdes-pretest" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It is recommended to pretest the questionnaire before conducting data collection. This will help identify problems in the questionnaire and allow for revision and improvement.</p>
+<p>Consider pretesting the questionnaire by:</p>
+<ul>
+<li><p>obtaining expert review from colleagues who have the same or similar research topics, or statistical consultants who have expertise in data collection and analysis;</p></li>
+<li><p>conducting interviews with focus groups, i.e. a small group in the target population. This method allows us to know whether the prospective respondents have any difficulty in understanding and answering the questions. Their feedback or advice can be used to revise the questionnaire. <!-- For example, conduct the survey in a small class first and ask for their opinions. --></p></li>
+</ul>
+<p>Designing questionnaires is an iterative process. The four steps mentioned above can be revisited and revised as needed. If you have any further questions about questionnaires design, please consult a consultant at the <a href="https://uwaterloo.ca/statistical-consulting-and-collaborative-research-unit/">Statistical Consulting and Collaborative Research</a>, or the <a href="https://uwaterloo.ca/survey-research-centre/">Survey Research Centre</a>.</p>
+</div>
+<div id="a-checklist-for-questionnaire-designs" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> A Checklist for Questionnaire Designs<a href="introduction-to-questionnaire-design.html#a-checklist-for-questionnaire-designs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Planning
+<ul>
+<li>What is the topic of interest?</li>
+<li>What is the target population?</li>
+<li>To whom or to which groups do you want to report?</li>
+<li>What are the research questions?</li>
+<li>What analysis tools will be used for data analysis?</li>
+</ul></li>
+<li>Preparing the questions
+<ul>
+<li>Can the respondents understand the concepts in the question?</li>
+<li>Can the respondents easily recall the information required to answer the question?</li>
+<li>How will the respondents estimate or judge to answer this question?</li>
+<li>Can the respondents easily map their answers to the options provided?</li>
+<li>Will the context of the question affect the respondents’ thought processes?</li>
+<li>If there is a long list of options, is there a natural ordering? Is randomization of order needed?</li>
+<li>Is the question sensitive? How do we ease the respondents into answering the question?</li>
+</ul></li>
+<li>Putting together the questions
+<ul>
+<li>Preamble:
+<ul>
+<li>Provide an introduction to the research and highlight its importance.</li>
+<li>List the name of the research organizations, investigators, or sponsors.</li>
+<li>Estimate the completion time of the questionnaire.</li>
+<li>Include privacy and confidentiality statements.
+<!-- 
+  - relevant graphics. 
+  --></li>
+</ul></li>
+<li>Main body:
+<ul>
+<li>Start with easy Yes-No questions.</li>
+<li>Group the questions into modules and create a logical flow.</li>
+<li>Ask sensitive questions near the end.</li>
+<li>Ask demographic questions for statistical purposes.</li>
+</ul></li>
+<li>Ending:
+<ul>
+<li>Thank the respondents.</li>
+<li>Ask for contact information if a reward is promised.</li>
+<li>Leave contacts for further inquiries and feedback.</li>
+</ul></li>
+</ul></li>
+<li>Pretesting
+<ul>
+<li>Use expert review and (or) focus groups.</li>
+<li>Iterate the steps above until the questionnaire is satisfactory.</li>
+</ul></li>
+</ol>
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction-to-longitudinal-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="general-guidelines.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

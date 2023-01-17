@@ -1,0 +1,511 @@
+# Introduction to R 
+
+*Author: Joslin Goh, Trang Bui*
+
+*Last Updated: Feb 04, 2021*
+
+--- 
+
+## R and RStudio
+
+[R](https://www.r-project.org/) is a software environment for statistical computing and graphics. Unlike other statistical software, R is free. Besides built-in functions, additional packages for solving many different statistical or application problems are made and maintained by contributors around the world. This makes R an attractive and popular statistical tool nowadays.
+
+[RStudio](https://rstudio.com/products/rstudio/) is an integrated development environment ([IDE](https://en.wikipedia.org/wiki/Integrated_development_environment)) for R. It is easier to work with R using RStudio. 
+
+```{r rintro-rstudio, fig.cap="The RStudio interface", echo=FALSE, fig.align='center'}
+knitr::include_graphics("data/images/rintro-rstudio.png")
+```
+
+The interface of RStudio shown in Figure \@ref(fig:rintro-rstudio) contains four panes:
+
+- [Source Editor], 
+- Console, 
+- Workspace Browser, and 
+- Files (and Plots, Packages, Help, and Viewer).
+
+The four panes can be positioned differently based on personal preference. Figure \@ref(fig:rintro-rstudio) shows the default position. In this section, we will mainly be using the Source Editor and Console panes. Readers are encouraged to refer to other [resources](https://robwschlegel.github.io/Intro_R_Workshop/rstudio.html#the-panes-of-rstudio) on the use of other panes.
+
+## Basic R
+
+### Calculating with R {#rintro-calculate}
+
+In its simplest form, R can be used as a calculator. In the R Console area, type:
+```{r rintro-basic-sum, echo = TRUE, eval = FALSE}
+1 + 2
+```
+The following will be printed in the R Console area:
+```{r rintro-basic-sum-result, echo = FALSE, eval = TRUE, comment = NA}
+1 + 2
+```
+
+Subtraction can be done in a similar way:
+```{r rintro-basic-subtract, echo = TRUE, eval = TRUE, comment = NA}
+5 - 10
+```
+
+Other basic operations such as multiplication, division, and powers are also included.
+```{r rintro-basic-operations, echo = TRUE, comment = NA}
+9 * 26
+
+100 / 7.5
+
+2^3
+```
+
+Some basic operations involve built-in functions in R. For example,
+
+- Square root:
+    ```{r rintro-basic-squareroot, echo = TRUE, eval = TRUE, comment = NA}
+sqrt(25)
+    ```
+- Logarithm:
+    ```{r rintro-basic-log10, echo = TRUE, eval = TRUE, comment = NA}
+log(10, base = 10)
+    ```
+- Natural logarithm:
+    ```{r rintro-basic-log, echo = TRUE, eval = TRUE, comment = NA}
+log(10)
+    ```
+
+### Variables
+
+Variables are useful when they need to be used repeatedly or to be recalled in the future. 
+
+For example, suppose we are interested in evaluating
+$$
+\frac{e^{1-9.2315468}}{1-e^{1-9.2315468}},
+$$
+we can store the repeated value $9.2315468$ as a variable before performing the calculation. 
+
+To store the value as the variable $x$, we can type
+```{r rintro-basic-variable-assign, echo = TRUE, eval = TRUE, comment = NA}
+x <- 9.2315468
+```
+
+Note that:
+
+- In the Console pane, nothing is returned.
+- In the Environment tab under the Workspace Browser pane, $x$ appears together with the value it represents. This shows that the current workspace recognizes $x$ as $9.2315468$.
+- Now if we try typing $x$ in the Console, we will see the value it represents.
+    ```{r rintro-basic-variable-result, echo = TRUE, eval = TRUE, comment = NA}
+x
+    ```
+
+Back to our example, we wanted to evaluate
+$$
+\frac{e^{1-9.2315468}}{1-e^{1-9.2315468}},
+$$
+Since $x = 9.2315468$ is in our work environment, we can now type
+```{r rintro-basic-variable-calculate, echo = TRUE, eval = TRUE, comment = NA}
+exp(1 - x) / (1 - exp(1 - x))
+```
+
+In R, there are built-in variables, which are called default variables in R. The number $\pi$ is recognized as `pi`. Another default variable is the imaginary number, i.e $\sqrt{-1}$, which is recorded as `i` in R. 
+
+### Vectors
+
+Oftentimes, we encounter sequences of numbers during data analysis. For example, 
+the height of 10 students, the grades of the ECON 101 students in the Fall term, the age of the attendees, etc.
+
+In R, sequences of numbers can be recorded as vectors. 
+
+Suppose there are five people in a class. The ages of the people in the class are:
+$$
+18, 21, 19, 20, 21
+$$
+We can create a vector for our record as below.
+```{r rintro-basic-vector, echo = TRUE, eval = FALSE, comment = NA}
+age <- c(18, 21, 19, 20, 21)
+```
+In the Workspace Browser pane, we can see the variable `age` with the values that we have given. And if we type `age` in the Console pane, we get these values printed in the Console.
+
+Vectors may not appear to be useful for many since most of the popular functions are ready for use. But for those intending to create their own R functions, it is important to understand how to create and manipulate vectors. Many [comparators and logical operators](https://www.statmethods.net/management/operators.html) such as those discussed in Section [1.2.1](#rintro-calculate) work on both vectors and scalars. These calculations will be element-wise. 
+
+## Basic Data Analysis Workflow
+
+### Reading Data into R
+
+#### Setting Working Directory
+
+To start, it is important to inform R the directory that the data file is stored. For Mac/Windows users of RStudio, choose <kbd>Session</kbd> > <kbd>Set Working Directory</kbd> > <kbd>Choose Directory</kbd>. 
+
+The function `setwd()` can also be used to set the working directory if the directory string is available. For example,
+```{r rintro-data-setwd, echo = TRUE, eval = FALSE, comment = NA}
+setwd("D:/")
+```
+will set the working directory to "D:/".
+
+#### Importing the Data
+
+In the real world, data are recorded in different formats such as Excel spreadsheet (`xls`), Comma Separated Values (`csv`) or Text (`txt`). Each row of a data file is an observation while each column is a variable or a feature. 
+
+Data are imported into the R Environment using functions such as `read.csv()` and `read.table()`. Imported data are stored as a data frame object. In this section, we will look at two data sets: [`caliRain.csv`](data/caliRain.csv) and [`drinks.csv`](data/drinks.csv).
+
+Suppose we saved the data sets in a subfolder called `data` in the working directory. We can import both data sets `caliRain.csv` and `drinks.csv` into the R environment and save them as data frames called `drinks_df` and `rain_df` respectively.
+```{r rintro-data-import, echo=TRUE, eval=TRUE, comment = NA}
+drinks_df <- read.csv("data/drinks.csv")
+rain_df <- read.csv("data/caliRain.csv")
+```
+
+#### A Look at the Data 
+
+It is important to take a look at the data set imported into the environment before performing the analysis. To view `rain_df` as a table,
+
+```{r rintro-call-common-function, echo = FALSE, eval = TRUE, comment = NA}
+source("common_functions.R")
+```
+
+```{r rintro-data-view, echo=TRUE, eval=FALSE, comment = NA}
+View(rain_df)
+```
+The function `head()` can also show the first few rows of the data set.  
+```{r rintro-data-head, echo=TRUE, eval=TRUE, comment = NA}
+head(rain_df)
+```
+
+The `caliRain.csv` file contains daily rainfall recorded at numerous meteorological stations monitored by the state of California. The variables recorded are:
+  
+- `STATION`: Name of the station,
+- `PRECIP`: precipitation (inches),
+- `ALTITUDE`: altitude (feet),
+- `LATITUDE`: latitude (feet),
+- `DISTANCE`: distance to the Pacific Ocean (miles), and
+- `SHADOW`: slope face (1: Westward, 2:Leeward).
+
+The variables `STATION` and `SHADOW` are categorical variables, whereas the remaining are continuous variables. 
+
+#### Accessing the Data Frame 
+
+Oftentimes, we are interested in accessing an individual column (or variable) within the data frame. For example, if we are interested in the `PRECIP` variable in the data set `caliRain.csv` (which is now stored as `rain_df`). There are two ways to access the column:
+
+- Use the dollar sign followed by the name of the variable.
+    ```{r rintro-data-dollar, echo=TRUE, eval=TRUE, comment = NA}
+rain_df$PRECIP
+    ```
+- Use the number of the column in the data set. 
+    ```{r rintro-data-col, echo=TRUE, eval=TRUE, comment = NA}
+rain_df[, 2]
+    ```
+
+Similarly, there are times we want to investigate a particular row (or observation). Suppose we are interested in the 10th observation, type
+```{r rintro-data-row, echo=TRUE, eval=TRUE, comment = NA}
+rain_df[10, ]
+```
+
+We can also access a specific cell in the data. If we want to access the precipitation of the 5th observation, we can do either one of the following: 
+```{r rintro-data-cell, echo=TRUE, eval=FALSE, comment = NA}
+rain_df$PRECIP[5]
+rain_df[5, 2]
+```
+
+Accessing a random variable, an observation or a specific value coming from an observation are all useful for data management and manipulation purpose. 
+
+#### Modifying the Data Frame
+
+Sometimes, we want to make changes to the data frame such as
+
+- making changes to existing records,
+- adding new observations or variables, or
+- removing outliers from the data set.
+
+If we want to change the existing records, we need to identify which records we are interested to change.
+
+- a variable, i.e. a column, or 
+- a specific observation.
+
+##### Modifying a Variable
+
+To modify a variable, we need to 
+
+- identify the name or the column of the variable to access it in the data frame,
+- decide on the modification or conversion, and 
+- decide on how to store the new variable. 
+
+We recommend storing the conversion as a new variable in the data frame to avoid confusion.
+
+Suppose we are interested to analyze `DISTANCE` in meters ($1 \tx{ ft} = 0.3048 \tx{ m}$). We can make the conversion and save it as a new column called `DISTANCE_M` in the data set. 
+```{r rintro-data-modcol, echo=TRUE, eval=TRUE,comment=NA}
+rain_df$DISTANCE_M <- rain_df$DISTANCE * 0.3048
+```
+
+##### Modifying a Specific Observation
+
+To modify a specific observation, we need to
+
+- identify how to access the variable in the data frame,
+- decide on the modification, and 
+- decide on how to store the new variable. 
+
+Suppose the distance for Eureka station is entered incorrectly and is supposed to be 1.5 feet instead. To replace this value, type
+```{r rintro-data-modcell, echo=TRUE, eval=TRUE,comment=NA}
+rain_df$DISTANCE[1] <- 1.5
+```
+
+##### Removing Records
+
+To remove an entire column from a data frame, 
+```{r rintro-data-rmcol, echo=TRUE, eval=FALSE,comment=NA}
+rain_df <- rain_df[, -COLUMN_NUMBER]
+```
+
+To remove an entire row from a data frame, 
+```{r rintro-data-rmrow, echo=TRUE, eval=FALSE,comment=NA}
+rain_df <- rain_df[-ROW_NUMBER, ]
+```
+
+This way we re-store `rain_df` with the new data frame `rain_df` where its row/column has been removed.
+
+#### Data Structure
+
+The structure that R stores the data can be viewed using the function `str()`.   
+```{r rintro-data-str, echo=TRUE, eval=TRUE, comment = NA}
+str(rain_df)
+```
+Here, the variable `SHADOW` is recorded as a numeric value. This is not an accurate depiction of the data set. 
+
+To ensure the analysis can be done properly, we need to convert the values in `SHADOW` into categorical values in the data set. To do so, we use the function `factor()`.
+```{r rintro-data-factor, echo=TRUE, eval=TRUE, comment = NA}
+rain_df$SHADOW <- factor(rain_df$SHADOW,
+  levels = c("1", "2"),
+  labels = c("Westward", "Leeward")
+)
+```
+Here, the numerical values 1 and 2 are set to “Westward” and “Leeward”, respectively. 
+
+Now, when we check the structure of the data set after the transformation, the variable `SHADOW` is now stored as a categorical variable (or factor).
+```{r rintro-data-factor-str, echo=TRUE, eval=TRUE, comment = NA}
+str(rain_df)
+```
+
+### Descriptive Statistics
+
+We will use the `PRECIP` variable to demonstrate how common statistics are computed.
+
+- [Mean](https://en.wikipedia.org/wiki/Mean) or average of a sequence of numbers can be obtained using the function `mean()`.
+    ```{r rintro-data-mean, echo=TRUE, eval=TRUE, comment=NA}
+mean(rain_df$PRECIP)
+    ```
+- [Median](https://en.wikipedia.org/wiki/Median) of a sequence of numbers can be obtained using the function `median()`.
+    ```{r rintro-data-median, echo=TRUE, eval=TRUE, comment=NA}
+median(rain_df$PRECIP)
+    ```
+- [Variance and standard deviation](https://en.wikipedia.org/wiki/Variance) of a sequence of numbers can be obtained using the functions `var()` and `sd()` respectively.
+    ```{r rintro-data-var, echo=TRUE, eval=TRUE, comment=NA}
+var(rain_df$PRECIP)
+sd(rain_df$PRECIP)
+    ```
+- The minimum and maximum of a set of numbers can be obtained through functions `min()` and `max()`. 
+    ```{r rintro-data-minmax, echo=TRUE, eval=TRUE, comment=NA}
+min(rain_df$PRECIP)
+max(rain_df$PRECIP)
+    ```
+    The function `range()` also shows the minimum and maximum values.
+    ```{r rintro-data-range, echo=TRUE, eval=TRUE, comment=NA}
+range(rain_df$PRECIP)
+    ```
+    
+### Data Visualization
+
+There is a wide variety of plots that can be created using R, but we will focus on some of our favorites:
+
+- bar graphs: show the distributions of categorical variables,
+- boxplots: show the five-number summaries of continuous variables, and
+- histograms: show the distributions of continuous variables.
+
+#### Categorical Variables
+
+In order to create bar graphs, we need to summarize data using tables.
+
+The numerical summary of a categorical variable are usually summarized in a table:
+```{r rintro-data-table-shadow, echo=TRUE, eval=TRUE, comment=NA}
+count_of_shadow <- table(rain_df$SHADOW)
+count_of_shadow
+```
+
+A cross-tabulation table (or [contingency table](https://en.wikipedia.org/wiki/Contingency_table)) can also be done. Suppose we are interested to create cross-tab for the variables `hasMilk` and `temp` in the `drinks_df`, we can do the following:
+```{r rintro-data-table-milk, echo=TRUE, eval=TRUE, comment=NA}
+table_of_milk_by_temp <- table(
+  drinks_df$hasMilk,
+  drinks_df$temp
+)
+table_of_milk_by_temp
+```
+
+Sometimes it is more useful to report the proportions, which can be converted into percentages. To do so, we use the function `prop.table()`.
+```{r rintro-data-table-shadow-prop, echo=TRUE, eval=TRUE, comment=NA}
+prop.table(count_of_shadow)
+```
+
+For a contingency table, the default `prop.table()` function will output the proportions based on the entire data set.
+```{r rintro-data-table-milk-prop, echo=TRUE, eval=TRUE, comment=NA}
+prop.table(table_of_milk_by_temp)
+```
+
+Suppose we are interested in the percentages of the hot drinks that contain milk, we will want to report the proportion by column (`Temperature`).
+```{r rintro-data-table-milk-prop-col, echo=TRUE, eval=TRUE, comment=NA}
+prop.table(table_of_milk_by_temp, 2)
+```
+These values are the proportions of drinks which contains milk (or not) conditioning on whether the drink is cold or hot, i.e., the values are normalized by the columns. 
+
+#### Bar Graphs
+
+[Bar graphs](https://www.statmethods.net/graphs/bar.html) are commonly used to visualize categorical variables. We can make a bar graph from the count table using the function `barplot()` in R.
+
+```{r rintro-data-barplot, echo=TRUE, eval=TRUE, fig.height=4.5}
+barplot(count_of_shadow,
+  main = "Distribution of shadow",
+  xlab = "Shadow", ylab = "Frequency"
+)
+```
+
+#### Boxplots
+
+The [boxplot](https://en.wikipedia.org/wiki/Box_plot) is a visual representation of the five-number summary that can give us a sense of the distribution of the variable.
+
+- minimum,
+- first quartile, $Q_1$,
+- second quartile, i.e., median,
+- third quartile, $Q_3$, and
+- maximum.
+
+Potential outliers are shown as dots outside the boxplots.
+
+The boxplot of `PRECIP` shows some potential outliers.
+
+```{r rintro-data-boxplot, echo=TRUE, eval=TRUE, fig.height=5}
+boxplot(rain_df$PRECIP,
+  main = "Precipitation",
+  ylab = "Inches"
+)
+```
+
+Side-by-side boxplots are commonly used to visualize the relationship between a continuous variable and a categorical variable. The following is the boxplot of the precipitation by shadow. 
+
+```{r rintro-data-boxplot-side, echo=TRUE, eval=TRUE, fig.height=5}
+boxplot(rain_df$PRECIP ~ rain_df$SHADOW,
+  main = "Precipitation",
+  ylab = "Inches"
+)
+```
+
+In the side-by-side boxplots, notice that there are no potential outliers. Compared to the whole data, certain observations can be considered as outliers. But if we group the data by `SHADOW`, the data are not outliers in their groups. 
+
+#### Histograms
+
+[Histograms](https://en.wikipedia.org/wiki/Histogram) are commonly used to visualize the distribution of continuous variables. When looking at histograms, pay attention to
+
+- the shape: symmetric vs asymmetric,
+- the center, and
+- the spread.
+
+To plot precipitation in a histogram,
+```{r rintro-data-histogram, echo=TRUE, eval=TRUE, fig.height=5}
+hist(rain_df$PRECIP,
+  main = "Distribution of precipitation",
+  xlab = "Precipitation", ylab = "Inches"
+)
+```
+
+Notice that there is no space in between the bars like in the bar graph. This is because the graph is for continuous variables instead of categorical variables.
+
+#### Scatterplots
+
+Scatterplots are used to visualize the relationship between two continuous variables.
+
+```{r rintro-data-scatter, echo=TRUE, eval=TRUE, fig.height=6}
+plot(rain_df$DISTANCE, rain_df$PRECIP,
+  main = "Relationship: precipitation vs distance",
+  xlab = "Distance (ft)", ylab = "Precipitation (inches)"
+)
+```
+<!-- The scatterplot shows some precipitation records that are exceptionally high when the distance is at 0ft and 150ft.  -->
+
+#### A Fancy Visualization Library
+
+The `r cran_link("ggplot2")` library is a package created by Hadley Wickham. It offers a powerful language to create elegant graphs. A basic introduction of this package can be found in a later [section][Introduction to ggplot2].
+
+## Some Coding Tips
+
+### Source Editor
+
+It will be hard to remember and troublesome to re-write all the codes created in the Console every time, especially if there are many lines of code. The Source Editor allows us to write and save all codes into R code files. The lines of codes in the Source Editor are not processed by R unless executed by the user.
+
+There are many ways the codes in the Code Editor can be executed: 
+
+- Select the codes to process, click <kbd>Run</kbd> on the top right corner of the Source Editor.
+- For Windows users, run the selected codes by pressing <kbd>Ctrl</kbd> + <kbd>Enter</kbd>. For Mac users, use <kbd>Command</kbd> + <kbd>Enter</kbd>.
+- If we only want to run one line of code, place the cursor at the line of code, and use either one of the two ways mentioned above.
+
+We recommend typing the codes in the Source Editor and then executing the codes. This way, there is a copy of what was done for future references.
+
+### Commenting
+
+Comment the codes! To do so, use \#.  R does not process anything behind \#. For example, 
+```{r rintro-basic-comment, echo = TRUE, eval = FALSE, comment = NA}
+# I am trying to like R!!!!
+```
+
+Everyone uses comments differently, but generally, comments are useful for understanding what is the code for and sometimes, the expected output.
+
+To comment off a block of code, select the lines, and press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>. Doing this a second time, the code section will be uncommented. 
+
+In RStudio, if the following is done in the Code Editor:
+```{r rintro-basic-comment-section, echo = TRUE, eval = FALSE, comment = NA}
+# ----------------
+# Try Me!
+# ----------------
+```
+a triangle button will appear next to the line numbers at the beginning and end of the code section. Clicking the button will hide or unhide the section.
+
+### Saving the Environment
+
+When quitting R or RStudio, we can choose to save the Environment and History that we were working with in the files called `.RData` and `.RHistory` respectively. When we open the R code file next time, the two files will be automatically loaded. 
+However, it is recommended not to save the Environment in the default way. Instead, start in a clean environment so that older objects do not remain in the environment any longer than they need to. If that happens, it can lead to unexpected results.
+
+For those who want to save the Environment for future use, we recommend saving the Environment using the function `save.image()` rather than using the default files `.RData`. If we only want to save certain values, we can use the function `save()` and then load the saved Environment later using the `load()` function. 
+
+### Installing and Loading Libraries
+
+The R user community creates functions and data sets to share. They are called packages or libraries. The packages are free and can be installed as long as there is access to the Internet.
+
+To install a library, say `r cran_link("ggplot2")`, you can either use the RStudio interface, or you can do it from the command line as follows:
+```{r rintro-basic-install, echo=TRUE, eval=FALSE, comment=NA}
+install.packages("ggplot2", dependencies=TRUE)
+```
+You only need to do this once in a while, e.g., when you install a new version of R.  Then, to use the package, include the following code at the beginning of the file:
+```{r rintro-basic-require, echo=TRUE, eval=TRUE, comment=NA}
+require(ggplot2)
+```
+This command needs to be run every time you want to use the package in a new R session.
+
+### Good Coding Practices
+
+- Start each program with a description of what it does.
+- Load all required packages at the beginning.
+- Consider the choice of working directory.
+- Use comments to mark off sections of code.
+- Put function definitions at the top of the file, or in a separate file if there are many.
+- Name and style code consistently.
+- Break code into small, discrete pieces.
+- Factor out common operations rather than repeating them.
+- Keep all of the source files for a project in one directory and use relative paths to access them.
+- Have someone else review the code.
+- Use version control.
+
+## Getting Help
+
+Before asking others for help, it is generally a good idea for you to try to help yourself.
+
+### R Documentation
+
+R has extensive documentation and resources for help. To read the documentation of a function, add a question mark before the name of a function. 
+
+For example, to find out how to use the function `round()`, try
+```{r rintro-basic-help, echo = TRUE, eval = FALSE, comment = NA}
+?round
+```
+The description of the function and examples of how to use it will appear in the Files pane. In this example, as shown in the documentation, the function `round()` rounds the values in its first argument to the specified number of decimal places.
+
+### Online Resources
+
+There are a lot of basic functions or default variables that have not been mentioned so far. When analyzing data, we often encounter situations in which we need to use unknown or unfamiliar functions. In this case, we often rely on online search engines to find those functions. It is common practice to use online resources in real-world data analysis. Hence, readers are encouraged to explore the online resources.

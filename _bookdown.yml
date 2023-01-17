@@ -1,4 +1,17 @@
+
+new_session: no
 delete_merged_file: true
-language:
-  ui:
-    chapter_name: "Chapter "
+book_filename: "topics_in_consulting.Rmd"
+rmd_files:
+  - "index.Rmd"
+  - "mod_intro_r.Rmd"
+  - "mod_ggplot2.Rmd"
+  - "mod_linear_regression.Rmd"
+  - "mod_nonparametric.Rmd"
+  - "mod_longitudinal.Rmd"
+  - "mod_questionnaire_design.Rmd"
+  - "app_general_guidelines.Rmd"
+  - "app_formatting_guidelines.Rmd"
+  - "app_git_tutorial.Rmd"
+  - "app_bookdown_tests.Rmd"
+  - "Z_references.Rmd"
