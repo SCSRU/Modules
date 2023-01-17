@@ -100,7 +100,7 @@
     },
     "Rmpfr": {
       "Package": "Rmpfr",
-      "Version": "0.9-0",
+      "Version": "0.8-7",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "3b704975c8880bba7a01294547c8847b",
