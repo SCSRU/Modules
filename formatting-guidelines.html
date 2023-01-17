@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2023-01-17" />
+<meta name="date" content="2023-01-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -524,7 +524,7 @@ div.csl-indent {
 <div id="embedding-files" class="section level2 hasAnchor" number="8.2">
 <h2><span class="header-section-number">B.2</span> Embedding Files<a href="formatting-guidelines.html#embedding-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To embed a file in your module, first put it in any subdirectory of the <code>data</code> folder of the repo. For example, the repo currently contains the file <code>data/caliRain.csv</code>. You can then use the file anywhere in your module, e.g.,</p>
-<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="formatting-guidelines.html#cb467-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">read.csv</span>(<span class="st">&quot;data/caliRain.csv&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="formatting-guidelines.html#cb458-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">read.csv</span>(<span class="st">&quot;data/caliRain.csv&quot;</span>))</span></code></pre></div>
 <pre><code>##                     STATION PRECIP ALTITUDE LATITUDE DISTANCE SHADOW
 ## 1 Eureka                     39.57       43     40.8        1      1
 ## 2 RedBluff                   23.27      341     40.2       97      2
@@ -534,7 +534,7 @@ div.csl-indent {
 ## 6 SanFrancisco               21.82       52     37.8        5      1</code></pre>
 <p>In order to let users download the file, you can simply provide the link using regular Markdown syntax. In other words, <code>[download link](data/caliRain.csv)</code> will render as <a href="data/caliRain.csv">download link</a>.</p>
 <p><strong>Note:</strong> This method works because somewhere in the project we make a call to <code>knitr::include_graphics("data/arbitrary/file.ext")</code>, which has the effect of adding the <code>data</code> folder to the bookdown output directory. In previous attempts we tried explicitly adding the <code>data</code> folder to the output via <code>dir.create()</code>. However, this requires that the output directory be supplied in advance, whereas in general it can be set on-the-fly via the <code>output_dir</code> argument to <code>bookdown::render_book()</code>.</p>
-<!-- - To embed a file in your module, use function `embed_data_file()`. For example, `<a href="/home/runner/work/TestBook/TestBook/_book/data/caliRain.csv" download="caliRain.csv">caliRain.csv</a>`{=html}. -->
+<!-- - To embed a file in your module, use function `embed_data_file()`. For example, `<a href="C:/Users/jerem/OneDrive/Documents/School/Waterloo/SCCR/TestBook/_book/data/caliRain.csv" download="caliRain.csv">caliRain.csv</a>`{=html}. -->
 </div>
 <div id="math" class="section level2 hasAnchor" number="8.3">
 <h2><span class="header-section-number">B.3</span> Math<a href="formatting-guidelines.html#math" class="anchor-section" aria-label="Anchor link to header"></a></h2>
