@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2023-01-16" />
+<meta name="date" content="2023-03-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -519,54 +519,54 @@ div.csl-indent {
 <p>This data set contains information about students taking an economics class in college. The details can be found in the reference manual of the package.</p>
 <p>A data set is usually represented by a table of rows and columns. The rows represent individual observations and the column represents “features” or “factors” of the individual observations. The function <code>head()</code> provides the preview of the data set by printing out the first six rows of the data set. To see the whole data set, use the function <code>View()</code>.</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="introduction-to-linear-regression.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(econmath) <span class="co"># preview of the data set</span></span></code></pre></div>
-<pre><code>##   age work study econhs colgpa hsgpa acteng actmth act mathscr male calculus
-## 1  23   15  10.0      0 3.4909 3.355     24     26  27      10    1        1
-## 2  23    0  22.5      1 2.1000 3.219     23     20  24       9    1        0
-## 3  21   25  12.0      0 3.0851 3.306     21     24  21       8    1        1
-## 4  22   30  40.0      0 2.6805 3.977     31     28  31      10    0        1
-## 5  22   25  15.0      1 3.7454 3.890     28     31  32       8    1        1
-## 6  22    0  30.0      0 3.0555 3.500     25     30  28      10    1        1
-##   attexc attgood fathcoll mothcoll score
-## 1      0       0        1        1 84.43
-## 2      0       0        0        1 57.38
-## 3      1       0        0        1 66.39
-## 4      0       1        1        1 81.15
-## 5      0       1        0        1 95.90
-## 6      1       0        0        1 83.61</code></pre>
+<pre><code>##   age work study econhs colgpa hsgpa acteng actmth act mathscr male calculus attexc
+## 1  23   15  10.0      0 3.4909 3.355     24     26  27      10    1        1      0
+## 2  23    0  22.5      1 2.1000 3.219     23     20  24       9    1        0      0
+## 3  21   25  12.0      0 3.0851 3.306     21     24  21       8    1        1      1
+## 4  22   30  40.0      0 2.6805 3.977     31     28  31      10    0        1      0
+## 5  22   25  15.0      1 3.7454 3.890     28     31  32       8    1        1      0
+## 6  22    0  30.0      0 3.0555 3.500     25     30  28      10    1        1      1
+##   attgood fathcoll mothcoll score
+## 1       0        1        1 84.43
+## 2       0        0        1 57.38
+## 3       0        0        1 66.39
+## 4       1        1        1 81.15
+## 5       1        0        1 95.90
+## 6       0        0        1 83.61</code></pre>
 <p>In the data set <code>econmath</code>, the rows are students and the columns are “features” of these students, for example, age, work hours, study hours, high school GPA, etc. These “features” are called “variables”.</p>
 <p>The function <code>summary()</code> gives a brief summary of the data, including the minimum value, maximum value, the <a href="https://www.statisticshowto.com/probability-and-statistics/statistics-definitions/mean-median-mode/">mean and median</a> of each variable in the data set.</p>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="introduction-to-linear-regression.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(econmath)</span></code></pre></div>
-<pre><code>##       age             work            study           econhs      
-##  Min.   :18.00   Min.   : 0.000   Min.   : 0.00   Min.   :0.0000  
-##  1st Qu.:19.00   1st Qu.: 0.000   1st Qu.: 8.50   1st Qu.:0.0000  
-##  Median :19.00   Median : 8.000   Median :12.00   Median :0.0000  
-##  Mean   :19.41   Mean   : 8.626   Mean   :13.92   Mean   :0.3703  
-##  3rd Qu.:20.00   3rd Qu.:15.000   3rd Qu.:18.00   3rd Qu.:1.0000  
-##  Max.   :29.00   Max.   :37.500   Max.   :50.00   Max.   :1.0000  
-##                                                                   
-##      colgpa          hsgpa           acteng          actmth           act       
-##  Min.   :0.875   Min.   :2.355   Min.   :12.00   Min.   :12.00   Min.   :13.00  
-##  1st Qu.:2.446   1st Qu.:3.110   1st Qu.:20.00   1st Qu.:20.00   1st Qu.:21.00  
-##  Median :2.813   Median :3.321   Median :23.00   Median :23.00   Median :23.00  
-##  Mean   :2.815   Mean   :3.342   Mean   :22.59   Mean   :23.21   Mean   :23.12  
-##  3rd Qu.:3.207   3rd Qu.:3.589   3rd Qu.:25.00   3rd Qu.:26.00   3rd Qu.:25.00  
-##  Max.   :4.000   Max.   :4.260   Max.   :34.00   Max.   :36.00   Max.   :33.00  
-##                                  NA&#39;s   :42      NA&#39;s   :42      NA&#39;s   :42     
-##     mathscr            male        calculus          attexc      
-##  Min.   : 0.000   Min.   :0.0   Min.   :0.0000   Min.   :0.0000  
-##  1st Qu.: 7.000   1st Qu.:0.0   1st Qu.:0.0000   1st Qu.:0.0000  
-##  Median : 8.000   Median :0.5   Median :1.0000   Median :0.0000  
-##  Mean   : 7.875   Mean   :0.5   Mean   :0.6764   Mean   :0.2967  
-##  3rd Qu.: 9.000   3rd Qu.:1.0   3rd Qu.:1.0000   3rd Qu.:1.0000  
-##  Max.   :10.000   Max.   :1.0   Max.   :1.0000   Max.   :1.0000  
-##                                                                  
-##     attgood          fathcoll         mothcoll          score      
-##  Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   Min.   :19.53  
-##  1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:64.06  
-##  Median :1.0000   Median :1.0000   Median :1.0000   Median :74.22  
-##  Mean   :0.5864   Mean   :0.5245   Mean   :0.6285   Mean   :72.60  
-##  3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:82.79  
-##  Max.   :1.0000   Max.   :1.0000   Max.   :1.0000   Max.   :98.44  
+<pre><code>##       age             work            study           econhs           colgpa     
+##  Min.   :18.00   Min.   : 0.000   Min.   : 0.00   Min.   :0.0000   Min.   :0.875  
+##  1st Qu.:19.00   1st Qu.: 0.000   1st Qu.: 8.50   1st Qu.:0.0000   1st Qu.:2.446  
+##  Median :19.00   Median : 8.000   Median :12.00   Median :0.0000   Median :2.813  
+##  Mean   :19.41   Mean   : 8.626   Mean   :13.92   Mean   :0.3703   Mean   :2.815  
+##  3rd Qu.:20.00   3rd Qu.:15.000   3rd Qu.:18.00   3rd Qu.:1.0000   3rd Qu.:3.207  
+##  Max.   :29.00   Max.   :37.500   Max.   :50.00   Max.   :1.0000   Max.   :4.000  
+##                                                                                   
+##      hsgpa           acteng          actmth           act           mathscr      
+##  Min.   :2.355   Min.   :12.00   Min.   :12.00   Min.   :13.00   Min.   : 0.000  
+##  1st Qu.:3.110   1st Qu.:20.00   1st Qu.:20.00   1st Qu.:21.00   1st Qu.: 7.000  
+##  Median :3.321   Median :23.00   Median :23.00   Median :23.00   Median : 8.000  
+##  Mean   :3.342   Mean   :22.59   Mean   :23.21   Mean   :23.12   Mean   : 7.875  
+##  3rd Qu.:3.589   3rd Qu.:25.00   3rd Qu.:26.00   3rd Qu.:25.00   3rd Qu.: 9.000  
+##  Max.   :4.260   Max.   :34.00   Max.   :36.00   Max.   :33.00   Max.   :10.000  
+##                  NA&#39;s   :42      NA&#39;s   :42      NA&#39;s   :42                      
+##       male        calculus          attexc          attgood          fathcoll     
+##  Min.   :0.0   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000  
+##  1st Qu.:0.0   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000  
+##  Median :0.5   Median :1.0000   Median :0.0000   Median :1.0000   Median :1.0000  
+##  Mean   :0.5   Mean   :0.6764   Mean   :0.2967   Mean   :0.5864   Mean   :0.5245  
+##  3rd Qu.:1.0   3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:1.0000  
+##  Max.   :1.0   Max.   :1.0000   Max.   :1.0000   Max.   :1.0000   Max.   :1.0000  
+##                                                                                   
+##     mothcoll          score      
+##  Min.   :0.0000   Min.   :19.53  
+##  1st Qu.:0.0000   1st Qu.:64.06  
+##  Median :1.0000   Median :74.22  
+##  Mean   :0.6285   Mean   :72.60  
+##  3rd Qu.:1.0000   3rd Qu.:82.79  
+##  Max.   :1.0000   Max.   :98.44  
 ## </code></pre>
 <p>Based on the information from this data set, we want to answer the question: “What factors are significantly associated with a student’s score in a college economics course?”. To do this, we will try to find how the variable <code>score</code>, i.e., the final score in an economics course measured as a percentage, can be “explained” by other variables. Linear regression is a helpful statistical model to answer this question.</p>
 <p>The data set contains some missing data. In this chapter, we will only analyze the observations that are complete. Therefore, we will discard the data points with missing fields and gather them in a new data set <code>econ</code>.</p>
