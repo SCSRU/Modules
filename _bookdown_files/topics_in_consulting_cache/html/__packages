@@ -13,3 +13,12 @@ caret
 geesmv
 nlme
 emdbook
+randomForest
+bookdown
+pwr
+TOSTER
+foreach
+iterators
+doParallel
+snow
+doSNOW

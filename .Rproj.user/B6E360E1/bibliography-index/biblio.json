@@ -135,6 +135,75 @@
         {
             "author": [
                 {
+                    "family": "Cohen",
+                    "given": "Jacob"
+                }
+            ],
+            "id": "cohen",
+            "issued": {
+                "date-parts": [
+                    [
+                        2013
+                    ]
+                ]
+            },
+            "publisher": "Routledge",
+            "title": "Statistical power analysis for the behavioral sciences",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "family": "Wasserstein",
+                    "given": "Ronald L"
+                },
+                {
+                    "family": "Lazar",
+                    "given": "Nicole A"
+                }
+            ],
+            "id": "wasserstein.lazar",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016
+                    ]
+                ]
+            },
+            "publisher": "Taylor & Francis",
+            "title": "The ASA statement on p-values: Context, process, and purpose",
+            "title-short": "The ASA statement on p-values",
+            "type": ""
+        },
+        {
+            "author": [
+                {
+                    "family": "Walker",
+                    "given": "Esteban"
+                },
+                {
+                    "family": "Nowacki",
+                    "given": "Amy S"
+                }
+            ],
+            "container-title": "Journal of General Internal Medicine",
+            "id": "walker.nowacki",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2011
+                    ]
+                ]
+            },
+            "page": "192-196",
+            "title": "Understanding equivalence and noninferiority testing",
+            "type": "article-journal",
+            "volume": "26"
+        },
+        {
+            "author": [
+                {
                     "family": "Diggle",
                     "given": "Peter J."
                 },
