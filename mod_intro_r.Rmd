@@ -10,7 +10,7 @@
 
 [R](https://www.r-project.org/) is a software environment for statistical computing and graphics. Unlike other statistical software, R is free. Besides built-in functions, additional packages for solving many different statistical or application problems are made and maintained by contributors around the world. This makes R an attractive and popular statistical tool nowadays.
 
-[RStudio](https://rstudio.com/products/rstudio/) is an integrated development environment ([IDE](https://en.wikipedia.org/wiki/Integrated_development_environment)) for R. It is easier to work with R using RStudio. 
+[RStudio](https://rstudio.com/products/rstudio/) is an integrated development environment ([IDE](https://en.wikipedia.org/wiki/Integrated_development_environment)) for R. It is easier to work with R using RStudio.
 
 ```{r rintro-rstudio, fig.cap="The RStudio interface", echo=FALSE, fig.align='center'}
 knitr::include_graphics("data/images/rintro-rstudio.png")
@@ -18,9 +18,9 @@ knitr::include_graphics("data/images/rintro-rstudio.png")
 
 The interface of RStudio shown in Figure \@ref(fig:rintro-rstudio) contains four panes:
 
-- [Source Editor], 
-- Console, 
-- Workspace Browser, and 
+- [Source Editor],
+- Console,
+- Workspace Browser, and
 - Files (and Plots, Packages, Help, and Viewer).
 
 The four panes can be positioned differently based on personal preference. Figure \@ref(fig:rintro-rstudio) shows the default position. In this section, we will mainly be using the Source Editor and Console panes. Readers are encouraged to refer to other [resources](https://robwschlegel.github.io/Intro_R_Workshop/rstudio.html#the-panes-of-rstudio) on the use of other panes.
