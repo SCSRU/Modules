@@ -19,6 +19,7 @@ As a developer, this repo can be used very similar to that done previously. Howe
 4. Push changes.
 - Github actions will check if there are any issues. You can look at the changes directly on that tab, or create a PR to merge branch with dev. 
   - A PR will use the terms "All checks have passed", "All checks failed", or "Some checks haven't completed yet" depending on the scenario.
+  
 In both actions and the PR, no errors will result in a green checkmark and a failure in a red x. 
   - If the error is a missing package (i.e. not in renv) you will get an error in 'Build site' step saying "Error in library(\<package\>) : there is no package called '\<package\>' ". 
   - Another possible error in the 'Run r-lib/actions/setup-renv@v2' step. It says "Error: failed to retrieve package '\<package\>@\<version\>' ". This generally means the server cannot locate the package. Downgrading the package version is often the simpliest solution.
