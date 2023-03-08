@@ -38,7 +38,7 @@ jobs:
       - name: Build site
         run: bookdown::render_book("index.Rmd", quiet = TRUE)
         shell: Rscript {0}
-          name: _book
+          name: _book 
 
       - name: Deploy to GitHub pages 🚀
         # if: github.event_name != 'pull_request'
