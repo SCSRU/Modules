@@ -537,15 +537,15 @@ div.csl-indent {
 <li><p>Fork the project to your own GitHub account. That is, you’ve now made a complete copy of the project that you can modify however you want without affecting the original. This fork must be kept private (i.e., invisible to the outside world) for the duration of the course.</p></li>
 <li><p>While it is possible to edit the fork directly from GitHub, I strongly recommend against this as it’s extremely inconvenient. Instead, make a <a href="https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository">local copy</a> of the fork on your computer.</p></li>
 <li><p>In order to make changes to any Git repo, it is always recommended that you create a new <a href="https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell">branch</a> for this first. That is, assume that the stable version of the repo is on the <code>master</code> branch. Then from the command line, you can do the following:</p>
-<div class="sourceCode" id="cb482"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb482-1"><a href="git-and-github-a-quick-tutorial.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make sure you are on the master branch        </span></span>
-<span id="cb482-2"><a href="git-and-github-a-quick-tutorial.html#cb482-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout master</span>
-<span id="cb482-3"><a href="git-and-github-a-quick-tutorial.html#cb482-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create new branch</span></span>
-<span id="cb482-4"><a href="git-and-github-a-quick-tutorial.html#cb482-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> mlysy-devel</span></code></pre></div>
+<div class="sourceCode" id="cb480"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb480-1"><a href="git-and-github-a-quick-tutorial.html#cb480-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make sure you are on the master branch        </span></span>
+<span id="cb480-2"><a href="git-and-github-a-quick-tutorial.html#cb480-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout master</span>
+<span id="cb480-3"><a href="git-and-github-a-quick-tutorial.html#cb480-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create new branch</span></span>
+<span id="cb480-4"><a href="git-and-github-a-quick-tutorial.html#cb480-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> mlysy-devel</span></code></pre></div>
 <p>This will copy everything from <code>master</code> to a new branch called <code>mlysy-devel</code>. Now I can make whatever changes I want to <code>mlysy-devel</code>.</p></li>
 <li><p>Commit your desired changes to the new branch. When you are ready to send them back to the main project repo, follow these steps:</p>
 <ol style="list-style-type: decimal">
 <li><p>Push your local branch to your remote GitHub fork:</p>
-<div class="sourceCode" id="cb483"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb483-1"><a href="git-and-github-a-quick-tutorial.html#cb483-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin mlysy-devel</span></code></pre></div></li>
+<div class="sourceCode" id="cb481"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb481-1"><a href="git-and-github-a-quick-tutorial.html#cb481-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin mlysy-devel</span></code></pre></div></li>
 <li><p>Create a GitHub <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork">pull request</a> via the button on your fork’s page.</p></li>
 </ol>
 <p>When this is done, I will be able to inspect your changes and make suggestions before merging your work into the project-wide stable branch <code>master</code>.</p></li>
