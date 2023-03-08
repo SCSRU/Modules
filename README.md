@@ -3,6 +3,7 @@ Welcome!
 This is the test version of automating the SCCRU book publishing process.
 
 As a developer, this repo can be used very similar to that done previously. However, since there are a few process changes, I have outlined the steps below.
+
 0. Pull the project for github.
 - I also recommend pulling the library enviroment in R to ensure a smoother transistion later. This is done with 'renv::restore()', which get the libraries and versions last used. This may be duplicative after pulling, but for now, not a bad practice. 
 1. (As before) Write or edit a the modules using the .Rmd files. 
