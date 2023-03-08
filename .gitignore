@@ -1,31 +1,27 @@
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
+# --- contents of .gitignore ---
 
-# # --- contents of .gitignore ---
+# R
+*.Rhistory
+*.Rapp.history
+inst/doc
+vignettes/.build.timestamp
+.Rproj.user/
+.Rprofile
 
-# # R
-# *.Rhistory
-# *.Rapp.history
-# inst/doc
-# vignettes/.build.timestamp
-# .Rproj.user
+# C++
+*.o
+*.so
+*.dll
 
-# # C++
-# *.o
-# *.so
-# *.dll
+# macOS
+# osx
+*.DS_Store
 
-# # macOS
-# # osx
-# *.DS_Store
+# bookdown
+_book/
+_bookdown_files/
+search_index.json
 
-# # bookdown
-# _book
-# _bookdown_files
-# search_index.json
-
-# # Python
-# __pycache__
-# .ipynb_checkpoints
+# Python
+__pycache__
+.ipynb_checkpoints
