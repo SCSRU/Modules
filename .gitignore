@@ -18,8 +18,8 @@ vignettes/.build.timestamp
 *.DS_Store
 
 # bookdown
-_book
-_bookdown_files
+_book/
+_bookdown_files/
 search_index.json
 
 # Python
