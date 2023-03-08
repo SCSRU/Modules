@@ -8,18 +8,6 @@
 
 ## R and RStudio
 
-
-```{r}
-library(randomForest)
-
-ind <- sample(2,nrow(iris),replace=TRUE,prob=c(0.7,0.3))
-trainData <- iris[ind==1,]
-testData <- iris[ind==2,]
-
-iris_rf <- randomForest(Species~.,data=trainData,ntree=100,proximity=TRUE)
-table(predict(iris_rf),trainData$Species)
-```
-
 [R](https://www.r-project.org/) is a software environment for statistical computing and graphics. Unlike other statistical software, R is free. Besides built-in functions, additional packages for solving many different statistical or application problems are made and maintained by contributors around the world. This makes R an attractive and popular statistical tool nowadays.
 
 [RStudio](https://rstudio.com/products/rstudio/) is an integrated development environment ([IDE](https://en.wikipedia.org/wiki/Integrated_development_environment)) for R. It is easier to work with R using RStudio.
