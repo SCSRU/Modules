@@ -637,6 +637,12 @@ To apply random forest, we assume that the observations are independent and ther
 ### Examples Using R 
 
 To show how random forests differ from regression, we will simulate a set of data.
+```{r, echo=F}
+  # Edit: We need RF to run this without errors / warnings
+  #   Since needed, but package is only suggestion, not dependency
+  # Hence I just call the package here - Jeremy
+  library(randomForest)
+```
 
 ```{r nonpram-rf-test-data, fig.cap="Scatterplot of simulated data showing no linear relationship.", cache=TRUE}
 set.seed(440)

@@ -1,13 +1,28 @@
 Welcome! 
 
-This is my test book using bookdown and renv. As a developer, these are your steps:
-1. Make updates on your local version.
-  - Ensure that packages are all included in the environment 
-    - Now, when in this package, loading packages (for example, 'install.packages("<package>")') will call it as renv needs it ('renv::install("<package>")'). You can use either. Eventually you need to ensure it is in the lock file when submitting to github. This can be done with 'renv::snapshot()' to check all current libraries or you can look up more information on this package to just submit one library. You can also manually change the information in the lockfile ('renv.lock'). I also recommend use of 'renv:restore()' which loads all packages in the lockfile, ensuring you are not doing anything you haven't made available.
-    - One caveat, be careful on only updating the libraries you need. Sometimes there are reasons to downgrade a package for the server (i.e. a version is not available to the github server), and so updating everything to the most current version can result in previously unencountered failures.
-  - Check if things are locally working with 'bookdown::serve_book()'.
-2. Push changes and with no problems, merge with dev. Ensure none the github actions don't fail and fix any issues. Actions will show if it will successfully publish, but will not publish it (only main is published). The merge with dev may happen locally or online depending on the guidelines determined.
-4. Submit a PR for dev to main. Be sure to explain what it does and I also recommend specifying reviewers if possible. 
+This is the test version of automating the SCCRU book publishing process.
 
+As a developer, this repo can be used very similar to that done previously. However, since there are a few process changes, I have outlined the steps below.
 
-When approved and merged to main, actions will check and publish it. Note, it may take a few minutes, so don't worry if changes are not instantly displayed.
+0. Pull the project for github.
+- I also recommend pulling the library enviroment in R to ensure a smoother transistion later. This is done with 'renv::restore()', which get the libraries and versions last used. This may be duplicative after pulling, but for now, not a bad practice. 
+1. (As before) Write or edit a the modules using the .Rmd files. 
+- I recommend using a new github branch for your changes for several reasons, but importantly, it will aid in knowing if your changes have any issues when publishing the book online.
+- Be sure to include references in the 'references.bib' file as well as ensuring any new modules are noted in the '_bookdown.yml' file.
+2. Include any necessary packages in the renv environment. 
+- If the programming was done in the project, commands such as 'install.packages("\<package\>")' will call renv as needed, for example 'renv::install("\<package\>")'. 
+- You also need to save the packages to the 'renv.lock' file. This is done with 'renv::snapshot()'. 
+- I recommend only updating the packages you need as some packages are downgraded for github server reasons (when you run snapshot it will confirm if you want to upgrade the packages). Additionally, you can modify the lock file directly.
+3. Compile and check the book changes work as desired.
+- This is done locally such through commands like 'bookdown::serve_book()'.
+- If a package was not included in renv, you will get an error that gives the file and location then states "Error in library(\<package\>) : there is no package called '\<package\>' "
+4. Push changes.
+- Github actions will check if there are any issues. You can look at the changes directly on that tab, or create a PR to merge branch with dev. In both actions and the PR, a green checkmark is given if there are not errors and a red x is given is there is at least one failure.
+  - If the error is a missing package (i.e. not in renv) you will get an error in 'Build site' step saying "Error in library(\<package\>) : there is no package called '\<package\>' ". 
+  - Another possible error in the 'Run r-lib/actions/setup-renv@v2' step. It says "Error: failed to retrieve package '\<package\>@\<version\>' ". This generally means the server cannot locate the package. Downgrading the package version is often the simpliest solution.
+- Merge with dev once the issues are clean. Note this will not change the published book.
+5. Submit a PR for dev to main. 
+- In the real case, this will require approval from some specified number of people, but for now, this feature is disabled so you can practice.
+- Once dev is merged to main, github actions will check and publish. You can verify the progress in the actions page. After completion, if you go to the website and don't notice changes, be sure to refresh the page.
+
+Let me know if you encounter errors or ways we could make the instructions clearer. I tried figures but it seemed to be more complex than was needed, but happy to add some if it helps.
