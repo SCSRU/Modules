@@ -28,17 +28,16 @@ jobs:
 
       - uses: r-lib/actions/setup-renv@v2
 
-      - name: Cache bookdown results
-        uses: actions/cache@v3
-        with:
-          path: _bookdown_files
-          key: bookdown-${{ hashFiles('**/*Rmd') }}
-          restore-keys: bookdown-
+      # - name: Cache bookdown results
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: _bookdown_files
+      #     key: bookdown-${{ hashFiles('**/*Rmd') }}
+      #     restore-keys: bookdown-
 
-      - name: Build site
-        run: bookdown::render_book("index.Rmd", quiet = TRUE)
-        shell: Rscript {0}
-          name: _book
+      # - name: Build site
+      #   run: bookdown::render_book("index.Rmd", quiet = TRUE)
+      #   shell: Rscript {0}
 
       - name: Deploy to GitHub pages 🚀
         # if: github.event_name != 'pull_request'
