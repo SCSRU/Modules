@@ -1,0 +1,28 @@
+# Introduction to Fake Stuff
+
+```{r, include = F}
+knitr::opts_chunk$set(cache = T)
+```
+
+```{r, echo = F, warning = F, message = F}
+source("common_functions.R")
+library(bookdown)
+# require("styler")
+# styler::style_file()
+```
+
+\newpage
+\setstretch{1.05}
+
+*Author: Jeremy VanderDoes*
+
+*Last Updated: March 16, 2023*
+
+## Introduction
+
+Let's test some things!
+
+```{r}
+  library(fdaACF)
+  plot(t(fdaACF::elec_prices[1,]))
+```
