@@ -7,9 +7,9 @@ As a developer, this repo can be used very similar to that done previously. Howe
 **1. Pull the project**
 - This means you need to update/clone the Github repo onto your computer to make changes from GitHub. 
 For the first time working with this project, there are several ways to do this. After opening the github page ("https://github.com/jrvanderdoes/Test_SCCRBook/tree/grcetmpk-dev"): 
-  1. If you have git installed on your machine, right click in the desired location and open git bash. Type "git clone \<URL\>" where \<URL\> indicates the the https url retrieved on the github page, clicking the green "\<\> Code" button. This URL should be "https://github.com/jrvanderdoes/Test_SCCRBook.git".
-  2. If you have git installed on your machine, right click in the desired location and open git GUI. Select "Clone Existing Repository" and enter the git \<URL\> in Source Location. This \<URL\> is retrieved on the github page, by clicking the green "\<\> Code" button ("https://github.com/jrvanderdoes/Test_SCCRBook.git"). Enter your desired location on the computer in Target Directory.
-  3. On the github page, click the "\<\> Code" button and select "Open with Github Desktop"
+  1. If you have git installed on your machine, right click in the desired location and open git bash. Type 'git clone \<URL\>' where \<URL\> indicates the the https url retrieved on the github page, clicking the green '\<\> Code' button. This URL should be 'https://github.com/jrvanderdoes/Test_SCCRBook.git'.
+  2. If you have git installed on your machine, right click in the desired location and open git GUI. Select 'Clone Existing Repository' and enter the git \<URL\> in Source Location. This \<URL\> is retrieved on the github page, by clicking the green '\<\> Code' button ('https://github.com/jrvanderdoes/Test_SCCRBook.git'). Enter your desired location on the computer in Target Directory.
+  3. On the github page, click the '\<\> Code' button and select 'Open with Github Desktop'.
 - After cloning it, whenever you want to work on the project, be sure to pull the project to work on the newest version. This is done (after installing git on your machine, https://git-scm.com/downloads ):
   1. In the project folder, right click and open either git bash or git GUI. Stage, commit, and push all changes (Note you cannot push to main). If you are unfamiliar with git, please reach out!
   2. Using Rstudio. Currently I do not have it setup on this test computer, so I will add to this readme later with detailed instructions.
