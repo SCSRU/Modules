@@ -23,6 +23,5 @@ library(bookdown)
 Let's test some things!
 
 ```{r}
-  library(fdaACF)
-  plot(t(fdaACF::elec_prices[1,]))
+  babynames::births
 ```
