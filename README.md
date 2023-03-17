@@ -11,7 +11,7 @@ For the first time working with this project, there are several ways to do this.
   2. If you have git installed on your machine, right click in the desired location and open git GUI. Select 'Clone Existing Repository' and enter the git \<URL\> in Source Location. This \<URL\> is retrieved on the github page, by clicking the green '\<\> Code' button ('https://github.com/jrvanderdoes/Test_SCCRBook.git'). Enter your desired location on the computer in Target Directory.
   3. On the github page, click the '\<\> Code' button and select 'Open with Github Desktop'.
 - After cloning it, whenever you want to work on the project, be sure to pull the project to work on the newest version. This is done (after installing git on your machine, https://git-scm.com/downloads ):
-  1. In the project folder, right click and open either git bash or git GUI. Stage, commit, and push all changes (Note you cannot push to main). If you are unfamiliar with git, please reach out!
+  1. In the project folder, right click and open either git bash or git GUI. Use 'git pull' in bash. If you are unfamiliar with git, please reach out!
   2. Using Rstudio. Currently I do not have it setup on this test computer, so I will add to this readme later with detailed instructions.
  
 **2. Setup Project**
@@ -68,25 +68,26 @@ You can just use 'install.packages("\<package\>")' which will call the renv comm
 
 **6. Push to GitHub**
 - This step pushes all changes to GitHub.
+- Here you need to push all your local changes to the remote GitHub repo. Use Git Bash or Git GUI, reach if you are new to Git. Also note that you can push to any branch except main, pushes to main will fail!
 - Upon push, GitHub actions will check to see if there are any issues in creating the book on the server. You can monitor the progress in the Actions tab or see the result if the branch is part of a pull request.
-- Exploring the steps of the action, a checkmark indicates a passed step while an x indicates a failure. Looking at the steps, the following errors are possible.
+- Exploring the steps of the action, a checkmark indicates a passed step while an X indicates a failure. Looking at the steps, the following errors are possible.
   - Setup R Enviroment: An error in this step likely requires upgrading or downgrading a package.
-  - Build Site: An error in this step likely indicates that you forgot to include the package in the 'renv.lock' file. Run 'renv::snapshot()' in the local setting and re-push.
+  - Build Site: An error in this step likely indicates that you forgot to include the package in the 'renv.lock' file. Run 'renv::snapshot()' in the local environment and re-push.
  
   <p align="center"> <img src="./readme_files/actions_buildSiteError.PNG" alt="actions build site error" width="400"/> </p>
  
-- Note, this will not change the published book.
+- Note, even on no errors, pushing at this stage will not change the published book.
 
 **7. Merge with Dev**
 - This step consolidates work by merging your branch into dev.
 - It is best practice to merge your branch with the dev branch using a pull request. Although it doesn't need to be approved at this step, using a PR will remind you if the checks fail. 
 - Merging may require you making changes and re-pushing to GitHub. Any new pushes on the branch will automatically be included in the merge.
-- Merge when you have no errors and test the results.
+- Merge when you have no errors and test the results. Again, this will not change the published book.
 
 **8. Merge dev to main**
 - This step will merge all changes in dev to main.
 - (In the future) This will require approval from some people, so be sure to include them in the PR and add informative comments on the PR.
 - Once dev is merged to main, github actions will check the code again and publish the results to the book. 
-- You can verify the progress in the actions page. After completion, if you go to the website and don't notice changes, be sure to refresh the page.
+- You can verify the progress in the actions page. After completion, if you go to the website and don't notice changes, be sure to refresh the page. (Question, do we have a website URL we want to host this at? I can change it to match.)
 
 Let me know if you encounter errors or ways we could make the instructions clearer.
