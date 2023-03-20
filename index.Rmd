@@ -31,9 +31,11 @@ For questions regarding the materials of this book, please [contact us](https://
 
 - Trang Bui
 - Meixi Chen
+- Luke Hagar
 - Kelly Ramsay
 - Yuliang Shi
 - Grace Tompkins
+- Jeremy VanderDoes
 - Feiyu Zhu
 
 ## Editors {-}
