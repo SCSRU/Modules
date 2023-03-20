@@ -68,7 +68,7 @@ You can just use 'install.packages("\<package\>")' which will call the renv comm
 **6. Push to GitHub**
 - This step pushes all changes to GitHub.
 - Here you need to push all your local changes to the remote GitHub repo. Use Git Bash, Git GUI, or RStudio and reach if you are new to Git.
-  - If you use git bash, on your branch, you stage changes ('git add .' will stage all changes), commit ('git commit -m "\<message\>" ' will commit changes with some message from you), and push ('git push' will push changes to GitHub). There may be a comment about creating a branch online when you push, but the code will be given if needed (see next figure). These steps will get your code online, where you can PR into dev.
+  - If you use git bash, on your branch, you stage changes ('git add .' will stage all changes), commit ('git commit -m "\<message\>" ' will commit changes with some message from you), and push ('git push' will push changes to GitHub). There may be a comment about creating a branch online when you push, but the code will be given if needed (see next figure for pushing a branch I made locally called 'fixReadme'). These steps will get your code online, where you can PR into dev.
  
   <p align="center"> <img src="./readme_files/git_push_error.png" alt="git push error" width="400"/> </p>
 
