@@ -73,7 +73,7 @@ You can just use 'install.packages("\<package\>")' which will call the renv comm
   <p align="center"> <img src="./readme_files/git_push_error.png" alt="git push error" width="400"/> </p>
 
   - If you use git GUI, you have several options, but generally click file icons from the top part to bring them into the staged area, write something in the commit message section and press commit, then press push.
-  - Also note on your computer, you can push to any branch *except* main.Pushes to main will fail! (But PRs to main will be allowed from any branch. However, they likely won't be approved so be sure to go to dev).
+  - Also note on your computer, you can push to any branch *except* main. Pushes to main will fail! (But PRs to main will be allowed from any branch. However, they likely won't be approved so be sure to go to dev).
 - Upon push, GitHub actions will check to see if there are any issues in creating the book on the server. You can monitor the progress in the Actions tab or see the result if the branch is part of a pull request.
 - Exploring the steps of the action, a checkmark indicates a passed step while an X indicates a failure. Looking at the steps, the following errors are possible.
   - Setup R Enviroment: An error in this step likely requires upgrading or downgrading a package.
