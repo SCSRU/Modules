@@ -68,7 +68,10 @@ You can just use 'install.packages("\<package\>")' which will call the renv comm
 **6. Push to GitHub**
 - This step pushes all changes to GitHub.
 - Here you need to push all your local changes to the remote GitHub repo. Use Git Bash, Git GUI, or RStudio and reach if you are new to Git.
-  - If you use git bash, on your branch, you stage changes ('git add .' will stage all changes), commit ('git commit -m "\<message\>" ' will commit changes with some message from you), and push ('git push' will push changes to GitHub). There may be a comment about creating a branch online when you push, but the code will be given if needed. These steps will get your code online, where you can PR into dev.
+  - If you use git bash, on your branch, you stage changes ('git add .' will stage all changes), commit ('git commit -m "\<message\>" ' will commit changes with some message from you), and push ('git push' will push changes to GitHub). There may be a comment about creating a branch online when you push, but the code will be given if needed (see next figure). These steps will get your code online, where you can PR into dev.
+ 
+  <p align="center"> <img src="./readme_files/git_push_error.png" alt="git push error" width="400"/> </p>
+
   - If you use git GUI, you have several options, but generally click file icons from the top part to bring them into the staged area, write something in the commit message section and press commit, then press push.
   - Also note on your computer, you can push to any branch *except* main.Pushes to main will fail! (But PRs to main will be allowed from any branch. However, they likely won't be approved so be sure to go to dev).
 - Upon push, GitHub actions will check to see if there are any issues in creating the book on the server. You can monitor the progress in the Actions tab or see the result if the branch is part of a pull request.
