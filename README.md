@@ -67,7 +67,13 @@ You can just use 'install.packages("\<package\>")' which will call the renv comm
 
 **6. Push to GitHub**
 - This step pushes all changes to GitHub.
-- Here you need to push all your local changes to the remote GitHub repo. Use Git Bash, Git GUI, or RStudio and reach if you are new to Git. Also note that you can push to any branch except main, pushes to main will fail!
+- Here you need to push all your local changes to the remote GitHub repo. Use Git Bash, Git GUI, or RStudio and reach if you are new to Git.
+  - If you use git bash, on your branch, you stage changes ('git add .' will stage all changes), commit ('git commit -m "\<message\>" ' will commit changes with some message from you), and push ('git push' will push changes to GitHub). There may be a comment about creating a branch online when you push, but the code will be given if needed (see next figure for pushing a branch I made locally called 'fixReadme'). These steps will get your code online, where you can PR into dev.
+ 
+  <p align="center"> <img src="./readme_files/git_push_error.png" alt="git push error" width="400"/> </p>
+
+  - If you use git GUI, you have several options, but generally click file icons from the top part to bring them into the staged area, write something in the commit message section and press commit, then press push.
+  - Also note on your computer, you can push to any branch *except* main.Pushes to main will fail! (But PRs to main will be allowed from any branch. However, they likely won't be approved so be sure to go to dev).
 - Upon push, GitHub actions will check to see if there are any issues in creating the book on the server. You can monitor the progress in the Actions tab or see the result if the branch is part of a pull request.
 - Exploring the steps of the action, a checkmark indicates a passed step while an X indicates a failure. Looking at the steps, the following errors are possible.
   - Setup R Enviroment: An error in this step likely requires upgrading or downgrading a package.
@@ -80,6 +86,15 @@ You can just use 'install.packages("\<package\>")' which will call the renv comm
 **7. Merge with Dev**
 - This step consolidates work by merging your branch into dev.
 - It is best practice to merge your branch with the dev branch using a pull request. Although it doesn't need to be approved at this step, using a PR will remind you if the checks fail. 
+  - A check in progress looks like the following on a PR.
+
+  <p align="center"> <img src="./readme_files/github_check_in_progress.png" alt="github PR check in progress" width="400"/> </p>
+
+  - Passing the tests will get you a result like the following.
+
+  <p align="center"> <img src="./readme_files/github_check_success.png" alt="github PR check success" width="400"/> </p>
+
+  - (I will add a failure example soon)
 - Merging may require you making changes and re-pushing to GitHub. Any new pushes on the branch will automatically be included in the merge.
 - Merge when you have no errors and test the results. Again, this will not change the published book.
 
