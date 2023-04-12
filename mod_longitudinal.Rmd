@@ -2,11 +2,11 @@
 
 *Author: Grace Tompkins*
 
-*Last Updated: March 25, 2022*
+*Last Updated: August 10, 2022*
 
 --- 
 
-## Introduction
+## Introduction {#long-intro}
 
 ```{r cache-chunk, include = F}
 knitr::opts_chunk$set(cache = T)
@@ -22,7 +22,7 @@ Longitudinal studies are studies in which we follow and take repeated measuremen
 
 While longitudinal studies can either be prospective (subjects are followed forward in time) or retrospective (measurements on subjects are extracted historically), prospective studies tend to be preferred. This is because in retrospective studies there exists [recall bias](https://en.wikipedia.org/wiki/Recall_bias), where subjects inaccurately remember past events, which can impact the data collected and consequently the resultant analysis and findings [@diggle02].
 
-A challenge of longitudinal data is that observations taken within each subject are correlated. For example, weather patterns tend to be correlated at a given location, in the sense that if today is rainy then we are more likely to have a rainy day tomorrow than a sunny day. In general, even when we have a great amount of time separation between observations, the correlation between a pair of responses on the same subject rarely approaches zero [@fitzmaurice11]. We refer to the correlation of responses within the same individual as the **intra-subject correlation**. This implies that our typical statistical modeling tools which assume independence among observations are inappropriate for this type of data. Methods that account for intra-subject correlation will be discussed further in the following sections, and include linear models, linear mixed effect (LME) models, generalized linear mixed effects models (GLMMs), and generalized estimating equations (GEEs). 
+A challenge of longitudinal data is that observations taken within each subject are correlated. For example, weather patterns tend to be correlated at a given location, in the sense that if today is rainy then we are more likely to have a rainy day tomorrow than a sunny day. In general, even when we have a great amount of time separation between observations, the correlation between a pair of responses on the same subject rarely approaches zero [@fitzmaurice11]. We refer to the correlation of responses within the same individual as the **intra-subject correlation**. This implies that our typical statistical modeling tools which assume independence among observations are inappropriate for this type of data. Methods that account for intra-subject correlation will be discussed further in the following sections, and include linear models (Section \@ref(long-linear)), linear mixed effect (LME) models (Section \@ref(long-linearmixed)),  and generalized linear mixed-effects models (GLMMs) (Section \@ref(long-glmm)). 
 
 While longitudinal analysis is often used in the context of health data involving repeated measurements from patients, it can also be found in a variety of disciplines, including (but not limited to) [economics](https://www150.statcan.gc.ca/n1/en/pub/11f0019m/11f0019m2004227-eng.pdf?st=aVJbOo9q), [finance](https://www.sciencedirect.com/science/article/pii/S0167487018301648?casa_token=Zu4t8ubyZPAAAAAA:geM4RGeihOj0gGWgPeZ_xnNBB2ZA3nnOeYzlvSHHuCnEbbd9mmi-5iuR7ysEh_6Zm5_uaatnhKB_), [environmental studies](https://www.mdpi.com/2071-1050/9/6/913), and [education](https://www.tandfonline.com/doi/abs/10.1080/00220973.1997.9943456?casa_token=KBEjZbk9xRAAAAAA:INEZk1fuIr0H59P9fl0ykz5qWKxzXnR1PZ_6H0MHwvgCnjXWC8D0A5xbLadXutbsUJx3lvKF1yXj5QE). 
 
@@ -30,7 +30,7 @@ A working example of a dentistry data set with a continuous outcome will be carr
 
 ### List of R packages Used {#long-rpackages}
 
-In this chapter, we will be using the packages `r cran_link("geesmv")`, `r cran_link("nmle")`, `r cran_link("ggplot2")`, `r cran_link("emdbook")`, `r cran_link("lattice")`.
+In this chapter, we will be using the packages `r cran_link("geesmv")`, `r cran_link("nmle")`, `r cran_link("ggplot2")`, `r cran_link("emdbook")`, `r cran_link("lattice")`, `r cran_link("lme4")`,`r cran_link("dplyr")`, `r cran_link("HSAUR2")`, `r cran_link("performance")`.
 
 
 ```{r long-library, warning=FALSE, message=FALSE}
@@ -39,6 +39,10 @@ library(nlme)
 library(ggplot2)
 library(emdbook)
 library(lattice)
+library(lme4)
+library(dplyr)
+library(HSAUR2)
+library(performance)
 ```
 
 ### Motivating Example {#long-motivating}
@@ -988,6 +992,8 @@ Y_{ij} &= \bm{x}_{ij}^T\bm{\beta} + \bm{b}_{0,i} + \epsilon_{ij} \\
 $$
 where $Y_{ij}$ is the orthodontic measurement of subject $i$ at occasion $j$, $z_{i}$ is the indicator for if subject $i$ is male or not and $t_{ij}$ is a continuous time variable representing the age of subject $i$ at occasion $j$. In this model, the population average profile is assumed to be linear, and $\beta_2$ describes the change in mean response over time. The random intercept, $b_{0,i}$ represents the subject's individual deviation from the population average trend after accounting for the time effects and controlling for sex. We can think of the random slope model as subjects having varying "baseline" orthodontic measurements. For further details, see Chapter 8.1 in [@fitzmaurice11].
 
+We can interpret $\beta_1$ and $\beta_2$ as the expected change in the outcome for a one unit increase in the covariate, controlling for the other covariates in the mode.
+
 ### Random Intercept and Slope Models {#long-linearmixed-randominterceptslope}
 
 We can also consider random slopes along with the random intercepts in LME models. In this model, we assume that the response (or outcome) of interest varies not only at baseline (the intercept) but also in terms of the rate of change over time (the slope). We also generalize this to incorporate additional randomly varying regression coefficients that allow the random effects to depend on a set of covariates. That is, we can consider a collection of covariates for the random effects, $Z$, that are typically a subset of our fixed effects $X$. 
@@ -1079,7 +1085,7 @@ We can use both ML and REML to perform LRT comparing nested random effects struc
 
 ### Modelling in R {#long-linearmixed-R}
 
-Linear mixed effects models can fit in R by using the `lme()` function from the  `r cran_link("nlme")`  library. This function has a number of parameters, including:
+Linear mixed-effects models can fit in R by using the `lme()` function from the  `r cran_link("nlme")`  library. This function has a number of parameters, including:
 
 - `fixed`: a two-sided linear formula for the fixed effects of the form `response ~ fixedeffect1 + ... + fixedeffectp` where fixedeffect1, ..., fixedeffectp are the names of the desired covariates for the fixed effects in the model;
 
@@ -1102,9 +1108,6 @@ where $Y_{ij}$ is the orthodontic measurement of subject $i$ at occasion $j$, $z
 
 To fit this, we do the following:
 ```{r long-lme-randominterceptdent}
-# load required package for fitting mixed effects model
-library(nlme)
-
 # fit the random intercept only model
 fitLME_intercept <- lme(
   fixed = distance ~ age + sex, # specify fixed effects
@@ -1172,7 +1175,7 @@ ggplot(data = dental_long, aes(x = age, y = distance, group = subject)) +
 
 In Figure \@ref(fig:long-lme-spaghettiplotdent), each line is one subject's observations over time (age). The groups are stratified by sex to account for differences in trajectory by sex, which was a statistically significant factor in our model. We see that subjects within each strata have very different baseline measurements, but see similar trajectories (slopes) over time. This is particularly evident in the subset of females enrolled in the study. Our random intercept model thus makes sense for this setting. 
 
-### Model Diagnostics for Linear Mixed Effects Models {#long-linearmixed-diagnostics}
+### Model Diagnostics for Linear Mixed-Effects Models {#long-linearmixed-diagnostics}
 
 After fitting our LME model, we need to assess the model fit to make sure it is appropriate for the data. 
 
@@ -1262,7 +1265,7 @@ Finding the estimates and 95% confidence intervals for fixed and random effects 
 intervals(fitLME_intercept)
 ```
 
-From this output, we can make inferences. For example, we see that the an increase of one year in age corresponds to an estimated increase in the distance of 0.6602 (95% CI: 0.5376, 0.7823), controlling for sex. 
+From this output, we can make inferences. For example, we see that the an increase of one year in age corresponds to an estimated increase in the distance of 0.6602 (95% CI: 0.5376, 0.7823), controlling for sex.
 
 We can also gain insights on the variability in the data. For example, we have an estimated standard error of the random intercept of 1.807 and an estimated within-group standard error of 1.4312. this tells us that we have stronger between subject variability in this model. 
 
@@ -1279,7 +1282,7 @@ We estimate the distance for a 13 year old male to be 26.2891.
 
 ### Hypothesis Testing for Fixed Effects {#long-linearmixed-ht}
 
-We may be interested in performing hypothesis tests on the fixed effects' parameters ($\bm{\beta}$) of the linear mixed effects model. For tests on single parameters, we can employ the `summary()` function to perform a t-test.
+We may be interested in performing hypothesis tests on the fixed effects' parameters ($\bm{\beta}$) of the linear mixed-effects model. For tests on single parameters, we can employ the `summary()` function to perform a t-test.
 ```{r long-lme-singleht}
 summary(fitLME_intercept)
 ```
@@ -2152,7 +2155,7 @@ fitaids6_combtreatments <- lme(
 summary(fitaids6_combtreatments)
 
 ```
-Under this parameterization, we do see that the interaction terms are individually significant. This indicates that there is a difference in time trend by dual versus triple therapy, controlling for age. For example, we see that the effect of time on the triple action treatment on log(CD4 counts + 1) is greater by 0.035 units compared to dual action therapy, controlling for age. We also see that the squared time effect interaction is significant but the effect size is small (-0.001). We can interpret this that the effect of the squared time term on log(CD4 counts + 1) is smaller by 0.001 units for the triple action therapy compared to dual action therapy. 
+Under this parameterization, we do see that the interaction terms are individually significant. This indicates that there is a difference in time trend by dual versus triple therapy, controlling for age. For example, we see that the effect of time on the triple action treatment on log(CD4 counts + 1) is greater by 0.035 units compared to dual action therapy, controlling for age. We also see that the squared time effect interaction is significant but the effect size is small (-0.001). We can interpret this that the effect of the squared time term on log(CD4 counts + 1) is smaller by 0.001 units for the triple action therapy compared to dual action therapy controlling for other factors.
 
 We can see if this model is more adequate, indicating that treatments 1, 2, and 3 have the same treatment effect over time. 
 
@@ -2163,20 +2166,316 @@ anova(fitaids6, fitaids6_combtreatments)
 We reject the null hypothesis that the model that combines treatments 1, 2 and 3 is adequate compared to the original model. This indicates that there exists at least one dual-treatment therapy that has a different time effect on the log(1 + CD4 counts). Looking at the LOESS curves from Figure \@ref(fig:long-lme-ex3-ggplotloess), this is unsurprising as treatment 3 appears to have a different time trend than treatments 1 and 2, which are similar. 
 
 
-<!-- ## Generalize Linear Mixed Effects Models -->
+<!-- ## Generalized Estimating Equations {#long-gee} -->
 
 
 
+## Generalized Linear Mixed-Effects Models {#long-glmm}
+
+As seen in the previous section, linear mixed effect models are useful for analyzing relationships between normally distributed outcomes and covariates over time. However, we are often interested in non-normal longitudinal outcomes, such as skewed, binary, or count outcomes. To handle these outcomes, we can use the generalized linear mixed-effects model (GLMM, or sometimes referred to as a GLMEM), which is an generalization of the linear mixed effect model presented in Section \@ref(long-linearmixed). 
+
+Like the linear mixed-effects model, GLMMs again allow a subset of the regression parameters to vary randomly between the subjects to account for sources of natural heterogeneity in the population. GLMMs model the mean response as a combination of the population characteristics (which are assumed to be the same for all subjects), and the unique subject-specific characteristics for each subject. We allow for this by including random effects $\boldsymbol{b}_i$ (sometimes referred to as the subject-specific regression coefficients) along with the usual population coefficients or "fixed effects" $\boldsymbol{\beta}$ in the model. Readers are directed to Section \@ref(long-linearmixed) for more information on fixed and random effects. 
+
+The GLMM can also be viewed as an extension of the generalized linear model (GLM), which was presented in Section \@ref(glm). It will be beneficial for readers unfamiliar with GLMs to read Section \@ref(glm) as we will assume readers have a basic understanding of GLMs in this section. 
+
+### Notation and  Model Specification {#long-glmm-notation}
+
+We follow the notation presented in \@ref(long-linearmixed-notation), where 
+
+- $Y_{ij}$ is the response of individual $i$ at time $j$,
+- $\bm{x}_{ij}$ is a $p \times 1$ covariate vector for the fixed effects,
+- $\bm{\beta}$ is the vector of parameters for the fixed effects,
+- $\bm{z}_{ij}$ is a $q \times 1$ covariate vector for the random effects, and
+- $\bm{b}_{ij}$ is a vector of parameters for the random effects.
+
+Typically we assume the covariate vector for the random effects $\bm{z}$ is a subset of the fixed effects $\bm{x}$. also allow the number of  observations for subject $i$ to vary. We denote the number of observation for subject $i$ as $k_i$.
+
+We extend the linear mixed effect model to the general setting by introducing a three-part specification, as introduced in [@fitzmaurice11]:
+
+1. We assume that the conditional distribution of $Y_{ij}$ given the random effects $b_i$ belongs to the [exponential family of distributions](https://en.wikipedia.org/wiki/Exponential_family). We further assume that the conditional variance $\var(Y_{ij} | b_i) = v(E(Y_{ij}|b_i)$ is a function of the conditional mean where $v(\cdot)$ is a known variance function. We also assume that outcomes $Y_{ij}$ are conditionally independent of one another given the random effects. 
+
+2. We assume that the conditional mean is dependent on the fixed and random effects through 
+$$
+g(E(Y_{ij} | b_i)) = \eta_{ij}  = \bm{x}_{ij}^T\bm{\beta} + \bm{z}_{ij}^T\bm{b}_{i}
+$$
+where $g(\cdot)$ is some known [link function](https://en.wikipedia.org/wiki/Generalized_linear_model#Link_function) (see Section \@ref(glm-links) for more information and examples of link functions). We emphasize that there is no random error term here as we are modelling the conditional mean. 
+
+3. We assume the random effects have some probability distribution (typically a multivariate normal distribution with zero mean and a $q \times q$ covariance matrix $D$). We also assume the random effects $\bm{b}_i$ are independent of the covariates $\bm{x}_i$.
+
+These three components together formulate the generalized linear mixed-effects model [@fitzmaurice11]. The choice of link function (based on the observed data) will dictate how we interpret the model, similar to our usual GLM. For example, if we have binary outcome data, we would fit a logistic mixed-effects model for the conditional mean using the logit link. If we have count data, we would specify a log-linear mixed-effects model for the conditional mean using the log link. Model interpretations differ from the GLM and the linear mixed effects model and are discussed in the following sections. 
 
 
 
+### Modelling in R {#long-glmm-R}
+
+In this section, we describe how to fit generalized linear mixed-effects models in R. We will be using the `glmer()` function from the `r cran_link("lme4")` package. This function requires the data to be in long form (see Section \@ref(long-datastruc) for details on long versus wide form longitudinal data). GLMMs can also be fit using the `r cran_link("glmm")` package in R. There are a number of important arguments in this function:
+
+- `formula`: the two-sided linear formula object describing both the fixed and random effects in the model, written as `response ~ fixed effec1 + fixed effect1 + ... + 1(subject) + (time|subject)` where `(1|subject)` is the random intercept grouped by subject and `(time|subject)` is an example of a random slope on time grouped by subject. 
+- `family`: similar to in a GLM, the name of the exponential family distribution and the link function. For example, for a binary data we may specify `family = binomial(link = "logit")`.
+- `nAGQ`: the argument for the number of quadrature points to be used for the approximation  (adaptive Gaussian quadrature approximation). We need to use numerical approximation methods as the likelihood function under a GLMM is high-dimensional and complicated to solve for.  When `nAGQ = 1`, we use Laplace approximation. We can specify `nAGQ` larger than one only for GLMMs with single random effect terms. The larger the value, the more accurate the approximation. However, computational complexity will increase as we increase the value of `nAGQ`. 
+
+As this function only allows for approximation by adaptive Gaussian quadrature, we often see GLMMs fit using SAS software's built-in GLIMMIX procedure. Readers interested in fitting GLMMs in SAS are directed [here](https://support.sas.com/documentation/onlinedoc/stat/131/glimmix.pdf).
+
+We will demonstrate how to fit this model using data from a randomized clinical trial investigating the effect of an anti-epileptic drug Progabide, as shown in [@fitzmaurice11]. 59 patients suffering from epilepsy were randomly assigned to Progabide or a placebo and followed for 8 weeks. The number of seizures occurring in each 2-week interval since randomization were recorded. We also have baseline seizure counts for the 8 weeks prior to being randomized. We want to see if using Progabide reduced the number of seizures, compared to the placebo. We wish to model the population and subject-specific trend, and see if there is a difference in seizure rates between the Progabide and placebo groups after randomization. 
+
+We first load in this data set from the R package `r cran_link("HSAUR2")` and look at the first 6 observations by:
+```{r long-glmm-loadin}
+# load in the data set
+data("epilepsy")
+
+# look at the first 6 observations
+head(epilepsy)
+
+```
+This data set (which is already in long form) contains information on the treatment that each subject was randomized to (`treatment`), the baseline number of seizures in the 8 weeks before receiving treatment or placebo (`base`), baseline age (`age`), the number of seizures during each 2-week interval (`seizure.rate` for each `period`), and a subject indicator (`subject`). As `seizure.rate` is actually the count of seizures, and `age` is the baseline age at study entry, we rename these variable for clarity:
+```{r long-glmm-renamecols}
+# load in the data set
+colnames(epilepsy) <- c("treatment", "base", "baseline_age", "seizure_count", "period", "subject")
+```
 
 
+We may want to include the baseline number of seizures in our data analysis, so we need to include this data in long form for `period = 0`. We can do this with some data manipulation by:
+```{r long-glmm-period0}
+# change levels of period to be 0-4, keep as categorical factor
+epilepsy$period  <- factor(x = epilepsy$period, levels = c("0", "1", "2", "3", "4"), ordered = T)
+
+# copy one row per subject (here we chose period == 1)
+newdf <- epilepsy[epilepsy$period == 1, ]
+
+# update the value of period to be zero and the value of 
+# seizure.rate to be the baseline
+newdf$period <- 0
+newdf$seizure_count <- newdf$base
+
+# Add this data frame to the existing one
+epilepsy <- rbind(epilepsy, newdf)
+
+# sort the data by ID (change to numeric first) then period
+epilepsy <- epilepsy[order(as.numeric(as.character(epilepsy$subject)), epilepsy$period), ]
+
+#view first 6 observations
+head(epilepsy)
+```
+
+We note that the column `base` is now no longer needed as the information is stored in `seizure.rate` for `period = 0`. We first plot the individual trajectories using `ggplot()` from the `r cran_link("ggplot2")` package:
+```{r long-glmm-spaghettiplotdent, fig.cap = "Plot of individual trajectories for the number of seizures over time, stratified by treatment group."}
+# create a plot of individual trajectories over the period, faceted by treatment
+ggplot(data = epilepsy, aes(x = period, y = seizure_count, group = subject, color = treatment)) +
+  geom_line() +
+  facet_grid(. ~ treatment) +
+  ggtitle("Spaghetti Plot for Epilepsy (Stratified by Treatment)")
+```
+The population trend is not very clear from these plots. We can calculate the mean number of seizures at each time group for each of the placebo and Progabide groups, and plot them. We can do so in R by the following code:
+```{r long-glmm-meantrend, warning = F, message = F}
+# create data set with the means
+gd <- epilepsy %>% 
+        group_by(treatment, period) %>% 
+        summarise(seizure_count = mean(seizure_count))
+
+# create above plot with average trend plotted overtop
+ggplot(epilepsy, aes(x = period, y = seizure_count, color = treatment)) +
+  geom_line(aes(group = subject), alpha = .3) + #alpha = 0.3 makes the lines more transparent
+  geom_line(data = gd, aes(x = period, y = seizure_count, group = treatment), size = 1.5) +
+  labs(
+    title = "Epileptic Seizure Rates by Treatment Group",
+    x = "Period",
+    y = "Seizure Count",
+    color = NULL
+  )
+```
+
+The trend lines on this scale are difficult to see individually, so we can plot them without the individual data points. 
+```{r long-glmm-meantrend2}
+# plot just the means
+ggplot(epilepsy, aes(x = period, y = seizure_count, color = treatment)) +
+  geom_line(data = gd, aes(x = period, y = seizure_count, group = treatment), size = 1.5) +
+  labs(
+    title = "Epileptic Seizure Rates by Treatment Group",
+    x = "Period",
+    y = "Seizure Count",
+    color = NULL
+  )
+```
+
+On this scale, we see that the trends appear to differ between the treatment (Progabide) and control (placebo) groups after period 1, when the treatment was randomized. As we have baseline data for seizure counts prior to randomization, it will be useful to perform a pre-post analysis to see how the seizure rate differed before and after treatment. 
+
+For this analysis, as we are modelling count data, we will use a log-linear mixed effects model. That is, we want to model 
+$$
+\log(\mu_{ij}) = \log(E(Y_{ij} | b_i)) = \bm{x}_{ij}^T\bm{\beta} + \bm{z}_{ij}^T\bm{b}_i.
+$$
+
+One thing we have to be cautious of is the length of periods that seizure counts were observed. Although after the treatment was randomized we have equal 2 week long intervals, the first interval (prior to treatment) is 8 weeks long. We must account for this different in our analysis. The log-linear (Poisson) GLMM will allow us to account for some heterogeneity in the counts of the outcome based on unequal interval lengths. Recall for Poisson models that we can model the mean as $\mu_{ij} = \lambda_{ij}\times t_{ij}$ where $\lambda_{ij}$ is the rate of seizures in a given time interval and $t_{ij}$ is the length of the interval. Using this, we can re-write above model as
+$$
+\begin{aligned}
+\log(\mu_{ij}) &= \log(\lambda_{ij}\times t_{ij})\\
+&= \log(\lambda_{ij}) + log(t_{ij})\\
+&= \bm{x}_{ij}^T\bm{\beta} + \bm{z}_{ij}^T\bm{b}_i + \log(t_{ij}).
+\end{aligned}
+$$
+That is, we account for the irregularity in the length of time intervals pre- and post- treatment by using an offset term of $\log(t_{ij})$. We note that not all Poisson or count models will require an offset term if our intervals remain the same.   
+
+We start with a model random slope and intercept model of the form:
+$$
+\begin{aligned}
+\log(\mu_{ij}) = \beta_0 + \beta_1\text{post}_{ij} &+ \beta_2\text{trt}_{i} + \beta_3\text{post}_{ij}\text{trt}_{i} + \beta_4\text{baseage}_i \\
+&+ b_{0,i} + b_{1,i}\text{post}_{ij} + \log(t_{ij})
+\end{aligned}
+$$
+where 
+- $trt_i$ is the treatment subject $i$ was randomized to
+- $\text{post}_{ij}$ indicates the period is 1, 2, 3, or 4 (post-randomization)
+- $\text{baseage}_i$ is the baseline age of subject $i$
+- $t_{ij}$ is the length of the observation period for period $j$ (period 0 is eight weeks, periods 1 - 4 are two weeks).
+
+We are looking only at the time effect as pre- and post- randomization because the average group trend is relatively stable across time after randomization. We allow for an interaction effect between $trt$ and $post$ because there will likely be a difference in seizure rates before and after randomization (after period 0) which may differ by the treatment group. We allow for a random intercept $b_{0,i}$ as in the above plots we see that individuals tend to have different baseline seizure counts. We also allow for a random effect on $post$ as individual subjects may see different time trends after randomization. 
+
+We note that this model may change as we perform statistical tests to see which covariates should be included or excluded in the model. 
 
 
+Prior to fitting this model in R, we need to include a categorical variable indicating we are post randomization, and also the information on the time period length in our data set. We will need to use the $\log()$ of this time so we will calculate that as well and include it as its own column:
+```{r long-glmm-t}
+# if period > 0, we are post randomization
+epilepsy$post <- ifelse(epilepsy$period > 0, 1, 0)
+epilepsy$ post <- as.factor(epilepsy$post)
+
+# if period is 0, tlength is 8. otherwise it is 2
+epilepsy$tlength <- ifelse(epilepsy$period == 0, 8, 2)
+
+# calculate and store the log of the length
+epilepsy$logtlength <- log(epilepsy$tlength)
+```
+
+We fit this model in R using the following code:
+```{r long-glmm-mod1}
+epilepsy_fit1 <- glmer(seizure_count ~ post + treatment + treatment*post + baseline_age +
+                         (1 + post | subject) + offset(logtlength),
+                       data = epilepsy,
+                       family = poisson(link = "log"))
+
+summary(epilepsy_fit1)
+```
+For this model, we see that the interaction effect is statistically significant. The individual components of the interaction are not significant, and neither is the covariate `baseline_age`. Let's try to re-fit the model without baseline age as a covariate. We can also see if this model fits better than the previous by performing a likelihood ratio test (LRT) since we have the same random effects in the model and only removed a fixed effect.
+
+```{r long-glmm-mod2}
+epilepsy_fit2 <- glmer(seizure_count ~post + treatment +  treatment*post +
+                         (1 + post | subject) + offset(logtlength),
+                       data = epilepsy,
+                       family = poisson(link = "log"))
+
+anova(epilepsy_fit1, epilepsy_fit2, test = "LRT")
+```
+The LRT has a $p$-value of 0.1516, which is moderately large. As such, we fail to reject the null hypothesis that the simpler model (without baseline age) fits as well as the larger model. As such, we conclude that we do not need baseline age in our model. Let's look at the model summary:
+```{r long-glmm-model2summary}
+summary(epilepsy_fit2)
+```
+
+From the summary of the second fit, we see that the individual effects of treatment and post-randomization have large $p$-values. Lets see if we can remove the individual treatment effect from the model, as it is not included in our random effects. 
+
+```{r long-glmm-mod3}
+
+#using : provides only the interaction effect and not the individual ones
+epilepsy_fit3 <- glmer(seizure_count ~ post + treatment:post + 
+                         (1 + post | subject) + offset(logtlength),
+                       data = epilepsy,
+                       family = poisson(link = "log"))
+
+anova(epilepsy_fit2, epilepsy_fit3, test = "LRT")
+
+```
+For the test of $H_0:$ the simpler model fit is adequate, we reject the null hypothesis as our $p$-value < 0.001. That is, we conclude that our model should have the individual treatment effect term in the model and fit3 is not adequate compared to fit 2. 
+
+### Model Diagnostics {long-glmm-md}
+
+Residual plots can be used to assess model fit, however we note that we do not assume normality of the residuals under non-identity links. Let's look at the residuals of the second model fit:
+
+```{r long-glmm-fit2resid}
+plot(epilepsy_fit2, id = 0.005)
+```
+
+It appears to that subject 25 has a very poor fit. Let's look at fitting the model without this observation to see if it is influential. 
+```{r long-glmm-fit2refit}
+#create new data set without subject 25
+epilepsy2 <- epilepsy[epilepsy$subject != 25, ]
+
+#fit same model (fit2) on new data set
+epilepsy_fit4 <- glmer(seizure_count ~  post + treatment + treatment*post +
+                         (1 + post | subject) + offset(logtlength),
+                       data = epilepsy2,
+                       family = poisson(link = "log"))
+summary(epilepsy_fit4)
+
+```
+We see that the coefficients in the model changed greatly, indicating that subject 25 was an influential observation.
+
+Let's look at the new residual plot:
+```{r long-glmm-fit4resid}
+plot(epilepsy_fit4, id = 0.001)
+```
 
 
+We can also look at the fit of the model, stratified by treatment group using the following plot:
+```{r long-glmm-plot1, fig.cap = "Plot of observed versus fitted values for fit 4, stratified by treatment"}
+plot(epilepsy_fit4, seizure_count ~ fitted(.)|treatment, abline = c(0,1),
+      main = "Observed vs. Fitted Values")
+```
+We see good concordance between the fitted and observed values in the model. 
+
+From this model, we should also check for [overdispersion](https://en.wikipedia.org/wiki/Overdispersion) (see Section \@ref(glm-poisson-example-md) for more information on overdispersion). We can do this by using the `check_overdispersion()` function from the `r cran_link("performance")` package.
+```{r long-glmm-overdispersion}
+check_overdispersion(epilepsy_fit4)
+
+```
+The results of the test show a small to moderate $p$-value, on the threshold of a commonly used significance cut off of $p < 0.05$. We will fail to reject the null hypothesis as we do not have strong evidence of overdispersion here with a $p$-value of 0.054. That is, we can continue using this model.
+
+We also note that currently accounting for overdispersion using a negative binomial distribution for the GLMM is not currently supported in the `glmer()` function. Users are able to fit these models using SAS. 
 
 
+### Model Interpretations {#long-glmm-interpret}
+
+When interpreting generalized linear mixed-effects models, the regression parameters $\bm{\beta}$ have different interpretations than models that have previously been introduced. These coefficients have subject-specific interpretations instead of population interpretations. Specifically, the regression coefficient represents the effect of a change in the within-subject covariate on the (transformed) mean response, holding all other covariates constant. For example, using a log link function would mean that $\beta_j$ represents the change in an individuals log relative rate of response for a one unit increase in $x_j$, holding all the individuals covariates fixed (including the unobserved random effects). These interpretations are most useful when we want to look at subject-level changes, and not the population averages. We also note that these interpretations are most natural for covariates that vary within the subject. 
+
+When we have time-invariant covariates in the model, the interpretations of the regression coefficients are potentially misleading. For more information on this, see Section 14.3 in [@fitzmaurice11].
+
+Recall the summary of the final model:
+```{r long-glmm-fit4again}
+summary(epilepsy_fit4)
+```
+We can write the model as
+$$
+\begin{aligned}
+\log(\mu_{ij}) = \beta_0 + \beta_1\text{post}_{ij} &+ \beta_2\text{trt}_{i} + \beta_3\text{post}_{ij}\text{trt}_{i}  \\
+&+ b_{0,i} + b_{1,i}\text{post}_{ij} + \log(t_{ij})
+\end{aligned}
+$$
+where 
+
+- $trt_i$ is the treatment subject $i$ was randomized to
+- $\text{post}_{ij}$ indicates the period is 1, 2, 3, or 4 (post-randomization)
+- $t_{ij}$ is the length of the observation period for period $j$ (period 0 is eight weeks, periods 1 - 4 are two weeks).
+
+The following table may be helpful in summarizing the model and interpreting the coefficients:
+
+| Treatment Group  | Time       | Conditional Log RR given $b_i$ (adjusted for offset) |
+| ------------------------|:------------------------:| ---------------:|
+| Placebo  | Pre-Randomization | $\beta_0 + b_{0,i}$ |
+|          | Post-Randomization | $(\beta_0 + b_{0,i}) + (\beta_1 + b_{1,i})$ |
+| Progabide  | Pre-Randomization |  $\beta_0 + b_{0,i} + \beta_2$ |
+|            | Post-Randomization | $\beta_0 + b_{0,i} + (\beta_1 + b_{1,i}) + \beta_2 + \beta_3$ |
+
+In this model, $\exp(\beta_1) = \exp(-0.042) = 0.959$ represents the relative rate of seizures per week for those post-randomization versus pre-randomization for the "average" patient in the placebo group (a patient with unobserved random slope $b_{0,i} = E(b_{0,i}) = 0$). This result is not statistically significant.
+
+We interpret $\exp(\beta_2) = \exp(0.079) = 1.082$ represents the increase in relative rate of seizures per week for those on Progabide versus placebo for the "average" patient in pre-randomization. We note that this result is also not statistically significant
+
+$\exp(\beta_3) = \exp(-0.260) = 0.771$ represents the increase in relative rate of seizures per week for post- versus pre-randomization comparing two patients: one from the Progabide group and one from the placebo group with the same unobserved random effects. We note that in this way, $\beta_3$ is not a population average like we have previously seen. With a $p$-value or 0.0797, some may consider this result statistically significant depending on the definition of "significant". We will refer to this value as moderately significant in this setting. As such, we conclude that there is evidence that the rate of seizures per week for post- versus pre- randomization was further reduced in the Progabide group, indicating that the drug is useful for reducing seizures for epileptic patients.  
+
+
+From this model, we also can estimate the patient-to-patient variability in terms of their baseline rate, which is $\widehat{\sigma}^2_{b_0} = 0.496$. The estimate of the variance of the random slope representing the patient-to-patient variability in their change of rate from pre- to post-randomization is  $\widehat{\sigma}^2_{b_1} = 0.214$. We also obtain an estimate of the correlation between the random slope and intercept, which is 0.13. This is small, indicating that the expected changes in seizure rates are not directly related to the patients baseline seizure rate prior to randomization.
+
+## A Note on Irregular Longitudinal Data
+
+As previously mentioned, we frequently encounter studies where the observation times vary across individuals in the study. We refer to this as irregular longitudinal data. While methods like the generalized estimating equation (GEE - see [@fitzmaurice11]) and the generalized linear mixed effects model (GLMM - see Section \@ref(long-glmm)) can handle irregular data, we must be careful as we can end up with incorrect results and interpretations from our model if the longitudinal outcome is related to the observation times, known as outcome-dependent follow-up or informative follow-up. If this is the case, readers are directed [here](https://cran.r-project.org/web/packages/IrregLong/vignettes/Irreglong-vignette.html) for options on how to deal with this issue. 
+
+## Further Reading
+Readers are directed to [@fitzmaurice11] and [@diggle02] for more information on longitudinal data analysis.
 
 
