@@ -31,9 +31,9 @@ In this section, we will introduce the generalized linear model framework with a
 
 ## List of R Packages {#glm-rpackages}
 
-<!-- install.packages(c('catdata', 'MASS', 'AER', 'performance', 'faraway', 'LogisticDx', 'car')) -->
+<!-- install.packages(c('catdata', 'MASS', 'AER', 'performance', 'faraway', 'car')) -->
 
-In this section, we will be using the packages `r cran_link("catdata")`, `r cran_link("MASS")`, `r cran_link("AER")`, `r cran_link("performance")`, `r cran_link("faraway")` , `r cran_link("LogisticDx")`, and `r cran_link("car")`. We can load these packages in R after installing them by the following:
+In this section, we will be using the packages `r cran_link("catdata")`, `r cran_link("MASS")`, `r cran_link("AER")`, `r cran_link("performance")`, `r cran_link("faraway")` , and `r cran_link("car")`. We can load these packages in R after installing them by the following:
 ```{r glm-library, warning=FALSE, message=FALSE}
 #load the required packages
 library(catdata)
@@ -41,7 +41,6 @@ library(MASS)
 library(AER)
 library(performance)
 library(faraway)
-library(LogisticDx)
 library(car)
 ```
 
@@ -535,11 +534,19 @@ $$
 $$
 which shows that we should estimate and interpret $\beta_2 + \beta_5$ to answer this question. From the model output, we estimate the log odds ratio as $\widehat{\beta_2} + \widehat{\beta_5} = 0.099 + 0.301 = 0.400$. Then, the estimated odds ratio is $\exp(0.400) = 1.492$. So, we estimate that a one unit increase in low density lipoprotein cholesterol is associated with an odds ratio of CHD equal to 1.492, controlling for other factors. 
 
-To estimate the confidence interval, we can use the `OR()` function from the `r cran_link("LogisticDx")` package where we specify `newdata` to be $(\beta_0,\beta_1,\beta_2,\beta_3,\beta_4,\beta_5)$ =(0,0,1,0,0,1), which represents $\beta_2 + \beta_5$. To obtain the CI for the odds ratio, we call
-```{r glm-logreg-MIHT-logisticdx}
-OR(heart_model7, newdata = c(0,0,1,0,0,1))
+To estimate the confidence interval, we must find the estimated standard error of $\widehat{\beta_2} + \widehat{\beta_5}$ manually, construct a confidence interval for this quantity (the logOR), and then exponentiate each bound of the confidence interval. To do so in R, we can use the following code:
+```{r glm-logreg-MIHT-manualCI}
+varcov <- vcov(heart_model7) #get the variance covariance matrix
+L <- c(0, 0, 1, 0, 0, 1) #represents \beta_2 + \beta_5 (first place is beta_0)
+
+var_est <- L%*%varcov %*% L 
+beta_est <- L%*%coef(heart_model7) #vector of coefficients from model
+
+CI <- c(beta_est - 1.96*sqrt(var_est), beta_est + 1.96*sqrt(var_est)) 
+
+exp(CI) #exponentiate to get CI for OR
+
 ```
-which provides us with estimates of the odds ratio (OR), where lowOR and upOR are the lower and upper bounds to the 95% CI. The two lines are for two models: one with an intercept and without, though in this case the OR and CI's are the same. We can also find the CI manually by finding the estimated standard error of the $\widehat{\beta_2} + \widehat{\beta_5}$ manually.
 
 **Probabilities**
 
