@@ -30,7 +30,7 @@ For the first time working with this project, there are several ways to do this.
   - Try running 'bookdown::serve_book()' to see if book compiles. If you get any errors at this state, reach out. I can help update the lockfile so we can get it working again!
     - If you get weird failures for basic libraries or just have issues, try updating R! This is often the issue at this point.
 
-    <p align="center"> <img src="./readme_files/bookdown_compile_failure.PNG" alt="renv install package" width="400"/> </p>
+    <p align="center"> <img src="./readme_files/bookdown_compile_failure.png" alt="renv install package" width="400"/> </p>
 
 
 **3. Write/Update Module Files**
