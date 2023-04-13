@@ -11,13 +11,15 @@ For the first time working with this project, there are several ways to do this.
   2. If you have git installed on your machine, right click in the desired location and open git GUI. Select 'Clone Existing Repository' and enter the git \<URL\> in Source Location. This \<URL\> is retrieved on the github page, by clicking the green '\<\> Code' button ('https://github.com/jrvanderdoes/Test_SCCRBook.git'). Enter your desired location on the computer in Target Directory.
   3. On the github page, click the '\<\> Code' button and select 'Open with Github Desktop'.
 - After cloning it, whenever you want to work on the project, be sure to pull the project to work on the newest version. This is done (after installing git on your machine, https://git-scm.com/downloads ):
-  1. In the project folder, right click and open either git bash or git GUI. Use 'git pull' in bash. If you are unfamiliar with git, please reach out!
-  2. Using Rstudio. Currently I do not have it setup on this test computer, so I will add to this readme later with detailed instructions.
+  1. In the project folder, right click and open either git bash or git GUI. Use 'git pull' in bash. 
+  2. From the app, go to 'branch > update'.
+  3. Using Rstudio. Currently I do not have it setup on this test computer, so I will add to this readme later with detailed instructions.
+  4. If you are unfamiliar with git, please reach out!
  
 **2. Setup Project**
 - This means ensuring everything is properly setup. Open the "Test_SCRBook.Rproj" file in RStudio. 
 - Ensure all packages are properly versioned by running 'renv::restore()'. This will set up the saved libraries and versions.
-  - If this is your first time using renv, you will get a message like given below. If you have used it, but this is your first use on this project, you may only get the second message.
+  - If this is your first time using renv, you will get a message like given below, which asks you to activate the project. Say yes. If you have used it, but this is your first use on this project, you may only get the second message.
  
   <p align="center"> <img src="./readme_files/renv_startup.PNG" alt="renv startup info" width="400"/> </p>
  
@@ -25,10 +27,15 @@ For the first time working with this project, there are several ways to do this.
  
   <p align="center"> <img src="./readme_files/renv_restore.PNG" alt="renv restore info" width="400"/> </p>
  
-  - If you get any errors at this state, reach out. I can help update the lockfile so we can get it working again!
- 
+  - Try running 'bookdown::serve_book()' to see if book compiles. If you get any errors at this state, reach out. I can help update the lockfile so we can get it working again!
+    - If you get weird failures for basic libraries or just have issues, try updating R! This is often the issue at this point.
+
+    <p align="center"> <img src="./readme_files/bookdown_compile_failure.PNG" alt="renv install package" width="400"/> </p>
+
+
 **3. Write/Update Module Files**
 - This step you will change or add new modules. 
+- This is a reminder to always pull the most current branch to ensure you don't break other parts or try to solve the same problem someone else fixed (See step 1 for pulling a project).
 - It is good practice to create a new branch in git to make the changes to. If you right click the folder and use git bash, type 'git checkout -b \<newBranchName\>'. Feel free to reach out if you have questions on creating and modifying other branches.
 - When creating files be sure to add the newfile to '_bookdown.yml'. This file lists the chapters of the book *in order*. So you will type '- "\<Mod Name\>.Rmd" '. 
 - Also be sure to include references in 'references.bib'.
@@ -36,7 +43,7 @@ For the first time working with this project, there are several ways to do this.
 
   <p align="center"> <img src="./readme_files/renv_installPackage.PNG" alt="renv install package" width="400"/> </p>
  
-You can just use 'install.packages("\<package\>")' which will call the renv command renv::install("\<package\>")'. If in doubt, feel free to install!
+You can just use 'install.packages("\<package\>")' which will call the renv command renv::install("\<package\>")'.If in doubt, feel free to install!
 
 **4. Test Module Files**
 - This step is about testing module files and the enviroment for errors.

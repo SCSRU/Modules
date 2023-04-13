@@ -7,6 +7,7 @@ rmd_files:
   - "mod_intro_r.Rmd"
   - "mod_ggplot2.Rmd"
   - "mod_linear_regression.Rmd"
+  - "mod_generalizedlinearmodels.Rmd"
   - "mod_nonparametric.Rmd"
   - "mod_longitudinal.Rmd"
   - "mod_questionnaire_design.Rmd"
