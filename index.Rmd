@@ -50,4 +50,7 @@ For questions regarding the materials of this book, please [contact us](https://
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
 ), 'packages.bib')
+
+# Add library so anyone pulling project will get notification
+library(servr)
 ```
