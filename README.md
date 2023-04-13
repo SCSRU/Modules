@@ -28,6 +28,7 @@ For the first time working with this project, there are several ways to do this.
   - If you get any errors at this state, reach out. I can help update the lockfile so we can get it working again! [GT: should try to run bookdown::serve_book() at this stage to make sure book prior to your changes compiles properly. I'm having issues at this stage: getting error that "namespace 'xfun' is imported by 'knitr' 'bookdown' so cannot be unloaded" and "Error in base64_encode(new.path) : could not find function "base64_encode"."]
  
 **3. Write/Update Module Files**
+- [GT: add step on how to pull changes from the main branch if you already have the project locally and other changes have been made since you created the branch]
 - This step you will change or add new modules. 
 - It is good practice to create a new branch in git to make the changes to. If you right click the folder and use git bash, type 'git checkout -b \<newBranchName\>'. Feel free to reach out if you have questions on creating and modifying other branches.
 - When creating files be sure to add the newfile to '_bookdown.yml'. This file lists the chapters of the book *in order*. So you will type '- "\<Mod Name\>.Rmd" '. 

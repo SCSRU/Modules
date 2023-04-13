@@ -51,6 +51,14 @@
       "Hash": "b5b77433b286dd869ff33ee7fd5c545f",
       "Requirements": []
     },
+    "HSAUR2": {
+      "Package": "HSAUR2",
+      "Version": "1.1-19",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "d4b4463ba728717734f7e2fbfe46dd61",
+      "Requirements": []
+    },
     "Hmisc": {
       "Package": "Hmisc",
       "Version": "5.0-1",
