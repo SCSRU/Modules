@@ -1,8 +1,5 @@
 ---
 title: Development Walkthrough
-params:
-  dev_render:
-    value: TRUE
 ---
 
 # Development process
@@ -100,7 +97,7 @@ If a small package is broken, you can try to update it or re-restore the renv en
 It is finally time for development by adding or changing modules. It is good practice to develop on a new GitHub branch so it is easy to understand what you are doing and not mix up potential issues if something isn't working. This can be done as:
 - GitHub Desktop: There should be an option to create a branch. I will add more information when I have a different computer nearby.
 - Git GUI: Right click in project, select git GUI and select 'branch > create'. Follow any prompts.
-- Git Bash:Right click in project, select git bash and type 'git checkout -b <newBranchName>' which create and moves to the branch.
+- Git Bash: Right click in project, select git bash and type 'git checkout -b <newBranchName>' which create and moves to the branch.
 
 It is a good idea to check which branch you are on in GitHub Desktop, Git, or RStudio.
 
