@@ -1,7 +1,10 @@
 Welcome! 
 
-This is the test version of automating the SCCRU book publishing process.
+This is the test version of automating the SCCRU book publishing process. A walkthrough can be found in [Development.Rmd](Development.Rmd). Typically you may walkthrough it on your computer, but you can also view it online (linked to name previously). This can help in setting up GitHub for the first time.
 
+
+
+<!-- 
 As a developer, this repo can be used very similar to that done previously. However, since there are a few process changes, I have outlined the steps below.
 
 **1. Pull the project**
@@ -109,6 +112,7 @@ You can just use 'install.packages("\<package\>")' which will call the renv comm
 - This step will merge all changes in dev to main.
 - (In the future) This will require approval from some people, so be sure to include them in the PR and add informative comments on the PR.
 - Once dev is merged to main, github actions will check the code again and publish the results to the book. 
-- You can verify the progress in the actions page. After completion, if you go to the website and don't notice changes, be sure to refresh the page. (Question, do we have a website URL we want to host this at? I can change it to match.)
+- You can verify the progress in the actions page. After completion, if you go to the website and don't notice changes, be sure to refresh the page. (Question, do we have a website URL we want to host this at? I can change it to match.) 
+-->
 
 Let me know if you encounter errors or ways we could make the instructions clearer.
