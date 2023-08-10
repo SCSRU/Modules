@@ -382,7 +382,7 @@ heart3 <- heart[-c(21, 261),] # removing the 21st (and 261st from prev removal)
 
 #fit the model using heart3
 heart_model4_3 <- glm(y ~ tobacco + ldl + famhist_f + typea + age_f + ldl*famhist_f, 
-                    family=binomial(link = "logit"), data=heart3) #use heart2
+                    family=binomial(link = "logit"), data=heart3) #use heart3
 
 summary(heart_model4_3) #model summary excluding id 21 and id 261
 summary(heart_model4) #original model summary
@@ -466,7 +466,7 @@ $$
 $$
 where $\pi_i$ is the probability of having CHD, $x_1$ is the measurement of cumulative tobacco use, $x_2$ is the ldl cholesterol measurement, $x_3$ is an indicator for family history, and $x_4$ is the type a measurement.
 
-We are provided with the estimates and standard errors of the log odds ratios, but typically want to interpret and communicate our findings on the scale of odd ratios. To obtain an estimate of the odds ratio for a given covariate, we simply exponentiate the coefficient. For example, the `tobacco` covariate's estimated coefficient ($\widehat{\beta_1}$) is `r paste(round(summary(heart_model7)$coef[2,1],3))`, meaning we estimate that a one unit increase in `tobacco` is associate with a **log odds ratio** of chronic heart disease equal to `r paste(round(summary(heart_model7)$coef[2,1],3))`, controlling for the other factors in the model. Alternatively, we can say that a one unit increase in `tobacco` is associate with an **odds ratio** of chronic heart disease equal to $\exp($ `r paste(round(summary(heart_model7)$coef[2,1],3))` $)$ = `r paste(round(exp(summary(heart_model7)$coef[2,1]),3))`, controlling for other factors. 
+We are provided with the estimates and standard errors of the log odds ratios, but typically want to interpret and communicate our findings on the scale of odd ratios. To obtain an estimate of the odds ratio for a given covariate, we simply exponentiate the coefficient. For example, the `tobacco` covariate's estimated coefficient ($\widehat{\beta_1}$) is `r paste(round(summary(heart_model7)$coef[2,1],3))`, meaning we estimate that a one unit increase in `tobacco` is associated with a **log odds ratio** of chronic heart disease equal to `r paste(round(summary(heart_model7)$coef[2,1],3))`, controlling for the other factors in the model. Alternatively, we can say that a one unit increase in `tobacco` is associated with an **odds ratio** of chronic heart disease equal to $\exp($ `r paste(round(summary(heart_model7)$coef[2,1],3))` $)$ = `r paste(round(exp(summary(heart_model7)$coef[2,1]),3))`, controlling for other factors. 
 
 [Confidence intervals](https://en.wikipedia.org/wiki/Confidence_interval) (CIs) are useful in communicating the uncertainty in our estimates and are typically presented along with our estimate. Confidence intervals are calculated on the log odds ratio scale, and then exponentiated to find the confidence interval for the odds ratio. We calculate a 95% confidence interval for a log odds ratio as:
 
@@ -527,7 +527,7 @@ If we look at the difference of these equations, we have
 $$
 \begin{aligned}
 & \beta_0 + \beta_1x_1 + \beta_2(1) + \beta_3(1) + \beta_4x_4 + \beta_5(1)(1)\\
-&-\beta_0 + \beta_1x_1 + \beta_2(0) + \beta_3(1) + \beta_4x_4 + \beta_5(0)(1)\\
+&-\left(\beta_0 + \beta_1x_1 + \beta_2(0) + \beta_3(1) + \beta_4x_4 + \beta_5(0)(1)\right)\\
 \hline
 & \qquad \qquad  \qquad \quad \beta_2 \qquad \quad \quad \quad  \qquad  \quad+\beta_5
 \end{aligned}
