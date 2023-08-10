@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2023-08-08" />
+<meta name="date" content="2023-08-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1197,7 +1197,7 @@ Figure 4.2: Plot of Residuals for Logistic Regression Model
 <span id="cb227-3"><a href="glm.html#cb227-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb227-4"><a href="glm.html#cb227-4" aria-hidden="true" tabindex="-1"></a><span class="co">#fit the model using heart3</span></span>
 <span id="cb227-5"><a href="glm.html#cb227-5" aria-hidden="true" tabindex="-1"></a>heart_model4_3 <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> tobacco <span class="sc">+</span> ldl <span class="sc">+</span> famhist_f <span class="sc">+</span> typea <span class="sc">+</span> age_f <span class="sc">+</span> ldl<span class="sc">*</span>famhist_f, </span>
-<span id="cb227-6"><a href="glm.html#cb227-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">family=</span><span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;logit&quot;</span>), <span class="at">data=</span>heart3) <span class="co">#use heart2</span></span>
+<span id="cb227-6"><a href="glm.html#cb227-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">family=</span><span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;logit&quot;</span>), <span class="at">data=</span>heart3) <span class="co">#use heart3</span></span>
 <span id="cb227-7"><a href="glm.html#cb227-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb227-8"><a href="glm.html#cb227-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(heart_model4_3) <span class="co">#model summary excluding id 21 and id 261</span></span></code></pre></div>
 <pre><code>## 
@@ -1403,7 +1403,7 @@ Figure 4.4: Plot of Residuals for Second Regression Modelwith Influential Observ
 \end{aligned}
 \]</span>
 where <span class="math inline">\(\pi_i\)</span> is the probability of having CHD, <span class="math inline">\(x_1\)</span> is the measurement of cumulative tobacco use, <span class="math inline">\(x_2\)</span> is the ldl cholesterol measurement, <span class="math inline">\(x_3\)</span> is an indicator for family history, and <span class="math inline">\(x_4\)</span> is the type a measurement.</p>
-<p>We are provided with the estimates and standard errors of the log odds ratios, but typically want to interpret and communicate our findings on the scale of odd ratios. To obtain an estimate of the odds ratio for a given covariate, we simply exponentiate the coefficient. For example, the <code>tobacco</code> covariate’s estimated coefficient (<span class="math inline">\(\widehat{\beta_1}\)</span>) is 0.138, meaning we estimate that a one unit increase in <code>tobacco</code> is associate with a <strong>log odds ratio</strong> of chronic heart disease equal to 0.138, controlling for the other factors in the model. Alternatively, we can say that a one unit increase in <code>tobacco</code> is associate with an <strong>odds ratio</strong> of chronic heart disease equal to <span class="math inline">\(\exp(\)</span> 0.138 <span class="math inline">\()\)</span> = 1.148, controlling for other factors.</p>
+<p>We are provided with the estimates and standard errors of the log odds ratios, but typically want to interpret and communicate our findings on the scale of odd ratios. To obtain an estimate of the odds ratio for a given covariate, we simply exponentiate the coefficient. For example, the <code>tobacco</code> covariate’s estimated coefficient (<span class="math inline">\(\widehat{\beta_1}\)</span>) is 0.138, meaning we estimate that a one unit increase in <code>tobacco</code> is associated with a <strong>log odds ratio</strong> of chronic heart disease equal to 0.138, controlling for the other factors in the model. Alternatively, we can say that a one unit increase in <code>tobacco</code> is associated with an <strong>odds ratio</strong> of chronic heart disease equal to <span class="math inline">\(\exp(\)</span> 0.138 <span class="math inline">\()\)</span> = 1.148, controlling for other factors.</p>
 <p><a href="https://en.wikipedia.org/wiki/Confidence_interval">Confidence intervals</a> (CIs) are useful in communicating the uncertainty in our estimates and are typically presented along with our estimate. Confidence intervals are calculated on the log odds ratio scale, and then exponentiated to find the confidence interval for the odds ratio. We calculate a 95% confidence interval for a log odds ratio as:</p>
 <p><span class="math display">\[
 \widehat{\beta} \pm 1.96\times \widehat{se}(\widehat{\beta})
@@ -1463,7 +1463,7 @@ If we look at the difference of these equations, we have
 <span class="math display">\[
 \begin{aligned}
 &amp; \beta_0 + \beta_1x_1 + \beta_2(1) + \beta_3(1) + \beta_4x_4 + \beta_5(1)(1)\\
-&amp;-\beta_0 + \beta_1x_1 + \beta_2(0) + \beta_3(1) + \beta_4x_4 + \beta_5(0)(1)\\
+&amp;-\left(\beta_0 + \beta_1x_1 + \beta_2(0) + \beta_3(1) + \beta_4x_4 + \beta_5(0)(1)\right)\\
 \hline
 &amp; \qquad \qquad  \qquad \quad \beta_2 \qquad \quad \quad \quad  \qquad  \quad+\beta_5
 \end{aligned}
