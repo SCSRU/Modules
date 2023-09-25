@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2023-08-10" />
+<meta name="date" content="2023-09-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1786,16 +1786,18 @@ where <span class="math inline">\(Y_{ij}\)</span> is the orthodontic measurement
 ## 
 ## Standardized Within-Group Residuals:
 ##         Min          Q1         Med          Q3         Max 
-## -3.08141705 -0.45675583  0.01552695  0.44704158  3.89437694 
+## -3.08141704 -0.45675583  0.01552695  0.44704158  3.89437694 
 ## 
 ## Number of Observations: 108
 ## Number of Groups: 27</code></pre>
 <p>Without specifying the <code>method</code> parameter, we fit this model using REML. Again, from the output we see a number of fit statistics including AIC and BIC, which are slightly larger than in the random intercept model. Under the <code>Random effects:</code> header, we can obtain estimates for the standard deviations of our random slope and intercept, along with the standard deviations of our error term and the estimated correlation between our random slope and intercept. We can then calculate:</p>
 <ul>
-<li>the estimated variance of our random intercept as <span class="math inline">\(\widehat{\sigma}_{b,0}^2 = 2.797^2 =\)</span> 7.8232,</li>
-<li>the estimated variance of our random slope as <span class="math inline">\(\widehat{\sigma}_{b,1}^2 = 0.1609^2 =\)</span> 0.0259,</li>
-<li>the estimated variance of our error term as <span class="math inline">\(\widehat{\sigma}^2 = 0.6683^2 =\)</span> 0.4466, and</li>
-<li>the estimated correlation between the random slope and intercept as <span class="math inline">\(\widehat{\cor}(b_{0,i}, b_{1,i}) = -0.3540\)</span>.</li>
+<li>the estimated variance of our random intercept as <span class="math inline">\(\widehat{\sigma}_{b,0}^2 = 2.797^2 =\)</span> 7.8232,
+<ul>
+<li>the estimated variance of our random slope as <span class="math inline">\(\widehat{\sigma}_{b,1}^2 = 0.2264^2 =\)</span> 0.0513,</li>
+<li>the estimated variance of our error term as <span class="math inline">\(\widehat{\sigma}^2 = 1.31^2 =\)</span> 1.7161, and</li>
+<li>the estimated correlation between the random slope and intercept as <span class="math inline">\(\widehat{cor}(b_{0,i}, b_{1,i}) = -0.766\)</span>.</li>
+</ul></li>
 </ul>
 <p>We also have our usual summary of the fixed effect regression coefficients, including with test statistics and <span class="math inline">\(p\)</span>-values for the hypothesis test of <span class="math inline">\(\beta_j = 0\)</span>. The correlations of the fixed effect regression coefficients (not the covariates themselves) is of little interest here.</p>
 <p>Now that we have fit two models, one with and one without a random slope term, we can perform a LRT to see which model fit is most appropriate for this data. We do this through the <code>anova()</code> function, however <strong>we cannot use the given <span class="math inline">\(p\)</span>-value and must use a table or R function to calculate the correct <span class="math inline">\(p\)</span>-value</strong>. We must obtain the <span class="math inline">\(p\)</span>-value using the <code>pchibarsq()</code> function, with the degrees of freedom equal to the difference in random effects between the two models. In this case, we are testing a model with a random slope versus without, so one random effect differs between the two models.</p>
@@ -1929,12 +1931,12 @@ Figure 6.13: Plot for assessing linearity for each subject.
 ## 
 ##  Random Effects:
 ##   Level: subject 
-##                    lower     est.    upper
-## sd((Intercept)) 1.310393 1.807425 2.492981
+##                   lower     est.    upper
+## sd((Intercept)) 1.31035 1.807425 2.493061
 ## 
 ##  Within-group standard error:
 ##    lower     est.    upper 
-## 1.226118 1.431592 1.671500</code></pre>
+## 1.226105 1.431592 1.671517</code></pre>
 <p>From this output, we can make inferences. For example, we see that the an increase of one year in age corresponds to an estimated increase in the distance of 0.6602 (95% CI: 0.5376, 0.7823), controlling for sex.</p>
 <p>We can also gain insights on the variability in the data. For example, we have an estimated standard error of the random intercept of 1.807 and an estimated within-group standard error of 1.4312. this tells us that we have stronger between subject variability in this model.</p>
 <p>We can also use this model to make predictions. For example, we can predict the distance of a 13 year old male. We first create a data set for this hypothetical individual, assigning it an id of 100, and then predict:</p>
@@ -3037,7 +3039,7 @@ Figure 6.31: Plot for assessing linearity in each treatment.
 ##  Formula: ~week | id
 ##  Structure: General positive-definite, Log-Cholesky parametrization
 ##             StdDev     Corr  
-## (Intercept) 0.80201054 (Intr)
+## (Intercept) 0.80201053 (Intr)
 ## week        0.01627928 0.185 
 ## Residual    0.57344311       
 ## 
