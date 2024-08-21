@@ -301,6 +301,7 @@ After approval, the PR can be merged with main. The reviewer may do this; howeve
 
 Upon merging dev to main, github actions will check the code again and publish the results to the book. You can verify the progress in the actions page. After completion, if you go to the website and don't notice changes, be sure to refresh the page and/or wait a few minutes.
 
+Note, it is good practice to delete branches after merging into dev, but we prefer to keep dev so do not delete that version.
 
 # Final Remarks and Tips
 
