@@ -284,6 +284,11 @@ Merge to dev when you have no errors and test the results. Again, this will not 
 This step will send all changes in the development version to the production version. When it is decided that we should do so, a pull request for dev to main is made. This is similar to previous PRs and the same checks apply. Note, if you try to directly push into main, there will be an error (below is an example in Git Bash). You must use a pull request.
 ![image](readme_files/push_main.png)
 
-However, you can not immediately accept a PR into main. It requires approval from another person, so be sure to include them in the PR and add informative comments on the PR.
+However, you can not immediately accept a PR into main. It requires approval from another person, so be sure to include them in the PR and add informative comments on the PR. If you do not have approval yet, you will see the following where you normally merge.
+![image](readme_files/PR_unapproved.png)
 
-Once accepted and dev is merged to main, github actions will check the code again and publish the results to the book. You can verify the progress in the actions page. After completion, if you go to the website and don't notice changes, be sure to refresh the page.
+You can set any reviewer(s) at the top right of the page, as shown below.
+![image](readme_files/PR_reviewers.png)
+![image](readme_files/PR_reviewers_selected.png)
+
+Once accepted, the reviewer will likely merge with main. However, you also have the ability to do so. Upon merging dev to main, github actions will check the code again and publish the results to the book. You can verify the progress in the actions page. After completion, if you go to the website and don't notice changes, be sure to refresh the page and/or wait a few minutes.
