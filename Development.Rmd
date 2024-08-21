@@ -277,6 +277,9 @@ Merging may require you making local changes and re-pushing to GitHub. Any new p
 
 Merge to dev when you have no errors and test the results. Again, this will not change the published book.
 
+It is good practice to delete the branch after merging to keep the history clean. A notification at the bottom of the PR is given.
+![image](readme_files/PR_delete_branch.png)
+
 
 ## Merge Dev to Main
 
@@ -300,6 +303,8 @@ After approval, the PR can be merged with main. The reviewer may do this; howeve
 ![image](readme_files/PR_pass.png)
 
 Upon merging dev to main, github actions will check the code again and publish the results to the book. You can verify the progress in the actions page. After completion, if you go to the website and don't notice changes, be sure to refresh the page and/or wait a few minutes.
+
+Although it is good practice to delete the smaller branches, we do not delete dev or main. This option will not be given at the bottom of PRs.
 
 
 # Final Remarks and Tips
