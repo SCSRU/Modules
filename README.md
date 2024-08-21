@@ -3,7 +3,6 @@ Welcome!
 This is the test version of automating the SCCRU book publishing process. A walkthrough can be found in [Development.Rmd](Development.Rmd). Typically you may walkthrough it on your computer, but you can also view it online (linked to name previously). This can help in setting up GitHub for the first time.
 
 
-
 <!-- 
 As a developer, this repo can be used very similar to that done previously. However, since there are a few process changes, I have outlined the steps below.
 

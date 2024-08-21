@@ -1143,9 +1143,9 @@ summary(fitLME_slope) # look at the output
 Without specifying the `method` parameter, we fit this model using REML. Again, from the output we see a number of fit statistics including AIC and BIC, which are slightly larger than in the random intercept model. Under the `Random effects:` header, we can obtain estimates for the standard deviations of our random slope and intercept, along with the standard deviations of our error term and the estimated correlation between our random slope and intercept. We can then calculate: 
 
 - the estimated variance of our random intercept as $\widehat{\sigma}_{b,0}^2 = 2.797^2 =$ `r paste(round(2.797^2,4))`, 
-- the estimated variance of our random slope as $\widehat{\sigma}_{b,1}^2 = 0.1609^2 =$ `r paste(round(0.1609^2,4))`,
-- the estimated variance of our error term as $\widehat{\sigma}^2 = 0.6683^2 =$  `r paste(round(0.6683^2,4))`, and
-- the estimated correlation between the random slope and intercept as $\widehat{\cor}(b_{0,i}, b_{1,i}) = -0.3540$.
+  - the estimated variance of our random slope as $\widehat{\sigma}_{b,1}^2 = 0.2264^2 =$ `r paste(round(0.2264^2,4))`,
+  - the estimated variance of our error term as $\widehat{\sigma}^2 = 1.31^2 =$  `r paste(round(1.31^2,4))`, and
+  - the estimated correlation between the random slope and intercept as $\widehat{cor}(b_{0,i}, b_{1,i}) = -0.766$.
 
 We also have our usual summary of the fixed effect regression coefficients, including with test statistics and $p$-values for the hypothesis test of $\beta_j = 0$. The correlations of the fixed effect regression coefficients (not the covariates themselves) is of little interest here. 
 
