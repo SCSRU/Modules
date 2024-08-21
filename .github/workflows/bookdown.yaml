@@ -1,10 +1,10 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
-  # push:
-  #   branches: [main, master]
-  pull_request:
+  push:
     branches: [main, master]
+  # pull_request:
+  #   branches: [main, master]
   workflow_dispatch:
 
 name: bookdown
@@ -45,12 +45,12 @@ jobs:
       #       git push origin
       #     fi
         
-      # - name: Cache bookdown results
-      #   uses: actions/cache@v4
-      #   with:
-      #     path: _bookdown_files
-      #     key: bookdown-${{ hashFiles('**/*Rmd') }}
-      #     restore-keys: bookdown-
+      - name: Cache bookdown results (Avoid potential overwrites)
+        uses: actions/cache@v4
+        with:
+          path: _bookdown_files
+          key: bookdown-${{ hashFiles('**/*Rmd') }}
+          restore-keys: bookdown-
 
       - name: Build site
         run: bookdown::render_book("index.Rmd", quiet = TRUE)
