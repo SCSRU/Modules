@@ -292,12 +292,18 @@ You can set any reviewer(s) at the top right of the page, as shown below.
 
 A reviewer may get notified (depending on settings), but upon entering the PR will see a banner near the top.
 ![image](readme_files/PR_review.png)
-The reviewer can then look at the code and add comments, require changes, or approve the PR.
+The reviewer can then look at the code and add comments, require changes, or approve the PR. If they have previously interacted, then GitHub will highlight any changes after the comment.
+![image](readme_files/PR_review_new.png)
+![image](readme_files/PR_review_notes.png)
+
+After approval, the PR can be merged with main. The reviewer may do this; however, it is available for anyone.
+![image](readme_files/PR_pass.png)
+
+Upon merging dev to main, github actions will check the code again and publish the results to the book. You can verify the progress in the actions page. After completion, if you go to the website and don't notice changes, be sure to refresh the page and/or wait a few minutes.
 
 
-Once accepted, the reviewer will likely merge with main. However, you also have the ability to do so. Upon merging dev to main, github actions will check the code again and publish the results to the book. You can verify the progress in the actions page. After completion, if you go to the website and don't notice changes, be sure to refresh the page and/or wait a few minutes.
+# Final Remarks and Tips
 
+Congratulations for reading through this document and updating the book!
 
-# Tips for Using This File 
-
-Once you have read this file, you may feel comfortable with the development process and only want to use this to get the code for running different formats of the book. Search (Ctrl-f in windows) for "update_contents" for the code where you define the new modules. This must be run before the next two options: search for "update_devcontents" for the development version code and search for "update_finalcontents" for the final version code. Then run "bookdown::serve_book()" to check the book.
+Once you have read this file, you may feel comfortable with the development process and only want to use this to get the code for running different formats of the book. Search (Ctrl-f in windows) for "update_contents" for the code where you define the new modules. This must be run before the either of the next two options: search for "update_devcontents" for the development version code and search for "update_finalcontents" for the final version code. Then run "bookdown::serve_book()" to check the book.
