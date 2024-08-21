@@ -227,8 +227,9 @@ servr::daemon_stop(1)
 
 ## Push to GitHub
 
-When the book works locally and you have saved the environment, it is time to push all changes to the GitHub server. There are several steps to this: stage (this specifies which changed files you wish to send to GitHub), commit (this gives a nice message and prepare the files to be send to GitHub), and push (this pushes all commits to GitHub). You can do these steps using GitHub Desktop or git directly.
+When the book works locally and you have saved the environment, it is time to push all changes to the GitHub server. There are several steps to this: stage (this specifies which changed files you wish to send to GitHub), commit (this gives a nice message and prepare the files to be send to GitHub), and push (this pushes all commits to GitHub). You can do these steps using GitHub Desktop, RStudio, or git directly.
 - GitHub desktop should have some nice buttons. I will add more on this later.
+- RStudio should have some nice buttons. I will add more on this later.
 - If you use git GUI, you have several options, but generally click file icons from the top part to bring them into the staged area, write something in the commit message section and press commit, then press push.
 - If you use git bash, on your branch, you stage changes ('git add .' will stage all changes), commit ('git commit -m "<message>" ' will commit changes with some message from you), and push ('git push' will push changes to GitHub). There may be a comment about creating a branch online when you push, but the code will be given if needed (see next figure for pushing a branch I made locally called 'fixReadme'). These steps will get your code online, where you can PR into dev.
 ![image](readme_files/git_push_error.png)
@@ -249,7 +250,6 @@ A check is excellent news! Any red X is a failure. Looking at the steps should o
 ### Additional Information
 
 Even if there are no errors, this will not be in production--i.e. the online book--yet. 
-
 
 
 # Publish Changes
@@ -281,8 +281,9 @@ Merge to dev when you have no errors and test the results. Again, this will not 
 
 ## Merge Dev to Main
 
-This step will send all changes in the development version to the production version. When it is decided that we should do so, a pull request for dev to main is made. This is similar to previous PRs and the same checks apply. 
+This step will send all changes in the development version to the production version. When it is decided that we should do so, a pull request for dev to main is made. This is similar to previous PRs and the same checks apply. Note, if you try to directly push into main, there will be an error (below is an example in Git Bash). You must use a pull request.
+![image](readme_files/push_main.png)
 
-(FUTURE INFORMATION) However, now you can not immediately accept a PR into main. It requires approval from some people, so be sure to include them in the PR and add informative comments on the PR.
+However, you can not immediately accept a PR into main. It requires approval from another person, so be sure to include them in the PR and add informative comments on the PR.
 
 Once accepted and dev is merged to main, github actions will check the code again and publish the results to the book. You can verify the progress in the actions page. After completion, if you go to the website and don't notice changes, be sure to refresh the page.
