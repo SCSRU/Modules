@@ -290,6 +290,11 @@ You can set any reviewer(s) at the top right of the page, as shown below.
 ![image](readme_files/PR_reviewers.png)
 ![image](readme_files/PR_reviewers_selected.png)
 
+A reviewer may get notified (depending on settings), but upon entering the PR will see a banner near the top.
+![image](readme_files/PR_review.png)
+The reviewer can then look at the code and add comments, require changes, or approve the PR.
+
+
 Once accepted, the reviewer will likely merge with main. However, you also have the ability to do so. Upon merging dev to main, github actions will check the code again and publish the results to the book. You can verify the progress in the actions page. After completion, if you go to the website and don't notice changes, be sure to refresh the page and/or wait a few minutes.
 
 
