@@ -49,11 +49,3 @@ jobs:
       - name: Build site
         run: bookdown::render_book("index.Rmd", quiet = TRUE)
         shell: Rscript {0}
-        
-      - name: Deploy to GitHub pages 🚀
-        # if: github.event_name != 'pull_request'
-        # if: github.event.review.state == 'approved'
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
-        with:
-          branch: gh-pages
-          folder: _book
