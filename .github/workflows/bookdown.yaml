@@ -17,8 +17,6 @@ jobs:
       group: pkgdown-${{ github.event_name != 'pull_request' || github.run_id }}
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-    permissions:
-      contents: write
 
     steps:
       - name: Setup Actions
@@ -47,12 +45,12 @@ jobs:
       #       git push origin
       #     fi
         
-      - name: Cache bookdown results
-        uses: actions/cache@v4
-        with:
-          path: _bookdown_files
-          key: bookdown-${{ hashFiles('**/*Rmd') }}
-          restore-keys: bookdown-
+      # - name: Cache bookdown results
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: _bookdown_files
+      #     key: bookdown-${{ hashFiles('**/*Rmd') }}
+      #     restore-keys: bookdown-
 
       - name: Build site
         run: bookdown::render_book("index.Rmd", quiet = TRUE)
