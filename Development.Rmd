@@ -252,7 +252,6 @@ A check is excellent news! Any red X is a failure. Looking at the steps should o
 Even if there are no errors, this will not be in production--i.e. the online book--yet. 
 
 
-
 # Publish Changes
 
 You may have noticed, no changes are visible on the online book yet. There are still a few steps, which are covered below.
@@ -282,8 +281,9 @@ Merge to dev when you have no errors and test the results. Again, this will not 
 
 ## Merge Dev to Main
 
-This step will send all changes in the development version to the production version. When it is decided that we should do so, a pull request for dev to main is made. This is similar to previous PRs and the same checks apply. 
+This step will send all changes in the development version to the production version. When it is decided that we should do so, a pull request for dev to main is made. This is similar to previous PRs and the same checks apply. Note, if you try to directly push into main, there will be an error (below is an example in Git Bash). You must use a pull request.
+![image](readme_files/push_main.png)
 
-(FUTURE INFORMATION) However, now you can not immediately accept a PR into main. It requires approval from some people, so be sure to include them in the PR and add informative comments on the PR.
+However, you can not immediately accept a PR into main. It requires approval from another person, so be sure to include them in the PR and add informative comments on the PR.
 
 Once accepted and dev is merged to main, github actions will check the code again and publish the results to the book. You can verify the progress in the actions page. After completion, if you go to the website and don't notice changes, be sure to refresh the page.
