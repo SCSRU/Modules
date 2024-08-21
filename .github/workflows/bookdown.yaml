@@ -17,6 +17,9 @@ jobs:
       group: pkgdown-${{ github.event_name != 'pull_request' || github.run_id }}
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    permissions:
+      contents: write
+
     steps:
       - name: Setup Actions
         uses: actions/checkout@v4
@@ -58,7 +61,7 @@ jobs:
       - name: Deploy to GitHub pages 🚀
         # if: github.event_name != 'pull_request'
         # if: github.event.review.state == 'approved'
-        uses: JamesIves/github-pages-deploy-action@v4 #v4.4.1
+        uses: JamesIves/github-pages-deploy-action@v4.5.0 #v4.4.1
         with:
           branch: gh-pages
           folder: _book
