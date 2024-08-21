@@ -306,7 +306,6 @@ Upon merging dev to main, github actions will check the code again and publish t
 
 Although it is good practice to delete the smaller branches, we do not delete dev or main. This option will not be given at the bottom of PRs.
 
-
 # Final Remarks and Tips
 
 Congratulations for reading through this document and updating the book!
