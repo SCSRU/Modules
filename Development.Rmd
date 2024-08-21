@@ -122,7 +122,7 @@ Make any changes to the project (including changes to 'references.bib'). If any 
 You can just use 'install.packages("<package>")' which will call the renv command renv::install("<package>")'. If in doubt, feel free to install!
 
 In order to add the new module in the book, add a '  - "<filename>" ' in the desired placement below:
-```{r}
+```{r update_contents}
 file_contents <- paste0(
   '
 new_session: no
@@ -140,7 +140,7 @@ rmd_files:
   - "mod_sample_size.Rmd" ')
 ```
 and then run the following code, which adds a few development sections then outputs the results in a .yml file for the book creation.
-```{r}
+```{r update_devcontents, eval=FALSE}
 dev_contents <- 
   paste0(file_contents,'  
   - "app_general_guidelines.Rmd"
@@ -209,7 +209,7 @@ The package information is saved in 'renv.lock', which can be directly modified.
 ## Prepare for GitHub
 
 This step we do a last verification of the code and also remove the development sections of the book. Be sure the file_contents variable is correct in the development section as we now write that information without development sections in a .yml file for the book creation.
-```{r}
+```{r update_finalcontents}
 dev_contents <- 
   paste0(file_contents,'  
   - "Z_references.Rmd" ')
@@ -223,7 +223,6 @@ bookdown::serve_book()
 # When you want to stop
 servr::daemon_stop(1)
 ```
-
 
 ## Push to GitHub
 
@@ -292,3 +291,8 @@ You can set any reviewer(s) at the top right of the page, as shown below.
 ![image](readme_files/PR_reviewers_selected.png)
 
 Once accepted, the reviewer will likely merge with main. However, you also have the ability to do so. Upon merging dev to main, github actions will check the code again and publish the results to the book. You can verify the progress in the actions page. After completion, if you go to the website and don't notice changes, be sure to refresh the page and/or wait a few minutes.
+
+
+# Tips for Using This File 
+
+Once you have read this file, you may feel comfortable with the development process and only want to use this to get the code for running different formats of the book. Search (Ctrl-f in windows) for "update_contents" for the code where you define the new modules. This must be run before the next two options: search for "update_devcontents" for the development version code and search for "update_finalcontents" for the final version code. Then run "bookdown::serve_book()" to check the book.
