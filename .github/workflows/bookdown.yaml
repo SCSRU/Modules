@@ -17,9 +17,10 @@ jobs:
       group: pkgdown-${{ github.event_name != 'pull_request' || github.run_id }}
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
     steps:
       - name: Setup Actions
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Pandoc
         uses: r-lib/actions/setup-pandoc@v2
@@ -31,9 +32,9 @@ jobs:
 
       - name: Setup R Enviroment
         uses: r-lib/actions/setup-renv@v2
-      
-      - name: Cache bookdown results
-        uses: actions/cache@v3
+        
+      - name: Cache bookdown results (Avoid potential overwrites)
+        uses: actions/cache@v4
         with:
           path: _bookdown_files
           key: bookdown-${{ hashFiles('**/*Rmd') }}
@@ -46,7 +47,7 @@ jobs:
       - name: Deploy to GitHub pages 🚀
         # if: github.event_name != 'pull_request'
         # if: github.event.review.state == 'approved'
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
+        uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
           branch: gh-pages
           folder: _book
