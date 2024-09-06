@@ -3,11 +3,11 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="https://uwaterloo.ca/statistical-consulting-and-collaborative-research-unit/" target="blank">Statistical Consulting and Collaborative Research Unit</a></li>
+        <li><a href="https://uwaterloo.ca/statistical-consulting-survey-research-unit/" target="blank">Statistical Consulting and Survey Research Unit</a></li>
       # before: |
       #   <li><a href="./">Topics in Statistical Consulting</a></li>
       # after: |
-      #   <li><a href="https://uwaterloo.ca/statistical-consulting-and-collaborative-research-unit/" target="blank">Statistical Consulting and Collaborative Research Unit</a></li>
+      #   <li><a href="https://uwaterloo.ca/statistical-consulting-survey-research-unit/" target="blank">Statistical Consulting and Survey Research Unit</a></li>
     # download: ["pdf"]
 # bookdown::pdf_book:
 #   includes:
