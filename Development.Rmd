@@ -4,7 +4,7 @@ title: Development Walkthrough
 
 # Development process
 
-This document walks through development of the [living book][https://scsru.github.io/Test_SCCRBook/]. Each section contains necessary code, with any required modifications mentioned.  Sections contain general goals, subsections highlight when to do it, and sub-subsections are merely for your information if you want to learn more about it or there is some problem.
+This document walks through development of the [living book][https://scsru.github.io/Test_SCCRBook/] for those who have access and wish to add information. Each section contains necessary code, with any required modifications mentioned.  Sections contain general goals, subsections highlight when to do it, and sub-subsections are merely for your information if you want to learn more about it or there is some problem.
 
 Throughout this, there are often may ways to do something. I tried to include the most common, ordering them in way may be the simplest for people not used to using GitHub, but feel free to use any method.
 
@@ -126,36 +126,7 @@ Make any changes to the project (including changes to 'references.bib'). If any 
 ![image](readme_files/renv_installPackage.png)
 You can just use 'install.packages("<package>")' which will call the renv command renv::install("<package>")'. If in doubt, feel free to install!
 
-In order to add the new module in the book, add a '  - "<filename>" ' in the desired placement below:
-```{r update_contents}
-file_contents <- paste0(
-  '
-new_session: no
-delete_merged_file: true
-book_filename: "topics_in_consulting.Rmd"
-rmd_files:
-  - "index.Rmd"
-  - "mod_intro_r.Rmd"
-  - "mod_ggplot2.Rmd"
-  - "mod_linear_regression.Rmd"
-  - "mod_generalizedlinearmodels.Rmd"
-  - "mod_nonparametric.Rmd"
-  - "mod_longitudinal.Rmd"
-  - "mod_questionnaire_design.Rmd"
-  - "mod_sample_size.Rmd" ')
-```
-and then run the following code, which adds a few development sections then outputs the results in a .yml file for the book creation.
-```{r update_devcontents, eval=FALSE}
-dev_contents <- 
-  paste0(file_contents,'  
-  - "app_general_guidelines.Rmd"
-  - "app_formatting_guidelines.Rmd"
-  - "app_git_tutorial.Rmd"
-  - "app_bookdown_tests.Rmd"
-  - "Z_references.Rmd" ')
-
-write(dev_contents,"./_bookdown.yml")
-```
+In order to add the new module in the book, add a '  - "<filename>" ' in the desired placement in the first part of code section (see end of this readme), defining variable file_contents. The code chuck is called "update_contents" if you want to find it via ctrl-f. The later code in the section adds a few development sections then outputs the results in a .yml file for the book creation.
 
 ### Additional Information
 
@@ -213,14 +184,7 @@ The package information is saved in 'renv.lock', which can be directly modified.
 
 ## Prepare for GitHub
 
-This step we do a last verification of the code and also remove the development sections of the book. Be sure the file_contents variable is correct in the development section as we now write that information without development sections in a .yml file for the book creation.
-```{r update_finalcontents}
-dev_contents <- 
-  paste0(file_contents,'  
-  - "Z_references.Rmd" ')
-
-write(dev_contents,"./_bookdown.yml")
-```
+This step we do a last verification of the code of the book. Be sure the file_contents variable is correct in the code section at the end of this readme (also reach 'update_contents' using ctrl-f). We now write that information in a .yml file for the book creation. 
 
 It may also be useful to check the code, again using the code
 ```{r, eval=FALSE}
@@ -317,4 +281,35 @@ Although it is good practice to delete the smaller branches, we do not delete de
 
 Congratulations for reading through this document and updating the book!
 
-Once you have read this file, you may feel comfortable with the development process and only want to use this to get the code for running different formats of the book. Search (Ctrl-f in windows) for "update_contents" for the code where you define the new modules. This must be run before the either of the next two options: search for "update_devcontents" for the development version code and search for "update_finalcontents" for the final version code. Then run "bookdown::serve_book()" to check the book.
+Once you have read this file, you may feel comfortable with the development process and only want to use this to get the code for running different formats of the book. Search (Ctrl-f in windows) for "update_contents" for the code where you define the new modules. Then run "bookdown::serve_book()" to check the book.
+
+# Code Section
+
+```{r update_contents}
+file_contents <- paste0(
+  '
+new_session: no
+delete_merged_file: true
+book_filename: "topics_in_consulting.Rmd"
+rmd_files:
+  - "index.Rmd"
+  - "mod_intro_r.Rmd"
+  - "mod_ggplot2.Rmd"
+  - "mod_linear_regression.Rmd"
+  - "mod_generalizedlinearmodels.Rmd"
+  - "mod_nonparametric.Rmd"
+  - "mod_longitudinal.Rmd"
+  - "mod_questionnaire_design.Rmd"
+  - "mod_sample_size.Rmd" ')
+
+final_contents <- 
+  paste0(file_contents,'  
+  - "app_general_guidelines.Rmd"
+  - "app_formatting_guidelines.Rmd"
+  - "app_git_tutorial.Rmd"
+  - "app_bookdown_tests.Rmd"
+  - "Development.Rmd"
+  - "Z_references.Rmd" ')
+
+write(final_contents,"./_bookdown.yml")
+```
