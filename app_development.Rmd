@@ -1,10 +1,14 @@
----
-title: Development Walkthrough
----
+# Book Development Walkthrough
 
-# Development process
+*Author: Joslin Goh, Jeremy VanderDoes*
 
-This document walks through development of the [living book][https://scsru.github.io/Test_SCCRBook/] for those who have access and wish to add information. Each section contains necessary code, with any required modifications mentioned.  Sections contain general goals, subsections highlight when to do it, and sub-subsections are merely for your information if you want to learn more about it or there is some problem.
+*Last Updated: Sep 10, 2024*
+
+--- 
+
+## Development process
+
+This document walks through development of the [living book](https://scsru.github.io/Test_SCCRBook/) for those who have access and wish to add information. Each section contains necessary code, with any required modifications mentioned.  Sections contain general goals, subsections highlight when to do it, and sub-subsections are merely for your information if you want to learn more about it or there is some problem.
 
 Throughout this, there are often may ways to do something. I tried to include the most common, ordering them in way may be the simplest for people not used to using GitHub, but feel free to use any method.
 
@@ -12,12 +16,12 @@ If you ever have any problems, feel free to reach out!
 
 
 
-# Git Setup
+## Git Setup
 
 This part may already be complete if you have used GitHub before, and is also outlined in the readme file. The point on this section is to install the necessary software to work with the book (beyond that found in R).
 
 
-## Software Installation
+### Software Installation
 
 You will need Git installed on your computer. If you are running a Mac or Linux computer, this may already be done! However, you can still follow the instructions if unsure. For everyone else, to download it, there are two options.
 
@@ -26,12 +30,12 @@ You will need Git installed on your computer. If you are running a Mac or Linux 
 
 
 
-# Package Connection
+## Package Connection
 
 This section is made to get the book on your computer and ensure you are also add information to the remote server.
 
 
-## First Time Setup
+### First Time Setup
 
 After opening the [github page](https://github.com/scsru/Modules), there are three main ways to download the project to your computer, outlined below. Please use whichever one you are most comfortable with.
 
@@ -40,7 +44,7 @@ After opening the [github page](https://github.com/scsru/Modules), there are thr
 - Right click in the desired location on your computer and open git bash. Type 'git clone <URL>' where <URL> indicates the the https url retrieved on the github page, clicking the green '<> Code' button. This URL should be 'https://github.com/scsru/Modules.git'.
 - Right click in the desired location on your computer and open git GUI. Select 'Clone Existing Repository' and enter the git <URL> in Source Location. This <URL> is retrieved on the github page, by clicking the green '<> Code' button ('https://github.com/scsru/Modules.git'). Enter your desired location on the computer in Target Directory.
 
-### Additional Information
+#### Additional Information
 
 This step is called cloning a repository (or repo for short) and creates a copy of the online hosted package on your computer. Because of this, you can change things on your computer and then when everything is working, push changes to the remote server for others to access (discussed in a later section).
 
@@ -51,7 +55,7 @@ One possible issue is that GitHub says you do not have access or fails on clone.
 You should be prompted on connecting an account.
 
 
-## Subsequent Uses
+### Subsequent Uses
 
 While you may have previously cloned the repository, others may have made changes and updated it since you copied it. Because of this, it is good practice to always 'pull' the project before working on it to ensure you are using an up-to-date version. You can do this in one of the follow ways:
 
@@ -61,22 +65,22 @@ While you may have previously cloned the repository, others may have made change
 - In the project folder, right click and open git GUI. Go to 'branch > update' in the top options.
 - In the project folder, right click and open git bash. Enter 'git pull'.
 
-### Additional Information
+#### Additional Information
 
 Pulling a repo is done regularly to ensure you work on the latest version of codes. Generally this will be sufficient; however, it is possible to write some code and then pull if someone has pushed new information since you started. This will typically work normally, but if the changes that 'conflict' or interact with your changes, GitHub may ask about it. In this case, we need to do a 'merge' where we look at the differences and choose which changes to keep (which may be both if we determine they do not actually interact).
 
 
 
-# Local Project Development 
+## Local Project Development 
 
 This section is all about ensuring everything is correct on your computer to begin development. 
 
 
-## Location
+### Location
 
 Open the 'Modules.Rproj' file to ensure you are in the right location.
 
-## Package Setup
+### Package Setup
 
 We use the package renv to version packages of the code and prevent breaks by unexpectedly running different versions.
 
@@ -91,7 +95,7 @@ Restore all of the libraries. The first time you do this, a lot of packages will
 ![image](readme_files/renv_restore.png)
 
 
-## (Optional) Compile Check
+### (Optional) Compile Check
 
 This optional check is done later, but I recommend it to check if anything is broken before you make changes. You don't want to think you broke something when it was already broken!
 
@@ -100,7 +104,7 @@ Run the following code to compile and serve (or load) book in a local browser.
 bookdown::serve_book()
 ```
 
-### Additional Information
+#### Additional Information
 
 This stage is finicky. If you get weird failures for basic libraries or just have issues, try updating R! This is the most common often the issue at this point.
 ![image](readme_files/bookdown_compile_failure.png)
@@ -113,7 +117,7 @@ Proceed when asked, we can always fix it if a package is better when not updated
 Due to the nature of this step, if none of the given suggestions work, the best advice is to reach out.
 
 
-## Development
+### Development
 
 It is finally time for development by adding or changing modules. It is good practice to develop on a new GitHub branch so it is easy to understand what you are doing and not mix up potential issues if something isn't working. This can be done as:
 - GitHub Desktop: There should be an option to create a branch. I will add more information when I have a different computer nearby.
@@ -128,12 +132,12 @@ You can just use 'install.packages("<package>")' which will call the renv comman
 
 In order to add the new module in the book, add a '  - "<filename>" ' in the desired placement in the first part of code section (see end of this readme), defining variable file_contents. The code chuck is called "update_contents" if you want to find it via ctrl-f. The later code in the section adds a few development sections then outputs the results in a .yml file for the book creation.
 
-### Additional Information
+#### Additional Information
 
 A common mistake is to forget references in 'references.bib', so be sure to double check that!
 
 
-## Test Code
+### Test Code
 
 To check the code, the first step is to see if it works locally. This can be done using the following code, which may take awhile on first compilation:
 ```{r, eval=FALSE}
@@ -145,7 +149,7 @@ servr::daemon_stop(1)
 ```
 which is given and noting that the 1 may change if you have multiple instances running without closure.
 
-### Additional Information
+#### Additional Information
 
 If you see no error, but the hosted book does not include your new module, you probably forgot to include the file in the previous string and run the code to save it.
 
@@ -155,12 +159,12 @@ If you mistyped the name, then you will see an error like follows.
 If you forgot to install (or restore) a package, the following error may be displayed
 ![image](readme_files/bookdown_noInstall1.png)
 
-# Send Changes to Server
+## Send Changes to Server
 
 This section focuses on preparing and sending changes to the remote server.
 
 
-## Save Environment
+### Save Environment
 
 Any additional or changed packages need to be recorded for consistency with other developers and to inform GitHub what is needed to host the book. 
 
@@ -177,12 +181,12 @@ If packages were added, removed, or updated, you will get a result similar to th
 
 It is recommended to only update packages that must be updated for functionality as some may have been downgraded for GitHub server reasons.
 
-### Additional Information
+#### Additional Information
 
 The package information is saved in 'renv.lock', which can be directly modified.
 
 
-## Prepare for GitHub
+### Prepare for GitHub
 
 This step we do a last verification of the code of the book. Be sure the file_contents variable is correct in the code section at the end of this readme (also reach 'update_contents' using ctrl-f). We now write that information in a .yml file for the book creation. 
 
@@ -193,7 +197,7 @@ bookdown::serve_book()
 servr::daemon_stop(1)
 ```
 
-## Push to GitHub
+### Push to GitHub
 
 When the book works locally and you have saved the environment, it is time to push all changes to the GitHub server. There are several steps to this: stage (this specifies which changed files you wish to send to GitHub), commit (this gives a nice message and prepare the files to be send to GitHub), and push (this pushes all commits to GitHub). You can do these steps using GitHub Desktop, RStudio, or git directly.
 
@@ -204,12 +208,12 @@ When the book works locally and you have saved the environment, it is time to pu
 - If you use git bash, on your branch, you stage changes ('git add .' will stage all changes), commit ('git commit -m "<message>" ' will commit changes with some message from you), and push ('git push' will push changes to GitHub). There may be a comment about creating a branch online when you push, but the code will be given if needed (see next figure for pushing a branch I made locally called 'fixReadme'). These steps will get your code online, where you can PR into dev.
 ![image](readme_files/git_push_error.png)
 
-### Additional Information
+#### Additional Information
 
 You can push to any branch except main. Pushes to main will fail! More discussion on getting your changes into production in later sections.
 
 
-## Check GitHub
+### Check GitHub
 
 When you push to GitHub, GitHub actions will automatically check to see if there are any issues in creating the book on the server. You can monitor the progress in the Actions tab, results on the branch (which are small), or see the result if the branch is part of a pull request (discussed later).
 
@@ -217,17 +221,17 @@ A check is excellent news! Any red X is a failure. Looking at the steps should o
 - Setup R Environment: An error in this step likely requires upgrading or downgrading a package.
 - Build Site: An error in this step likely indicates that you forgot to include the package in the 'renv.lock' file. Run 'renv::snapshot()' in the local environment and re-push.
 
-### Additional Information
+#### Additional Information
 
 Even if there are no errors, this will not be in production--i.e. the online book--yet. 
 
 
-# Publish Changes
+## Publish Changes
 
 You may have noticed, no changes are visible on the online book yet. There are still a few steps, which are covered below.
 
 
-## Merge With Dev
+### Merge With Dev
 
 We want to prepare your changes to get to production. The first thing to do, if you didn't code on it, is to merge your code into the dev branch. This will make sure any other changes are incorporated and check that all is working.
 
@@ -242,7 +246,7 @@ On a PR, you change ensure the code is passing all internal checks.
 ![image](readme_files/github_check_success.png)
 - (I will add a failure example)
 
-### Additional Information
+#### Additional Information
 
 Merging may require you making local changes and re-pushing to GitHub. Any new pushes on the branch will automatically be included in the merge.
 
@@ -252,7 +256,7 @@ It is good practice to delete the branch after merging to keep the history clean
 ![image](readme_files/PR_delete_branch.png)
 
 
-## Merge Dev to Main
+### Merge Dev to Main
 
 This step will send all changes in the development version to the production version. When it is decided that we should do so, a pull request for dev to main is made. This is similar to previous PRs and the same checks apply. Note, if you try to directly push into main, there will be an error (below is an example in Git Bash). You must use a pull request.
 ![image](readme_files/push_main.png)
@@ -277,15 +281,15 @@ Upon merging dev to main, github actions will check the code again and publish t
 
 Although it is good practice to delete the smaller branches, we do not delete dev or main. This option will not be given at the bottom of PRs.
 
-# Final Remarks and Tips
+## Final Remarks and Tips
 
 Congratulations for reading through this document and updating the book!
 
 Once you have read this file, you may feel comfortable with the development process and only want to use this to get the code for running different formats of the book. Search (Ctrl-f in windows) for "update_contents" for the code where you define the new modules. Then run "bookdown::serve_book()" to check the book.
 
-# Code Section
+## Code Section
 
-```{r update_contents}
+```{r update_contents, eval=FALSE}
 file_contents <- paste0(
   '
 new_session: no
@@ -308,7 +312,7 @@ final_contents <-
   - "app_formatting_guidelines.Rmd"
   - "app_git_tutorial.Rmd"
   - "app_bookdown_tests.Rmd"
-  - "Development.Rmd"
+  - "app_development.Rmd"
   - "Z_references.Rmd" ')
 
 write(final_contents,"./_bookdown.yml")
