@@ -4,7 +4,7 @@ title: Development Walkthrough
 
 # Development process
 
-This document walks through development of the [living book][https://scsru.github.io/Test_SCCRBook/]. Each section contains necessary code, with any required modifications mentioned.  Sections contain general goals, subsections highlight when to do it, and sub-subsections are merely for your information if you want to learn more about it or there is some problem.
+This document walks through development of the [living book][https://scsru.github.io/Test_SCCRBook/] for those who have access and wish to add information. Each section contains necessary code, with any required modifications mentioned.  Sections contain general goals, subsections highlight when to do it, and sub-subsections are merely for your information if you want to learn more about it or there is some problem.
 
 Throughout this, there are often may ways to do something. I tried to include the most common, ordering them in way may be the simplest for people not used to using GitHub, but feel free to use any method.
 
@@ -20,6 +20,7 @@ This part may already be complete if you have used GitHub before, and is also ou
 ## Software Installation
 
 You will need Git installed on your computer. If you are running a Mac or Linux computer, this may already be done! However, you can still follow the instructions if unsure. For everyone else, to download it, there are two options.
+
 - If you are new, and want a nice application to use, try GitHub Desktop. This helps working with both GitHub and the language Git. Install it at the [website](https://desktop.github.com/) and it should walk you through the installation. (I will update this section with more instructions in the future).
 - Alternatively, you can download the Git software directly. This is found on the [Git site](https://git-scm.com/downloads), and has instructions on installation for your computer.
 
@@ -33,7 +34,9 @@ This section is made to get the book on your computer and ensure you are also ad
 ## First Time Setup
 
 After opening the [github page](https://github.com/scsru/Modules), there are three main ways to download the project to your computer, outlined below. Please use whichever one you are most comfortable with.
+
 - If you installed GitHub Desktop on your machine, on the github page, click the '<> Code' button and select 'Open with Github Desktop'. 
+![image](readme_files/github_desktop_clone_repo.png)
 - Right click in the desired location on your computer and open git bash. Type 'git clone <URL>' where <URL> indicates the the https url retrieved on the github page, clicking the green '<> Code' button. This URL should be 'https://github.com/scsru/Modules.git'.
 - Right click in the desired location on your computer and open git GUI. Select 'Clone Existing Repository' and enter the git <URL> in Source Location. This <URL> is retrieved on the github page, by clicking the green '<> Code' button ('https://github.com/scsru/Modules.git'). Enter your desired location on the computer in Target Directory.
 
@@ -51,7 +54,9 @@ You should be prompted on connecting an account.
 ## Subsequent Uses
 
 While you may have previously cloned the repository, others may have made changes and updated it since you copied it. Because of this, it is good practice to always 'pull' the project before working on it to ensure you are using an up-to-date version. You can do this in one of the follow ways:
-- Using GitHub Desktop: In the folder of the project, it should have a nice option for pulling the project. (Currently I do not have it setup on this test computer, so I will add to this later with detailed instructions) 
+
+- Using GitHub Desktop: In the folder of the project, it should have a nice option for pulling the project.
+![image](readme_files/github_desktop_fetch_origin.png)
 - Using Rstudio. Often when you open a project that has been connected to GitHub, RStudio will recognize it and at the top left, another tab near environment and history will be called Git. There is a blue arrow in this tab with the words pull next to it. (Currently I do not have it setup on this test computer, so I will add to this later with detailed instructions) 
 - In the project folder, right click and open git GUI. Go to 'branch > update' in the top options.
 - In the project folder, right click and open git bash. Enter 'git pull'.
@@ -80,10 +85,10 @@ The following code gets the currently included libraries and versions. Run
 renv::restore()
 ```
 You may need to install renv. If this is your first time using renv, you could get a message like given below, which asks you to activate the project. Say yes (or 1 depending on the version). If you have used it, but this is your first use on this project, you may only get the second message.
-![image](readme_files/renv_startup.PNG)
+![image](readme_files/renv_startup.png)
 
 Restore all of the libraries. The first time you do this, a lot of packages will be listed and you are asked to restore it. Note, this may happen after the last messages.
-![image](readme_files/renv_restore.PNG)
+![image](readme_files/renv_restore.png)
 
 
 ## (Optional) Compile Check
@@ -118,39 +123,10 @@ It is finally time for development by adding or changing modules. It is good pra
 It is a good idea to check which branch you are on in GitHub Desktop, Git, or RStudio.
 
 Make any changes to the project (including changes to 'references.bib'). If any new libraries are needed in the renv, Rstudio will act as if it has never been installed. For example, you may see a yellow bar above the code.
-![image](readme_files/renv_installPackage.PNG)
+![image](readme_files/renv_installPackage.png)
 You can just use 'install.packages("<package>")' which will call the renv command renv::install("<package>")'. If in doubt, feel free to install!
 
-In order to add the new module in the book, add a '  - "<filename>" ' in the desired placement below:
-```{r update_contents}
-file_contents <- paste0(
-  '
-new_session: no
-delete_merged_file: true
-book_filename: "topics_in_consulting.Rmd"
-rmd_files:
-  - "index.Rmd"
-  - "mod_intro_r.Rmd"
-  - "mod_ggplot2.Rmd"
-  - "mod_linear_regression.Rmd"
-  - "mod_generalizedlinearmodels.Rmd"
-  - "mod_nonparametric.Rmd"
-  - "mod_longitudinal.Rmd"
-  - "mod_questionnaire_design.Rmd"
-  - "mod_sample_size.Rmd" ')
-```
-and then run the following code, which adds a few development sections then outputs the results in a .yml file for the book creation.
-```{r update_devcontents, eval=FALSE}
-dev_contents <- 
-  paste0(file_contents,'  
-  - "app_general_guidelines.Rmd"
-  - "app_formatting_guidelines.Rmd"
-  - "app_git_tutorial.Rmd"
-  - "app_bookdown_tests.Rmd"
-  - "Z_references.Rmd" ')
-
-write(dev_contents,"./_bookdown.yml")
-```
+In order to add the new module in the book, add a '  - "<filename>" ' in the desired placement in the first part of code section (see end of this readme), defining variable file_contents. The code chuck is called "update_contents" if you want to find it via ctrl-f. The later code in the section adds a few development sections then outputs the results in a .yml file for the book creation.
 
 ### Additional Information
 
@@ -174,10 +150,10 @@ which is given and noting that the 1 may change if you have multiple instances r
 If you see no error, but the hosted book does not include your new module, you probably forgot to include the file in the previous string and run the code to save it.
 
 If you mistyped the name, then you will see an error like follows.
-![image](readme_files/bookdown_badName.PNG)
+![image](readme_files/bookdown_badName.png)
 
 If you forgot to install (or restore) a package, the following error may be displayed
-![image](readme_files/bookdown_noInstall1.PNG)
+![image](readme_files/bookdown_noInstall1.png)
 
 # Send Changes to Server
 
@@ -194,10 +170,10 @@ renv::snapshot()
 ```
 
 If no packages were added or updates, you will get the following result.
-![image](readme_files/renv_snapshotRemain.PNG)
+![image](readme_files/renv_snapshotRemain.png)
 
 If packages were added, removed, or updated, you will get a result similar to the following.
-![image](readme_files/renv_snapshotNew.PNG)
+![image](readme_files/renv_snapshotNew.png)
 
 It is recommended to only update packages that must be updated for functionality as some may have been downgraded for GitHub server reasons.
 
@@ -208,14 +184,7 @@ The package information is saved in 'renv.lock', which can be directly modified.
 
 ## Prepare for GitHub
 
-This step we do a last verification of the code and also remove the development sections of the book. Be sure the file_contents variable is correct in the development section as we now write that information without development sections in a .yml file for the book creation.
-```{r update_finalcontents}
-dev_contents <- 
-  paste0(file_contents,'  
-  - "Z_references.Rmd" ')
-
-write(dev_contents,"./_bookdown.yml")
-```
+This step we do a last verification of the code of the book. Be sure the file_contents variable is correct in the code section at the end of this readme (also reach 'update_contents' using ctrl-f). We now write that information in a .yml file for the book creation. 
 
 It may also be useful to check the code, again using the code
 ```{r, eval=FALSE}
@@ -227,7 +196,9 @@ servr::daemon_stop(1)
 ## Push to GitHub
 
 When the book works locally and you have saved the environment, it is time to push all changes to the GitHub server. There are several steps to this: stage (this specifies which changed files you wish to send to GitHub), commit (this gives a nice message and prepare the files to be send to GitHub), and push (this pushes all commits to GitHub). You can do these steps using GitHub Desktop, RStudio, or git directly.
-- GitHub desktop should have some nice buttons. I will add more on this later.
+
+- GitHub desktop should have some nice buttons. 
+![image](readme_files/github_desktop_commit.png)
 - RStudio should have some nice buttons. I will add more on this later.
 - If you use git GUI, you have several options, but generally click file icons from the top part to bring them into the staged area, write something in the commit message section and press commit, then press push.
 - If you use git bash, on your branch, you stage changes ('git add .' will stage all changes), commit ('git commit -m "<message>" ' will commit changes with some message from you), and push ('git push' will push changes to GitHub). There may be a comment about creating a branch online when you push, but the code will be given if needed (see next figure for pushing a branch I made locally called 'fixReadme'). These steps will get your code online, where you can PR into dev.
@@ -310,4 +281,35 @@ Although it is good practice to delete the smaller branches, we do not delete de
 
 Congratulations for reading through this document and updating the book!
 
-Once you have read this file, you may feel comfortable with the development process and only want to use this to get the code for running different formats of the book. Search (Ctrl-f in windows) for "update_contents" for the code where you define the new modules. This must be run before the either of the next two options: search for "update_devcontents" for the development version code and search for "update_finalcontents" for the final version code. Then run "bookdown::serve_book()" to check the book.
+Once you have read this file, you may feel comfortable with the development process and only want to use this to get the code for running different formats of the book. Search (Ctrl-f in windows) for "update_contents" for the code where you define the new modules. Then run "bookdown::serve_book()" to check the book.
+
+# Code Section
+
+```{r update_contents}
+file_contents <- paste0(
+  '
+new_session: no
+delete_merged_file: true
+book_filename: "topics_in_consulting.Rmd"
+rmd_files:
+  - "index.Rmd"
+  - "mod_intro_r.Rmd"
+  - "mod_ggplot2.Rmd"
+  - "mod_linear_regression.Rmd"
+  - "mod_generalizedlinearmodels.Rmd"
+  - "mod_nonparametric.Rmd"
+  - "mod_longitudinal.Rmd"
+  - "mod_questionnaire_design.Rmd"
+  - "mod_sample_size.Rmd" ')
+
+final_contents <- 
+  paste0(file_contents,'  
+  - "app_general_guidelines.Rmd"
+  - "app_formatting_guidelines.Rmd"
+  - "app_git_tutorial.Rmd"
+  - "app_bookdown_tests.Rmd"
+  - "Development.Rmd"
+  - "Z_references.Rmd" ')
+
+write(final_contents,"./_bookdown.yml")
+```

@@ -1,7 +1,7 @@
 --- 
 title: "Topics in Statistical Consulting"
 author: |
-  | **Statistical Consulting and Collaborative Research Unit**
+  | **Statistical Consulting and Survey Research Unit**
   | **University of Waterloo**
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -9,7 +9,7 @@ documentclass: book
 biblio-style: apalike
 link-citations: true
 bibliography: references.bib
-# url: your book url like https://bookdown.org/yihui/bookdown
+url: https://scsru.github.io/Modules/
 # cover-image: path to the social sharing image like images/cover.jpg
 github-repo: rstudio/bookdown-demo
 output: 
