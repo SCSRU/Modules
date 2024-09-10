@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Development Walkthrough</title>
-  <meta name="description" content="References | Development Walkthrough" />
+  <title>L Code Section | Development Walkthrough</title>
+  <meta name="description" content="L Code Section | Development Walkthrough" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Development Walkthrough" />
+  <meta property="og:title" content="L Code Section | Development Walkthrough" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Development Walkthrough" />
+  <meta name="twitter:title" content="L Code Section | Development Walkthrough" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="code-section.html"/>
-
+<link rel="prev" href="final-remarks-and-tips.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -622,75 +622,43 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered hasAnchor">
-<h1>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="code-section" class="section level1 hasAnchor" number="20">
+<h1><span class="header-section-number">L</span> Code Section<a href="code-section.html#code-section" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb705-1"><a href="code-section.html#cb705-1" tabindex="-1"></a>file_contents <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb705-2"><a href="code-section.html#cb705-2" tabindex="-1"></a>  <span class="st">&#39;</span></span>
+<span id="cb705-3"><a href="code-section.html#cb705-3" tabindex="-1"></a><span class="st">new_session: no</span></span>
+<span id="cb705-4"><a href="code-section.html#cb705-4" tabindex="-1"></a><span class="st">delete_merged_file: true</span></span>
+<span id="cb705-5"><a href="code-section.html#cb705-5" tabindex="-1"></a><span class="st">book_filename: &quot;topics_in_consulting.Rmd&quot;</span></span>
+<span id="cb705-6"><a href="code-section.html#cb705-6" tabindex="-1"></a><span class="st">rmd_files:</span></span>
+<span id="cb705-7"><a href="code-section.html#cb705-7" tabindex="-1"></a><span class="st">  - &quot;index.Rmd&quot;</span></span>
+<span id="cb705-8"><a href="code-section.html#cb705-8" tabindex="-1"></a><span class="st">  - &quot;mod_intro_r.Rmd&quot;</span></span>
+<span id="cb705-9"><a href="code-section.html#cb705-9" tabindex="-1"></a><span class="st">  - &quot;mod_ggplot2.Rmd&quot;</span></span>
+<span id="cb705-10"><a href="code-section.html#cb705-10" tabindex="-1"></a><span class="st">  - &quot;mod_linear_regression.Rmd&quot;</span></span>
+<span id="cb705-11"><a href="code-section.html#cb705-11" tabindex="-1"></a><span class="st">  - &quot;mod_generalizedlinearmodels.Rmd&quot;</span></span>
+<span id="cb705-12"><a href="code-section.html#cb705-12" tabindex="-1"></a><span class="st">  - &quot;mod_nonparametric.Rmd&quot;</span></span>
+<span id="cb705-13"><a href="code-section.html#cb705-13" tabindex="-1"></a><span class="st">  - &quot;mod_longitudinal.Rmd&quot;</span></span>
+<span id="cb705-14"><a href="code-section.html#cb705-14" tabindex="-1"></a><span class="st">  - &quot;mod_questionnaire_design.Rmd&quot;</span></span>
+<span id="cb705-15"><a href="code-section.html#cb705-15" tabindex="-1"></a><span class="st">  - &quot;mod_sample_size.Rmd&quot; &#39;</span>)</span>
+<span id="cb705-16"><a href="code-section.html#cb705-16" tabindex="-1"></a></span>
+<span id="cb705-17"><a href="code-section.html#cb705-17" tabindex="-1"></a>final_contents <span class="ot">&lt;-</span> </span>
+<span id="cb705-18"><a href="code-section.html#cb705-18" tabindex="-1"></a>  <span class="fu">paste0</span>(file_contents,<span class="st">&#39;  </span></span>
+<span id="cb705-19"><a href="code-section.html#cb705-19" tabindex="-1"></a><span class="st">  - &quot;app_general_guidelines.Rmd&quot;</span></span>
+<span id="cb705-20"><a href="code-section.html#cb705-20" tabindex="-1"></a><span class="st">  - &quot;app_formatting_guidelines.Rmd&quot;</span></span>
+<span id="cb705-21"><a href="code-section.html#cb705-21" tabindex="-1"></a><span class="st">  - &quot;app_git_tutorial.Rmd&quot;</span></span>
+<span id="cb705-22"><a href="code-section.html#cb705-22" tabindex="-1"></a><span class="st">  - &quot;app_bookdown_tests.Rmd&quot;</span></span>
+<span id="cb705-23"><a href="code-section.html#cb705-23" tabindex="-1"></a><span class="st">  - &quot;Development.Rmd&quot;</span></span>
+<span id="cb705-24"><a href="code-section.html#cb705-24" tabindex="-1"></a><span class="st">  - &quot;Z_references.Rmd&quot; &#39;</span>)</span>
+<span id="cb705-25"><a href="code-section.html#cb705-25" tabindex="-1"></a></span>
+<span id="cb705-26"><a href="code-section.html#cb705-26" tabindex="-1"></a><span class="fu">write</span>(final_contents,<span class="st">&quot;./_bookdown.yml&quot;</span>)</span></code></pre></div>
 
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div class="csl-entry">
-Agresti, Alan. 2015. <em>Foundations of Linear and Generalized Linear Models</em>. New York, NY: John Wiley &amp; Sons.
 </div>
-<div class="csl-entry">
-Cohen, Jacob. 2013. <em>Statistical Power Analysis for the Behavioral Sciences</em>. Routledge.
-</div>
-<div class="csl-entry">
-Diggle, Peter J., Patrick Heagerty, Kung-Yee Liang, and Scott L. Zeger. 2002. <em>Analysis of Longitudinal Data</em>. 2nd ed. Oxford, UK: Oxford University Press.
-</div>
-<div class="csl-entry">
-Fitzmaurice, Garrett M., Nan M. Laird, and James H. Ware. 2011. <em>Applied Longitudinal Analysis</em>. 2nd ed. Hoboken, NJ: Wiley.
-</div>
-<div class="csl-entry">
-Friedman, Jerome, Trevor Hastie, and Robert Tibshirani. 2009. <em>The Elements of Statistical Learning</em>. 2nd ed. New York, NY: Springer series in statistics.
-</div>
-<div class="csl-entry">
-Gelman, Andrew, John B Carlin, Hal S Stern, David B Dunson, Aki Vehtari, and Donald B Rubin. 2013. <em>Bayesian Data Analysis</em>. CRC Press. <a href="http://www.stat.columbia.edu/~gelman/book/">http://www.stat.columbia.edu/~gelman/book/</a>.
-</div>
-<div class="csl-entry">
-Hilbe, Joseph, Alain Zuur, and Elena Ieno. 2013. <em>Zuur, Alain.f, Joseph m. Hilbe, and Elena n Ieno, a Beginner’s Guide to GLM and GLMM with r: A Frequentist and Bayesian Perspective for Ecologists, HIghland Statistics</em>.
-</div>
-<div class="csl-entry">
-Karunarathne, Piyal, Nicolas Pocquet, Pierrick Labbé, and Pascal Milesi. 2022. <span>“BioRssay: An r Package for Analyses of Bioassays and Probit Graphs.”</span> <em>Parasites &amp; Vectors</em> 15 (1): 1–6.
-</div>
-<div class="csl-entry">
-Kerr, David, and James Meador. 1996. <span>“Modeling Dose Response Using Generalized Linear Models.”</span> <em>Environmental Toxicology and Chemistry</em> 15 (March): 395–401. <a href="https://doi.org/10.1002/etc.5620150325">https://doi.org/10.1002/etc.5620150325</a>.
-</div>
-<div class="csl-entry">
-McCullagh, Peter, and John A Nelder. 2019. <em>Generalized Linear Models</em>. Routledge.
-</div>
-<div class="csl-entry">
-Milesi, P, N Pocquet, and P Labbé. 2013. <span>“BioRssay: A r Script for Bioassay Analyses.”</span> <em>BioRssay: A R Script for Bioassay Analyses</em>.
-</div>
-<div class="csl-entry">
-Myers, Raymond H, and Douglas C Montgomery. 1997. <span>“A Tutorial on Generalized Linear Models.”</span> <em>Journal of Quality Technology</em> 29 (3): 274–91.
-</div>
-<div class="csl-entry">
-Walker, Esteban, and Amy S Nowacki. 2011. <span>“Understanding Equivalence and Noninferiority Testing.”</span> <em>Journal of General Internal Medicine</em> 26 (2): 192–96.
-</div>
-<div class="csl-entry">
-Wasserstein, Ronald L, and Nicole A Lazar. 2016. <span>“The ASA Statement on p-Values: Context, Process, and Purpose.”</span> Taylor &amp; Francis.
-</div>
-<div class="csl-entry">
-Wilkinson, Leland. 2012. <span>“The Grammar of Graphics.”</span> In <em>Handbook of Computational Statistics</em>, 375–414. Springer.
-</div>
-<div class="csl-entry">
-Wooldridge, Jeffrey M. 2016. <em>Introductory Econometrics: A Modern Approach</em>. 6th ed. Boston, MA: Cengage Learning.
-</div>
-</div>
-</div>
-
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="code-section.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="final-remarks-and-tips.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Development Walkthrough</title>
-  <meta name="description" content="References | Development Walkthrough" />
+  <title>H Local Project Development | Development Walkthrough</title>
+  <meta name="description" content="H Local Project Development | Development Walkthrough" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Development Walkthrough" />
+  <meta property="og:title" content="H Local Project Development | Development Walkthrough" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Development Walkthrough" />
+  <meta name="twitter:title" content="H Local Project Development | Development Walkthrough" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="code-section.html"/>
-
+<link rel="prev" href="package-connection.html"/>
+<link rel="next" href="send-changes-to-server.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -622,75 +622,78 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered hasAnchor">
-<h1>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div class="csl-entry">
-Agresti, Alan. 2015. <em>Foundations of Linear and Generalized Linear Models</em>. New York, NY: John Wiley &amp; Sons.
+<div id="local-project-development" class="section level1 hasAnchor" number="16">
+<h1><span class="header-section-number">H</span> Local Project Development<a href="local-project-development.html#local-project-development" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This section is all about ensuring everything is correct on your computer to begin development.</p>
+<div id="location" class="section level2 hasAnchor" number="16.1">
+<h2><span class="header-section-number">H.1</span> Location<a href="local-project-development.html#location" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Open the ‘Modules.Rproj’ file to ensure you are in the right location.</p>
 </div>
-<div class="csl-entry">
-Cohen, Jacob. 2013. <em>Statistical Power Analysis for the Behavioral Sciences</em>. Routledge.
+<div id="package-setup" class="section level2 hasAnchor" number="16.2">
+<h2><span class="header-section-number">H.2</span> Package Setup<a href="local-project-development.html#package-setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We use the package renv to version packages of the code and prevent breaks by unexpectedly running different versions.</p>
+<p>The following code gets the currently included libraries and versions. Run</p>
+<div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb698-1"><a href="local-project-development.html#cb698-1" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div>
+<p>You may need to install renv. If this is your first time using renv, you could get a message like given below, which asks you to activate the project. Say yes (or 1 depending on the version). If you have used it, but this is your first use on this project, you may only get the second message.
+<img src="readme_files/renv_startup.png" alt="image" /></p>
+<p>Restore all of the libraries. The first time you do this, a lot of packages will be listed and you are asked to restore it. Note, this may happen after the last messages.
+<img src="readme_files/renv_restore.png" alt="image" /></p>
 </div>
-<div class="csl-entry">
-Diggle, Peter J., Patrick Heagerty, Kung-Yee Liang, and Scott L. Zeger. 2002. <em>Analysis of Longitudinal Data</em>. 2nd ed. Oxford, UK: Oxford University Press.
-</div>
-<div class="csl-entry">
-Fitzmaurice, Garrett M., Nan M. Laird, and James H. Ware. 2011. <em>Applied Longitudinal Analysis</em>. 2nd ed. Hoboken, NJ: Wiley.
-</div>
-<div class="csl-entry">
-Friedman, Jerome, Trevor Hastie, and Robert Tibshirani. 2009. <em>The Elements of Statistical Learning</em>. 2nd ed. New York, NY: Springer series in statistics.
-</div>
-<div class="csl-entry">
-Gelman, Andrew, John B Carlin, Hal S Stern, David B Dunson, Aki Vehtari, and Donald B Rubin. 2013. <em>Bayesian Data Analysis</em>. CRC Press. <a href="http://www.stat.columbia.edu/~gelman/book/">http://www.stat.columbia.edu/~gelman/book/</a>.
-</div>
-<div class="csl-entry">
-Hilbe, Joseph, Alain Zuur, and Elena Ieno. 2013. <em>Zuur, Alain.f, Joseph m. Hilbe, and Elena n Ieno, a Beginner’s Guide to GLM and GLMM with r: A Frequentist and Bayesian Perspective for Ecologists, HIghland Statistics</em>.
-</div>
-<div class="csl-entry">
-Karunarathne, Piyal, Nicolas Pocquet, Pierrick Labbé, and Pascal Milesi. 2022. <span>“BioRssay: An r Package for Analyses of Bioassays and Probit Graphs.”</span> <em>Parasites &amp; Vectors</em> 15 (1): 1–6.
-</div>
-<div class="csl-entry">
-Kerr, David, and James Meador. 1996. <span>“Modeling Dose Response Using Generalized Linear Models.”</span> <em>Environmental Toxicology and Chemistry</em> 15 (March): 395–401. <a href="https://doi.org/10.1002/etc.5620150325">https://doi.org/10.1002/etc.5620150325</a>.
-</div>
-<div class="csl-entry">
-McCullagh, Peter, and John A Nelder. 2019. <em>Generalized Linear Models</em>. Routledge.
-</div>
-<div class="csl-entry">
-Milesi, P, N Pocquet, and P Labbé. 2013. <span>“BioRssay: A r Script for Bioassay Analyses.”</span> <em>BioRssay: A R Script for Bioassay Analyses</em>.
-</div>
-<div class="csl-entry">
-Myers, Raymond H, and Douglas C Montgomery. 1997. <span>“A Tutorial on Generalized Linear Models.”</span> <em>Journal of Quality Technology</em> 29 (3): 274–91.
-</div>
-<div class="csl-entry">
-Walker, Esteban, and Amy S Nowacki. 2011. <span>“Understanding Equivalence and Noninferiority Testing.”</span> <em>Journal of General Internal Medicine</em> 26 (2): 192–96.
-</div>
-<div class="csl-entry">
-Wasserstein, Ronald L, and Nicole A Lazar. 2016. <span>“The ASA Statement on p-Values: Context, Process, and Purpose.”</span> Taylor &amp; Francis.
-</div>
-<div class="csl-entry">
-Wilkinson, Leland. 2012. <span>“The Grammar of Graphics.”</span> In <em>Handbook of Computational Statistics</em>, 375–414. Springer.
-</div>
-<div class="csl-entry">
-Wooldridge, Jeffrey M. 2016. <em>Introductory Econometrics: A Modern Approach</em>. 6th ed. Boston, MA: Cengage Learning.
+<div id="optional-compile-check" class="section level2 hasAnchor" number="16.3">
+<h2><span class="header-section-number">H.3</span> (Optional) Compile Check<a href="local-project-development.html#optional-compile-check" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This optional check is done later, but I recommend it to check if anything is broken before you make changes. You don’t want to think you broke something when it was already broken!</p>
+<p>Run the following code to compile and serve (or load) book in a local browser.</p>
+<div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb699-1"><a href="local-project-development.html#cb699-1" tabindex="-1"></a>bookdown<span class="sc">::</span><span class="fu">serve_book</span>()</span></code></pre></div>
+<div id="additional-information-2" class="section level3 hasAnchor" number="16.3.1">
+<h3><span class="header-section-number">H.3.1</span> Additional Information<a href="local-project-development.html#additional-information-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This stage is finicky. If you get weird failures for basic libraries or just have issues, try updating R! This is the most common often the issue at this point.
+<img src="readme_files/bookdown_compile_failure.png" alt="image" />
+If a small package is broken, you can try to update it or re-restore the renv environment.</p>
+<div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb700-1"><a href="local-project-development.html#cb700-1" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">update</span>()</span></code></pre></div>
+<p>Proceed when asked, we can always fix it if a package is better when not updated.</p>
+<p>Due to the nature of this step, if none of the given suggestions work, the best advice is to reach out.</p>
 </div>
 </div>
+<div id="development" class="section level2 hasAnchor" number="16.4">
+<h2><span class="header-section-number">H.4</span> Development<a href="local-project-development.html#development" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It is finally time for development by adding or changing modules. It is good practice to develop on a new GitHub branch so it is easy to understand what you are doing and not mix up potential issues if something isn’t working. This can be done as:
+- GitHub Desktop: There should be an option to create a branch. I will add more information when I have a different computer nearby.
+- Git GUI: Right click in project, select git GUI and select ‘branch &gt; create’. Follow any prompts.
+- Git Bash: Right click in project, select git bash and type ‘git checkout -b <newBranchName>’ which create and moves to the branch.</p>
+<p>It is a good idea to check which branch you are on in GitHub Desktop, Git, or RStudio.</p>
+<p>Make any changes to the project (including changes to ‘references.bib’). If any new libraries are needed in the renv, Rstudio will act as if it has never been installed. For example, you may see a yellow bar above the code.
+<img src="readme_files/renv_installPackage.png" alt="image" />
+You can just use ‘install.packages(“<package>”)’ which will call the renv command renv::install(“<package>”)’. If in doubt, feel free to install!</p>
+<p>In order to add the new module in the book, add a ’ - “<filename>” ’ in the desired placement in the first part of code section (see end of this readme), defining variable file_contents. The code chuck is called “update_contents” if you want to find it via ctrl-f. The later code in the section adds a few development sections then outputs the results in a .yml file for the book creation.</p>
+<div id="additional-information-3" class="section level3 hasAnchor" number="16.4.1">
+<h3><span class="header-section-number">H.4.1</span> Additional Information<a href="local-project-development.html#additional-information-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A common mistake is to forget references in ‘references.bib’, so be sure to double check that!</p>
 </div>
-
-
-
-
-
-
-
-
+</div>
+<div id="test-code" class="section level2 hasAnchor" number="16.5">
+<h2><span class="header-section-number">H.5</span> Test Code<a href="local-project-development.html#test-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To check the code, the first step is to see if it works locally. This can be done using the following code, which may take awhile on first compilation:</p>
+<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb701-1"><a href="local-project-development.html#cb701-1" tabindex="-1"></a>bookdown<span class="sc">::</span><span class="fu">serve_book</span>()</span></code></pre></div>
+<p>If there are not errors, the code should open a viewer in RStudio and give a link that you enter the given address into any web browser for a locally hosted version. You may stop the code using</p>
+<div class="sourceCode" id="cb702"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb702-1"><a href="local-project-development.html#cb702-1" tabindex="-1"></a>servr<span class="sc">::</span><span class="fu">daemon_stop</span>(<span class="dv">1</span>)</span></code></pre></div>
+<p>which is given and noting that the 1 may change if you have multiple instances running without closure.</p>
+<div id="additional-information-4" class="section level3 hasAnchor" number="16.5.1">
+<h3><span class="header-section-number">H.5.1</span> Additional Information<a href="local-project-development.html#additional-information-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you see no error, but the hosted book does not include your new module, you probably forgot to include the file in the previous string and run the code to save it.</p>
+<p>If you mistyped the name, then you will see an error like follows.
+<img src="readme_files/bookdown_badName.png" alt="image" /></p>
+<p>If you forgot to install (or restore) a package, the following error may be displayed
+<img src="readme_files/bookdown_noInstall1.png" alt="image" /></p>
+</div>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="code-section.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="package-connection.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="send-changes-to-server.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

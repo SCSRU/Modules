@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Development Walkthrough</title>
-  <meta name="description" content="References | Development Walkthrough" />
+  <title>C Git and GitHub: A Quick Tutorial | Development Walkthrough</title>
+  <meta name="description" content="C Git and GitHub: A Quick Tutorial | Development Walkthrough" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Development Walkthrough" />
+  <meta property="og:title" content="C Git and GitHub: A Quick Tutorial | Development Walkthrough" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Development Walkthrough" />
+  <meta name="twitter:title" content="C Git and GitHub: A Quick Tutorial | Development Walkthrough" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="code-section.html"/>
-
+<link rel="prev" href="formatting-guidelines.html"/>
+<link rel="next" href="bookdown-tests.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -622,75 +622,76 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered hasAnchor">
-<h1>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="git-and-github-a-quick-tutorial" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">C</span> Git and GitHub: A Quick Tutorial<a href="git-and-github-a-quick-tutorial.html#git-and-github-a-quick-tutorial" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>Author: Martin Lysy</em></p>
+<p><em>Last Updated: Nov 09, 2020</em></p>
+<hr />
+<p><a href="https://git-scm.com/">Git</a> is an extremely powerful version control system that is used to “back up” software projects. In a nutshell, rather than overwriting files every time you save them, Git saves the difference between the old and updated versions. This gives you have a complete history of all saves with a minuscule memory overhead, making it very easy to roll back changes, see what you did when, etc. It also has a branching system which is extremely useful to make patches or feature extensions for your software without affecting the “stable” version.</p>
+<p>Git projects (or “repositories”) can easily be stored on the cloud, which is ideal both for backups and for collaborative work. The most common platform for this is <a href="https://github.com/">GitHub</a>. You will need a GitHub account in order to access and submit files for this project. It’s completely free, secure, and does not collect or distribute your personal information. You can delete your account at any time, but publicly visible projects can be made to look like a very nice webpage with minimal effort. Therefore, in my opinion, this is a great way to showcase the software you develop for this class or others by providing a link to your GitHub page on your CV.</p>
+<div id="setup" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">C.1</span> Setup<a href="git-and-github-a-quick-tutorial.html#setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Install Git and learn some of the basics: <a href="https://githowto.com/" class="uri">https://githowto.com/</a>.</p></li>
+<li><p>Create a free GitHub account: <a href="https://github.com/" class="uri">https://github.com/</a>.</p></li>
+<li><p>Send me an email with your GitHub account information so I can add you to this project.</p></li>
+</ul>
+</div>
+<div id="contributing-to-the-project" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">C.2</span> Contributing to the Project<a href="git-and-github-a-quick-tutorial.html#contributing-to-the-project" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The following is the standard Git procedure for collaborating on a project<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
+<ul>
+<li><p>Fork the project to your own GitHub account. That is, you’ve now made a complete copy of the project that you can modify however you want without affecting the original. This fork must be kept private (i.e., invisible to the outside world) for the duration of the course.</p></li>
+<li><p>While it is possible to edit the fork directly from GitHub, I strongly recommend against this as it’s extremely inconvenient. Instead, make a <a href="https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository">local copy</a> of the fork on your computer.</p></li>
+<li><p>In order to make changes to any Git repo, it is always recommended that you create a new <a href="https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell">branch</a> for this first. That is, assume that the stable version of the repo is on the <code>master</code> branch. Then from the command line, you can do the following:</p>
+<div class="sourceCode" id="cb694"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb694-1"><a href="git-and-github-a-quick-tutorial.html#cb694-1" tabindex="-1"></a><span class="co"># make sure you are on the master branch        </span></span>
+<span id="cb694-2"><a href="git-and-github-a-quick-tutorial.html#cb694-2" tabindex="-1"></a><span class="fu">git</span> checkout master</span>
+<span id="cb694-3"><a href="git-and-github-a-quick-tutorial.html#cb694-3" tabindex="-1"></a><span class="co"># create new branch</span></span>
+<span id="cb694-4"><a href="git-and-github-a-quick-tutorial.html#cb694-4" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> mlysy-devel</span></code></pre></div>
+<p>This will copy everything from <code>master</code> to a new branch called <code>mlysy-devel</code>. Now I can make whatever changes I want to <code>mlysy-devel</code>.</p></li>
+<li><p>Commit your desired changes to the new branch. When you are ready to send them back to the main project repo, follow these steps:</p>
+<ol style="list-style-type: decimal">
+<li><p>Push your local branch to your remote GitHub fork:</p>
+<div class="sourceCode" id="cb695"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb695-1"><a href="git-and-github-a-quick-tutorial.html#cb695-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin mlysy-devel</span></code></pre></div></li>
+<li><p>Create a GitHub <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork">pull request</a> via the button on your fork’s page.</p></li>
+</ol>
+<p>When this is done, I will be able to inspect your changes and make suggestions before merging your work into the project-wide stable branch <code>master</code>.</p></li>
+</ul>
+</div>
+<div id="git-mistakes" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">C.3</span> Git Mistakes<a href="git-and-github-a-quick-tutorial.html#git-mistakes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Git is an extremely versatile program with its own lingo (e.g. push/merge/stash/commit/stage/etc.), all of which takes some time to master. The good news is that it’s easy to “save everything” with Git and very hard to accidentally delete things. To me since the point of using Git is version control, I usually don’t worry about fixing little mistakes (like forgetting to include a file in a commit) that don’t affect this overall goal.</p>
+<p>There is however one type of Git mistake that’s fairly annoying to fix. This has to do with including large “object” files in the repo. For the purpose of this discussion, object files are files which:</p>
+<ol style="list-style-type: lower-roman">
+<li><p>Can be completely generated from source code in the repo, e.g., PDF files created with LaTeX, C++ shared object files (<code>.dll</code>, <code>.so</code>, <code>.o</code>), HTML files generated with R Markdown.</p></li>
+<li><p>Cannot be read by a human with a plain text editor, e.g., PDF files, Microsoft Word documents, C++ shared object files, but not HTML files.</p></li>
+<li><p>Get created over and over as the source code in the repo changes.</p></li>
+</ol>
+<p>Object files should not be included in Git repos because they take up space and can easily be recreated from source. C++ shared object files are especially useless since they are platform/system-dependent and thus probably won’t work on your collaborator’s computer. Moreover, because object files are not human-readable, Git doesn’t know how to compute the incremental difference between commits, and ends up saving the <em>entire object file</em> every time. This can easily and needlessly bloat the size of the repo.</p>
+<p>The nuisance here is that if you accidentally commit an object file, simply deleting it won’t remove it from the Git history. Pruning the Git history is a very annoying task, which is why I think of committing object files as the only real Git “mistake”. If you need to prune your Git history, please use this extremely handy <a href="https://rtyley.github.io/bfg-repo-cleaner/">repo cleaner</a>.</p>
+<p>Rather than fixing object file commits after they happen, you can prevent this from happening by using <a href="https://www.atlassian.com/git/tutorials/saving-changes/gitignore"><code>.gitignore</code></a> file. Simply put, <code>.gitignore</code> files tell Git to ignore certain files in the folder repo. They can contain relative paths and <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>. Each <code>.gitignore</code> file applies to the folder and subfolder of where it’s located, so you can have “global” and “local” <code>.gitignore</code> files in the same repo.</p>
+<p>The global <code>.gitignore</code> for this repo contains a number of common things to ignore in R and C++ projects. Specific to this particular project, it also ignores the <code>_book</code> subfolder which contains the HTML-rendered e-book that you’ll be building to preview on your local machine.</p>
 
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div class="csl-entry">
-Agresti, Alan. 2015. <em>Foundations of Linear and Generalized Linear Models</em>. New York, NY: John Wiley &amp; Sons.
-</div>
-<div class="csl-entry">
-Cohen, Jacob. 2013. <em>Statistical Power Analysis for the Behavioral Sciences</em>. Routledge.
-</div>
-<div class="csl-entry">
-Diggle, Peter J., Patrick Heagerty, Kung-Yee Liang, and Scott L. Zeger. 2002. <em>Analysis of Longitudinal Data</em>. 2nd ed. Oxford, UK: Oxford University Press.
-</div>
-<div class="csl-entry">
-Fitzmaurice, Garrett M., Nan M. Laird, and James H. Ware. 2011. <em>Applied Longitudinal Analysis</em>. 2nd ed. Hoboken, NJ: Wiley.
-</div>
-<div class="csl-entry">
-Friedman, Jerome, Trevor Hastie, and Robert Tibshirani. 2009. <em>The Elements of Statistical Learning</em>. 2nd ed. New York, NY: Springer series in statistics.
-</div>
-<div class="csl-entry">
-Gelman, Andrew, John B Carlin, Hal S Stern, David B Dunson, Aki Vehtari, and Donald B Rubin. 2013. <em>Bayesian Data Analysis</em>. CRC Press. <a href="http://www.stat.columbia.edu/~gelman/book/">http://www.stat.columbia.edu/~gelman/book/</a>.
-</div>
-<div class="csl-entry">
-Hilbe, Joseph, Alain Zuur, and Elena Ieno. 2013. <em>Zuur, Alain.f, Joseph m. Hilbe, and Elena n Ieno, a Beginner’s Guide to GLM and GLMM with r: A Frequentist and Bayesian Perspective for Ecologists, HIghland Statistics</em>.
-</div>
-<div class="csl-entry">
-Karunarathne, Piyal, Nicolas Pocquet, Pierrick Labbé, and Pascal Milesi. 2022. <span>“BioRssay: An r Package for Analyses of Bioassays and Probit Graphs.”</span> <em>Parasites &amp; Vectors</em> 15 (1): 1–6.
-</div>
-<div class="csl-entry">
-Kerr, David, and James Meador. 1996. <span>“Modeling Dose Response Using Generalized Linear Models.”</span> <em>Environmental Toxicology and Chemistry</em> 15 (March): 395–401. <a href="https://doi.org/10.1002/etc.5620150325">https://doi.org/10.1002/etc.5620150325</a>.
-</div>
-<div class="csl-entry">
-McCullagh, Peter, and John A Nelder. 2019. <em>Generalized Linear Models</em>. Routledge.
-</div>
-<div class="csl-entry">
-Milesi, P, N Pocquet, and P Labbé. 2013. <span>“BioRssay: A r Script for Bioassay Analyses.”</span> <em>BioRssay: A R Script for Bioassay Analyses</em>.
-</div>
-<div class="csl-entry">
-Myers, Raymond H, and Douglas C Montgomery. 1997. <span>“A Tutorial on Generalized Linear Models.”</span> <em>Journal of Quality Technology</em> 29 (3): 274–91.
-</div>
-<div class="csl-entry">
-Walker, Esteban, and Amy S Nowacki. 2011. <span>“Understanding Equivalence and Noninferiority Testing.”</span> <em>Journal of General Internal Medicine</em> 26 (2): 192–96.
-</div>
-<div class="csl-entry">
-Wasserstein, Ronald L, and Nicole A Lazar. 2016. <span>“The ASA Statement on p-Values: Context, Process, and Purpose.”</span> Taylor &amp; Francis.
-</div>
-<div class="csl-entry">
-Wilkinson, Leland. 2012. <span>“The Grammar of Graphics.”</span> In <em>Handbook of Computational Statistics</em>, 375–414. Springer.
-</div>
-<div class="csl-entry">
-Wooldridge, Jeffrey M. 2016. <em>Introductory Econometrics: A Modern Approach</em>. 6th ed. Boston, MA: Cengage Learning.
+<!-- ```{r setup, include = FALSE} -->
+<!-- cran_link <- function(pkg) { -->
+<!--   paste0("[**", pkg, "**](https://CRAN.R-project.org/package=", pkg, ")") -->
+<!-- } -->
+<!-- ``` -->
 </div>
 </div>
+<div class="footnotes">
+<hr />
+<ol start="3">
+<li id="fn3"><p>If you have been given collaborator rights on a project, you don’t actually need to fork the repo and can simply create branches on the main project from which to issue pull requests. However, forking is the way to go for contributing bugfixes to public repos on your which you are not an official collaborator. Also, it’s very difficult for the project administrator (i.e., me) from preventing other collaborators from interfering with your branch on the main project, but by only you (and the people you authorize) can make changes to the branch on your fork.<a href="git-and-github-a-quick-tutorial.html#fnref3" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
-
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="code-section.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="formatting-guidelines.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bookdown-tests.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

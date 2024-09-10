@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Development Walkthrough</title>
-  <meta name="description" content="References | Development Walkthrough" />
+  <title>I Send Changes to Server | Development Walkthrough</title>
+  <meta name="description" content="I Send Changes to Server | Development Walkthrough" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Development Walkthrough" />
+  <meta property="og:title" content="I Send Changes to Server | Development Walkthrough" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Development Walkthrough" />
+  <meta name="twitter:title" content="I Send Changes to Server | Development Walkthrough" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="code-section.html"/>
-
+<link rel="prev" href="local-project-development.html"/>
+<link rel="next" href="publish-changes.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -622,75 +622,67 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered hasAnchor">
-<h1>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div class="csl-entry">
-Agresti, Alan. 2015. <em>Foundations of Linear and Generalized Linear Models</em>. New York, NY: John Wiley &amp; Sons.
-</div>
-<div class="csl-entry">
-Cohen, Jacob. 2013. <em>Statistical Power Analysis for the Behavioral Sciences</em>. Routledge.
-</div>
-<div class="csl-entry">
-Diggle, Peter J., Patrick Heagerty, Kung-Yee Liang, and Scott L. Zeger. 2002. <em>Analysis of Longitudinal Data</em>. 2nd ed. Oxford, UK: Oxford University Press.
-</div>
-<div class="csl-entry">
-Fitzmaurice, Garrett M., Nan M. Laird, and James H. Ware. 2011. <em>Applied Longitudinal Analysis</em>. 2nd ed. Hoboken, NJ: Wiley.
-</div>
-<div class="csl-entry">
-Friedman, Jerome, Trevor Hastie, and Robert Tibshirani. 2009. <em>The Elements of Statistical Learning</em>. 2nd ed. New York, NY: Springer series in statistics.
-</div>
-<div class="csl-entry">
-Gelman, Andrew, John B Carlin, Hal S Stern, David B Dunson, Aki Vehtari, and Donald B Rubin. 2013. <em>Bayesian Data Analysis</em>. CRC Press. <a href="http://www.stat.columbia.edu/~gelman/book/">http://www.stat.columbia.edu/~gelman/book/</a>.
-</div>
-<div class="csl-entry">
-Hilbe, Joseph, Alain Zuur, and Elena Ieno. 2013. <em>Zuur, Alain.f, Joseph m. Hilbe, and Elena n Ieno, a Beginner’s Guide to GLM and GLMM with r: A Frequentist and Bayesian Perspective for Ecologists, HIghland Statistics</em>.
-</div>
-<div class="csl-entry">
-Karunarathne, Piyal, Nicolas Pocquet, Pierrick Labbé, and Pascal Milesi. 2022. <span>“BioRssay: An r Package for Analyses of Bioassays and Probit Graphs.”</span> <em>Parasites &amp; Vectors</em> 15 (1): 1–6.
-</div>
-<div class="csl-entry">
-Kerr, David, and James Meador. 1996. <span>“Modeling Dose Response Using Generalized Linear Models.”</span> <em>Environmental Toxicology and Chemistry</em> 15 (March): 395–401. <a href="https://doi.org/10.1002/etc.5620150325">https://doi.org/10.1002/etc.5620150325</a>.
-</div>
-<div class="csl-entry">
-McCullagh, Peter, and John A Nelder. 2019. <em>Generalized Linear Models</em>. Routledge.
-</div>
-<div class="csl-entry">
-Milesi, P, N Pocquet, and P Labbé. 2013. <span>“BioRssay: A r Script for Bioassay Analyses.”</span> <em>BioRssay: A R Script for Bioassay Analyses</em>.
-</div>
-<div class="csl-entry">
-Myers, Raymond H, and Douglas C Montgomery. 1997. <span>“A Tutorial on Generalized Linear Models.”</span> <em>Journal of Quality Technology</em> 29 (3): 274–91.
-</div>
-<div class="csl-entry">
-Walker, Esteban, and Amy S Nowacki. 2011. <span>“Understanding Equivalence and Noninferiority Testing.”</span> <em>Journal of General Internal Medicine</em> 26 (2): 192–96.
-</div>
-<div class="csl-entry">
-Wasserstein, Ronald L, and Nicole A Lazar. 2016. <span>“The ASA Statement on p-Values: Context, Process, and Purpose.”</span> Taylor &amp; Francis.
-</div>
-<div class="csl-entry">
-Wilkinson, Leland. 2012. <span>“The Grammar of Graphics.”</span> In <em>Handbook of Computational Statistics</em>, 375–414. Springer.
-</div>
-<div class="csl-entry">
-Wooldridge, Jeffrey M. 2016. <em>Introductory Econometrics: A Modern Approach</em>. 6th ed. Boston, MA: Cengage Learning.
+<div id="send-changes-to-server" class="section level1 hasAnchor" number="17">
+<h1><span class="header-section-number">I</span> Send Changes to Server<a href="send-changes-to-server.html#send-changes-to-server" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This section focuses on preparing and sending changes to the remote server.</p>
+<div id="save-environment" class="section level2 hasAnchor" number="17.1">
+<h2><span class="header-section-number">I.1</span> Save Environment<a href="send-changes-to-server.html#save-environment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Any additional or changed packages need to be recorded for consistency with other developers and to inform GitHub what is needed to host the book.</p>
+<p>Save all changes with</p>
+<div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb703-1"><a href="send-changes-to-server.html#cb703-1" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div>
+<p>If no packages were added or updates, you will get the following result.
+<img src="readme_files/renv_snapshotRemain.png" alt="image" /></p>
+<p>If packages were added, removed, or updated, you will get a result similar to the following.
+<img src="readme_files/renv_snapshotNew.png" alt="image" /></p>
+<p>It is recommended to only update packages that must be updated for functionality as some may have been downgraded for GitHub server reasons.</p>
+<div id="additional-information-5" class="section level3 hasAnchor" number="17.1.1">
+<h3><span class="header-section-number">I.1.1</span> Additional Information<a href="send-changes-to-server.html#additional-information-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The package information is saved in ‘renv.lock’, which can be directly modified.</p>
 </div>
 </div>
+<div id="prepare-for-github" class="section level2 hasAnchor" number="17.2">
+<h2><span class="header-section-number">I.2</span> Prepare for GitHub<a href="send-changes-to-server.html#prepare-for-github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This step we do a last verification of the code of the book. Be sure the file_contents variable is correct in the code section at the end of this readme (also reach ‘update_contents’ using ctrl-f). We now write that information in a .yml file for the book creation.</p>
+<p>It may also be useful to check the code, again using the code</p>
+<div class="sourceCode" id="cb704"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb704-1"><a href="send-changes-to-server.html#cb704-1" tabindex="-1"></a>bookdown<span class="sc">::</span><span class="fu">serve_book</span>()</span>
+<span id="cb704-2"><a href="send-changes-to-server.html#cb704-2" tabindex="-1"></a><span class="co"># When you want to stop</span></span>
+<span id="cb704-3"><a href="send-changes-to-server.html#cb704-3" tabindex="-1"></a>servr<span class="sc">::</span><span class="fu">daemon_stop</span>(<span class="dv">1</span>)</span></code></pre></div>
 </div>
-
-
-
-
-
-
-
-
+<div id="push-to-github" class="section level2 hasAnchor" number="17.3">
+<h2><span class="header-section-number">I.3</span> Push to GitHub<a href="send-changes-to-server.html#push-to-github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When the book works locally and you have saved the environment, it is time to push all changes to the GitHub server. There are several steps to this: stage (this specifies which changed files you wish to send to GitHub), commit (this gives a nice message and prepare the files to be send to GitHub), and push (this pushes all commits to GitHub). You can do these steps using GitHub Desktop, RStudio, or git directly.</p>
+<ul>
+<li>GitHub desktop should have some nice buttons.
+<img src="readme_files/github_desktop_commit.png" alt="image" /></li>
+<li>RStudio should have some nice buttons. I will add more on this later.</li>
+<li>If you use git GUI, you have several options, but generally click file icons from the top part to bring them into the staged area, write something in the commit message section and press commit, then press push.</li>
+<li>If you use git bash, on your branch, you stage changes (‘git add .’ will stage all changes), commit (‘git commit -m “<message>”’ will commit changes with some message from you), and push (‘git push’ will push changes to GitHub). There may be a comment about creating a branch online when you push, but the code will be given if needed (see next figure for pushing a branch I made locally called ‘fixReadme’). These steps will get your code online, where you can PR into dev.
+<img src="readme_files/git_push_error.png" alt="image" /></li>
+</ul>
+<div id="additional-information-6" class="section level3 hasAnchor" number="17.3.1">
+<h3><span class="header-section-number">I.3.1</span> Additional Information<a href="send-changes-to-server.html#additional-information-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You can push to any branch except main. Pushes to main will fail! More discussion on getting your changes into production in later sections.</p>
+</div>
+</div>
+<div id="check-github" class="section level2 hasAnchor" number="17.4">
+<h2><span class="header-section-number">I.4</span> Check GitHub<a href="send-changes-to-server.html#check-github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When you push to GitHub, GitHub actions will automatically check to see if there are any issues in creating the book on the server. You can monitor the progress in the Actions tab, results on the branch (which are small), or see the result if the branch is part of a pull request (discussed later).</p>
+<p>A check is excellent news! Any red X is a failure. Looking at the steps should offer information to find the issue. Some common errors may occur in the following steps:
+- Setup R Environment: An error in this step likely requires upgrading or downgrading a package.
+- Build Site: An error in this step likely indicates that you forgot to include the package in the ‘renv.lock’ file. Run ‘renv::snapshot()’ in the local environment and re-push.</p>
+<div id="additional-information-7" class="section level3 hasAnchor" number="17.4.1">
+<h3><span class="header-section-number">I.4.1</span> Additional Information<a href="send-changes-to-server.html#additional-information-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Even if there are no errors, this will not be in production–i.e. the online book–yet.</p>
+</div>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="code-section.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="local-project-development.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="publish-changes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

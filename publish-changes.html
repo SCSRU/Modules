@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Development Walkthrough</title>
-  <meta name="description" content="References | Development Walkthrough" />
+  <title>J Publish Changes | Development Walkthrough</title>
+  <meta name="description" content="J Publish Changes | Development Walkthrough" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Development Walkthrough" />
+  <meta property="og:title" content="J Publish Changes | Development Walkthrough" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Development Walkthrough" />
+  <meta name="twitter:title" content="J Publish Changes | Development Walkthrough" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="code-section.html"/>
-
+<link rel="prev" href="send-changes-to-server.html"/>
+<link rel="next" href="final-remarks-and-tips.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -622,75 +622,55 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered hasAnchor">
-<h1>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div class="csl-entry">
-Agresti, Alan. 2015. <em>Foundations of Linear and Generalized Linear Models</em>. New York, NY: John Wiley &amp; Sons.
-</div>
-<div class="csl-entry">
-Cohen, Jacob. 2013. <em>Statistical Power Analysis for the Behavioral Sciences</em>. Routledge.
-</div>
-<div class="csl-entry">
-Diggle, Peter J., Patrick Heagerty, Kung-Yee Liang, and Scott L. Zeger. 2002. <em>Analysis of Longitudinal Data</em>. 2nd ed. Oxford, UK: Oxford University Press.
-</div>
-<div class="csl-entry">
-Fitzmaurice, Garrett M., Nan M. Laird, and James H. Ware. 2011. <em>Applied Longitudinal Analysis</em>. 2nd ed. Hoboken, NJ: Wiley.
-</div>
-<div class="csl-entry">
-Friedman, Jerome, Trevor Hastie, and Robert Tibshirani. 2009. <em>The Elements of Statistical Learning</em>. 2nd ed. New York, NY: Springer series in statistics.
-</div>
-<div class="csl-entry">
-Gelman, Andrew, John B Carlin, Hal S Stern, David B Dunson, Aki Vehtari, and Donald B Rubin. 2013. <em>Bayesian Data Analysis</em>. CRC Press. <a href="http://www.stat.columbia.edu/~gelman/book/">http://www.stat.columbia.edu/~gelman/book/</a>.
-</div>
-<div class="csl-entry">
-Hilbe, Joseph, Alain Zuur, and Elena Ieno. 2013. <em>Zuur, Alain.f, Joseph m. Hilbe, and Elena n Ieno, a Beginner’s Guide to GLM and GLMM with r: A Frequentist and Bayesian Perspective for Ecologists, HIghland Statistics</em>.
-</div>
-<div class="csl-entry">
-Karunarathne, Piyal, Nicolas Pocquet, Pierrick Labbé, and Pascal Milesi. 2022. <span>“BioRssay: An r Package for Analyses of Bioassays and Probit Graphs.”</span> <em>Parasites &amp; Vectors</em> 15 (1): 1–6.
-</div>
-<div class="csl-entry">
-Kerr, David, and James Meador. 1996. <span>“Modeling Dose Response Using Generalized Linear Models.”</span> <em>Environmental Toxicology and Chemistry</em> 15 (March): 395–401. <a href="https://doi.org/10.1002/etc.5620150325">https://doi.org/10.1002/etc.5620150325</a>.
-</div>
-<div class="csl-entry">
-McCullagh, Peter, and John A Nelder. 2019. <em>Generalized Linear Models</em>. Routledge.
-</div>
-<div class="csl-entry">
-Milesi, P, N Pocquet, and P Labbé. 2013. <span>“BioRssay: A r Script for Bioassay Analyses.”</span> <em>BioRssay: A R Script for Bioassay Analyses</em>.
-</div>
-<div class="csl-entry">
-Myers, Raymond H, and Douglas C Montgomery. 1997. <span>“A Tutorial on Generalized Linear Models.”</span> <em>Journal of Quality Technology</em> 29 (3): 274–91.
-</div>
-<div class="csl-entry">
-Walker, Esteban, and Amy S Nowacki. 2011. <span>“Understanding Equivalence and Noninferiority Testing.”</span> <em>Journal of General Internal Medicine</em> 26 (2): 192–96.
-</div>
-<div class="csl-entry">
-Wasserstein, Ronald L, and Nicole A Lazar. 2016. <span>“The ASA Statement on p-Values: Context, Process, and Purpose.”</span> Taylor &amp; Francis.
-</div>
-<div class="csl-entry">
-Wilkinson, Leland. 2012. <span>“The Grammar of Graphics.”</span> In <em>Handbook of Computational Statistics</em>, 375–414. Springer.
-</div>
-<div class="csl-entry">
-Wooldridge, Jeffrey M. 2016. <em>Introductory Econometrics: A Modern Approach</em>. 6th ed. Boston, MA: Cengage Learning.
+<div id="publish-changes" class="section level1 hasAnchor" number="18">
+<h1><span class="header-section-number">J</span> Publish Changes<a href="publish-changes.html#publish-changes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>You may have noticed, no changes are visible on the online book yet. There are still a few steps, which are covered below.</p>
+<div id="merge-with-dev" class="section level2 hasAnchor" number="18.1">
+<h2><span class="header-section-number">J.1</span> Merge With Dev<a href="publish-changes.html#merge-with-dev" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We want to prepare your changes to get to production. The first thing to do, if you didn’t code on it, is to merge your code into the dev branch. This will make sure any other changes are incorporated and check that all is working.</p>
+<p>It is good practice to merge your branch with the dev branch using a pull request (PR). Although it doesn’t need to be approved at this step, using a PR will remind you if the checks fail.</p>
+<p>You can do this on the GitHub page, where near the top is the Pull requests tab and in there a green button called new. There you select a branch and where is should go, be sure to watch the arrows.</p>
+<p>On a PR, you change ensure the code is passing all internal checks.
+- A check in progress looks like the following on a PR.
+<img src="readme_files/github_check_in_progress.png" alt="image" />
+- Passing the tests will get you a result like the following.
+<img src="readme_files/github_check_success.png" alt="image" />
+- (I will add a failure example)</p>
+<div id="additional-information-8" class="section level3 hasAnchor" number="18.1.1">
+<h3><span class="header-section-number">J.1.1</span> Additional Information<a href="publish-changes.html#additional-information-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Merging may require you making local changes and re-pushing to GitHub. Any new pushes on the branch will automatically be included in the merge.</p>
+<p>Merge to dev when you have no errors and test the results. Again, this will not change the published book.</p>
+<p>It is good practice to delete the branch after merging to keep the history clean. A notification at the bottom of the PR is given.
+<img src="readme_files/PR_delete_branch.png" alt="image" /></p>
 </div>
 </div>
+<div id="merge-dev-to-main" class="section level2 hasAnchor" number="18.2">
+<h2><span class="header-section-number">J.2</span> Merge Dev to Main<a href="publish-changes.html#merge-dev-to-main" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This step will send all changes in the development version to the production version. When it is decided that we should do so, a pull request for dev to main is made. This is similar to previous PRs and the same checks apply. Note, if you try to directly push into main, there will be an error (below is an example in Git Bash). You must use a pull request.
+<img src="readme_files/push_main.png" alt="image" /></p>
+<p>However, you can not immediately accept a PR into main. It requires approval from another person, so be sure to include them in the PR and add informative comments on the PR. If you do not have approval yet, you will see the following where you normally merge.
+<img src="readme_files/PR_unapproved.png" alt="image" /></p>
+<p>You can set any reviewer(s) at the top right of the page, as shown below.
+<img src="readme_files/PR_reviewers.png" alt="image" />
+<img src="readme_files/PR_reviewers_selected.png" alt="image" /></p>
+<p>A reviewer may get notified (depending on settings), but upon entering the PR will see a banner near the top.
+<img src="readme_files/PR_review.png" alt="image" />
+The reviewer can then look at the code and add comments, require changes, or approve the PR. If they have previously interacted, then GitHub will highlight any changes after the comment.
+<img src="readme_files/PR_review_new.png" alt="image" />
+<img src="readme_files/PR_review_notes.png" alt="image" /></p>
+<p>After approval, the PR can be merged with main. The reviewer may do this; however, it is available for anyone.
+<img src="readme_files/PR_pass.png" alt="image" /></p>
+<p>Upon merging dev to main, github actions will check the code again and publish the results to the book. You can verify the progress in the actions page. After completion, if you go to the website and don’t notice changes, be sure to refresh the page and/or wait a few minutes.</p>
+<p>Although it is good practice to delete the smaller branches, we do not delete dev or main. This option will not be given at the bottom of PRs.</p>
 </div>
-
-
-
-
-
-
-
-
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="code-section.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="send-changes-to-server.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="final-remarks-and-tips.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
