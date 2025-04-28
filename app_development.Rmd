@@ -304,7 +304,8 @@ rmd_files:
   - "mod_nonparametric.Rmd"
   - "mod_longitudinal.Rmd"
   - "mod_questionnaire_design.Rmd"
-  - "mod_sample_size.Rmd" ')
+  - "mod_sample_size.Rmd" 
+  - "mod_web_scrapping.Rmd" ')
 
 final_contents <- 
   paste0(file_contents,'  
