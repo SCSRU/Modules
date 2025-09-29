@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>B Formatting Guidelines | Topics in Statistical Consulting</title>
   <meta name="description" content="B Formatting Guidelines | Topics in Statistical Consulting" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
   <meta property="og:title" content="B Formatting Guidelines | Topics in Statistical Consulting" />
   <meta property="og:type" content="book" />
@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2024-09-11" />
+<meta name="date" content="2025-09-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -511,6 +511,17 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="introduction-to-sample-size-determination.html"><a href="introduction-to-sample-size-determination.html#samp-beyond"><i class="fa fa-check"></i><b>8.4</b> Beyond Sample Size Determination</a></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="introduction-to-web-scraping.html"><a href="introduction-to-web-scraping.html"><i class="fa fa-check"></i><b>9</b> Introduction to Web Scraping</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="introduction-to-web-scraping.html"><a href="introduction-to-web-scraping.html#introduction-4"><i class="fa fa-check"></i><b>9.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="introduction-to-web-scraping.html"><a href="introduction-to-web-scraping.html#web-scraping-considerations"><i class="fa fa-check"></i><b>9.1.1</b> Web Scraping Considerations</a></li>
+<li class="chapter" data-level="9.1.2" data-path="introduction-to-web-scraping.html"><a href="introduction-to-web-scraping.html#web-scraping-principles"><i class="fa fa-check"></i><b>9.1.2</b> Web Scraping Principles</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="introduction-to-web-scraping.html"><a href="introduction-to-web-scraping.html#r-web-scrapping"><i class="fa fa-check"></i><b>9.2</b> R Web Scrapping</a></li>
+<li class="chapter" data-level="9.3" data-path="introduction-to-web-scraping.html"><a href="introduction-to-web-scraping.html#python-web-scrapping"><i class="fa fa-check"></i><b>9.3</b> Python Web Scrapping</a></li>
+<li class="chapter" data-level="9.4" data-path="introduction-to-web-scraping.html"><a href="introduction-to-web-scraping.html#remarks"><i class="fa fa-check"></i><b>9.4</b> Remarks</a></li>
+</ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="general-guidelines.html"><a href="general-guidelines.html"><i class="fa fa-check"></i><b>A</b> General Guidelines</a>
 <ul>
@@ -598,12 +609,12 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="formatting-guidelines" class="section level1 hasAnchor" number="10">
+<div id="formatting-guidelines" class="section level1 hasAnchor" number="11">
 <h1><span class="header-section-number">B</span> Formatting Guidelines<a href="formatting-guidelines.html#formatting-guidelines" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><em>Author: Martin Lysy, Trang Bui</em></p>
 <p><em>Last Updated: Feb 04, 2021</em></p>
 <hr />
-<div id="formatguide-general" class="section level2 hasAnchor" number="10.1">
+<div id="formatguide-general" class="section level2 hasAnchor" number="11.1">
 <h2><span class="header-section-number">B.1</span> General<a href="formatting-guidelines.html#formatguide-general" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p>For a module, name your file starting with <code>mod_</code> and for a appendix, name your file starting with <code>app_</code>.</p></li>
@@ -631,10 +642,10 @@ div.csl-indent {
 <li><p>Use underscore <code>_</code> instead of dot <code>.</code> to name variables.</p></li>
 </ul>
 </div>
-<div id="embedding-files" class="section level2 hasAnchor" number="10.2">
+<div id="embedding-files" class="section level2 hasAnchor" number="11.2">
 <h2><span class="header-section-number">B.2</span> Embedding Files<a href="formatting-guidelines.html#embedding-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To embed a file in your module, first put it in any subdirectory of the <code>data</code> folder of the repo. For example, the repo currently contains the file <code>data/caliRain.csv</code>. You can then use the file anywhere in your module, e.g.,</p>
-<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb692-1"><a href="formatting-guidelines.html#cb692-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">read.csv</span>(<span class="st">&quot;data/caliRain.csv&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb708-1"><a href="formatting-guidelines.html#cb708-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">read.csv</span>(<span class="st">&quot;data/caliRain.csv&quot;</span>))</span></code></pre></div>
 <pre><code>##                     STATION PRECIP ALTITUDE LATITUDE DISTANCE SHADOW
 ## 1 Eureka                     39.57       43     40.8        1      1
 ## 2 RedBluff                   23.27      341     40.2       97      2
@@ -646,7 +657,7 @@ div.csl-indent {
 <p><strong>Note:</strong> This method works because somewhere in the project we make a call to <code>knitr::include_graphics("data/arbitrary/file.ext")</code>, which has the effect of adding the <code>data</code> folder to the bookdown output directory. In previous attempts we tried explicitly adding the <code>data</code> folder to the output via <code>dir.create()</code>. However, this requires that the output directory be supplied in advance, whereas in general it can be set on-the-fly via the <code>output_dir</code> argument to <code>bookdown::render_book()</code>.</p>
 <!-- - To embed a file in your module, use function `embed_data_file()`. For example, `<a href="/home/runner/work/Modules/Modules/_book/data/caliRain.csv" download="caliRain.csv">caliRain.csv</a>`{=html}. -->
 </div>
-<div id="math" class="section level2 hasAnchor" number="10.3">
+<div id="math" class="section level2 hasAnchor" number="11.3">
 <h2><span class="header-section-number">B.3</span> Math<a href="formatting-guidelines.html#math" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p>Always use bold font like <span class="math inline">\(\XX\)</span><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> or <span class="math inline">\(\aal\)</span> for anything that isn’t a scalar. In particular, please use <code>\bm{}</code> command in math mode to make things bold, and note that bold letters and symbols have standard macros as explained in <code>index.Rmd</code>. Please use them!</p></li>
@@ -663,7 +674,7 @@ div.csl-indent {
 <li><p>Generally, a colon should not be used to set off an equation, even when it is a displayed equation. Typically an equation is the object in a sentence. Use a colon on occasion for emphasis, but make sure it fits grammatically. Examples can be found <a href="http://persweb.wabash.edu/facstaff/footer/courses/Expectations/WritingTips2.pdf">here</a>. The same rules apply for code chunks.</p></li>
 <li><p>Use <span class="math inline">\(j^{th}\)</span> and <span class="math inline">\((i,j)^{th}\)</span>.</p></li>
 </ul>
-<div id="commonly-used-math-and-stats-expressions" class="section level3 hasAnchor" number="10.3.1">
+<div id="commonly-used-math-and-stats-expressions" class="section level3 hasAnchor" number="11.3.1">
 <h3><span class="header-section-number">B.3.1</span> Commonly-Used Math and Stats Expressions<a href="formatting-guidelines.html#commonly-used-math-and-stats-expressions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p>Sequences of random variables: <span class="math inline">\(X_1, \ldots, X_N\)</span>. In fact since these are so common, I’ve created a macro for it: <span class="math inline">\(\rv Y 5\)</span> and <span class="math inline">\(\rv [m,0] Z {m,N_m}\)</span>.</p></li>
@@ -715,42 +726,42 @@ The last of these is used for Hessian matrices.</p></li>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

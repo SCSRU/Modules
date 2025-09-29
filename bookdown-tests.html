@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>D Bookdown Tests | Topics in Statistical Consulting</title>
   <meta name="description" content="D Bookdown Tests | Topics in Statistical Consulting" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
   <meta property="og:title" content="D Bookdown Tests | Topics in Statistical Consulting" />
   <meta property="og:type" content="book" />
@@ -22,7 +22,7 @@
 
 
 
-<meta name="date" content="2024-09-11" />
+<meta name="date" content="2025-09-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -511,6 +511,17 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="introduction-to-sample-size-determination.html"><a href="introduction-to-sample-size-determination.html#samp-beyond"><i class="fa fa-check"></i><b>8.4</b> Beyond Sample Size Determination</a></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="introduction-to-web-scraping.html"><a href="introduction-to-web-scraping.html"><i class="fa fa-check"></i><b>9</b> Introduction to Web Scraping</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="introduction-to-web-scraping.html"><a href="introduction-to-web-scraping.html#introduction-4"><i class="fa fa-check"></i><b>9.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="introduction-to-web-scraping.html"><a href="introduction-to-web-scraping.html#web-scraping-considerations"><i class="fa fa-check"></i><b>9.1.1</b> Web Scraping Considerations</a></li>
+<li class="chapter" data-level="9.1.2" data-path="introduction-to-web-scraping.html"><a href="introduction-to-web-scraping.html#web-scraping-principles"><i class="fa fa-check"></i><b>9.1.2</b> Web Scraping Principles</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="introduction-to-web-scraping.html"><a href="introduction-to-web-scraping.html#r-web-scrapping"><i class="fa fa-check"></i><b>9.2</b> R Web Scrapping</a></li>
+<li class="chapter" data-level="9.3" data-path="introduction-to-web-scraping.html"><a href="introduction-to-web-scraping.html#python-web-scrapping"><i class="fa fa-check"></i><b>9.3</b> Python Web Scrapping</a></li>
+<li class="chapter" data-level="9.4" data-path="introduction-to-web-scraping.html"><a href="introduction-to-web-scraping.html#remarks"><i class="fa fa-check"></i><b>9.4</b> Remarks</a></li>
+</ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="general-guidelines.html"><a href="general-guidelines.html"><i class="fa fa-check"></i><b>A</b> General Guidelines</a>
 <ul>
@@ -598,16 +609,16 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="bookdown-tests" class="section level1 hasAnchor" number="12">
+<div id="bookdown-tests" class="section level1 hasAnchor" number="13">
 <h1><span class="header-section-number">D</span> Bookdown Tests<a href="bookdown-tests.html#bookdown-tests" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>A few tests to make sure <strong>bookdown</strong> is rendering things correctly.</p>
-<div id="test-math-macros" class="section level2 hasAnchor" number="12.1">
+<div id="test-math-macros" class="section level2 hasAnchor" number="13.1">
 <h2><span class="header-section-number">D.1</span> Test Math Macros<a href="bookdown-tests.html#test-math-macros" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><span class="math inline">\(\var(\xx)\)</span>, <span class="math inline">\(\alpha_\xx\)</span>, <span class="math inline">\(\xx \ind \N(0, \sigma_{\tx{pool}})\)</span>.</p>
 </div>
-<div id="test-figure" class="section level2 hasAnchor" number="12.2">
+<div id="test-figure" class="section level2 hasAnchor" number="13.2">
 <h2><span class="header-section-number">D.2</span> Test Figure<a href="bookdown-tests.html#test-figure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb696-1"><a href="bookdown-tests.html#cb696-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>, <span class="at">pch =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="bookdown-tests.html#cb712-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>, <span class="at">pch =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:booktest-fig"></span>
 <img src="topics_in_consulting_files/figure-html/booktest-fig-1.png" alt="Test figure." width="672" />
 <p class="caption">
@@ -616,11 +627,11 @@ Figure D.1: Test figure.
 </div>
 <p>The reference to Figure <a href="bookdown-tests.html#fig:booktest-fig">D.1</a> is implemented correctly.</p>
 </div>
-<div id="test-cran-link" class="section level2 hasAnchor" number="12.3">
+<div id="test-cran-link" class="section level2 hasAnchor" number="13.3">
 <h2><span class="header-section-number">D.3</span> Test CRAN Link<a href="bookdown-tests.html#test-cran-link" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The package link to <a href="https://CRAN.R-project.org/package=mniw"><strong>mniw</strong></a> works correctly.</p>
 </div>
-<div id="test-checklist" class="section level2 hasAnchor" number="12.4">
+<div id="test-checklist" class="section level2 hasAnchor" number="13.4">
 <h2><span class="header-section-number">D.4</span> Test Checklist<a href="bookdown-tests.html#test-checklist" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Can users modify our checklists? Apparently not.</p>
 <ul class="task-list">
@@ -628,7 +639,7 @@ Figure D.1: Test figure.
 <li><p><label><input type="checkbox" checked="" />Item 2.</label></p></li>
 </ul>
 </div>
-<div id="test-references" class="section level2 hasAnchor" number="12.5">
+<div id="test-references" class="section level2 hasAnchor" number="13.5">
 <h2><span class="header-section-number">D.5</span> Test References<a href="bookdown-tests.html#test-references" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The reference to <span class="citation">Agresti (<a href="#ref-agresti15">2015</a>)</span> works as expected.</p>
 
@@ -660,42 +671,42 @@ Agresti, Alan. 2015. <em>Foundations of Linear and Generalized Linear Models</em
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

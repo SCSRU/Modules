@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A General Guidelines | Topics in Statistical Consulting</title>
-  <meta name="description" content="A General Guidelines | Topics in Statistical Consulting" />
+  <title>9 Introduction to Web Scraping | Topics in Statistical Consulting</title>
+  <meta name="description" content="9 Introduction to Web Scraping | Topics in Statistical Consulting" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A General Guidelines | Topics in Statistical Consulting" />
+  <meta property="og:title" content="9 Introduction to Web Scraping | Topics in Statistical Consulting" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A General Guidelines | Topics in Statistical Consulting" />
+  <meta name="twitter:title" content="9 Introduction to Web Scraping | Topics in Statistical Consulting" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="introduction-to-web-scraping.html"/>
-<link rel="next" href="formatting-guidelines.html"/>
+<link rel="prev" href="introduction-to-sample-size-determination.html"/>
+<link rel="next" href="general-guidelines.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -609,76 +609,133 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="general-guidelines" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">A</span> General Guidelines<a href="general-guidelines.html#general-guidelines" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><em>Author: Martin Lysy</em></p>
-<p><em>Last Updated: Nov 17, 2020</em></p>
+<div id="introduction-to-web-scraping" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">9</span> Introduction to Web Scraping<a href="introduction-to-web-scraping.html#introduction-to-web-scraping" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>Author: Jeremy VanderDoes</em></p>
+<p><em>Last Updated: Jun 2, 2025</em></p>
 <hr />
-<div id="resources" class="section level2 hasAnchor" number="10.1">
-<h2><span class="header-section-number">A.1</span> Resources<a href="general-guidelines.html#resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-4" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Introduction<a href="introduction-to-web-scraping.html#introduction-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this chapter, we discuss web scrapping. Web scrapping is the process of collecting information for the world wide web. Typically this is done programmatically, and the program to do this is sometimes called a bot or web crawler. Web scrapping can be used to parse, format, and save text and images. Web scrapping has been implemented in many projects <span class="citation">(<a href="#ref-webscrape">Johannes Boegershausen and Stephen 2020</a>)</span> and often creates rich data sets. However, it can be time consuming to implement and perfect. Python is often considered the standard programming language for web scraping and has strong packages to support the task; however, recently R has begun to be increasing used.</p>
+<p>In this module, we cover main concepts in web scrapping and give a brief overview of R implementations before devoting the majority of our discussion to Python implementations.</p>
+<div id="web-scraping-considerations" class="section level3 hasAnchor" number="9.1.1">
+<h3><span class="header-section-number">9.1.1</span> Web Scraping Considerations<a href="introduction-to-web-scraping.html#web-scraping-considerations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We remind readers here that web scrapping is typically legal when the data is public, non-personal, and factual. However, it is wise to consider the sites that will be scrapped beforehand. Although the most reliable source is contacting a lawyer, a general overview can be found at this <a href="https://r4ds.hadley.nz/webscraping#scraping-ethics-and-legalities">site</a>. See also this <a href="https://en.wikipedia.org/wiki/Web_scraping">site</a> which states ‘… web scraping may be against the terms of service of some websites, but the enforceability of these terms is unclear.’</p>
+<p>Remember to scrape ethically. Web scrapping calls the sites as if you were looking at the site and so doing it too much, e.g. too often and/or too fast, can crash sites or cause other problems. It may seem hard to do that upfront, but it is possible (and often easy) to inadvertently cause problems. Many of us can recall a time when we wanted a new item or concert ticket and as soon as it goes on sale, the website seems to slow or even crash. When programmatically scrapping a web site, typical barriers which slow us down–i.e. reading page, finding the desired link, etc.–are often not a problem. Further, the webpage code can load before it is rendered on-screen meaning that web scrapping can quickly place many requests or calls to the web site.</p>
+<p>A site is ethically scraped when the calls are sent at a reasonable rate. To prevent unethical scrapping, sites often have mechanisms to detect scrapping and may limit or block calls from your computer if it detects scrapping, even when done ethically. Navigating around captchas or other preventative measures can be difficult is left to other works. In general, these is a constant struggle between web sites preventing scrapping and methods designed to overcome obstacles and scrap web sites.</p>
+</div>
+<div id="web-scraping-principles" class="section level3 hasAnchor" number="9.1.2">
+<h3><span class="header-section-number">9.1.2</span> Web Scraping Principles<a href="introduction-to-web-scraping.html#web-scraping-principles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To really understand web scrapping, we need to address how web sites are described. Although there are many programming languages to build web sites, web sites are typically described using HyperText Markup Language, referred to as html. Because websites are described using html, a program can be trained or directed to consistently pull information from sites.</p>
+<p>In the html code, cascading style sheets (css) is used to describe elements in the html. Said another way, html describes the way the site is laid out while css is used to add styling to elements on the page. For example, html may place a title at the top of the page but css describes size and color of the element.</p>
+<p>If you open a page on a web browser then right-click there will an option that says something along the lines of “View page source”.</p>
+<p><img src="data/webscrapping/pagesource.png" style="height:50.0%" /></p>
+<p>Selecting page source will open a page similar to the following (but much longer).</p>
+<div class="sourceCode" id="cb690"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb690-1"><a href="introduction-to-web-scraping.html#cb690-1" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="dt">&gt;</span></span>
+<span id="cb690-2"><a href="introduction-to-web-scraping.html#cb690-2" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb690-3"><a href="introduction-to-web-scraping.html#cb690-3" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span> Web scraping in R and Python <span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb690-4"><a href="introduction-to-web-scraping.html#cb690-4" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb690-5"><a href="introduction-to-web-scraping.html#cb690-5" tabindex="-1"></a>    </span>
+<span id="cb690-6"><a href="introduction-to-web-scraping.html#cb690-6" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb690-7"><a href="introduction-to-web-scraping.html#cb690-7" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;div_name&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb690-8"><a href="introduction-to-web-scraping.html#cb690-8" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">h1</span><span class="ot"> id</span><span class="op">=</span><span class="st">&#39;info_title&#39;</span><span class="dt">&gt;</span>A heading<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb690-9"><a href="introduction-to-web-scraping.html#cb690-9" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span> Information <span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb690-10"><a href="introduction-to-web-scraping.html#cb690-10" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span> More information <span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb690-11"><a href="introduction-to-web-scraping.html#cb690-11" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">&#39;webscrapping.png&#39;</span><span class="ot"> width</span><span class="op">=</span><span class="st">&#39;100&#39;</span><span class="ot"> height</span><span class="op">=</span><span class="st">&#39;100&#39;</span><span class="dt">&gt;</span></span>
+<span id="cb690-12"><a href="introduction-to-web-scraping.html#cb690-12" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb690-13"><a href="introduction-to-web-scraping.html#cb690-13" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb690-14"><a href="introduction-to-web-scraping.html#cb690-14" tabindex="-1"></a>    </span>
+<span id="cb690-15"><a href="introduction-to-web-scraping.html#cb690-15" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>A hierarchical structure is used in html such that elements of some ‘tag’–e.g. head, h1, p, img, li, etc.–have a starting form &lt;tag, …&gt; where additional attributes can be added at the …, an ending form &lt;/tag&gt;, and contents that are all the other elements between the start and end tag. There are hundreds of html elements, but typically only a few are needed to start. In fact, you don’t even need to understand what a tag means to scrape it! However, it can help to understand the code, so some common elements include:</p>
 <ul>
-<li><p><strong>R Markdown:</strong> The <a href="https://bookdown.org/yihui/bookdown/"><strong>bookdown</strong> e-book</a> the <a href="https://bookdown.org/yihui/rmarkdown/">Definitive R Markdown Guide</a> and the <a href="https://bookdown.org/yihui/rmarkdown-cookbook/">R Markdown Cookbook</a>.</p></li>
-<li><p><strong>LaTeX:</strong> <a name="genguide-res:latex"> <a href="https://en.wikibooks.org/wiki/LaTeX/Mathematics">Basic</a> and <a href="https://en.wikibooks.org/wiki/LaTeX/Advanced_Mathematics">advanced</a> math formatting guides.</p></li>
-<li><p><strong>Collaborations:</strong> The <a href="https://git-scm.com/book/en/v2">Pro Git book</a>, and a quick tutorial <a href="git-and-github-a-quick-tutorial.html#git-and-github-a-quick-tutorial">here</a>.</p></li>
+<li><em>Required elements</em>: The element
+<html>
+starts all html pages. It has two elements inside it:
+<head>
+which contains general information and
+<body>
+which contains the content observed on the web page. Note that elements that are directly inside element A are called children of the element A. Children of those (and their children, etc.) are more generally called descendants.</li>
+<li><em>Block tags</em>: Tags that define general groups on the page. This includes headers (&lt;h#&gt; where ‘#’ indicates the level of the header, e.g. using &lt;h1&gt;), sections (&lt;section&gt;), paragraphs (&lt;p&gt;), lists (&lt;li&gt; among others), and so forth.</li>
+<li><em>Inline tags</em>: Tags to format text inside blocks. Examples include bold (&lt;b&gt;), italics (&lt;i&gt;), and links (&lt;a&gt;).</li>
 </ul>
+<p>Attributes in tags can be nearly anything. Common ones include ‘name’, ‘id’, and ‘src’.</p>
+<p>While the page source can be useful for seeing the entire html document, often this is hard to navigate. Instead, it is perhaps more common to right click and select ‘Inspect’. This will bring up an interactive panel with html code and css styles. The html code relating to the inspected element should be highlighted, but some browser require that you ‘inspect’ the element again after the panel is open. The html code can also be panned and the related element will be highlighted on screen.</p>
+<p>When a specific element is desired on the page, inspect can lead you to the correct place as well as the methodology to get that element. If you right click on the html code there are several options, but an important one is ‘copy’ which allows you to copy the code path needed to get to that element. This can speed up scrapping on many sites. However, we add an aside here to note that if the webpage is developed using more modern methodology, the html code may shift each time the page is loaded. In this case, more care is needed to ensure reliance on stable code.</p>
+<p>A page’s html could be navigated using an element attribute or id. Another option is a path of elements, similar to the file structure on computers. A path language such as XML Path Language (XPATH) may be used to do this. For the title of the SCSRU center website, the full XPATH is copied at the time of writing this code as:</p>
+<div class="sourceCode" id="cb691"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb691-1"><a href="introduction-to-web-scraping.html#cb691-1" tabindex="-1"></a>/html/body/div[3]/div/header/nav/div[1]/div/div/div/a</span></code></pre></div>
+<p>The path starts with html, similar to starting with the C drive of many computers. The symbol ‘/’ deliminates each child element examined. See later sections for variations of navigating paths. Full paths can be difficult to read. An alternative method is to use code that looks for specific elements. For example, the title is located in an element with an attribute class that is unique, ’uw-site-name__link’. It is often more reliable to have code look for unique identifiers such as this. Even when the desired element does not have a unique identifier, if a nearby parent (element owning it) or sibling (nearby element in the same parent) has a unique identifier, it can simplify web scrapping; see later sections.</p>
+<p>Note that if you scroll on html code in the inspection panel, it is not uncommon for multiple elements to seemingly describe the same thing and highlight the same element on screen. For example with the title, there is a &lt;div&gt; with the text, &lt;a&gt; with the link, and several class giving various information. Often when scrapping, different elements can be used for the same effect and some are more accessible than others.</p>
 </div>
-<div id="format" class="section level2 hasAnchor" number="10.2">
-<h2><span class="header-section-number">A.2</span> Format<a href="general-guidelines.html#format" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><a href="https://bookdown.org/yihui/bookdown/"><strong>bookdown</strong></a> is an R package which allows us to integrate scientific writing (including math, figures, etc.) with executable programming blocks. While <strong>bookdown</strong> is interfaced through R, very little R knowledge is required to operate it. The scientific writing is done in Markdown and LaTeX, whereas the programming blocks can be written in R, Python, Julia, C++, etc.</p>
-<p>In terms of content, please focus on the following:</p>
-<ol style="list-style-type: lower-roman">
-<li><p>Creating a clear organization of topics within your module using section/subsection/subsubsection headers.</p></li>
-<li><p>Setting up the code, for example, in a clear and well-organized manner, i.e., what to include directly in the <code>.Rmd</code> file and what goes into external scripts, using lots of code comments, informative variable names, and consistent naming conventions, etc.</p></li>
-</ol>
-<p>In terms of formatting the content with R Markdown, please refer to the <a href="#appformattingguidelines">Formatting Guidelines</a>.</p>
-<!-- The content of each module can roughly be divided into three components: -->
-<!-- 1.  Text explaining the concepts, models, etc. -->
-<!-- 2.  Short snippets of code which contribute to understanding the text (e.g., loading and displaying parts of data sets, simple calculations), or which can be used to create figures and tables. -->
-<!-- 3.  Larger sections of code consisting of interdependent functions, data processing, complex plotting functions, etc.  Some of this code can be displayed within the text, but by and large, it should be written in -->
-<!-- Each module should consist of:
+</div>
+<div id="r-web-scrapping" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> R Web Scrapping<a href="introduction-to-web-scraping.html#r-web-scrapping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A basic web scrapping package in R is <a href="https://CRAN.R-project.org/package=rvest"><strong>rvest</strong></a>. Although scrapping has been extended in other packages such as <a href="https://CRAN.R-project.org/package=RSelenium"><strong>RSelenium</strong></a>, this section focuses on <a href="https://CRAN.R-project.org/package=rvest"><strong>rvest</strong></a>. A useful reference for the introduction to web scrapping in R using <a href="https://CRAN.R-project.org/package=rvest"><strong>rvest</strong></a> is <a href="https://r4ds.hadley.nz/webscraping">R for Data Science</a>.</p>
+<p>To scrape, first a link to the desired web page is required. This can be nearly any web page. It is often the base page of a site, and other pages can be navigated from there. In this R tutorial, we focus on scrapping a single page. An important note is that some websites are dynamic, or they don’t load elements until they are visible. In this case <a href="https://CRAN.R-project.org/package=rvest"><strong>rvest</strong></a> is typically insufficient. We leave the discussion of such sites in R to other works, but consider it in the Python section below.</p>
+<p>The html code of a web page can be obtained as follows.</p>
+<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb692-1"><a href="introduction-to-web-scraping.html#cb692-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&#39;https://uwaterloo.ca/statistical-consulting-survey-research-unit/&#39;</span></span>
+<span id="cb692-2"><a href="introduction-to-web-scraping.html#cb692-2" tabindex="-1"></a>html <span class="ot">&lt;-</span> rvest<span class="sc">::</span><span class="fu">read_html</span>(url)</span></code></pre></div>
+<p>Various commands exist to parse, or read, the information in html code. For example, the following code returns the elements in the body of the html code.</p>
+<div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb693-1"><a href="introduction-to-web-scraping.html#cb693-1" tabindex="-1"></a><span class="fu">html_element</span>(html,<span class="st">&#39;body&#39;</span>)</span></code></pre></div>
+<p>We could find a specific child using commands such as</p>
+<div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb694-1"><a href="introduction-to-web-scraping.html#cb694-1" tabindex="-1"></a><span class="fu">html_children</span>(<span class="fu">html_element</span>(html,<span class="st">&#39;body&#39;</span>))[<span class="dv">1</span>]</span></code></pre></div>
+<p>Alternatively, the entire html element could be converted to text and natural language processing techniques used:</p>
+<div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb695-1"><a href="introduction-to-web-scraping.html#cb695-1" tabindex="-1"></a><span class="fu">html_text2</span>(html)</span></code></pre></div>
+<p>We end our discussion in R at this point. However, the information in the next section can be adapted to R. In particular, we investigate Selenium in Python and many methods have been adapted for R in <a href="https://CRAN.R-project.org/package=RSelenium"><strong>RSelenium</strong></a>.</p>
+</div>
+<div id="python-web-scrapping" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Python Web Scrapping<a href="introduction-to-web-scraping.html#python-web-scrapping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Traditionally Python has been a major language for web scrapping. Using the selenium package, a webpage can be opened in a web browser by</p>
+<div class="sourceCode" id="cb696"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb696-1"><a href="introduction-to-web-scraping.html#cb696-1" tabindex="-1"></a>driver <span class="op">=</span> selenium.webdriver.Edge()</span></code></pre></div>
+<p>for Edge. Other browsers can also be used, and testing the browser is important when scrapping. Anti-bot measures can be broken or easier to avoid on different browsers. Additionally, for more stubborn sites (e.g. those that detect and prevent the use of web scrappers) the package <code>undetected_chromedriver</code> may be useful.</p>
+<div class="sourceCode" id="cb697"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb697-1"><a href="introduction-to-web-scraping.html#cb697-1" tabindex="-1"></a>driver <span class="op">=</span> undetected_chromedriver.Chrome()</span></code></pre></div>
+<p>By default, these codes open the web browser on screen. This can be useful for testing code or even required for some dynamically loaded sites, but settings which prevent the visual loads are also available.</p>
+<p>The defined ‘driver’ controls the browser session. Hence this is the start of most calls. Closing the driver (<code>driver.close()</code>), waiting long enough for a time out, or directly exiting the browser requires restarting the driver to continue scrapping. The driver can be used to navigate to a url with the code</p>
+<div class="sourceCode" id="cb698"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb698-1"><a href="introduction-to-web-scraping.html#cb698-1" tabindex="-1"></a>driver.get(url)</span></code></pre></div>
+<p>where url is a string, e.g. ‘www.google.com’. Additionally, interacting with the webpage manually–e.g. entering a url yourself at the top of the browser–is typically effective.</p>
+<p>Other actions can done by using driver. For example, finding an element on the page can be done using <code>driver.find_element()</code>. In order to use the function, we must consider <code>selenium.webdriver.common.by</code> which we will call <code>by</code> for convenience. The command has methods to use such as <code>by.CLASS_NAME</code>, <code>by.ID</code>, <code>by.XPATH</code>, and so forth. In conjunction, these codes allow navigation of the html code to specific elements on the page which can then be analyzed for the desired data. For example on the SCSRU website, one element with the main title has a unique class ’uw-site-name__link’.</p>
+<p><img src="data/webscrapping/main_title_html.png" /></p>
+<p>The title element can be scrapped with the following code.</p>
+<div class="sourceCode" id="cb699"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb699-1"><a href="introduction-to-web-scraping.html#cb699-1" tabindex="-1"></a>elem <span class="op">=</span> driver.find_element(</span>
+<span id="cb699-2"><a href="introduction-to-web-scraping.html#cb699-2" tabindex="-1"></a>    selenium.webdriver.common.by.CLASS_NAME,</span>
+<span id="cb699-3"><a href="introduction-to-web-scraping.html#cb699-3" tabindex="-1"></a>    <span class="st">&quot;uw-site-name__link&quot;</span></span>
+<span id="cb699-4"><a href="introduction-to-web-scraping.html#cb699-4" tabindex="-1"></a>       )</span></code></pre></div>
+<p>Information such as text or link of the element can then be extracted.</p>
+<div class="sourceCode" id="cb700"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb700-1"><a href="introduction-to-web-scraping.html#cb700-1" tabindex="-1"></a>elem.text</span>
+<span id="cb700-2"><a href="introduction-to-web-scraping.html#cb700-2" tabindex="-1"></a>elem.get_attribute(<span class="st">&#39;href&#39;</span>)</span></code></pre></div>
+<p>Another common way to find elements would be using XPATH.</p>
+<div class="sourceCode" id="cb701"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb701-1"><a href="introduction-to-web-scraping.html#cb701-1" tabindex="-1"></a>elem <span class="op">=</span> driver.find_element(</span>
+<span id="cb701-2"><a href="introduction-to-web-scraping.html#cb701-2" tabindex="-1"></a>    selenium.webdriver.common.by.XPATH,</span>
+<span id="cb701-3"><a href="introduction-to-web-scraping.html#cb701-3" tabindex="-1"></a>    <span class="st">&quot;//div[@class=&#39;uw-site-name&#39;]/div/a&quot;</span></span>
+<span id="cb701-4"><a href="introduction-to-web-scraping.html#cb701-4" tabindex="-1"></a>       )</span></code></pre></div>
+<p>This code highlights important properties of a path. We start at the html, and look into further elements using forward slashes. This is akin to most computers starting with the C drive (‘C:/’ in files). A ‘/’ means only a child (i.e. one level below) the element. On a computer this means only look at folders directly in this folder. However, folders inside those folders are not searched. When we do not know how far down the element is, a ‘//’ is useful as it searches all descendants (and hence we suppressed the first html step above). This would be like looking in all folders and any folders contained in them. After a slash, the word describes the type of element, such as div or a, as previously discussed. Square brackets can be used for additional information. A ‘[0]’ would return the first example, while ‘[@class=’STRING’]’ only returns the element where the class equals ‘STRING’. There is much more to learn for pathing, but most problems can be solved with these simple commands.</p>
+<p>Sometimes to investigate a web page, cursor movement needs to be simulated. For example, a mouse may need to hover or click on something. This can be done using <code>ActionChains</code> which is imported from <code>selenium.webdriver.common.action_chains</code>.</p>
+<div class="sourceCode" id="cb702"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb702-1"><a href="introduction-to-web-scraping.html#cb702-1" tabindex="-1"></a>ActionChains(driver).move_to_element(elem).click_and_hold().perform()</span></code></pre></div>
+<p>The actions of <code>driver.find_element()</code> or <code>driver.find_elements()</code> immediately tries to find an element. This can be a problem in automation because the code will often run faster than a web page can load. If the web page isn’t loaded, the code will return an error. The can be frustrating as the code is generally correct but needs more time. One potential solution is having the code wait, but this requires correctly guessing the right amount of time. If the guess is too low, the code will fail, and if it is too high, the code will take longer than necessary. An alternative solution uses <code>WebDriverWait</code> from library <code>selenium.webdriver.support.wait</code> and <code>expected_conditions</code> from <code>selenium.webdriver.support</code>, denoted as <code>EC</code> below.</p>
+<div class="sourceCode" id="cb703"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb703-1"><a href="introduction-to-web-scraping.html#cb703-1" tabindex="-1"></a>elem <span class="op">=</span> WebDriverWait(driver, EXPLICIT_WAIT_TIME).until(</span>
+<span id="cb703-2"><a href="introduction-to-web-scraping.html#cb703-2" tabindex="-1"></a>            EC.visibility_of_element_located((By.XPATH,<span class="st">&#39;//*[contains(@class,&quot;uw-site-name__link&quot;)]&#39;</span>))</span>
+<span id="cb703-3"><a href="introduction-to-web-scraping.html#cb703-3" tabindex="-1"></a>        )</span></code></pre></div>
+<p>Up to the user-defined maximum time variable above ‘EXPLICIT_WAIT_TIME’, the code tries to run. If it runs successfully, the results are returned and the code continues. If it does not, e.g. the web page hasn’t loaded yet, the code tries again. This process continues until the code completes or the maximum time is elapsed.</p>
+<p>On retrieved elements, in addition to getting data, you can act on them. For example, an element can be clicked</p>
+<div class="sourceCode" id="cb704"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb704-1"><a href="introduction-to-web-scraping.html#cb704-1" tabindex="-1"></a>elem.click()</span></code></pre></div>
+<p>or other input could be given. For example, for a text input box–e.g. a search bar–the following code enters text then presses enter (where <code>Keys</code> is from <code>selenium.webdriver.common.keys</code>).</p>
+<div class="sourceCode" id="cb705"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb705-1"><a href="introduction-to-web-scraping.html#cb705-1" tabindex="-1"></a>elem.send_keys(<span class="st">&#39;sending text&#39;</span>)</span>
+<span id="cb705-2"><a href="introduction-to-web-scraping.html#cb705-2" tabindex="-1"></a>elem.send_keys(Keys.ENTER)</span></code></pre></div>
+<p>Data that is saved from elements is typically directly saved (e.g. taking a screenshot by <code>elem.screenshot('SavePath')</code>), or put into an objects (<code>data.frame</code> in R or <code>pandas.DataFrame</code> in Python among others) and saved. When text is saved, Natural Language Processing is often useful to remove extraneous information. We leave this discussion to other works.</p>
+</div>
+<div id="remarks" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Remarks<a href="introduction-to-web-scraping.html#remarks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Web scrapping is a rapidly evolving field and websites regularly change. This tutorial offers an outline, and key words that can be useful for searching on the web for the most current methods.</p>
+<p>We end this module with a tip to completing a web scrapping project as quickly as possible. It is not uncommon for web pages to change or get better at detecting scraping. It is unfortunate to scrap half a site, then have to reprogram the bot because you took a break for a month or so.</p>
 
-- One `Rmd` file containing the Markdown/LaTeX text, and short snippets of code which contribute to understanding the text (e.g., loading and displaying parts of data sets, simple calculations), or which can be used to create figures and tables.
+</div>
+</div>
 
-- Any number of external `.R`, `.py`, `.jl`, `.cpp`, etc. files for anything more complicated, e.g., interdependent and longer functions, data preprocessing files, etc.  I strongly recommend that you do not put too much code into `Rmd` files directly as it makes it much more difficult to organize, debug, and maintain.
 
-- Do provide links to relevant resources: papers, blog posts, etc. which helped you understand things better, and also any *high quality/performance* software to use or explore.  I've tried to provide such resources in my notes; please do update if links are broken, libraries have been superceeded, etc. -->
-<!-- the software.  I strongly recommend that you never try to write in multiple programming languages at once (e.g., R + Markdown). -->
-<!-- A skeleton for the full set of notes (including all modules) is to be downloaded from GitHub.  Each module should consist of an `Rmd` file containing the Markdown/LaTeX text, and external `.R`, `.py`, `.jl`, `.cpp`, etc. files for the software.  I strongly recommend that you never try to write in multiple programming languages at once (e.g., R + Markdown). -->
-<div id="typesetting-math" class="section level3 hasAnchor" number="10.2.1">
-<h3><span class="header-section-number">A.2.1</span> Typesetting Math<a href="general-guidelines.html#typesetting-math" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Please do take a look at the <a href="#genguide-res:latex">LaTeX guides</a> above, as it is easy to do this right and very annoying to redo if you do it wrong.</p>
-<p>One extremely useful LaTeX feature is the ability to define macros for commonly used commands. I strongly encourage you to use macros whenever possible. Not only does this save a considerable amount of typing, but also often an enormous amount of search-replacing. For example, suppose I have a canonical transformation function which I’ll be using throughout the document, but I’m not quite sure how to typeset it yet. So I define the LaTeX macro <code>\ctran{}</code> and use it. If later I want to redefine how <code>\ctran{}</code> is typeset that’s an extremely easy fix.</p>
-<p>Another useful LaTeX trick is to use simple patterns to define macros for common things. For example, I always define bold letter names (which you should use for anything that isn’t a scalar) as <code>\xx</code> <code>\YY</code>, etc., and bold symbol names as <code>\aal</code> for <span class="math inline">\(\boldsymbol{\alpha}\)</span>, <code>\TTh</code> for <span class="math inline">\(\boldsymbol{\Theta}\)</span>, etc.</p>
-<p>As a rule-of-thumb, <strong>avoid</strong> defining one-letter macros. The worst LaTeX mistake I’ve ever made is to define <span class="math inline">\(\beta\)</span> as<code>\b</code> in everything LaTeX document I wrote before 2015. Now suppose I want to replace <span class="math inline">\(\beta\)</span> with <span class="math inline">\(\gamma\)</span> as a symbol for the quantity of interest. Then either I have an extremely confusing macro <code>\newcommand{\b}{\gamma}</code>, or the most annoying search-replace ever (<code>\begin{xyz}</code> anyone?). Sometimes I do use one letter capital macros, e.g., <code>\newcommand{\N}{\mathcal{N}}</code> for the normal distribution, but these are much easier to search-replace.</p>
-<p>For this project, LaTeX is rendered to HTML via <a href="https://www.mathjax.org/">Mathjax</a>, and thus the macros must be defined a bit differently than in regular LaTeX. All LaTeX macros must be defined in <a href="preamble.html"><code>preamble.html</code></a>.</p>
-</div>
-<div id="genguide-citations" class="section level3 hasAnchor" number="10.2.2">
-<h3><span class="header-section-number">A.2.2</span> Citations<a href="general-guidelines.html#genguide-citations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>For external websites, it’s sufficient to provide a link as I’ve done in this document. For journal articles, textbooks, conference proceedings, etc. it’s good practice to provide the complete citation information (in addition to a link to the resource if it can be obtained legally for free). For such references please use <a href="https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management">BibTeX</a>.</p>
-<p>Add your citations to the bibliography file <code>references.bib</code>. To separate the citations for each module, add the name of your module using the comment sign <span class="math inline">\(\%\)</span> when you start to add citations.</p>
-<p>For citation labels, please use the standardized format with the author label followed by the last two digits of the year. The rules for the author labels are, if there is only one author, use <code>@firstauthorlastname</code>, if there are two authors, use <code>@firstauthorlastname.secondauthorlastname</code>, if there are more than 2 authors, use <code>@firstauthorlastname.etal</code>. Here’s some examples <span class="citation">(<a href="#ref-gelman13">Gelman et al. 2013</a>)</span>, <span class="citation">(<a href="#ref-friedman.etal09">Friedman, Hastie, and Tibshirani 2009</a>)</span>.</p>
-</div>
-</div>
-<div id="rendering-the-book" class="section level2 hasAnchor" number="10.3">
-<h2><span class="header-section-number">A.3</span> Rendering the Book<a href="general-guidelines.html#rendering-the-book" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>For this you will need to install the following packages:</p>
-<div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb706-1"><a href="general-guidelines.html#cb706-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;bookdown&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;wooldridge&quot;</span>, <span class="st">&quot;corrplot&quot;</span>, <span class="st">&quot;lmtest&quot;</span>,</span>
-<span id="cb706-2"><a href="general-guidelines.html#cb706-2" tabindex="-1"></a>                   <span class="st">&quot;caret&quot;</span>, <span class="st">&quot;PMCMRplus&quot;</span>, <span class="st">&quot;dunn.test&quot;</span>, <span class="st">&quot;geesmv&quot;</span>,</span>
-<span id="cb706-3"><a href="general-guidelines.html#cb706-3" tabindex="-1"></a>                   <span class="st">&quot;emdbook&quot;</span>),</span>
-<span id="cb706-4"><a href="general-guidelines.html#cb706-4" tabindex="-1"></a>                 <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p>Once this is done, quit + restart R for safe measure. Then, from within the project folder, run</p>
-<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb707-1"><a href="general-guidelines.html#cb707-1" tabindex="-1"></a>bookdown<span class="sc">::</span><span class="fu">render_book</span>()</span></code></pre></div>
-<p>To make sure everything is working as expected, you may wish to delete the <code>_book</code> and <code>_bookdown_files</code> folders before rendering. These don’t get cleaned up between runs, so there might be very old files hanging around in there if you don’t periodially perform a manual cleanup.</p>
 
-</div>
-</div>
 <h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div id="ref-friedman.etal09" class="csl-entry">
-Friedman, Jerome, Trevor Hastie, and Robert Tibshirani. 2009. <em>The Elements of Statistical Learning</em>. 2nd ed. New York, NY: Springer series in statistics.
-</div>
-<div id="ref-gelman13" class="csl-entry">
-Gelman, Andrew, John B Carlin, Hal S Stern, David B Dunson, Aki Vehtari, and Donald B Rubin. 2013. <em>Bayesian Data Analysis</em>. CRC Press. <a href="http://www.stat.columbia.edu/~gelman/book/">http://www.stat.columbia.edu/~gelman/book/</a>.
+<div id="ref-webscrape" class="csl-entry">
+Johannes Boegershausen, Abhishek Borah, Hannes Datta, and Andrew T. Stephen. 2020. <span>“Scraping Web Data for Marketing Insights.”</span> <em>Web</em>. <a href="https://web-scraping.org/">https://web-scraping.org/</a>.
 </div>
 </div>
             </section>
@@ -686,8 +743,8 @@ Gelman, Andrew, John B Carlin, Hal S Stern, David B Dunson, Aki Vehtari, and Don
           </div>
         </div>
       </div>
-<a href="introduction-to-web-scraping.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="formatting-guidelines.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduction-to-sample-size-determination.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="general-guidelines.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -311,6 +311,13 @@ samp-sim-sing
 samp-est-curve
 samp-parallel
 samp-beyond
+introduction-to-web-scraping
+introduction-4
+web-scraping-considerations
+web-scraping-principles
+r-web-scrapping
+python-web-scrapping
+remarks
 general-guidelines
 resources
 format
